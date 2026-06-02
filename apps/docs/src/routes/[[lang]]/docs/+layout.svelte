@@ -1,36 +1,67 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { docs } from '../../lib/docs';
-	import { base } from '$app/paths';
+	import { docs, getTitle } from '../../../lib/docs';
+	import { currentLocale } from '../../../lib/i18n/store.svelte';
+	import { localeToPath } from '../../../lib/i18n/locales';
+	import { t } from '../../../lib/i18n/t';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children?: Snippet } = $props();
 
-	const guide = docs.filter((d) => d.group === 'guide').sort((a, b) => a.slug.localeCompare(b.slug));
-	const components = docs
-		.filter((d) => d.group === 'components')
-		.sort((a, b) => a.slug.localeCompare(b.slug));
+	const locale = $derived(currentLocale.value);
+
+	const guide = $derived(
+		docs(locale)
+			.filter((d) => d.group === 'guide')
+			.sort((a, b) => a.slug.localeCompare(b.slug)),
+	);
+	const components = $derived(
+		docs(locale)
+			.filter((d) => d.group === 'components')
+			.sort((a, b) => a.slug.localeCompare(b.slug)),
+	);
+
+	// 当前路径的"裸"段（不包含 locale 前缀）
+	const currentBareSlug = $derived.by(() => {
+		const segs = page.url.pathname.split('/').filter(Boolean);
+		// [lang, 'docs', ...slug] → 取出 docs 之后
+		if ((segs[0] === 'zh-cn' || segs[0] === 'zh-tw') && segs[1] === 'docs') {
+			return segs.slice(2).join('/');
+		}
+		// ['docs', ...slug] → docs 之后
+		if (segs[0] === 'docs') return segs.slice(1).join('/');
+		return '';
+	});
 
 	function isActive(slug: string): boolean {
-		return page.params.slug === slug;
+		return currentBareSlug === slug;
+	}
+
+	function linkFor(slug: string): string {
+		return `${localeToPath(locale)}/docs/${slug}`;
+	}
+
+	// 文档显示标题：优先用 frontmatter title（已含翻译），fallback 到 slug 美化
+	function displayTitle(slug: string): string {
+		return getTitle(slug, locale) ?? slug;
 	}
 </script>
 
 <div class="docs-layout">
 	<aside class="docs-sidebar">
-		<a class="docs-sidebar__back" href="{base}/">← Back to home</a>
+		<a class="docs-sidebar__back" href="{localeToPath(locale)}/">{t('backToHome')}</a>
 
 		<nav class="docs-nav">
 			<section class="docs-nav__group">
-				<h3>Guides</h3>
+				<h3>{t('sidebarGuides')}</h3>
 				<ul>
 					{#each guide as doc (doc.slug)}
 						<li>
 							<a
-								href="{base}/docs/{doc.slug}"
+								href={linkFor(doc.slug)}
 								class:active={isActive(doc.slug)}
 							>
-								{doc.title}
+								{displayTitle(doc.slug)}
 							</a>
 						</li>
 					{/each}
@@ -38,15 +69,15 @@
 			</section>
 
 			<section class="docs-nav__group">
-				<h3>Components</h3>
+				<h3>{t('sidebarComponents')}</h3>
 				<ul>
 					{#each components as doc (doc.slug)}
 						<li>
 							<a
-								href="{base}/docs/{doc.slug}"
+								href={linkFor(doc.slug)}
 								class:active={isActive(doc.slug)}
 							>
-								{doc.title}
+								{displayTitle(doc.slug)}
 							</a>
 						</li>
 					{/each}

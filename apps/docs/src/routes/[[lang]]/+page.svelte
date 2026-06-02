@@ -47,19 +47,27 @@
   import DateRangePicker from '@persona-ui/lib/components/date-range-picker/DateRangePicker.svelte';
   // ── Local ──
   import SectionHeading from '@persona-ui/lib/components/section-heading/SectionHeading.svelte';
+  import { t, brand } from '../../lib/i18n/t';
+  import { currentLocale } from '../../lib/i18n/store.svelte';
+  import { localeToPath } from '../../lib/i18n/locales';
 
-  // 章节索引（用于侧边导航 + 入场 stagger）
-  const sections = [
-    { id: 'foundation', label: 'Foundation', eyebrow: '01' },
-    { id: 'form', label: 'Form Controls', eyebrow: '02' },
-    { id: 'feedback', label: 'Feedback', eyebrow: '03' },
-    { id: 'overlays', label: 'Overlays', eyebrow: '04' },
-    { id: 'navigation', label: 'Navigation', eyebrow: '05' },
-    { id: 'data', label: 'Data', eyebrow: '06' },
-  ];
+  // 章节索引（id 固定为英文用于 HTML anchor，label/description 随 locale 切换）
+  const sections = $derived([
+    { id: 'foundation', eyebrow: '01', label: t('sectionFoundation'), desc: t('sectionFoundationDesc') },
+    { id: 'form', eyebrow: '02', label: t('sectionForm'), desc: t('sectionFormDesc') },
+    { id: 'feedback', eyebrow: '03', label: t('sectionFeedback'), desc: t('sectionFeedbackDesc') },
+    { id: 'overlays', eyebrow: '04', label: t('sectionOverlays'), desc: t('sectionOverlaysDesc') },
+    { id: 'navigation', eyebrow: '05', label: t('sectionNavigation'), desc: t('sectionNavigationDesc') },
+    { id: 'data', eyebrow: '06', label: t('sectionData'), desc: t('sectionDataDesc') },
+  ]);
 
   let activeSection = $state('foundation');
   let dialogOpen = $state(false);
+
+  // locale-aware 跳转链接
+  const locale = $derived(currentLocale.value);
+  const gettingStartedHref = $derived(`${localeToPath(locale)}/docs/getting-started`);
+  const browseComponentsHref = $derived(`${localeToPath(locale)}/docs/components/button`);
 
   // IntersectionObserver：标记当前 section
   $effect(() => {
@@ -103,7 +111,7 @@
       class="font-(family-name:--pui-font-mono) text-xs font-medium uppercase tracking-[0.2em]
              text-(--pui-text-secondary) opacity-80"
     >
-      v0.1.0 · dual-personality
+      {t('heroEyebrow')}
     </span>
 
     <h1
@@ -111,38 +119,30 @@
              tracking-[-0.035em] text-(--pui-text-primary)
              sm:text-6xl md:text-7xl lg:text-[88px]"
     >
-      Two design <em
+      {t('heroTitleA')} <em
         class="not-italic"
         style="font-style: italic; color: oklch(from var(--pui-color-primary) calc(l + 0.05) c h)"
-        >personalities</em
-      >,<br />
-      one component<br />
-      library.
+        >{t('heroTitleEm')}</em
+      >{t('heroTitleB1')}<br />
+      {t('heroTitleB2')}<br />
+      {t('heroTitleB3')}
     </h1>
 
     <p class="max-w-xl text-lg leading-relaxed text-(--pui-text-secondary)">
-      Persona UI ships a single set of Svelte 5 components that flip between
-      <strong class="font-medium text-(--pui-text-primary)">Apple HIG</strong>
-      and
-      <strong class="font-medium text-(--pui-text-primary)">Material 3</strong> with
-      one attribute. Same API, two rigorously different design languages.
+      {t('heroDescription', brand('apple'), brand('material'))}
     </p>
 
     <div class="flex flex-wrap items-center gap-3">
-      <Button size="lg" variant="filled" onclick={() => (location.href = '/docs/getting-started')}>
-        Get started
-      </Button>
-      <Button
-        size="lg"
-        variant="outlined"
-        onclick={() => (location.href = '/docs/components/button')}
-      >
-        Browse components
-      </Button>
+      <a href={gettingStartedHref} class="contents">
+        <Button size="lg" variant="filled">{t('ctaGetStarted')}</Button>
+      </a>
+      <a href={browseComponentsHref} class="contents">
+        <Button size="lg" variant="outlined">{t('ctaBrowse')}</Button>
+      </a>
       <span
         class="ml-2 inline-flex items-center gap-1.5 text-xs text-(--pui-text-secondary)"
       >
-        Press <Kbd>⌘K</Kbd> to search
+        {t('hintSearch').split('⌘K')[0]}<Kbd>⌘K</Kbd>{t('hintSearch').split('⌘K')[1] ?? ''}
       </span>
     </div>
   </div>
@@ -164,21 +164,21 @@
           class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
                  text-(--pui-text-secondary)"
         >
-          apple · light
+          {t('previewLabelApple')}
         </span>
         <span
           class="font-(family-name:--pui-font-display) italic text-xs text-(--pui-text-secondary)"
         >
-          editorial
+          {t('previewEditorial')}
         </span>
       </div>
       <div class="flex flex-col gap-2">
-        <Button variant="filled" size="sm">Continue</Button>
-        <Button variant="outlined" size="sm">Cancel</Button>
+        <Button variant="filled" size="sm">{t('previewContinue')}</Button>
+        <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
       </div>
       <div class="flex items-center gap-2 text-xs text-(--pui-text-secondary)">
         <Switch defaultChecked size="sm" />
-        <span>Live preview</span>
+        <span>{t('previewLive')}</span>
       </div>
     </div>
 
@@ -194,30 +194,30 @@
           class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
                  text-(--pui-md-sys-color-on-surface-variant)"
         >
-          material · light
+          {t('previewLabelMaterial')}
         </span>
         <span
           class="font-(family-name:--pui-font-display) text-xs text-(--pui-md-sys-color-primary)"
         >
-          systematic
+          {t('previewSystematic')}
         </span>
       </div>
       <div class="flex flex-col gap-2">
-        <Button variant="filled" size="sm">Continue</Button>
-        <Button variant="outlined" size="sm">Cancel</Button>
+        <Button variant="filled" size="sm">{t('previewContinue')}</Button>
+        <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
       </div>
       <div
         class="flex items-center gap-2 text-xs text-(--pui-md-sys-color-on-surface-variant)"
       >
         <Switch defaultChecked size="sm" />
-        <span>Live preview</span>
+        <span>{t('previewLive')}</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- =================== SECTION INDEX (DESKTOP) =================== -->
-<aside class="mb-8 hidden lg:block" aria-label="Section navigation">
+<aside class="mb-8 hidden lg:block" aria-label={t('sectionNavAria')}>
   <nav
     class="sticky top-20 flex flex-wrap gap-x-6 gap-y-2 border-b
            border-(--pui-outline-subtle) pb-3 text-sm"
@@ -257,8 +257,8 @@
 >
   <SectionHeading
     eyebrow="01"
-    title="Foundation"
-    description="The atoms of the system — buttons, surfaces, status indicators. Every other component composes these primitives."
+    title={t('sectionFoundation')}
+    description={t('sectionFoundationDesc')}
     level={2}
   />
 
@@ -377,18 +377,18 @@
       </h3>
       <div class="grid gap-4 sm:grid-cols-3">
         <Card variant="elevated" padding="md">
-          {#snippet title()}<h4 class="font-semibold">Elevated</h4>{/snippet}
+          {#snippet title()}<h4 class="font-semibold">{t('demoCardElevated')}</h4>{/snippet}
           <p class="text-sm text-(--pui-text-secondary)">
-            Shadow-raised surface.
+            {t('demoShadowRaised')}
           </p>
         </Card>
         <Card variant="filled" padding="md">
-          {#snippet title()}<h4 class="font-semibold">Filled</h4>{/snippet}
-          <p class="text-sm text-(--pui-text-secondary)">Tinted background.</p>
+          {#snippet title()}<h4 class="font-semibold">{t('demoCardFilled')}</h4>{/snippet}
+          <p class="text-sm text-(--pui-text-secondary)">{t('demoTintedBg')}</p>
         </Card>
         <Card variant="outlined" padding="md">
-          {#snippet title()}<h4 class="font-semibold">Outlined</h4>{/snippet}
-          <p class="text-sm text-(--pui-text-secondary)">Border only.</p>
+          {#snippet title()}<h4 class="font-semibold">{t('demoCardOutlined')}</h4>{/snippet}
+          <p class="text-sm text-(--pui-text-secondary)">{t('demoBorderOnly')}</p>
         </Card>
       </div>
     </section>
@@ -476,8 +476,8 @@
 >
   <SectionHeading
     eyebrow="02"
-    title="Form Controls"
-    description="Inputs that respect the design language. All form components share the same prop API across themes."
+    title={t('sectionForm')}
+    description={t('sectionFormDesc')}
     level={2}
   />
 
@@ -676,8 +676,8 @@
 >
   <SectionHeading
     eyebrow="03"
-    title="Feedback"
-    description="Surface messages and progress indicators. Components follow the same tone semantics across themes."
+    title={t('sectionFeedback')}
+    description={t('sectionFeedbackDesc')}
     level={2}
   />
 
@@ -742,8 +742,8 @@
 >
   <SectionHeading
     eyebrow="04"
-    title="Overlays"
-    description="Tooltips, menus, dialogs — the surface above the surface. Each respects the language's motion grammar."
+    title={t('sectionOverlays')}
+    description={t('sectionOverlaysDesc')}
     level={2}
   />
 
@@ -830,8 +830,8 @@
 >
   <SectionHeading
     eyebrow="05"
-    title="Navigation"
-    description="From breadcrumbs to sidebars — discoverable, predictable, accessible."
+    title={t('sectionNavigation')}
+    description={t('sectionNavigationDesc')}
     level={2}
   />
 
@@ -968,8 +968,8 @@
 >
   <SectionHeading
     eyebrow="06"
-    title="Data"
-    description="Tables, calendars, time pickers — the surfaces where information lives."
+    title={t('sectionData')}
+    description={t('sectionDataDesc')}
     level={2}
   />
 
