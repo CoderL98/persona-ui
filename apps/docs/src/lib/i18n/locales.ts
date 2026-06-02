@@ -12,9 +12,9 @@ export function isLocale(s: string | undefined | null): s is Locale {
 
 // 用于 URL：把 Locale 转换成路径段
 // undefined/DEFAULT_LOCALE → ''（不带前缀）
-// 其它 → '/<lang>' 形式的段（调用方负责拼接到路径）
+// 其它 → '/<lang>' 形式的段（URL 段用小写，调用方负责拼接到路径）
 export function localeToPath(locale: Locale): string {
-	return locale === DEFAULT_LOCALE ? '' : `/${locale}`;
+	return locale === DEFAULT_LOCALE ? '' : `/${locale.toLowerCase()}`;
 }
 
 // 把 URL 路径段转换回 Locale，找不到则返回默认

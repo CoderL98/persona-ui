@@ -11,6 +11,9 @@ export const messages: Messages = {
 	toggleModeDark: 'Toggle light mode',
 
 	// Hero
+	pageTitle: 'Persona UI — Two design personalities, one component library',
+	pageDescription:
+		'A Svelte 5 dual-personality component library — Apple HIG × Material 3, switchable via a single attribute.',
 	heroEyebrow: 'v0.1.0 · dual-personality',
 	heroTitleA: 'Two design',
 	heroTitleEm: 'personalities',

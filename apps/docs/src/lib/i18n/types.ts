@@ -11,6 +11,8 @@ export interface Messages {
 	toggleModeDark: string;
 
 	// Hero
+	pageTitle: string;
+	pageDescription: string;
 	heroEyebrow: string;
 	heroTitleA: string; // "Two design"
 	heroTitleEm: string; // "personalities"

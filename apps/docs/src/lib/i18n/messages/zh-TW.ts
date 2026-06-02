@@ -11,6 +11,8 @@ export const messages: Messages = {
 	toggleModeDark: '切換淺色模式',
 
 	// Hero
+	pageTitle: 'Persona UI — 兩套設計語言，一套元件庫',
+	pageDescription: 'Svelte 5 雙主題元件庫 —— Apple HIG × Material 3，透過一個屬性即可切換。',
 	heroEyebrow: 'v0.1.0 · 雙主題',
 	heroTitleA: '兩套設計',
 	heroTitleEm: '語言',

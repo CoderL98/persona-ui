@@ -11,6 +11,8 @@ export const messages: Messages = {
 	toggleModeDark: '切换亮色模式',
 
 	// Hero
+	pageTitle: 'Persona UI — 两套设计语言，一套组件库',
+	pageDescription: 'Svelte 5 双主题组件库 —— Apple HIG × Material 3，通过一个属性即可切换。',
 	heroEyebrow: 'v0.1.0 · 双主题',
 	heroTitleA: '两套设计',
 	heroTitleEm: '语言',

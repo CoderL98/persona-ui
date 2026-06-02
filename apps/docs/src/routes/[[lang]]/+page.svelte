@@ -91,10 +91,10 @@
 </script>
 
 <svelte:head>
-  <title>Persona UI — Two design personalities, one component library</title>
+  <title>{t('pageTitle')}</title>
   <meta
     name="description"
-    content="A Svelte 5 dual-personality component library — Apple HIG × Material 3, switchable via a single attribute."
+    content={t('pageDescription')}
   />
 </svelte:head>
 
