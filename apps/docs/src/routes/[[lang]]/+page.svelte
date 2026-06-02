@@ -1,52 +1,51 @@
 <script lang="ts">
   // ── Foundation ──
-  import Button from '@persona-ui/lib/components/button/Button.svelte';
-  import IconButton from '@persona-ui/lib/components/icon-button/IconButton.svelte';
-  import Card from '@persona-ui/lib/components/card/Card.svelte';
-  import Divider from '@persona-ui/lib/components/divider/Divider.svelte';
-  import Badge from '@persona-ui/lib/components/badge/Badge.svelte';
-  import Chip from '@persona-ui/lib/components/chip/Chip.svelte';
-  import Avatar from '@persona-ui/lib/components/avatar/Avatar.svelte';
-  import Kbd from '@persona-ui/lib/components/kbd/Kbd.svelte';
+  import { Button } from '@persona-ui/lib/components/button';
+  import { IconButton } from '@persona-ui/lib/components/icon-button';
+  import { Card } from '@persona-ui/lib/components/card';
+  import { Divider } from '@persona-ui/lib/components/divider';
+  import { Badge } from '@persona-ui/lib/components/badge';
+  import { Chip } from '@persona-ui/lib/components/chip';
+  import { Avatar } from '@persona-ui/lib/components/avatar';
+  import { Kbd } from '@persona-ui/lib/components/kbd';
   // ── Form ──
-  import TextField from '@persona-ui/lib/components/text-field/TextField.svelte';
-  import Textarea from '@persona-ui/lib/components/textarea/Textarea.svelte';
-  import Checkbox from '@persona-ui/lib/components/checkbox/Checkbox.svelte';
-  import { RadioGroup, Radio } from '@persona-ui/lib/components/radio/index.js';
-  import Switch from '@persona-ui/lib/components/switch/Switch.svelte';
-  import Slider from '@persona-ui/lib/components/slider/Slider.svelte';
-  import Select from '@persona-ui/lib/components/select/Select.svelte';
-  import Combobox from '@persona-ui/lib/components/combobox/Combobox.svelte';
-  import SearchField from '@persona-ui/lib/components/search-field/SearchField.svelte';
+  import { TextField } from '@persona-ui/lib/components/text-field';
+  import { Textarea } from '@persona-ui/lib/components/textarea';
+  import { Checkbox } from '@persona-ui/lib/components/checkbox';
+  import { RadioGroup, Radio } from '@persona-ui/lib/components/radio';
+  import { Switch } from '@persona-ui/lib/components/switch';
+  import { Slider } from '@persona-ui/lib/components/slider';
+  import { Select } from '@persona-ui/lib/components/select';
+  import { Combobox } from '@persona-ui/lib/components/combobox';
+  import { SearchField } from '@persona-ui/lib/components/search-field';
   // ── Feedback ──
-  import Alert from '@persona-ui/lib/components/alert/Alert.svelte';
-  import Banner from '@persona-ui/lib/components/banner/Banner.svelte';
-  import { Toast, ToastViewport } from '@persona-ui/lib/components/toast/index.js';
-  import Progress from '@persona-ui/lib/components/progress/Progress.svelte';
-  import Spinner from '@persona-ui/lib/components/spinner/Spinner.svelte';
-  import Skeleton from '@persona-ui/lib/components/skeleton/Skeleton.svelte';
-  import EmptyState from '@persona-ui/lib/components/empty-state/EmptyState.svelte';
+  import { Alert } from '@persona-ui/lib/components/alert';
+  import { Banner } from '@persona-ui/lib/components/banner';
+  import { Toast, ToastViewport } from '@persona-ui/lib/components/toast';
+  import { Progress } from '@persona-ui/lib/components/progress';
+  import { Spinner } from '@persona-ui/lib/components/spinner';
+  import { Skeleton } from '@persona-ui/lib/components/skeleton';
+  import { EmptyState } from '@persona-ui/lib/components/empty-state';
   // ── Overlay ──
-  import Tooltip from '@persona-ui/lib/components/tooltip/Tooltip.svelte';
-  import Popover from '@persona-ui/lib/components/popover/Popover.svelte';
-  import Menu from '@persona-ui/lib/components/menu/Menu.svelte';
-  import Dialog from '@persona-ui/lib/components/dialog/Dialog.svelte';
+  import { Tooltip } from '@persona-ui/lib/components/tooltip';
+  import { Popover } from '@persona-ui/lib/components/popover';
+  import { Menu } from '@persona-ui/lib/components/menu';
+  import { Dialog } from '@persona-ui/lib/components/dialog';
   // ── Navigation ──
-  import Tabs from '@persona-ui/lib/components/tabs/Tabs.svelte';
-  import SegmentedControl from '@persona-ui/lib/components/segmented-control/SegmentedControl.svelte';
-  import Breadcrumb from '@persona-ui/lib/components/breadcrumb/Breadcrumb.svelte';
-  import Toolbar from '@persona-ui/lib/components/toolbar/Toolbar.svelte';
-  import Sidebar from '@persona-ui/lib/components/sidebar/Sidebar.svelte';
+  import { Tabs } from '@persona-ui/lib/components/tabs';
+  import { SegmentedControl } from '@persona-ui/lib/components/segmented-control';
+  import { Breadcrumb } from '@persona-ui/lib/components/breadcrumb';
+  import { Toolbar } from '@persona-ui/lib/components/toolbar';
+  import { Sidebar } from '@persona-ui/lib/components/sidebar';
   // ── Data ──
-  import List from '@persona-ui/lib/components/list/List.svelte';
-  import ListItem from '@persona-ui/lib/components/list/ListItem.svelte';
-  import Accordion from '@persona-ui/lib/components/accordion/Accordion.svelte';
-  import Table from '@persona-ui/lib/components/table/Table.svelte';
-  import Calendar from '@persona-ui/lib/components/calendar/Calendar.svelte';
-  import TimePicker from '@persona-ui/lib/components/time-picker/TimePicker.svelte';
-  import DateRangePicker from '@persona-ui/lib/components/date-range-picker/DateRangePicker.svelte';
+  import { List, ListItem } from '@persona-ui/lib/components/list';
+  import { Accordion } from '@persona-ui/lib/components/accordion';
+  import { Table } from '@persona-ui/lib/components/table';
+  import { Calendar } from '@persona-ui/lib/components/calendar';
+  import { TimePicker } from '@persona-ui/lib/components/time-picker';
+  import { DateRangePicker } from '@persona-ui/lib/components/date-range-picker';
   // ── Local ──
-  import SectionHeading from '@persona-ui/lib/components/section-heading/SectionHeading.svelte';
+  import { SectionHeading } from '@persona-ui/lib/components/section-heading';
   import { t, brand } from '../../lib/i18n/t';
   import { currentLocale } from '../../lib/i18n/store.svelte';
   import { localeToPath } from '../../lib/i18n/locales';
