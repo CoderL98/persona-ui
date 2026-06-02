@@ -16,10 +16,10 @@
 	//     /zh-TW                       → /
 	//     /docs/button                  → /docs/button（不变）
 	function stripLocaleFromPath(pathname: string): string {
-		const segs = pathname.split('/').filter(Boolean);
+		const segments = pathname.split('/').filter(Boolean);
 		let i = 0;
-		while (i < segs.length && isLocaleSeg(segs[i])) i++;
-		const rest = segs.slice(i).join('/');
+		while (i < segments.length && isLocaleSeg(segments[i])) i++;
+		const rest = segments.slice(i).join('/');
 		return rest ? `/${rest}` : '/';
 	}
 
@@ -35,9 +35,9 @@
 	}
 </script>
 
+<!-- 嵌套在父级玻璃面板中：去除外层 border/bg，仅保留分段控件本体 -->
 <div
-	class="inline-flex items-center gap-0.5 rounded-(--pui-radius-control)
-         border border-(--pui-outline) bg-(--pui-surface-base) p-0.5 text-xs"
+	class="flex items-center divide-x divide-(--pui-outline-subtle)"
 	role="group"
 	aria-label={t('langSwitcherAria')}
 >
@@ -46,13 +46,13 @@
 			type="button"
 			onclick={() => pickLocale(l)}
 			aria-pressed={currentLocale.value === l}
-			class="inline-flex h-8 min-w-8 items-center justify-center rounded-(--pui-radius-sm,6px)
+			class="inline-flex h-7 min-w-7 items-center justify-center
                px-2 font-(family-name:--pui-font-mono) text-[11px] font-medium uppercase tracking-wider
-               transition-all active:scale-[0.96]
+               transition-colors duration-(--pui-duration-enter)
                focus-visible:outline-2 focus-visible:outline-offset-2
                {currentLocale.value === l
-				? 'bg-(--pui-color-primary) text-(--pui-color-on-primary)'
-				: 'text-(--pui-text-secondary) hover:text-(--pui-text-primary) hover:bg-(--pui-surface-variant)'}"
+				? 'rounded-(--pui-radius-control) bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
+				: 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
 		>
 			{l === 'en' ? t('langEn') : l === 'zh-CN' ? t('langZhCN') : t('langZhTW')}
 		</button>

@@ -7,8 +7,8 @@ export const messages: Messages = {
 	version: 'v0.1.0 · svelte 5 · tailwind 4',
 	toggleThemeApple: '切换主题：Apple',
 	toggleThemeMaterial: '切换主题：Material',
-	toggleModeLight: '切换暗色模式',
-	toggleModeDark: '切换亮色模式',
+	toggleModeLight: '切换亮色模式',
+	toggleModeDark: '切换暗色模式',
 
 	// Hero
 	pageTitle: 'Persona UI — 两套设计语言，一套组件库',

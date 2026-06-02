@@ -5,6 +5,42 @@
    ========================================================== */
 
 /* ==========================================================
+   全局文本与背景（修复 dark 模式下文字默认黑色的问题）
+   之前 body 只设了 background，color 走浏览器默认 (#000)，
+   导致 dark 模式背景变深、文字保持黑色不可见。
+   ========================================================== */
+body {
+  color: var(--pui-text-primary);
+  background-color: var(--pui-surface-base);
+  /* 字体回退：优先用主题的 --pui-font-body */
+  font-family: var(--pui-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* 平滑切换：让 dark 模式动画更柔和 */
+  transition:
+    background-color var(--pui-duration-swap, 200ms)
+      var(--pui-motion-ease-out, ease-out),
+    color var(--pui-duration-swap, 200ms)
+      var(--pui-motion-ease-out, ease-out);
+}
+
+/* 默认链接色：跟随主题 primary，避免暗色背景下浅蓝看不清 */
+a {
+  color: var(--pui-color-primary);
+  text-decoration-color: color-mix(
+    in oklch,
+    var(--pui-color-primary) 40%,
+    transparent
+  );
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color var(--pui-duration-enter, 100ms);
+}
+a:hover {
+  text-decoration-color: var(--pui-color-primary);
+}
+
+/* ==========================================================
    Apple 主题背景
    - 3 层径向渐变 mesh：peach（暖）→ lavender（柔）→ mint（清）
    - 顶部 grain（SVG data-URI noise，4% 透明度）
@@ -90,6 +126,25 @@
       to bottom,
       oklch(from var(--pui-md-sys-color-primary) l c h / 0.04) 0%,
       transparent 80px
+    ),
+    var(--pui-md-sys-color-background);
+  background-attachment: fixed;
+}
+
+[data-theme='material'][data-mode='dark'] body {
+  background:
+    linear-gradient(
+      to bottom,
+      oklch(from var(--pui-md-sys-color-primary) l c h / 0.06) 0%,
+      transparent 120px
+    ),
+    /* M3 暗色模式：极淡 4dp 网格暗示 */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 4px,
+      oklch(1 0 0 / 0.012) 4px,
+      oklch(1 0 0 / 0.012) 5px
     ),
     var(--pui-md-sys-color-background);
   background-attachment: fixed;

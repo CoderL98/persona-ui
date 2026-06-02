@@ -23,13 +23,13 @@
 
 	// 当前路径的"裸"段（不包含 locale 前缀）
 	const currentBareSlug = $derived.by(() => {
-		const segs = page.url.pathname.split('/').filter(Boolean);
+		const segments = page.url.pathname.split('/').filter(Boolean);
 		// [lang, 'docs', ...slug] → 取出 docs 之后
-		if ((segs[0] === 'zh-cn' || segs[0] === 'zh-tw') && segs[1] === 'docs') {
-			return segs.slice(2).join('/');
+		if ((segments[0] === 'zh-cn' || segments[0] === 'zh-tw') && segments[1] === 'docs') {
+			return segments.slice(2).join('/');
 		}
 		// ['docs', ...slug] → docs 之后
-		if (segs[0] === 'docs') return segs.slice(1).join('/');
+		if (segments[0] === 'docs') return segments.slice(1).join('/');
 		return '';
 	});
 

@@ -7,8 +7,8 @@ export const messages: Messages = {
 	version: 'v0.1.0 · svelte 5 · tailwind 4',
 	toggleThemeApple: 'Toggle theme: Apple',
 	toggleThemeMaterial: 'Toggle theme: Material',
-	toggleModeLight: 'Toggle dark mode',
-	toggleModeDark: 'Toggle light mode',
+	toggleModeLight: 'Toggle light mode',
+	toggleModeDark: 'Toggle dark mode',
 
 	// Hero
 	pageTitle: 'Persona UI — Two design personalities, one component library',
