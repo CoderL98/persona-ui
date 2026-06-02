@@ -5,7 +5,6 @@
     "checkJs": false,
     "declaration": false,
     "declarationDir": null,
-    "baseUrl": ".",
     "paths": {
       "$lib": ["../../packages/lib/src/lib"],
       "$lib/*": ["../../packages/lib/src/lib/*"]

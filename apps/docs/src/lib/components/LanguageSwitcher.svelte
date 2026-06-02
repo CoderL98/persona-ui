@@ -1,20 +1,26 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
-	import { LOCALES, DEFAULT_LOCALE, localeToPath, pathToLocale, type Locale } from '../i18n/locales';
+	import { LOCALES, localeToPath, type Locale } from '../i18n/locales';
 	import { currentLocale, setLocale, isActiveLocale } from '../i18n/store.svelte';
 	import { t } from '../i18n/t';
 
-	// 当前 URL 在不带 locale 前缀时的"裸路径"（去掉已有的 /zh-cn /zh-tw 等）
+	// 大小写不敏感的 locale 段判断
+	function isLocaleSeg(s: string): boolean {
+		const l = s.toLowerCase();
+		return l === 'zh' || l === 'zh-cn' || l === 'zh-tw';
+	}
+
+	// 剥离路径**开头**所有 locale 段（不限个数，防止历史污染 URL 导致无限拼接）
+	// 例：/zh-cn/zh-TW/docs/button → /docs/button
+	//     /zh-TW                       → /
+	//     /docs/button                  → /docs/button（不变）
 	function stripLocaleFromPath(pathname: string): string {
-		// 切分首段
 		const segs = pathname.split('/').filter(Boolean);
-		if (segs.length === 0) return '/';
-		if (segs[0] === 'zh-cn' || segs[0] === 'zh-tw' || segs[0] === 'zh') {
-			const rest = segs.slice(1).join('/');
-			return rest ? `/${rest}` : '/';
-		}
-		return pathname;
+		let i = 0;
+		while (i < segs.length && isLocaleSeg(segs[i])) i++;
+		const rest = segs.slice(i).join('/');
+		return rest ? `/${rest}` : '/';
 	}
 
 	// 当前路由对应的"裸路径"
@@ -23,12 +29,10 @@
 	function pickLocale(l: Locale): void {
 		if (isActiveLocale(l)) return;
 		setLocale(l);
-		const target = `${localeToPath(l)}${barePath === '/' ? '' : barePath}${page.url.search}`;
+		const prefix = localeToPath(l);
+		const target = `${prefix}${barePath}${page.url.search}`;
 		void goto(target, { replaceState: true, noScroll: true, keepFocus: true });
 	}
-
-	// 当前路由带的 locale（从 URL 第一段）
-	const routeLocale = $derived(pathToLocale(page.url.pathname.split('/').filter(Boolean)[0]));
 </script>
 
 <div
@@ -42,8 +46,8 @@
 			type="button"
 			onclick={() => pickLocale(l)}
 			aria-pressed={currentLocale.value === l}
-			class="inline-flex h-8 min-w-8 items-center justify-center rounded-(--pui-radius-control-sm,6px)
-               px-2 font-(family-name:--pui-font-mono) text-[11px] font-medium uppercase tracking-[0.05em]
+			class="inline-flex h-8 min-w-8 items-center justify-center rounded-(--pui-radius-sm,6px)
+               px-2 font-(family-name:--pui-font-mono) text-[11px] font-medium uppercase tracking-wider
                transition-all active:scale-[0.96]
                focus-visible:outline-2 focus-visible:outline-offset-2
                {currentLocale.value === l

@@ -54,7 +54,7 @@ pnpm release                # version + build lib + publish
 
 ## Architecture
 
-```
+```text
 persona-ui/
 ├── packages/
 │   └── lib/                 # @persona-ui/lib — self-contained, no SvelteKit dep

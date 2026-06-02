@@ -54,7 +54,7 @@ pnpm release                # version + 构建 lib + 发布
 
 ## 架构
 
-```
+```text
 persona-ui/
 ├── packages/
 │   └── lib/                 # @persona-ui/lib —— 自包含，不依赖 SvelteKit
