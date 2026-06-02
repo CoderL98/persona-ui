@@ -1,0 +1,10 @@
+/* Persona UI — Style entry point */
+/* 顺序：primitive → font → 主题 → 装饰层 → 动效 → 工具 */
+@import './tokens.css';
+@import './fonts.css';
+@import './themes/shared.css';
+@import './themes/apple.css';
+@import './themes/material.css';
+@import './themes/backgrounds.css';
+@import './motion.css';
+@import './utilities.css';

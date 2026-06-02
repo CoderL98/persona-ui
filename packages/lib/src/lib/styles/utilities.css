@@ -1,0 +1,18 @@
+/* ==========================================================
+   Persona UI — Utility classes
+   Only classes that cannot be expressed as Tailwind utilities.
+   ========================================================== */
+
+/* RTL-aware positioning helpers */
+[dir="rtl"] .pui-rtl-flip {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .pui-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--pui-outline-subtle);
+}
+[dir="rtl"] .pui-navigation-rail {
+  border-right: none;
+  border-left: 1px solid var(--pui-outline-subtle);
+}

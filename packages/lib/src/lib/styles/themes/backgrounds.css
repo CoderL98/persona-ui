@@ -1,0 +1,114 @@
+/* ==========================================================
+   Persona UI — 背景装饰（Apple mesh + grain / Material hairline）
+   不破坏现有 token，仅作为装饰层
+   通过 :has() 选择器响应 data-theme，避免污染其他主题
+   ========================================================== */
+
+/* ==========================================================
+   Apple 主题背景
+   - 3 层径向渐变 mesh：peach（暖）→ lavender（柔）→ mint（清）
+   - 顶部 grain（SVG data-URI noise，4% 透明度）
+   ========================================================== */
+[data-theme='apple'] body {
+  background:
+    /* Top: peach */
+    radial-gradient(
+      ellipse 80% 50% at 20% 0%,
+      oklch(0.92 0.06 60 / 0.45),
+      transparent 60%
+    ),
+    /* Mid: lavender */
+    radial-gradient(
+        ellipse 60% 40% at 80% 30%,
+        oklch(0.88 0.08 290 / 0.4),
+        transparent 60%
+      ),
+    /* Bottom: mint */
+    radial-gradient(
+        ellipse 70% 50% at 50% 100%,
+        oklch(0.9 0.05 170 / 0.3),
+        transparent 60%
+      ),
+    var(--pui-apple-system-background);
+  background-attachment: fixed;
+}
+
+[data-theme='apple'][data-mode='dark'] body {
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 20% 0%,
+      oklch(0.25 0.08 250 / 0.5),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 30%,
+      oklch(0.3 0.1 290 / 0.4),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 50% 100%,
+      oklch(0.22 0.06 170 / 0.4),
+      transparent 60%
+    ),
+    var(--pui-apple-system-background);
+  background-attachment: fixed;
+}
+
+/* Grain overlay（通过 body::before 渲染）*/
+[data-theme='apple'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 200px 200px;
+}
+
+[data-theme='apple'][data-mode='dark'] body::before {
+  opacity: 0.06;
+  mix-blend-mode: screen;
+}
+
+/* 确保内容在 grain 之上 */
+[data-theme='apple'] body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================
+   Material 主题背景
+   - 顶部彩色高光 hairline（primary 渐变）
+   - 极淡的 surface tint 网格
+   ========================================================== */
+[data-theme='material'] body {
+  background:
+    /* Hairline top: primary tint */
+    linear-gradient(
+      to bottom,
+      oklch(from var(--pui-md-sys-color-primary) l c h / 0.04) 0%,
+      transparent 80px
+    ),
+    var(--pui-md-sys-color-background);
+  background-attachment: fixed;
+}
+
+[data-theme='material'] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+  z-index: 100;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--pui-md-sys-color-primary) 50%,
+    transparent 100%
+  );
+  opacity: 0.3;
+}

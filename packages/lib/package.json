@@ -1,0 +1,68 @@
+{
+  "name": "@persona-ui/lib",
+  "version": "0.1.0",
+  "description": "Svelte 5 dual-personality component library — Apple HIG & Material 3",
+  "type": "module",
+  "svelte": "./src/lib/index.ts",
+  "types": "./src/lib/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/lib/index.ts",
+      "svelte": "./src/lib/index.ts",
+      "default": "./src/lib/index.ts"
+    },
+    "./components/*": {
+      "types": "./src/lib/components/*",
+      "svelte": "./src/lib/components/*",
+      "default": "./src/lib/components/*"
+    },
+    "./styles.css": "./src/lib/styles/index.css"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "scripts": {
+    "build": "svelte-package",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.5.7",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@testing-library/svelte": "^5.3.1",
+    "jsdom": "^29.1.1",
+    "svelte": "^5.55.9",
+    "svelte-check": "^4.4.8",
+    "typescript": "^5.8.3",
+    "vite": "^8.0.14",
+    "vitest": "^4.1.7"
+  },
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "component-library",
+    "design-system",
+    "apple-hig",
+    "material-design",
+    "dual-theme"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

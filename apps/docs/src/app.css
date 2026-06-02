@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "@persona-ui/lib/styles.css";
+
+/* Tailwind v4 默认只扫描当前项目；手动指向 lib 源码生成 utility classes */
+@source "../../../packages/lib/src/lib";

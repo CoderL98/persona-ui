@@ -1,0 +1,1027 @@
+<script lang="ts">
+  // ── Foundation ──
+  import Button from '@persona-ui/lib/components/button/Button.svelte';
+  import IconButton from '@persona-ui/lib/components/icon-button/IconButton.svelte';
+  import Card from '@persona-ui/lib/components/card/Card.svelte';
+  import Divider from '@persona-ui/lib/components/divider/Divider.svelte';
+  import Badge from '@persona-ui/lib/components/badge/Badge.svelte';
+  import Chip from '@persona-ui/lib/components/chip/Chip.svelte';
+  import Avatar from '@persona-ui/lib/components/avatar/Avatar.svelte';
+  import Kbd from '@persona-ui/lib/components/kbd/Kbd.svelte';
+  // ── Form ──
+  import TextField from '@persona-ui/lib/components/text-field/TextField.svelte';
+  import Textarea from '@persona-ui/lib/components/textarea/Textarea.svelte';
+  import Checkbox from '@persona-ui/lib/components/checkbox/Checkbox.svelte';
+  import { RadioGroup, Radio } from '@persona-ui/lib/components/radio/index.js';
+  import Switch from '@persona-ui/lib/components/switch/Switch.svelte';
+  import Slider from '@persona-ui/lib/components/slider/Slider.svelte';
+  import Select from '@persona-ui/lib/components/select/Select.svelte';
+  import Combobox from '@persona-ui/lib/components/combobox/Combobox.svelte';
+  import SearchField from '@persona-ui/lib/components/search-field/SearchField.svelte';
+  // ── Feedback ──
+  import Alert from '@persona-ui/lib/components/alert/Alert.svelte';
+  import Banner from '@persona-ui/lib/components/banner/Banner.svelte';
+  import { Toast, ToastViewport } from '@persona-ui/lib/components/toast/index.js';
+  import Progress from '@persona-ui/lib/components/progress/Progress.svelte';
+  import Spinner from '@persona-ui/lib/components/spinner/Spinner.svelte';
+  import Skeleton from '@persona-ui/lib/components/skeleton/Skeleton.svelte';
+  import EmptyState from '@persona-ui/lib/components/empty-state/EmptyState.svelte';
+  // ── Overlay ──
+  import Tooltip from '@persona-ui/lib/components/tooltip/Tooltip.svelte';
+  import Popover from '@persona-ui/lib/components/popover/Popover.svelte';
+  import Menu from '@persona-ui/lib/components/menu/Menu.svelte';
+  import Dialog from '@persona-ui/lib/components/dialog/Dialog.svelte';
+  // ── Navigation ──
+  import Tabs from '@persona-ui/lib/components/tabs/Tabs.svelte';
+  import SegmentedControl from '@persona-ui/lib/components/segmented-control/SegmentedControl.svelte';
+  import Breadcrumb from '@persona-ui/lib/components/breadcrumb/Breadcrumb.svelte';
+  import Toolbar from '@persona-ui/lib/components/toolbar/Toolbar.svelte';
+  import Sidebar from '@persona-ui/lib/components/sidebar/Sidebar.svelte';
+  // ── Data ──
+  import List from '@persona-ui/lib/components/list/List.svelte';
+  import ListItem from '@persona-ui/lib/components/list/ListItem.svelte';
+  import Accordion from '@persona-ui/lib/components/accordion/Accordion.svelte';
+  import Table from '@persona-ui/lib/components/table/Table.svelte';
+  import Calendar from '@persona-ui/lib/components/calendar/Calendar.svelte';
+  import TimePicker from '@persona-ui/lib/components/time-picker/TimePicker.svelte';
+  import DateRangePicker from '@persona-ui/lib/components/date-range-picker/DateRangePicker.svelte';
+  // ── Local ──
+  import SectionHeading from '@persona-ui/lib/components/section-heading/SectionHeading.svelte';
+
+  // 章节索引（用于侧边导航 + 入场 stagger）
+  const sections = [
+    { id: 'foundation', label: 'Foundation', eyebrow: '01' },
+    { id: 'form', label: 'Form Controls', eyebrow: '02' },
+    { id: 'feedback', label: 'Feedback', eyebrow: '03' },
+    { id: 'overlays', label: 'Overlays', eyebrow: '04' },
+    { id: 'navigation', label: 'Navigation', eyebrow: '05' },
+    { id: 'data', label: 'Data', eyebrow: '06' },
+  ];
+
+  let activeSection = $state('foundation');
+  let dialogOpen = $state(false);
+
+  // IntersectionObserver：标记当前 section
+  $effect(() => {
+    if (typeof window === 'undefined') return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            activeSection = entry.target.id;
+          }
+        }
+      },
+      { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
+    );
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  });
+</script>
+
+<svelte:head>
+  <title>Persona UI — Two design personalities, one component library</title>
+  <meta
+    name="description"
+    content="A Svelte 5 dual-personality component library — Apple HIG × Material 3, switchable via a single attribute."
+  />
+</svelte:head>
+
+<div id="top"></div>
+
+<!-- =================== HERO =================== -->
+<section
+  class="relative isolate flex flex-col gap-10 pb-20 pt-8 sm:pt-16
+         md:flex-row md:items-end md:gap-16"
+>
+  <!-- 左侧：标题 + CTA -->
+  <div class="pui-reveal-stagger flex max-w-2xl flex-col gap-6">
+    <span
+      class="font-(family-name:--pui-font-mono) text-xs font-medium uppercase tracking-[0.2em]
+             text-(--pui-text-secondary) opacity-80"
+    >
+      v0.1.0 · dual-personality
+    </span>
+
+    <h1
+      class="font-(family-name:--pui-font-display) text-5xl font-normal leading-[0.95]
+             tracking-[-0.035em] text-(--pui-text-primary)
+             sm:text-6xl md:text-7xl lg:text-[88px]"
+    >
+      Two design <em
+        class="not-italic"
+        style="font-style: italic; color: oklch(from var(--pui-color-primary) calc(l + 0.05) c h)"
+        >personalities</em
+      >,<br />
+      one component<br />
+      library.
+    </h1>
+
+    <p class="max-w-xl text-lg leading-relaxed text-(--pui-text-secondary)">
+      Persona UI ships a single set of Svelte 5 components that flip between
+      <strong class="font-medium text-(--pui-text-primary)">Apple HIG</strong>
+      and
+      <strong class="font-medium text-(--pui-text-primary)">Material 3</strong> with
+      one attribute. Same API, two rigorously different design languages.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <Button size="lg" variant="filled" onclick={() => (location.href = '/docs/getting-started')}>
+        Get started
+      </Button>
+      <Button
+        size="lg"
+        variant="outlined"
+        onclick={() => (location.href = '/docs/components/button')}
+      >
+        Browse components
+      </Button>
+      <span
+        class="ml-2 inline-flex items-center gap-1.5 text-xs text-(--pui-text-secondary)"
+      >
+        Press <Kbd>⌘K</Kbd> to search
+      </span>
+    </div>
+  </div>
+
+  <!-- 右侧：Live Preview（同一组件 × 两主题） -->
+  <div
+    class="pui-reveal-stagger relative grid w-full max-w-md gap-4 self-stretch md:w-auto"
+  >
+    <!-- Apple 预览 -->
+    <div
+      data-theme="apple"
+      class="flex flex-col gap-3 rounded-(--pui-radius-card-hero)
+             border border-(--pui-outline-subtle) bg-(--pui-surface-base)
+             p-5 shadow-(--pui-elevation-1)
+             [box-shadow:var(--pui-apple-inner-highlight),var(--pui-elevation-1)]"
+    >
+      <div class="flex items-center justify-between">
+        <span
+          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
+                 text-(--pui-text-secondary)"
+        >
+          apple · light
+        </span>
+        <span
+          class="font-(family-name:--pui-font-display) italic text-xs text-(--pui-text-secondary)"
+        >
+          editorial
+        </span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <Button variant="filled" size="sm">Continue</Button>
+        <Button variant="outlined" size="sm">Cancel</Button>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-(--pui-text-secondary)">
+        <Switch defaultChecked size="sm" />
+        <span>Live preview</span>
+      </div>
+    </div>
+
+    <!-- Material 预览 -->
+    <div
+      data-theme="material"
+      class="flex flex-col gap-3 rounded-(--pui-md-sys-shape-corner-large)
+             bg-(--pui-md-sys-color-surface-container-low)
+             p-5 shadow-(--pui-md-sys-elevation-level1)"
+    >
+      <div class="flex items-center justify-between">
+        <span
+          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
+                 text-(--pui-md-sys-color-on-surface-variant)"
+        >
+          material · light
+        </span>
+        <span
+          class="font-(family-name:--pui-font-display) text-xs text-(--pui-md-sys-color-primary)"
+        >
+          systematic
+        </span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <Button variant="filled" size="sm">Continue</Button>
+        <Button variant="outlined" size="sm">Cancel</Button>
+      </div>
+      <div
+        class="flex items-center gap-2 text-xs text-(--pui-md-sys-color-on-surface-variant)"
+      >
+        <Switch defaultChecked size="sm" />
+        <span>Live preview</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SECTION INDEX (DESKTOP) =================== -->
+<aside class="mb-8 hidden lg:block" aria-label="Section navigation">
+  <nav
+    class="sticky top-20 flex flex-wrap gap-x-6 gap-y-2 border-b
+           border-(--pui-outline-subtle) pb-3 text-sm"
+  >
+    {#each sections as s}
+      <a
+        href="#{s.id}"
+        class="group flex items-baseline gap-2 transition-colors
+               {activeSection === s.id
+          ? 'text-(--pui-text-primary)'
+          : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
+      >
+        <span
+          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.15em] opacity-60
+                 group-hover:opacity-100 transition-opacity"
+        >
+          {s.eyebrow}
+        </span>
+        <span
+          class="border-b-2 transition-all
+                 {activeSection === s.id
+            ? 'border-(--pui-color-primary) pb-0.5'
+            : 'border-transparent'}"
+        >
+          {s.label}
+        </span>
+      </a>
+    {/each}
+  </nav>
+</aside>
+
+<!-- =================== 01 FOUNDATION =================== -->
+<section
+  id="foundation"
+  aria-labelledby="heading-foundation"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="01"
+    title="Foundation"
+    description="The atoms of the system — buttons, surfaces, status indicators. Every other component composes these primitives."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <!-- Button 矩阵 -->
+    <section class="space-y-4" aria-labelledby="buttons-heading">
+      <h3
+        id="buttons-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Button
+      </h3>
+      <div class="flex flex-wrap items-center gap-2">
+        <Button variant="filled">Filled</Button>
+        <Button variant="elevated">Elevated</Button>
+        <Button variant="tonal">Tonal</Button>
+        <Button variant="outlined">Outlined</Button>
+        <Button variant="text">Text</Button>
+        <Button disabled>Disabled</Button>
+        <Button loading>Loading</Button>
+        <Button size="sm">Sm</Button>
+        <Button size="lg">Lg</Button>
+        <Button
+          variant="filled"
+          style="--pui-button-radius:2px;--pui-button-bg:oklch(0.6 0.2 250)"
+        >
+          Override
+        </Button>
+      </div>
+    </section>
+
+    <!-- IconButton -->
+    <section class="space-y-4" aria-labelledby="icon-buttons-heading">
+      <h3
+        id="icon-buttons-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        IconButton
+      </h3>
+      <div class="flex flex-wrap items-center gap-2">
+        <IconButton label="Search" variant="filled">
+          <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+            ><circle
+              cx="9"
+              cy="9"
+              r="5.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            /><path
+              d="M13 13l4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg
+          >
+        </IconButton>
+        <IconButton label="Settings" variant="tonal">
+          <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+            ><circle
+              cx="10"
+              cy="10"
+              r="2"
+              stroke="currentColor"
+              stroke-width="1.5"
+            /><path
+              d="M10 1v3M10 16v3M1 10h3M16 10h3M3.5 3.5l2 2M14.5 14.5l2 2M3.5 16.5l2-2M14.5 5.5l2-2"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg
+          >
+        </IconButton>
+        <IconButton label="Close" variant="outlined">
+          <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+            ><path
+              d="M5 5l10 10M15 5l-10 10"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg
+          >
+        </IconButton>
+        <IconButton label="Edit" variant="text">
+          <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+            ><path
+              d="M13.5 2.5l4 4L6 18H2v-4L13.5 2.5z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg
+          >
+        </IconButton>
+        <IconButton label="Delete" disabled>
+          <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+            ><path
+              d="M4 5h12M8 5V3a1 1 0 011-1h2a1 1 0 011 1v2M5 5l1 12a1 1 0 001 1h6a1 1 0 001-1l1-12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            /></svg
+          >
+        </IconButton>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="space-y-4" aria-labelledby="cards-heading">
+      <h3
+        id="cards-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Card
+      </h3>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <Card variant="elevated" padding="md">
+          {#snippet title()}<h4 class="font-semibold">Elevated</h4>{/snippet}
+          <p class="text-sm text-(--pui-text-secondary)">
+            Shadow-raised surface.
+          </p>
+        </Card>
+        <Card variant="filled" padding="md">
+          {#snippet title()}<h4 class="font-semibold">Filled</h4>{/snippet}
+          <p class="text-sm text-(--pui-text-secondary)">Tinted background.</p>
+        </Card>
+        <Card variant="outlined" padding="md">
+          {#snippet title()}<h4 class="font-semibold">Outlined</h4>{/snippet}
+          <p class="text-sm text-(--pui-text-secondary)">Border only.</p>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Badges + Dividers -->
+    <section class="space-y-4" aria-labelledby="badges-heading">
+      <h3
+        id="badges-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Badge & Divider
+      </h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge count={5} />
+        <Badge count={100} max={99} />
+        <Badge dot />
+        <Badge dot tone="error" />
+        <Badge tone="primary">New</Badge>
+        <Badge tone="warning">Warn</Badge>
+      </div>
+      <Divider />
+      <Divider inset />
+      <Divider>Label</Divider>
+      <div class="flex h-12 items-center gap-3">
+        <span>Left</span>
+        <Divider orientation="vertical" />
+        <span>Right</span>
+      </div>
+    </section>
+
+    <!-- Chips -->
+    <section class="space-y-4" aria-labelledby="chips-heading">
+      <h3
+        id="chips-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Chip
+      </h3>
+      <div class="flex flex-wrap items-center gap-2">
+        <Chip>Default</Chip>
+        <Chip variant="outlined">Outlined</Chip>
+        <Chip variant="text">Text</Chip>
+        <Chip selected>Selected</Chip>
+        <Chip removable>Removable</Chip>
+        <Chip disabled>Disabled</Chip>
+        <Chip tone="primary">Primary</Chip>
+        <Chip tone="error">Error</Chip>
+      </div>
+    </section>
+
+    <!-- Avatar + Kbd -->
+    <section class="space-y-4" aria-labelledby="avatars-heading">
+      <h3
+        id="avatars-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Avatar & Kbd
+      </h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <Avatar name="John Doe" status="online" />
+        <Avatar name="Jane Smith" status="busy" />
+        <Avatar name="A" />
+        <Avatar size="xs" name="XS" />
+        <Avatar size="lg" name="LG" />
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <Kbd>⌘K</Kbd>
+        <Kbd>Ctrl+S</Kbd>
+        <Kbd style="--pui-kbd-bg:oklch(0.8 0.1 250);--pui-kbd-fg:white">
+          Custom
+        </Kbd>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 02 FORM CONTROLS =================== -->
+<section
+  id="form"
+  aria-labelledby="heading-form"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="02"
+    title="Form Controls"
+    description="Inputs that respect the design language. All form components share the same prop API across themes."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <section class="space-y-4" aria-labelledby="fields-heading">
+      <h3
+        id="fields-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        TextField
+      </h3>
+      <div class="grid gap-3 sm:grid-cols-3">
+        <TextField
+          label="Username"
+          placeholder="Enter username"
+          helperText="Display name"
+        />
+        <TextField label="Email" type="email" placeholder="you@example.com" />
+        <TextField label="Password" type="password" defaultValue="hunter2" />
+        <TextField label="With Error" error="Required" />
+        <TextField label="Disabled" disabled defaultValue="Can't touch" />
+        <TextField
+          label="Override"
+          style="--pui-field-radius:2px;--pui-field-border:deeppink"
+          placeholder="Custom"
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="textarea-heading">
+      <h3
+        id="textarea-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Textarea
+      </h3>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <Textarea
+          label="Bio"
+          placeholder="Tell us about yourself"
+          helperText="Brief description"
+        />
+        <Textarea label="With Error" error="Required" />
+        <Textarea label="Disabled" disabled defaultValue="Read only" />
+        <Textarea
+          label="Override"
+          style="--pui-field-radius:2px"
+          placeholder="Custom"
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="checkbox-heading">
+      <h3
+        id="checkbox-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Checkbox
+      </h3>
+      <div class="flex flex-wrap gap-4">
+        <Checkbox label="Accept terms" />
+        <Checkbox label="Subscribe" defaultChecked />
+        <Checkbox label="Disabled" disabled />
+        <Checkbox
+          label="Custom"
+          style="--pui-checkbox-checked-bg:oklch(0.7 0.2 150)"
+          defaultChecked
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="radio-heading">
+      <h3
+        id="radio-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Radio
+      </h3>
+      <RadioGroup label="Choose one">
+        <Radio value="a" label="Option A" />
+        <Radio value="b" label="Option B" />
+        <Radio value="c" label="Option C" disabled />
+      </RadioGroup>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="switch-demo-heading">
+      <h3
+        id="switch-demo-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Switch
+      </h3>
+      <div class="flex flex-wrap gap-4">
+        <Switch label="Airplane Mode" />
+        <Switch label="Dark Mode" defaultChecked />
+        <Switch label="Notifications" disabled />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="slider-heading">
+      <h3
+        id="slider-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Slider
+      </h3>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <Slider label="Volume" showValue />
+        <Slider
+          label="Range"
+          min={0}
+          max={200}
+          step={10}
+          defaultValue={100}
+          showValue
+        />
+        <Slider label="Disabled" disabled defaultValue={30} />
+        <Slider
+          label="Custom"
+          style="--pui-slider-thumb-size:28px;--pui-slider-active-track-bg:oklch(0.7 0.2 150)"
+          defaultValue={70}
+          showValue
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="select-heading">
+      <h3
+        id="select-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Select & Combobox
+      </h3>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <Select
+          options={[
+            { value: 'a', label: 'Apple' },
+            { value: 'b', label: 'Banana' },
+            { value: 'c', label: 'Cherry' },
+          ]}
+          label="Fruit"
+        />
+        <Select
+          options={[
+            { value: '1', label: 'One' },
+            { value: '2', label: 'Two' },
+          ]}
+          label="Disabled"
+          disabled
+        />
+        <Select
+          options={[{ value: 'e', label: 'Error' }]}
+          label="With Error"
+          error="Required"
+        />
+        <Combobox
+          options={[
+            { value: 'us', label: 'US' },
+            { value: 'ca', label: 'Canada' },
+            { value: 'mx', label: 'Mexico' },
+          ]}
+          label="Country"
+          placeholder="Type…"
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="search-heading">
+      <h3
+        id="search-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        SearchField
+      </h3>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <SearchField label="Search" />
+        <SearchField label="Disabled" disabled defaultValue="No search" />
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 03 FEEDBACK =================== -->
+<section
+  id="feedback"
+  aria-labelledby="heading-feedback"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="03"
+    title="Feedback"
+    description="Surface messages and progress indicators. Components follow the same tone semantics across themes."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <section class="space-y-4" aria-labelledby="alert-heading">
+      <h3
+        id="alert-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Alert & Banner
+      </h3>
+      <Alert tone="info">Info message.</Alert>
+      <Alert tone="error" dismissible>Dismissible error.</Alert>
+      <Banner tone="warning">Your session expires soon.</Banner>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="progress-heading">
+      <h3
+        id="progress-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Progress & Spinner
+      </h3>
+      <Progress value={65} label="Upload" />
+      <Progress indeterminate label="Loading…" />
+      <div class="flex items-center gap-3">
+        <Spinner size="sm" />
+        <Spinner size="md" />
+        <Spinner size="lg" />
+        <Spinner decorative />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="skeleton-heading">
+      <h3
+        id="skeleton-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Skeleton & EmptyState
+      </h3>
+      <div class="flex gap-3">
+        <Skeleton shape="text" width="60%" />
+        <Skeleton shape="circle" width="48px" height="48px" />
+        <Skeleton shape="rect" height="80px" />
+      </div>
+      <EmptyState>
+        {#snippet title()}No results{/snippet}
+        <p>Try adjusting your search.</p>
+      </EmptyState>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 04 OVERLAYS =================== -->
+<section
+  id="overlays"
+  aria-labelledby="heading-overlays"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="04"
+    title="Overlays"
+    description="Tooltips, menus, dialogs — the surface above the surface. Each respects the language's motion grammar."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <section class="space-y-4" aria-labelledby="tooltip-heading">
+      <h3
+        id="tooltip-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Tooltip
+      </h3>
+      <div class="flex flex-wrap gap-3">
+        <Tooltip content="Tooltip on top" placement="top">
+          <Button variant="text">Top</Button>
+        </Tooltip>
+        <Tooltip content="On bottom" placement="bottom">
+          <Button variant="text">Bottom</Button>
+        </Tooltip>
+        <Tooltip content="Disabled" disabled>
+          <Button variant="text">Disable</Button>
+        </Tooltip>
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="popover-heading">
+      <h3
+        id="popover-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Popover & Menu
+      </h3>
+      <div class="flex flex-wrap gap-3">
+        <Popover>
+          {#snippet trigger()}<Button variant="outlined">Open Popover</Button
+            >{/snippet}
+          <div class="p-2 text-sm">Popover content</div>
+        </Popover>
+        <Menu
+          items={[
+            { id: 'edit', label: 'Edit', shortcut: '⌘E' },
+            { id: 'duplicate', label: 'Duplicate' },
+            { id: 'delete', label: 'Delete', destructive: true },
+          ]}
+        >
+          {#snippet trigger()}<Button variant="outlined">Open Menu</Button
+            >{/snippet}
+        </Menu>
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="dialog-heading">
+      <h3
+        id="dialog-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Dialog
+      </h3>
+      <p class="text-sm text-(--pui-text-secondary)">
+        Click the button to open the dialog.
+      </p>
+      <Button onclick={() => (dialogOpen = true)}>Open Dialog</Button>
+      <Dialog open={dialogOpen} onopenchange={(o: boolean) => (dialogOpen = o)}>
+        {#snippet title()}Confirm Action{/snippet}
+        <p>Are you sure you want to proceed?</p>
+        {#snippet footer()}
+          <Button variant="outlined" onclick={() => (dialogOpen = false)}
+            >Cancel</Button
+          >
+          <Button onclick={() => (dialogOpen = false)}>Confirm</Button>
+        {/snippet}
+      </Dialog>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 05 NAVIGATION =================== -->
+<section
+  id="navigation"
+  aria-labelledby="heading-navigation"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="05"
+    title="Navigation"
+    description="From breadcrumbs to sidebars — discoverable, predictable, accessible."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <section class="space-y-4" aria-labelledby="tabs-heading">
+      <h3
+        id="tabs-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Tabs & SegmentedControl
+      </h3>
+      <Tabs
+        items={[
+          { value: 'a', label: 'Details' },
+          { value: 'b', label: 'Settings' },
+          { value: 'c', label: 'History' },
+        ]}
+      />
+      <SegmentedControl
+        items={[
+          { value: 'd', label: 'Day' },
+          { value: 'w', label: 'Week' },
+          { value: 'm', label: 'Month' },
+        ]}
+      />
+    </section>
+
+    <section class="space-y-4" aria-labelledby="breadcrumb-heading">
+      <h3
+        id="breadcrumb-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Breadcrumb & Toolbar
+      </h3>
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Products', href: '/products' },
+          { label: 'Details', current: true },
+        ]}
+      />
+      <Toolbar title="Document">
+        {#snippet leading()}
+          <IconButton label="Back">
+            <svg width="18" viewBox="0 0 18 18" aria-hidden="true"
+              ><path
+                d="M12 4l-5 5 5 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
+          </IconButton>
+        {/snippet}
+      </Toolbar>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="list-heading">
+      <h3
+        id="list-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        List & Accordion
+      </h3>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <List variant="grouped">
+          {#snippet children()}
+            <ListItem title="Inbox" description="3 new" />
+            <ListItem title="Sent" />
+            <ListItem title="Trash" />
+          {/snippet}
+        </List>
+        <Accordion
+          items={[
+            { value: '1', title: 'How to install?' },
+            { value: '2', title: 'Browser support?' },
+            { value: '3', title: 'Custom themes?' },
+          ]}
+        />
+      </div>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="sidebar-heading">
+      <h3
+        id="sidebar-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Sidebar
+      </h3>
+      <div
+        class="h-64 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)"
+      >
+        <Sidebar>
+          {#snippet header()}
+            <span class="font-semibold">Files</span>
+          {/snippet}
+          {#snippet children()}
+            <div class="flex flex-col gap-1 p-2 text-sm">
+              <button
+                type="button"
+                class="rounded-(--pui-radius-control) px-3 py-2 text-left hover:bg-(--pui-surface-variant)"
+              >
+                📁 Documents
+              </button>
+              <button
+                type="button"
+                class="rounded-(--pui-radius-control) bg-(--pui-surface-variant) px-3 py-2 text-left"
+              >
+                📁 Downloads
+              </button>
+              <button
+                type="button"
+                class="rounded-(--pui-radius-control) px-3 py-2 text-left hover:bg-(--pui-surface-variant)"
+              >
+                📁 Pictures
+              </button>
+            </div>
+          {/snippet}
+        </Sidebar>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 06 DATA =================== -->
+<section
+  id="data"
+  aria-labelledby="heading-data"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="06"
+    title="Data"
+    description="Tables, calendars, time pickers — the surfaces where information lives."
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <section class="space-y-4" aria-labelledby="table-heading">
+      <h3
+        id="table-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Table
+      </h3>
+      <Table striped>
+        {#snippet children()}
+          <thead>
+            <tr>
+              <th class="px-4 py-3 text-left font-medium">Name</th>
+              <th class="px-4 py-3 text-left font-medium">Role</th>
+              <th class="px-4 py-3 text-left font-medium">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-4 py-3">Alice</td>
+              <td class="px-4 py-3">Admin</td>
+              <td class="px-4 py-3"><Badge tone="primary">Active</Badge></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3">Bob</td>
+              <td class="px-4 py-3">User</td>
+              <td class="px-4 py-3"><Badge tone="warning">Pending</Badge></td>
+            </tr>
+          </tbody>
+        {/snippet}
+      </Table>
+    </section>
+
+    <section class="space-y-4" aria-labelledby="calendar-heading">
+      <h3
+        id="calendar-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Calendar & Time
+      </h3>
+      <div class="grid gap-6 lg:grid-cols-2">
+        <Calendar />
+        <div class="space-y-4">
+          <TimePicker label="Time" />
+          <DateRangePicker granularity="day" label="Date Range" />
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,719 @@
+/* ==========================================================
+   Persona UI — Material Design 3-aligned Track
+   Target: [data-theme="material"]
+   Design personality: systematic, elevation-aware, state-layer-driven
+   0A.3.1-6 compliant
+   ========================================================== */
+
+[data-theme='material'] {
+  /* ==========================================================
+     Font stack — Material track (systematic, geometric)
+     display: Bricolage Grotesque（可变字重，几何感强）
+     body:    Geist Sans（Vercel，干净现代）
+     mono:    Geist Mono
+     ========================================================== */
+  --pui-font-display:
+    'Bricolage Grotesque', 'Google Sans Display', 'Roboto Flex', system-ui,
+    sans-serif;
+  --pui-font-body:
+    'Geist', 'Google Sans', 'Roboto', system-ui, -apple-system, sans-serif;
+  --pui-font-mono:
+    'Geist Mono', 'JetBrains Mono', 'Roboto Mono', ui-monospace, monospace;
+
+  /* ==========================================================
+     0A.3.2 Material Tonal Palettes (static, light)
+     ========================================================== */
+
+  /* Primary */
+  --pui-md-ref-palette-primary-0: oklch(0 0 0);
+  --pui-md-ref-palette-primary-10: oklch(0.2 0.06 265);
+  --pui-md-ref-palette-primary-20: oklch(0.3 0.1 265);
+  --pui-md-ref-palette-primary-30: oklch(0.4 0.14 265);
+  --pui-md-ref-palette-primary-40: oklch(0.5 0.18 265);
+  --pui-md-ref-palette-primary-50: oklch(0.58 0.16 265);
+  --pui-md-ref-palette-primary-60: oklch(0.65 0.14 265);
+  --pui-md-ref-palette-primary-70: oklch(0.72 0.12 265);
+  --pui-md-ref-palette-primary-80: oklch(0.8 0.1 265);
+  --pui-md-ref-palette-primary-90: oklch(0.88 0.06 265);
+  --pui-md-ref-palette-primary-95: oklch(0.94 0.03 265);
+  --pui-md-ref-palette-primary-99: oklch(0.98 0.01 265);
+  --pui-md-ref-palette-primary-100: oklch(1 0 0);
+
+  /* Secondary */
+  --pui-md-ref-palette-secondary-0: oklch(0 0 0);
+  --pui-md-ref-palette-secondary-10: oklch(0.2 0.04 290);
+  --pui-md-ref-palette-secondary-20: oklch(0.3 0.06 290);
+  --pui-md-ref-palette-secondary-30: oklch(0.4 0.08 290);
+  --pui-md-ref-palette-secondary-40: oklch(0.5 0.1 290);
+  --pui-md-ref-palette-secondary-50: oklch(0.58 0.09 290);
+  --pui-md-ref-palette-secondary-60: oklch(0.65 0.08 290);
+  --pui-md-ref-palette-secondary-70: oklch(0.72 0.07 290);
+  --pui-md-ref-palette-secondary-80: oklch(0.8 0.05 290);
+  --pui-md-ref-palette-secondary-90: oklch(0.9 0.03 290);
+  --pui-md-ref-palette-secondary-95: oklch(0.95 0.02 290);
+  --pui-md-ref-palette-secondary-99: oklch(0.99 0.01 290);
+  --pui-md-ref-palette-secondary-100: oklch(1 0 0);
+
+  /* Tertiary */
+  --pui-md-ref-palette-tertiary-0: oklch(0 0 0);
+  --pui-md-ref-palette-tertiary-10: oklch(0.2 0.06 170);
+  --pui-md-ref-palette-tertiary-20: oklch(0.3 0.1 170);
+  --pui-md-ref-palette-tertiary-30: oklch(0.4 0.12 170);
+  --pui-md-ref-palette-tertiary-40: oklch(0.5 0.14 170);
+  --pui-md-ref-palette-tertiary-50: oklch(0.58 0.12 170);
+  --pui-md-ref-palette-tertiary-60: oklch(0.65 0.11 170);
+  --pui-md-ref-palette-tertiary-70: oklch(0.72 0.09 170);
+  --pui-md-ref-palette-tertiary-80: oklch(0.8 0.07 170);
+  --pui-md-ref-palette-tertiary-90: oklch(0.88 0.05 170);
+  --pui-md-ref-palette-tertiary-95: oklch(0.94 0.03 170);
+  --pui-md-ref-palette-tertiary-99: oklch(0.98 0.01 170);
+  --pui-md-ref-palette-tertiary-100: oklch(1 0 0);
+
+  /* Neutral */
+  --pui-md-ref-palette-neutral-0: oklch(0 0 0);
+  --pui-md-ref-palette-neutral-4: oklch(0.06 0.002 260);
+  --pui-md-ref-palette-neutral-6: oklch(0.08 0.002 260);
+  --pui-md-ref-palette-neutral-10: oklch(0.18 0.004 260);
+  --pui-md-ref-palette-neutral-12: oklch(0.2 0.004 260);
+  --pui-md-ref-palette-neutral-17: oklch(0.24 0.004 260);
+  --pui-md-ref-palette-neutral-20: oklch(0.28 0.004 260);
+  --pui-md-ref-palette-neutral-22: oklch(0.3 0.004 260);
+  --pui-md-ref-palette-neutral-24: oklch(0.32 0.004 260);
+  --pui-md-ref-palette-neutral-30: oklch(0.38 0.004 260);
+  --pui-md-ref-palette-neutral-40: oklch(0.48 0.005 260);
+  --pui-md-ref-palette-neutral-50: oklch(0.56 0.005 260);
+  --pui-md-ref-palette-neutral-60: oklch(0.64 0.005 260);
+  --pui-md-ref-palette-neutral-70: oklch(0.72 0.005 260);
+  --pui-md-ref-palette-neutral-80: oklch(0.82 0.004 260);
+  --pui-md-ref-palette-neutral-87: oklch(0.87 0.003 260);
+  --pui-md-ref-palette-neutral-90: oklch(0.9 0.003 260);
+  --pui-md-ref-palette-neutral-92: oklch(0.92 0.003 260);
+  --pui-md-ref-palette-neutral-94: oklch(0.94 0.002 260);
+  --pui-md-ref-palette-neutral-95: oklch(0.95 0.002 260);
+  --pui-md-ref-palette-neutral-96: oklch(0.96 0.002 260);
+  --pui-md-ref-palette-neutral-98: oklch(0.98 0.001 260);
+  --pui-md-ref-palette-neutral-99: oklch(0.98 0.001 260);
+  --pui-md-ref-palette-neutral-100: oklch(1 0 0);
+
+  /* Neutral Variant */
+  --pui-md-ref-palette-neutral-variant-0: oklch(0 0 0);
+  --pui-md-ref-palette-neutral-variant-10: oklch(0.2 0.005 265);
+  --pui-md-ref-palette-neutral-variant-20: oklch(0.3 0.006 265);
+  --pui-md-ref-palette-neutral-variant-30: oklch(0.4 0.007 265);
+  --pui-md-ref-palette-neutral-variant-40: oklch(0.5 0.008 265);
+  --pui-md-ref-palette-neutral-variant-50: oklch(0.58 0.008 265);
+  --pui-md-ref-palette-neutral-variant-60: oklch(0.66 0.007 265);
+  --pui-md-ref-palette-neutral-variant-70: oklch(0.74 0.006 265);
+  --pui-md-ref-palette-neutral-variant-80: oklch(0.82 0.005 265);
+  --pui-md-ref-palette-neutral-variant-90: oklch(0.9 0.004 265);
+  --pui-md-ref-palette-neutral-variant-95: oklch(0.94 0.003 265);
+  --pui-md-ref-palette-neutral-variant-99: oklch(0.98 0.001 265);
+  --pui-md-ref-palette-neutral-variant-100: oklch(1 0 0);
+
+  /* Error */
+  --pui-md-ref-palette-error-0: oklch(0 0 0);
+  --pui-md-ref-palette-error-10: oklch(0.22 0.08 25);
+  --pui-md-ref-palette-error-20: oklch(0.34 0.12 25);
+  --pui-md-ref-palette-error-30: oklch(0.44 0.16 25);
+  --pui-md-ref-palette-error-40: oklch(0.54 0.2 25);
+  --pui-md-ref-palette-error-50: oklch(0.62 0.18 25);
+  --pui-md-ref-palette-error-60: oklch(0.7 0.16 25);
+  --pui-md-ref-palette-error-70: oklch(0.78 0.12 25);
+  --pui-md-ref-palette-error-80: oklch(0.84 0.1 25);
+  --pui-md-ref-palette-error-90: oklch(0.92 0.06 25);
+  --pui-md-ref-palette-error-95: oklch(0.96 0.03 25);
+  --pui-md-ref-palette-error-99: oklch(0.99 0.01 25);
+  --pui-md-ref-palette-error-100: oklch(1 0 0);
+
+  /* ==========================================================
+     0A.3.1 Full Material 3 Color Roles (light)
+     ========================================================== */
+
+  /* Primary */
+  --pui-md-sys-color-primary: var(--pui-md-ref-palette-primary-40);
+  --pui-md-sys-color-on-primary: var(--pui-md-ref-palette-primary-100);
+  --pui-md-sys-color-primary-container: var(--pui-md-ref-palette-primary-90);
+  --pui-md-sys-color-on-primary-container: var(--pui-md-ref-palette-primary-10);
+
+  /* Secondary */
+  --pui-md-sys-color-secondary: var(--pui-md-ref-palette-secondary-40);
+  --pui-md-sys-color-on-secondary: var(--pui-md-ref-palette-secondary-100);
+  --pui-md-sys-color-secondary-container: var(
+    --pui-md-ref-palette-secondary-90
+  );
+  --pui-md-sys-color-on-secondary-container: var(
+    --pui-md-ref-palette-secondary-10
+  );
+
+  /* Tertiary */
+  --pui-md-sys-color-tertiary: var(--pui-md-ref-palette-tertiary-40);
+  --pui-md-sys-color-on-tertiary: var(--pui-md-ref-palette-tertiary-100);
+  --pui-md-sys-color-tertiary-container: var(--pui-md-ref-palette-tertiary-90);
+  --pui-md-sys-color-on-tertiary-container: var(
+    --pui-md-ref-palette-tertiary-10
+  );
+
+  /* Error */
+  --pui-md-sys-color-error: var(--pui-md-ref-palette-error-40);
+  --pui-md-sys-color-on-error: var(--pui-md-ref-palette-error-100);
+  --pui-md-sys-color-error-container: var(--pui-md-ref-palette-error-90);
+  --pui-md-sys-color-on-error-container: var(--pui-md-ref-palette-error-10);
+
+  /* Background */
+  --pui-md-sys-color-background: var(--pui-md-ref-palette-neutral-99);
+  --pui-md-sys-color-on-background: var(--pui-md-ref-palette-neutral-10);
+
+  /* Surface */
+  --pui-md-sys-color-surface: var(--pui-md-ref-palette-neutral-99);
+  --pui-md-sys-color-on-surface: var(--pui-md-ref-palette-neutral-10);
+  --pui-md-sys-color-surface-variant: var(
+    --pui-md-ref-palette-neutral-variant-90
+  );
+  --pui-md-sys-color-on-surface-variant: var(
+    --pui-md-ref-palette-neutral-variant-30
+  );
+
+  /* Outline */
+  --pui-md-sys-color-outline: var(--pui-md-ref-palette-neutral-variant-50);
+  --pui-md-sys-color-outline-variant: var(
+    --pui-md-ref-palette-neutral-variant-80
+  );
+
+  /* Shadow / Scrim */
+  --pui-md-sys-color-shadow: var(--pui-md-ref-palette-neutral-0);
+  --pui-md-sys-color-scrim: var(--pui-md-ref-palette-neutral-0);
+
+  /* Inverse */
+  --pui-md-sys-color-inverse-surface: var(--pui-md-ref-palette-neutral-20);
+  --pui-md-sys-color-inverse-on-surface: var(--pui-md-ref-palette-neutral-95);
+  --pui-md-sys-color-inverse-primary: var(--pui-md-ref-palette-primary-80);
+
+  /* Surface containers */
+  --pui-md-sys-color-surface-dim: var(--pui-md-ref-palette-neutral-87);
+  --pui-md-sys-color-surface-bright: var(--pui-md-ref-palette-neutral-98);
+  --pui-md-sys-color-surface-container-lowest: var(
+    --pui-md-ref-palette-neutral-100
+  );
+  --pui-md-sys-color-surface-container-low: var(
+    --pui-md-ref-palette-neutral-96
+  );
+  --pui-md-sys-color-surface-container: var(--pui-md-ref-palette-neutral-94);
+  --pui-md-sys-color-surface-container-high: var(
+    --pui-md-ref-palette-neutral-92
+  );
+  --pui-md-sys-color-surface-container-highest: var(
+    --pui-md-ref-palette-neutral-90
+  );
+
+  /* ==========================================================
+     0A.3.3 Material Shape Scale
+     ========================================================== */
+  --pui-md-sys-shape-corner-none: 0px;
+  --pui-md-sys-shape-corner-extra-small: 4px;
+  --pui-md-sys-shape-corner-small: 8px;
+  --pui-md-sys-shape-corner-medium: 12px;
+  --pui-md-sys-shape-corner-large: 16px;
+  --pui-md-sys-shape-corner-extra-large: 28px;
+  --pui-md-sys-shape-corner-full: 999px;
+
+  /* ==========================================================
+     0A.3.4 Material Typography Scale
+     ========================================================== */
+
+  /* Display */
+  --pui-md-sys-typescale-display-large-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-display-large-size: 57px;
+  --pui-md-sys-typescale-display-large-line-height: 64px;
+  --pui-md-sys-typescale-display-large-weight: 400;
+  --pui-md-sys-typescale-display-large-tracking: -0.25px;
+
+  --pui-md-sys-typescale-display-medium-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-display-medium-size: 45px;
+  --pui-md-sys-typescale-display-medium-line-height: 52px;
+  --pui-md-sys-typescale-display-medium-weight: 400;
+  --pui-md-sys-typescale-display-medium-tracking: 0px;
+
+  --pui-md-sys-typescale-display-small-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-display-small-size: 36px;
+  --pui-md-sys-typescale-display-small-line-height: 44px;
+  --pui-md-sys-typescale-display-small-weight: 400;
+  --pui-md-sys-typescale-display-small-tracking: 0px;
+
+  /* Headline */
+  --pui-md-sys-typescale-headline-large-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-headline-large-size: 32px;
+  --pui-md-sys-typescale-headline-large-line-height: 40px;
+  --pui-md-sys-typescale-headline-large-weight: 400;
+  --pui-md-sys-typescale-headline-large-tracking: 0px;
+
+  --pui-md-sys-typescale-headline-medium-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-headline-medium-size: 28px;
+  --pui-md-sys-typescale-headline-medium-line-height: 36px;
+  --pui-md-sys-typescale-headline-medium-weight: 400;
+  --pui-md-sys-typescale-headline-medium-tracking: 0px;
+
+  --pui-md-sys-typescale-headline-small-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-headline-small-size: 24px;
+  --pui-md-sys-typescale-headline-small-line-height: 32px;
+  --pui-md-sys-typescale-headline-small-weight: 400;
+  --pui-md-sys-typescale-headline-small-tracking: 0px;
+
+  /* Title */
+  --pui-md-sys-typescale-title-large-font:
+    'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-title-large-size: 22px;
+  --pui-md-sys-typescale-title-large-line-height: 28px;
+  --pui-md-sys-typescale-title-large-weight: 500;
+  --pui-md-sys-typescale-title-large-tracking: 0px;
+
+  --pui-md-sys-typescale-title-medium-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-title-medium-size: 16px;
+  --pui-md-sys-typescale-title-medium-line-height: 24px;
+  --pui-md-sys-typescale-title-medium-weight: 500;
+  --pui-md-sys-typescale-title-medium-tracking: 0.15px;
+
+  --pui-md-sys-typescale-title-small-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-title-small-size: 14px;
+  --pui-md-sys-typescale-title-small-line-height: 20px;
+  --pui-md-sys-typescale-title-small-weight: 500;
+  --pui-md-sys-typescale-title-small-tracking: 0.1px;
+
+  /* Body */
+  --pui-md-sys-typescale-body-large-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-body-large-size: 16px;
+  --pui-md-sys-typescale-body-large-line-height: 24px;
+  --pui-md-sys-typescale-body-large-weight: 400;
+  --pui-md-sys-typescale-body-large-tracking: 0.5px;
+
+  --pui-md-sys-typescale-body-medium-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-body-medium-size: 14px;
+  --pui-md-sys-typescale-body-medium-line-height: 20px;
+  --pui-md-sys-typescale-body-medium-weight: 400;
+  --pui-md-sys-typescale-body-medium-tracking: 0.25px;
+
+  --pui-md-sys-typescale-body-small-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-body-small-size: 12px;
+  --pui-md-sys-typescale-body-small-line-height: 16px;
+  --pui-md-sys-typescale-body-small-weight: 400;
+  --pui-md-sys-typescale-body-small-tracking: 0.4px;
+
+  /* Label */
+  --pui-md-sys-typescale-label-large-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-label-large-size: 14px;
+  --pui-md-sys-typescale-label-large-line-height: 20px;
+  --pui-md-sys-typescale-label-large-weight: 500;
+  --pui-md-sys-typescale-label-large-tracking: 0.1px;
+
+  --pui-md-sys-typescale-label-medium-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-label-medium-size: 12px;
+  --pui-md-sys-typescale-label-medium-line-height: 16px;
+  --pui-md-sys-typescale-label-medium-weight: 500;
+  --pui-md-sys-typescale-label-medium-tracking: 0.5px;
+
+  --pui-md-sys-typescale-label-small-font:
+    'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --pui-md-sys-typescale-label-small-size: 11px;
+  --pui-md-sys-typescale-label-small-line-height: 16px;
+  --pui-md-sys-typescale-label-small-weight: 500;
+  --pui-md-sys-typescale-label-small-tracking: 0.5px;
+
+  /* Semantic typography aliases（保持使用 self-host 字体，避免被 typescale 覆盖） */
+  --pui-font-label: var(--pui-md-sys-typescale-label-large-font);
+  --pui-text-body-size: var(--pui-md-sys-typescale-body-medium-size);
+  --pui-text-label-size: var(--pui-md-sys-typescale-label-large-size);
+  --pui-text-title-size: var(--pui-md-sys-typescale-title-medium-size);
+  --pui-line-body: var(--pui-md-sys-typescale-body-medium-line-height);
+  --pui-line-label: var(--pui-md-sys-typescale-label-large-line-height);
+  --pui-line-title: var(--pui-md-sys-typescale-title-medium-line-height);
+
+  /* ==========================================================
+     0A.3.5 Material Elevation 0-5 + Tonal Elevation (light)
+     ========================================================== */
+
+  --pui-md-sys-elevation-level0: 0px 0px 0px 0px rgb(0 0 0 / 0);
+  --pui-md-sys-elevation-level1:
+    0px 1px 3px 1px rgb(0 0 0 / 0.15), 0px 1px 2px 0px rgb(0 0 0 / 0.3);
+  --pui-md-sys-elevation-level2:
+    0px 1px 3px 1px rgb(0 0 0 / 0.15), 0px 2px 6px 2px rgb(0 0 0 / 0.15);
+  --pui-md-sys-elevation-level3:
+    0px 1px 3px 0px rgb(0 0 0 / 0.15), 0px 4px 8px 3px rgb(0 0 0 / 0.15);
+  --pui-md-sys-elevation-level4:
+    0px 2px 3px 0px rgb(0 0 0 / 0.15), 0px 6px 12px 4px rgb(0 0 0 / 0.15);
+  --pui-md-sys-elevation-level5:
+    0px 4px 4px 0px rgb(0 0 0 / 0.15), 0px 8px 16px 6px rgb(0 0 0 / 0.15);
+
+  --pui-md-sys-tonal-elevation-level0: 0px 0px 0px 0px rgb(0 0 0 / 0);
+  --pui-md-sys-tonal-elevation-level1:
+    0px 1px 3px 1px rgb(0 0 0 / 0.08), 0px 1px 2px 0px rgb(0 0 0 / 0.14);
+  --pui-md-sys-tonal-elevation-level2:
+    0px 1px 3px 1px rgb(0 0 0 / 0.08), 0px 2px 6px 2px rgb(0 0 0 / 0.08);
+  --pui-md-sys-tonal-elevation-level3:
+    0px 1px 3px 0px rgb(0 0 0 / 0.08), 0px 4px 8px 3px rgb(0 0 0 / 0.08);
+  --pui-md-sys-tonal-elevation-level4:
+    0px 2px 3px 0px rgb(0 0 0 / 0.08), 0px 6px 12px 4px rgb(0 0 0 / 0.08);
+  --pui-md-sys-tonal-elevation-level5:
+    0px 4px 4px 0px rgb(0 0 0 / 0.08), 0px 8px 16px 6px rgb(0 0 0 / 0.08);
+
+  /* ==========================================================
+     0A.3.6 Material State Layer Opacities
+     ========================================================== */
+  --pui-md-sys-state-hover-state-layer-opacity: 0.08;
+  --pui-md-sys-state-focus-state-layer-opacity: 0.12;
+  --pui-md-sys-state-pressed-state-layer-opacity: 0.12;
+  --pui-md-sys-state-dragged-state-layer-opacity: 0.16;
+
+  /* ==========================================================
+     Persona Semantic Token Mapping (Material)
+     ========================================================== */
+
+  /* Colors */
+  --pui-color-primary: var(--pui-md-sys-color-primary);
+  --pui-color-on-primary: var(--pui-md-sys-color-on-primary);
+  --pui-color-primary-container: var(--pui-md-sys-color-primary-container);
+  --pui-color-on-primary-container: var(
+    --pui-md-sys-color-on-primary-container
+  );
+  --pui-color-secondary: var(--pui-md-sys-color-secondary);
+  --pui-color-on-secondary: var(--pui-md-sys-color-on-secondary);
+  --pui-color-secondary-container: var(--pui-md-sys-color-secondary-container);
+  --pui-color-on-secondary-container: var(
+    --pui-md-sys-color-on-secondary-container
+  );
+  --pui-color-tertiary: var(--pui-md-sys-color-tertiary);
+  --pui-color-error: var(--pui-md-sys-color-error);
+  --pui-color-on-error: var(--pui-md-sys-color-on-error);
+  --pui-color-error-container: var(--pui-md-sys-color-error-container);
+  --pui-color-on-error-container: var(--pui-md-sys-color-on-error-container);
+
+  /* Surfaces */
+  --pui-surface-base: var(--pui-md-sys-color-surface);
+  --pui-surface-raised: var(--pui-md-sys-color-surface-container-low);
+  --pui-surface-variant: var(--pui-md-sys-color-surface-variant);
+  --pui-surface-container: var(--pui-md-sys-color-surface-container);
+  --pui-backdrop-blur: 0px;
+  --pui-surface-opacity: 1;
+
+  /* Text */
+  --pui-text-primary: var(--pui-md-sys-color-on-surface);
+  --pui-text-secondary: var(--pui-md-sys-color-on-surface-variant);
+  --pui-text-disabled: color-mix(
+    in oklch,
+    var(--pui-md-sys-color-on-surface) 38%,
+    transparent
+  );
+  --pui-text-on-primary: var(--pui-md-sys-color-on-primary);
+  --pui-text-on-error: var(--pui-md-sys-color-on-error);
+
+  /* Outline */
+  --pui-outline: var(--pui-md-sys-color-outline);
+  --pui-outline-subtle: var(--pui-md-sys-color-outline-variant);
+  --pui-outline-strong: var(--pui-md-sys-color-on-surface);
+
+  /* Radius (mapped to MD3 shape) */
+  --pui-radius-control: var(--pui-md-sys-shape-corner-full);
+  --pui-radius-container: var(--pui-md-sys-shape-corner-large);
+  --pui-radius-full: var(--pui-md-sys-shape-corner-full);
+
+  /* Elevation */
+  --pui-elevation-0: var(--pui-md-sys-elevation-level0);
+  --pui-elevation-1: var(--pui-md-sys-elevation-level1);
+  --pui-elevation-2: var(--pui-md-sys-elevation-level2);
+  --pui-elevation-3: var(--pui-md-sys-elevation-level3);
+  --pui-elevation-4: var(--pui-md-sys-elevation-level4);
+  --pui-elevation-5: var(--pui-md-sys-elevation-level5);
+
+  /* Motion */
+  --pui-motion-spring: cubic-bezier(0.2, 0, 0, 1);
+  --pui-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --pui-duration-enter: 150ms;
+  --pui-duration-swap: 200ms;
+
+  /* Opacity */
+  --pui-opacity-disabled: 0.38;
+
+  /* Hit target */
+  --pui-hit-target-min: 44px;
+
+  /* ==========================================================
+     A.Material 装饰 token
+     ========================================================== */
+  /* MD3 按下时 translateY(1px)（state layer 之外） */
+  --pui-md-state-pressed-translate: translateY(1px);
+  /* Display 标题 tracking 微调（更紧凑） */
+  --pui-md-typescale-display-large-tracking: -0.5px;
+
+  /* ==========================================================
+     Component Defaults (Material-aligned)
+     ========================================================== */
+
+  /* Button — uses state layer (via .pui-state-layer), no scale */
+  --pui-button-min-height: var(--pui-hit-target-min, 44px);
+  --pui-button-min-width: var(--pui-hit-target-min, 44px);
+  --pui-button-bg: var(--pui-md-sys-color-primary);
+  --pui-button-fg: var(--pui-md-sys-color-on-primary);
+  --pui-button-radius: var(--pui-radius-control);
+  --pui-button-gap: var(--pui-space-2);
+  --pui-button-padding-x: var(--pui-space-5);
+  --pui-button-padding-y: var(--pui-space-2);
+  --pui-button-border-color: transparent;
+  --pui-button-shadow: var(--pui-elevation-1);
+  --pui-button-hover-scale: none;
+  --pui-button-active-scale: none;
+
+  /* Card */
+  --pui-card-bg: var(--pui-md-sys-color-surface-container-low);
+  --pui-card-radius: var(--pui-radius-container);
+  --pui-card-elevation: var(--pui-elevation-1);
+  --pui-card-padding: var(--pui-space-4);
+
+  /* TextField */
+  --pui-field-bg: var(--pui-md-sys-color-surface-container-highest);
+  --pui-field-border: var(--pui-md-sys-color-outline);
+  --pui-field-radius: var(--pui-md-sys-shape-corner-extra-small);
+  --pui-field-padding-x: var(--pui-space-4);
+  --pui-field-padding-y: var(--pui-space-3);
+
+  /* IconButton */
+  --pui-icon-button-size: 40px;
+  --pui-icon-button-radius: var(--pui-md-sys-shape-corner-full);
+  --pui-icon-button-bg: var(--pui-md-sys-color-primary);
+  --pui-icon-button-fg: var(--pui-md-sys-color-on-primary);
+  --pui-icon-button-border-color: transparent;
+  --pui-icon-button-shadow: var(--pui-elevation-0);
+
+  /* Divider */
+  --pui-divider-color: var(--pui-md-sys-color-outline-variant);
+  --pui-divider-thickness: 1px;
+  --pui-divider-inset: var(--pui-space-4);
+  --pui-divider-gap: var(--pui-space-2);
+
+  /* Badge */
+  --pui-badge-bg: var(--pui-md-sys-color-error);
+  --pui-badge-fg: var(--pui-md-sys-color-on-error);
+  --pui-badge-radius: 999px;
+  --pui-badge-padding-x: var(--pui-space-1);
+  --pui-badge-height: 20px;
+  --pui-badge-dot-size: 8px;
+
+  /* Chip */
+  --pui-chip-bg: var(--pui-md-sys-color-surface-container-high);
+  --pui-chip-fg: var(--pui-md-sys-color-on-surface);
+  --pui-chip-radius: var(--pui-md-sys-shape-corner-full);
+  --pui-chip-padding-x: var(--pui-space-3);
+  --pui-chip-gap: var(--pui-space-1);
+
+  /* Avatar */
+  --pui-avatar-radius: var(--pui-md-sys-shape-corner-full);
+  --pui-avatar-bg: var(--pui-md-sys-color-primary-container);
+  --pui-avatar-fg: var(--pui-md-sys-color-on-primary-container);
+  --pui-avatar-status-dot-size: 10px;
+
+  /* Kbd */
+  --pui-kbd-bg: var(--pui-md-sys-color-surface-container-high);
+  --pui-kbd-fg: var(--pui-md-sys-color-on-surface-variant);
+  --pui-kbd-radius: var(--pui-md-sys-shape-corner-extra-small);
+  --pui-kbd-padding-x: var(--pui-space-1);
+  --pui-kbd-padding-y: 2px;
+  --pui-kbd-shadow: var(--pui-elevation-1);
+
+  /* Checkbox */
+  --pui-checkbox-size: 22px;
+  --pui-checkbox-radius: var(--pui-md-sys-shape-corner-extra-small);
+  --pui-checkbox-border: var(--pui-md-sys-color-outline);
+  --pui-checkbox-checked-bg: var(--pui-md-sys-color-primary);
+  --pui-checkbox-icon-color: var(--pui-md-sys-color-on-primary);
+
+  /* Radio */
+  --pui-radio-size: 22px;
+  --pui-radio-border: var(--pui-md-sys-color-outline);
+  --pui-radio-checked-border: var(--pui-md-sys-color-primary);
+  --pui-radio-checked-bg: var(--pui-md-sys-color-primary);
+
+  /* Slider */
+  --pui-slider-track-height: 6px;
+  --pui-slider-track-bg: var(--pui-md-sys-color-surface-container-highest);
+  --pui-slider-active-track-bg: var(--pui-md-sys-color-primary);
+  --pui-slider-thumb-size: 20px;
+  --pui-slider-thumb-bg: var(--pui-md-sys-color-primary);
+
+  --pui-tooltip-bg: var(--pui-md-sys-color-surface-container);
+  --pui-tooltip-fg: var(--pui-md-sys-color-on-surface);
+  --pui-popover-bg: var(--pui-md-sys-color-surface-container);
+  --pui-popover-border: var(--pui-md-sys-color-outline-variant);
+  --pui-dialog-bg: var(--pui-md-sys-color-surface-container-high);
+  --pui-sheet-bg: var(--pui-md-sys-color-surface-container-high);
+  --pui-drawer-bg: var(--pui-md-sys-color-surface-container-high);
+  --pui-tab-indicator: var(--pui-md-sys-color-primary);
+  --pui-segment-bg: var(--pui-md-sys-color-surface-container-highest);
+  --pui-breadcrumb-sep: var(--pui-md-sys-color-on-surface-variant);
+  --pui-toolbar-bg: var(--pui-md-sys-color-surface);
+  --pui-nav-rail-bg: var(--pui-md-sys-color-surface);
+  --pui-sidebar-bg: var(--pui-md-sys-color-surface);
+  --pui-list-bg: var(--pui-md-sys-color-surface);
+  --pui-accordion-divider: var(--pui-md-sys-color-outline-variant);
+  --pui-table-header-bg: var(--pui-md-sys-color-surface-container-highest);
+  --pui-table-border: var(--pui-md-sys-color-outline-variant);
+  --pui-calendar-bg: var(--pui-md-sys-color-surface-container);
+  --pui-tree-hover: var(--pui-md-sys-color-surface-container-highest);
+  --pui-tree-selected: var(--pui-md-sys-color-primary-container);
+
+  /* Switch */
+  --pui-switch-track-bg: var(--pui-md-ref-palette-neutral-variant-50);
+  --pui-switch-track-checked-bg: var(--pui-md-sys-color-primary);
+  --pui-switch-thumb-bg: var(--pui-md-ref-palette-neutral-100);
+  --pui-switch-track-width: 52px;
+  --pui-switch-track-height: 32px;
+}
+
+/* ==========================================================
+   Dark mode for Material track
+   ========================================================== */
+[data-theme='material'][data-mode='dark'] {
+  /* Tonal palettes dark */
+  --pui-md-ref-palette-primary-10: oklch(0.2 0.06 265);
+  --pui-md-ref-palette-primary-20: oklch(0.3 0.1 265);
+  --pui-md-ref-palette-primary-30: oklch(0.4 0.14 265);
+  --pui-md-ref-palette-primary-40: oklch(0.5 0.18 265);
+  --pui-md-ref-palette-primary-80: oklch(0.8 0.1 265);
+  --pui-md-ref-palette-primary-90: oklch(0.88 0.06 265);
+
+  --pui-md-ref-palette-secondary-40: oklch(0.5 0.1 290);
+  --pui-md-ref-palette-secondary-80: oklch(0.8 0.05 290);
+  --pui-md-ref-palette-secondary-90: oklch(0.9 0.03 290);
+
+  --pui-md-ref-palette-tertiary-40: oklch(0.5 0.14 170);
+  --pui-md-ref-palette-tertiary-80: oklch(0.8 0.07 170);
+  --pui-md-ref-palette-tertiary-90: oklch(0.88 0.05 170);
+
+  --pui-md-ref-palette-error-40: oklch(0.54 0.2 25);
+  --pui-md-ref-palette-error-80: oklch(0.84 0.1 25);
+  --pui-md-ref-palette-error-90: oklch(0.92 0.06 25);
+
+  --pui-md-ref-palette-neutral-10: oklch(0.18 0.004 260);
+  --pui-md-ref-palette-neutral-20: oklch(0.28 0.004 260);
+  --pui-md-ref-palette-neutral-90: oklch(0.9 0.003 260);
+  --pui-md-ref-palette-neutral-95: oklch(0.95 0.002 260);
+  --pui-md-ref-palette-neutral-99: oklch(0.98 0.001 260);
+
+  --pui-md-ref-palette-neutral-variant-30: oklch(0.4 0.007 265);
+  --pui-md-ref-palette-neutral-variant-50: oklch(0.58 0.008 265);
+  --pui-md-ref-palette-neutral-variant-80: oklch(0.82 0.005 265);
+  --pui-md-ref-palette-neutral-variant-90: oklch(0.9 0.004 265);
+
+  /* Color roles dark (inverted from light) */
+  --pui-md-sys-color-primary: var(--pui-md-ref-palette-primary-80);
+  --pui-md-sys-color-on-primary: var(--pui-md-ref-palette-primary-20);
+  --pui-md-sys-color-primary-container: var(--pui-md-ref-palette-primary-30);
+  --pui-md-sys-color-on-primary-container: var(--pui-md-ref-palette-primary-90);
+
+  --pui-md-sys-color-secondary: var(--pui-md-ref-palette-secondary-80);
+  --pui-md-sys-color-on-secondary: var(--pui-md-ref-palette-secondary-20);
+  --pui-md-sys-color-secondary-container: var(
+    --pui-md-ref-palette-secondary-30
+  );
+  --pui-md-sys-color-on-secondary-container: var(
+    --pui-md-ref-palette-secondary-90
+  );
+
+  --pui-md-sys-color-tertiary: var(--pui-md-ref-palette-tertiary-80);
+  --pui-md-sys-color-on-tertiary: var(--pui-md-ref-palette-tertiary-20);
+  --pui-md-sys-color-tertiary-container: var(--pui-md-ref-palette-tertiary-30);
+  --pui-md-sys-color-on-tertiary-container: var(
+    --pui-md-ref-palette-tertiary-90
+  );
+
+  --pui-md-sys-color-error: var(--pui-md-ref-palette-error-80);
+  --pui-md-sys-color-on-error: var(--pui-md-ref-palette-error-20);
+  --pui-md-sys-color-error-container: var(--pui-md-ref-palette-error-30);
+  --pui-md-sys-color-on-error-container: var(--pui-md-ref-palette-error-90);
+
+  --pui-md-sys-color-background: var(--pui-md-ref-palette-neutral-10);
+  --pui-md-sys-color-on-background: var(--pui-md-ref-palette-neutral-90);
+
+  --pui-md-sys-color-surface: var(--pui-md-ref-palette-neutral-10);
+  --pui-md-sys-color-on-surface: var(--pui-md-ref-palette-neutral-90);
+  --pui-md-sys-color-surface-variant: var(
+    --pui-md-ref-palette-neutral-variant-30
+  );
+  --pui-md-sys-color-on-surface-variant: var(
+    --pui-md-ref-palette-neutral-variant-80
+  );
+
+  --pui-md-sys-color-outline: var(--pui-md-ref-palette-neutral-variant-60);
+  --pui-md-sys-color-outline-variant: var(
+    --pui-md-ref-palette-neutral-variant-30
+  );
+
+  --pui-md-sys-color-inverse-surface: var(--pui-md-ref-palette-neutral-90);
+  --pui-md-sys-color-inverse-on-surface: var(--pui-md-ref-palette-neutral-20);
+  --pui-md-sys-color-inverse-primary: var(--pui-md-ref-palette-primary-40);
+
+  --pui-md-sys-color-surface-dim: var(--pui-md-ref-palette-neutral-10);
+  --pui-md-sys-color-surface-bright: var(--pui-md-ref-palette-neutral-24);
+  --pui-md-sys-color-surface-container-lowest: var(
+    --pui-md-ref-palette-neutral-4
+  );
+  --pui-md-sys-color-surface-container-low: var(
+    --pui-md-ref-palette-neutral-10
+  );
+  --pui-md-sys-color-surface-container: var(--pui-md-ref-palette-neutral-12);
+  --pui-md-sys-color-surface-container-high: var(
+    --pui-md-ref-palette-neutral-17
+  );
+  --pui-md-sys-color-surface-container-highest: var(
+    --pui-md-ref-palette-neutral-22
+  );
+
+  /* Tonal elevation dark */
+  --pui-md-sys-tonal-elevation-level1:
+    0px 1px 3px 1px rgb(0 0 0 / 0.3), 0px 1px 2px 0px rgb(0 0 0 / 0.46);
+  --pui-md-sys-tonal-elevation-level2:
+    0px 1px 3px 1px rgb(0 0 0 / 0.3), 0px 2px 6px 2px rgb(0 0 0 / 0.3);
+  --pui-md-sys-tonal-elevation-level3:
+    0px 1px 3px 0px rgb(0 0 0 / 0.3), 0px 4px 8px 3px rgb(0 0 0 / 0.3);
+  --pui-md-sys-tonal-elevation-level4:
+    0px 2px 3px 0px rgb(0 0 0 / 0.3), 0px 6px 12px 4px rgb(0 0 0 / 0.3);
+  --pui-md-sys-tonal-elevation-level5:
+    0px 4px 4px 0px rgb(0 0 0 / 0.3), 0px 8px 16px 6px rgb(0 0 0 / 0.3);
+
+  /* Re-map persona tokens for dark */
+  --pui-color-primary: var(--pui-md-sys-color-primary);
+  --pui-color-on-primary: var(--pui-md-sys-color-on-primary);
+  --pui-color-primary-container: var(--pui-md-sys-color-primary-container);
+  --pui-color-on-primary-container: var(
+    --pui-md-sys-color-on-primary-container
+  );
+
+  --pui-surface-base: var(--pui-md-sys-color-surface);
+  --pui-surface-raised: var(--pui-md-sys-color-surface-container-low);
+  --pui-surface-container: var(--pui-md-sys-color-surface-container);
+
+  --pui-text-primary: var(--pui-md-sys-color-on-surface);
+  --pui-text-secondary: var(--pui-md-sys-color-on-surface-variant);
+
+  --pui-outline: var(--pui-md-sys-color-outline);
+  --pui-outline-subtle: var(--pui-md-sys-color-outline-variant);
+
+  --pui-elevation-0: var(--pui-md-sys-tonal-elevation-level0);
+  --pui-elevation-1: var(--pui-md-sys-tonal-elevation-level1);
+  --pui-elevation-2: var(--pui-md-sys-tonal-elevation-level2);
+  --pui-elevation-3: var(--pui-md-sys-tonal-elevation-level3);
+  --pui-elevation-4: var(--pui-md-sys-tonal-elevation-level4);
+  --pui-elevation-5: var(--pui-md-sys-tonal-elevation-level5);
+
+  --pui-switch-track-bg: var(--pui-md-ref-palette-neutral-variant-50);
+  --pui-field-bg: var(--pui-md-sys-color-surface-container-high);
+}

@@ -1,0 +1,148 @@
+/* ==========================================================
+   Persona UI — 动效系统
+   统一编排：reveal / stagger / scale / pulse
+   全部尊重 prefers-reduced-motion
+   ========================================================== */
+
+/* --- Keyframes：fade-up（Hero / 卡片入场）--- */
+@keyframes pui-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Keyframes：scale-in（Dialog / Menu 弹出）--- */
+@keyframes pui-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Keyframes：pulse-soft（Avatar status / Spinner 状态）--- */
+@keyframes pui-pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* --- Reveal 工具类 --- */
+/* 单独元素：使用 .pui-reveal */
+.pui-reveal {
+  animation: pui-fade-up 400ms
+    var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+  animation-delay: var(--pui-reveal-delay, 0ms);
+}
+
+/* 容器内 stagger：直接子元素依次入场 */
+.pui-reveal-stagger > * {
+  animation: pui-fade-up 400ms
+    var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+}
+.pui-reveal-stagger > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.pui-reveal-stagger > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.pui-reveal-stagger > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.pui-reveal-stagger > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+.pui-reveal-stagger > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+.pui-reveal-stagger > *:nth-child(6) {
+  animation-delay: 300ms;
+}
+.pui-reveal-stagger > *:nth-child(7) {
+  animation-delay: 360ms;
+}
+.pui-reveal-stagger > *:nth-child(8) {
+  animation-delay: 420ms;
+}
+.pui-reveal-stagger > *:nth-child(9) {
+  animation-delay: 480ms;
+}
+.pui-reveal-stagger > *:nth-child(10) {
+  animation-delay: 540ms;
+}
+
+/* --- Reduced motion 守卫 --- */
+@media (prefers-reduced-motion: reduce) {
+  .pui-reveal,
+  .pui-reveal-stagger > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --- Tabs 滑动 indicator：spring 平滑过渡 --- */
+.pui-tab-indicator {
+  transition:
+    transform 320ms var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1)),
+    width 320ms var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1)),
+    height 320ms var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1));
+  will-change: transform, width, height;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pui-tab-indicator {
+    transition: none !important;
+  }
+}
+
+/* --- SegmentedControl 滑块：spring 平滑过渡 --- */
+.pui-segment-thumb {
+  transition: transform 280ms
+    var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1));
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pui-segment-thumb {
+    transition: none !important;
+  }
+}
+
+/* --- Card hover lift（Apple）：inset highlight + 抬起 --- */
+.pui-card-interactive {
+  cursor: pointer;
+  transition:
+    transform 220ms var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1)),
+    box-shadow 220ms var(--pui-motion-spring, cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+.pui-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pui-elevation-2, 0 4px 16px rgb(0 0 0 / 0.1));
+}
+.pui-card-interactive:active {
+  transform: translateY(0);
+}
+
+/* --- Dialog scrim backdrop blur（Apple frosted） --- */
+.pui-dialog-backdrop {
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pui-card-interactive {
+    transition: none !important;
+    transform: none !important;
+  }
+}

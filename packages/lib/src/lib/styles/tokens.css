@@ -1,0 +1,169 @@
+/* ==========================================================
+   Persona UI — Primitive & Semantic Tokens
+   Layer 1 (Primitive) + Layer 2 (Semantic)
+   ========================================================== */
+
+:root {
+  /* --- Primitive Colors --- */
+  --pui-ref-blue-60: oklch(0.55 0.18 255);
+  --pui-ref-blue-70: oklch(0.65 0.16 255);
+  --pui-ref-blue-90: oklch(0.88 0.07 255);
+  --pui-ref-blue-95: oklch(0.94 0.04 255);
+
+  --pui-ref-green-60: oklch(0.6 0.18 160);
+  --pui-ref-red-60: oklch(0.6 0.2 30);
+  --pui-ref-red-90: oklch(0.88 0.08 30);
+  --pui-ref-yellow-60: oklch(0.7 0.18 90);
+
+  --pui-ref-gray-0: oklch(1 0 0);
+  --pui-ref-gray-10: oklch(0.97 0.005 260);
+  --pui-ref-gray-20: oklch(0.92 0.008 260);
+  --pui-ref-gray-30: oklch(0.85 0.01 260);
+  --pui-ref-gray-40: oklch(0.75 0.015 260);
+  --pui-ref-gray-50: oklch(0.6 0.02 260);
+  --pui-ref-gray-60: oklch(0.45 0.02 260);
+  --pui-ref-gray-70: oklch(0.35 0.015 260);
+  --pui-ref-gray-80: oklch(0.25 0.01 260);
+  --pui-ref-gray-90: oklch(0.15 0.008 260);
+  --pui-ref-gray-100: oklch(0.1 0.005 260);
+
+  /* --- Primitive Spacing --- */
+  --pui-ref-space-1: 4px;
+  --pui-ref-space-2: 8px;
+  --pui-ref-space-3: 12px;
+  --pui-ref-space-4: 16px;
+  --pui-ref-space-5: 20px;
+  --pui-ref-space-6: 24px;
+  --pui-ref-space-8: 32px;
+  --pui-ref-space-10: 40px;
+
+  /* --- Primitive Duration --- */
+  --pui-ref-duration-instant: 0ms;
+  --pui-ref-duration-fast: 100ms;
+  --pui-ref-duration-normal: 200ms;
+  --pui-ref-duration-slow: 350ms;
+  --pui-ref-duration-deliberate: 500ms;
+
+  /* --- Primitive Radius --- */
+  --pui-ref-radius-none: 0px;
+  --pui-ref-radius-sm: 4px;
+  --pui-ref-radius-md: 8px;
+  --pui-ref-radius-lg: 14px;
+  --pui-ref-radius-xl: 22px;
+  --pui-ref-radius-full: 999px;
+
+  /* --- Primitive Opacity --- */
+  --pui-ref-opacity-none: 0;
+  --pui-ref-opacity-subtle: 0.08;
+  --pui-ref-opacity-medium: 0.12;
+  --pui-ref-opacity-strong: 0.32;
+  --pui-ref-opacity-full: 1;
+
+  /* ==========================================================
+     Semantic Tokens (light default)
+     Track-specific overrides live in apple.css / material.css
+     ========================================================== */
+
+  /* Color roles */
+  --pui-color-primary: var(--pui-ref-blue-60);
+  --pui-color-on-primary: var(--pui-ref-gray-0);
+  --pui-color-primary-container: var(--pui-ref-blue-90);
+  --pui-color-on-primary-container: var(--pui-ref-gray-90);
+
+  --pui-color-secondary: var(--pui-ref-blue-70);
+  --pui-color-on-secondary: var(--pui-ref-gray-0);
+  --pui-color-secondary-container: var(--pui-ref-blue-95);
+
+  --pui-color-tertiary: var(--pui-ref-green-60);
+  --pui-color-error: var(--pui-ref-red-60);
+  --pui-color-on-error: var(--pui-ref-gray-0);
+  --pui-color-error-container: var(--pui-ref-red-90);
+
+  /* Surfaces */
+  --pui-surface-base: var(--pui-ref-gray-0);
+  --pui-surface-raised: var(--pui-ref-gray-10);
+  --pui-surface-variant: var(--pui-ref-gray-20);
+  --pui-surface-container: var(--pui-ref-gray-10);
+
+  /* Text */
+  --pui-text-primary: var(--pui-ref-gray-90);
+  --pui-text-secondary: var(--pui-ref-gray-50);
+  --pui-text-disabled: var(--pui-ref-gray-40);
+  --pui-text-on-primary: var(--pui-ref-gray-0);
+  --pui-text-on-error: var(--pui-ref-gray-0);
+
+  /* Outline */
+  --pui-outline: var(--pui-ref-gray-30);
+  --pui-outline-subtle: var(--pui-ref-gray-20);
+  --pui-outline-strong: var(--pui-ref-gray-50);
+
+  /* Radius (semantic) */
+  --pui-radius-control: var(--pui-ref-radius-lg);
+  --pui-radius-container: var(--pui-ref-radius-xl);
+  --pui-radius-full: var(--pui-ref-radius-full);
+
+  /* Elevation */
+  --pui-elevation-0: none;
+  --pui-elevation-1: 0 1px 2px rgb(0 0 0 / 0.08), 0 1px 4px rgb(0 0 0 / 0.06);
+  --pui-elevation-2: 0 2px 6px rgb(0 0 0 / 0.1), 0 4px 12px rgb(0 0 0 / 0.08);
+  --pui-elevation-3: 0 4px 12px rgb(0 0 0 / 0.12), 0 8px 24px rgb(0 0 0 / 0.1);
+
+  /* Opacity (semantic) */
+  --pui-opacity-disabled: 0.38;
+  --pui-opacity-state-hover: var(--pui-ref-opacity-subtle);
+  --pui-opacity-state-pressed: var(--pui-ref-opacity-medium);
+
+  /* Motion */
+  --pui-motion-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --pui-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --pui-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --pui-motion-linear: linear;
+
+  /* Duration (semantic) */
+  --pui-duration-enter: var(--pui-ref-duration-fast);
+  --pui-duration-leave: var(--pui-ref-duration-normal);
+  --pui-duration-swap: var(--pui-ref-duration-normal);
+
+  /* Hit target (0A.2.5 Apple HIG) */
+  --pui-hit-target-min: 44px;
+
+  /* Z-index */
+  --pui-z-surface: 0;
+  --pui-z-raised: 10;
+  --pui-z-overlay: 50;
+  --pui-z-modal: 100;
+  --pui-z-toast: 200;
+
+  /* Spacing (semantic) */
+  --pui-space-1: var(--pui-ref-space-1);
+  --pui-space-2: var(--pui-ref-space-2);
+  --pui-space-3: var(--pui-ref-space-3);
+  --pui-space-4: var(--pui-ref-space-4);
+  --pui-space-5: var(--pui-ref-space-5);
+  --pui-space-6: var(--pui-ref-space-6);
+  --pui-space-8: var(--pui-ref-space-8);
+  --pui-space-10: var(--pui-ref-space-10);
+}
+
+/* ==========================================================
+   Dark mode defaults (will be refined per-theme)
+   ========================================================== */
+[data-mode="dark"] {
+  --pui-color-primary: var(--pui-ref-blue-70);
+  --pui-color-on-primary: var(--pui-ref-gray-90);
+  --pui-color-primary-container: var(--pui-ref-blue-60);
+  --pui-color-on-primary-container: var(--pui-ref-gray-0);
+
+  --pui-surface-base: var(--pui-ref-gray-100);
+  --pui-surface-raised: var(--pui-ref-gray-90);
+  --pui-surface-variant: var(--pui-ref-gray-80);
+  --pui-surface-container: var(--pui-ref-gray-90);
+
+  --pui-text-primary: var(--pui-ref-gray-10);
+  --pui-text-secondary: var(--pui-ref-gray-40);
+  --pui-text-disabled: var(--pui-ref-gray-50);
+
+  --pui-outline: var(--pui-ref-gray-60);
+  --pui-outline-subtle: var(--pui-ref-gray-70);
+  --pui-outline-strong: var(--pui-ref-gray-40);
+}

@@ -1,0 +1,78 @@
+/* ==========================================================
+   Persona UI — Cross-track shared styles
+   ========================================================== */
+
+/* Smooth theme transitions on everything */
+*,
+*::before,
+*::after {
+  transition-property:
+    background-color, border-color, color, box-shadow, opacity;
+  transition-duration: var(--pui-duration-swap, 200ms);
+  transition-timing-function: ease;
+}
+
+/* Focus ring (interactive controls only, not form inputs) */
+*:focus-visible {
+  outline: 2px solid var(--pui-color-primary);
+  outline-offset: 2px;
+}
+/* Form inputs rely on container border/ring, not outline — suppress */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+/* Interactive control components get rounded focus ring */
+.pui-button:focus-visible,
+.pui-icon-button:focus-visible,
+.pui-chip:focus-visible,
+.pui-switch button:focus-visible,
+.pui-segmented-control button:focus-visible,
+.pui-tabs button:focus-visible {
+  border-radius: var(--pui-radius-control, 8px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar styling (subtle) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pui-outline-subtle) transparent;
+}
+
+/* ==========================================================
+   0A.3.6 Material State Layer
+   Applied via pui-state-layer class on interactive elements
+   ========================================================== */
+[data-theme="material"] .pui-state-layer {
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="material"] .pui-state-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--pui-duration-swap, 200ms)
+    var(--pui-motion-ease-out, ease);
+}
+[data-theme="material"] .pui-state-layer:hover::before {
+  opacity: var(--pui-md-sys-state-hover-state-layer-opacity, 0.08);
+}
+[data-theme="material"] .pui-state-layer:focus-visible::before {
+  opacity: var(--pui-md-sys-state-focus-state-layer-opacity, 0.12);
+}
+[data-theme="material"] .pui-state-layer:active::before {
+  opacity: var(--pui-md-sys-state-pressed-state-layer-opacity, 0.12);
+}

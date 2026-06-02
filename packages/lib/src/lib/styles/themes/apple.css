@@ -1,0 +1,422 @@
+/* ==========================================================
+   Persona UI — Apple HIG-aligned Track
+   Target: [data-theme="apple"]
+   Design personality: elegant, layered, translucent, springy
+   0A.2.1-6 compliant
+   ========================================================== */
+
+[data-theme='apple'] {
+  /* ==========================================================
+     Font stack — Apple track (elegant, editorial)
+     display: Instrument Serif (衬线，用于 hero/标题)
+     body:    -apple-system / SF Pro Text 系
+     mono:    ui-monospace / SF Mono
+     ========================================================== */
+  --pui-font-display:
+    'Instrument Serif', 'New York', 'Iowan Old Style', 'Apple Garamond',
+    'Baskerville', 'Times New Roman', serif;
+  --pui-font-body:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+    system-ui, sans-serif;
+  --pui-font-mono:
+    ui-monospace, 'SF Mono', 'Menlo', 'Cascadia Code', 'Consolas', monospace;
+
+  /* ==========================================================
+     0A.2.1 Apple Semantic Color Tokens (light)
+     ========================================================== */
+
+  /* --- Labels (text) --- */
+  --pui-apple-label: oklch(0.15 0.004 260);
+  --pui-apple-secondary-label: oklch(0.5 0.008 260);
+  --pui-apple-tertiary-label: oklch(0.68 0.005 260);
+  --pui-apple-quaternary-label: oklch(0.8 0.004 260);
+
+  /* --- System backgrounds --- */
+  --pui-apple-system-background: oklch(1 0 0);
+  --pui-apple-secondary-system-background: oklch(0.97 0.003 260);
+  --pui-apple-tertiary-system-background: oklch(0.95 0.004 260);
+  --pui-apple-system-grouped-background: oklch(0.97 0.003 260);
+  --pui-apple-secondary-system-grouped-background: oklch(1 0 0);
+  --pui-apple-tertiary-system-grouped-background: oklch(0.97 0.003 260);
+
+  /* --- Separators --- */
+  --pui-apple-separator: oklch(0.85 0.005 260);
+  --pui-apple-opaque-separator: oklch(0.78 0.008 260);
+
+  /* --- Accents --- */
+  --pui-apple-link: oklch(0.44 0.16 250);
+  --pui-apple-control-accent: oklch(0.48 0.18 250);
+
+  /* --- System colors --- */
+  --pui-apple-system-red: oklch(0.52 0.2 25);
+  --pui-apple-system-orange: oklch(0.62 0.18 60);
+  --pui-apple-system-yellow: oklch(0.72 0.18 90);
+  --pui-apple-system-green: oklch(0.52 0.18 145);
+  --pui-apple-system-mint: oklch(0.62 0.15 170);
+  --pui-apple-system-teal: oklch(0.52 0.14 190);
+  --pui-apple-system-cyan: oklch(0.52 0.15 210);
+  --pui-apple-system-blue: oklch(0.48 0.18 250);
+  --pui-apple-system-indigo: oklch(0.42 0.16 270);
+  --pui-apple-system-purple: oklch(0.48 0.18 290);
+  --pui-apple-system-pink: oklch(0.52 0.2 350);
+  --pui-apple-system-brown: oklch(0.48 0.12 40);
+
+  /* ==========================================================
+     0A.2.2 Apple Material / Vibrancy Tokens
+     ========================================================== */
+  --pui-apple-material-ultra-thin: color-mix(
+    in oklch,
+    var(--pui-apple-system-background) 30%,
+    transparent
+  );
+  --pui-apple-material-thin: color-mix(
+    in oklch,
+    var(--pui-apple-system-background) 50%,
+    transparent
+  );
+  --pui-apple-material-regular: color-mix(
+    in oklch,
+    var(--pui-apple-system-background) 72%,
+    transparent
+  );
+  --pui-apple-material-thick: color-mix(
+    in oklch,
+    var(--pui-apple-secondary-system-background) 82%,
+    transparent
+  );
+  --pui-apple-material-ultra-thick: color-mix(
+    in oklch,
+    var(--pui-apple-tertiary-system-background) 92%,
+    transparent
+  );
+  --pui-apple-vibrancy-opacity: 0.72;
+  --pui-apple-material-border: color-mix(
+    in oklch,
+    var(--pui-apple-separator) 50%,
+    transparent
+  );
+  --pui-apple-material-blur: 18px;
+
+  /* ==========================================================
+     Persona Semantic Token Mapping (Apple)
+     ========================================================== */
+
+  /* Colors */
+  --pui-color-primary: var(--pui-apple-control-accent);
+  --pui-color-on-primary: var(--pui-apple-system-background);
+  --pui-color-primary-container: oklch(0.88 0.06 250);
+  --pui-color-on-primary-container: oklch(0.15 0.04 250);
+  --pui-color-secondary: oklch(0.55 0.1 260);
+  --pui-color-tertiary: oklch(0.55 0.14 160);
+  --pui-color-error: var(--pui-apple-system-red);
+
+  /* Surfaces (using Apple material tokens) */
+  --pui-surface-base: var(--pui-apple-material-regular);
+  --pui-surface-raised: var(--pui-apple-material-thick);
+  --pui-surface-variant: color-mix(
+    in oklch,
+    var(--pui-apple-secondary-system-background) 60%,
+    transparent
+  );
+  --pui-surface-container: var(--pui-apple-material-thin);
+  --pui-backdrop-blur: var(--pui-apple-material-blur);
+  --pui-surface-opacity: 0.72;
+
+  /* Text */
+  --pui-text-primary: var(--pui-apple-label);
+  --pui-text-secondary: var(--pui-apple-secondary-label);
+  --pui-text-disabled: var(--pui-apple-tertiary-label);
+  --pui-text-on-primary: var(--pui-apple-system-background);
+  --pui-text-on-error: var(--pui-apple-system-background);
+
+  /* Outline */
+  --pui-outline: var(--pui-apple-separator);
+  --pui-outline-subtle: color-mix(
+    in oklch,
+    var(--pui-apple-separator) 50%,
+    transparent
+  );
+  --pui-outline-strong: var(--pui-apple-opaque-separator);
+
+  /* --- Radius (larger, softer) --- */
+  --pui-radius-control: 14px;
+  --pui-radius-container: 22px;
+  --pui-radius-full: 9999px;
+
+  /* --- Elevation (subtle ambient) --- */
+  --pui-elevation-0: none;
+  --pui-elevation-1: 0 1px 2px rgb(0 0 0 / 0.08), 0 8px 24px rgb(0 0 0 / 0.06);
+  --pui-elevation-2: 0 2px 8px rgb(0 0 0 / 0.08), 0 12px 32px rgb(0 0 0 / 0.08);
+  --pui-elevation-3: 0 4px 14px rgb(0 0 0 / 0.1), 0 16px 48px rgb(0 0 0 / 0.1);
+
+  /* --- Motion (spring-based) --- */
+  --pui-motion-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --pui-motion-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --pui-duration-enter: 100ms;
+  --pui-duration-swap: 200ms;
+
+  /* --- Opacity (semantic) --- */
+  --pui-opacity-disabled: 0.38;
+  --pui-opacity-state-hover: 0.08;
+  --pui-opacity-state-pressed: 0.12;
+
+  /* --- 0A.2.5 Hit target --- */
+  --pui-hit-target-min: 44px;
+
+  /* ==========================================================
+     A.Apple 装饰 token（hero/卡片精修）
+     ========================================================== */
+  /* Apple 玻璃高光：内嵌顶部 1px 亮线 */
+  --pui-apple-inner-highlight: inset 0 1px 0 oklch(1 0 0 / 0.6);
+  /* Hero 卡片大圆角（28px，Apple 风格） */
+  --pui-radius-card-hero: 28px;
+
+  /* ==========================================================
+     Component Defaults
+     ========================================================== */
+
+  /* 0A.2.6 Button hover/active scale */
+  --pui-button-hover-scale: 1.02;
+  --pui-button-active-scale: 0.97;
+  --pui-button-min-height: var(--pui-hit-target-min, 44px);
+  --pui-button-min-width: var(--pui-hit-target-min, 44px);
+  --pui-button-bg: var(--pui-color-primary);
+  --pui-button-fg: var(--pui-color-on-primary);
+  --pui-button-radius: var(--pui-radius-control);
+  --pui-button-gap: var(--pui-space-2);
+  --pui-button-padding-x: var(--pui-space-4);
+  --pui-button-padding-y: var(--pui-space-2);
+  --pui-button-border-color: transparent;
+  --pui-button-shadow: var(--pui-elevation-1);
+
+  --pui-card-bg: var(--pui-surface-raised);
+  --pui-card-radius: var(--pui-radius-container);
+  --pui-card-elevation: var(--pui-elevation-1);
+  --pui-card-padding: var(--pui-space-4);
+
+  --pui-field-bg: var(--pui-apple-material-thin);
+  --pui-field-border: var(--pui-outline);
+  --pui-field-radius: var(--pui-radius-control);
+  --pui-field-padding-x: var(--pui-space-3);
+  --pui-field-padding-y: var(--pui-space-3);
+
+  --pui-icon-button-size: 40px;
+  --pui-icon-button-radius: var(--pui-radius-control);
+  --pui-icon-button-bg: var(--pui-color-primary);
+  --pui-icon-button-fg: var(--pui-color-on-primary);
+  --pui-icon-button-border-color: transparent;
+  --pui-icon-button-shadow: var(--pui-elevation-1);
+
+  --pui-divider-color: var(--pui-apple-separator);
+  --pui-divider-thickness: 1px;
+  --pui-divider-inset: var(--pui-space-4);
+  --pui-divider-gap: var(--pui-space-2);
+
+  --pui-badge-bg: var(--pui-surface-variant);
+  --pui-badge-fg: var(--pui-text-secondary);
+  --pui-badge-radius: 999px;
+  --pui-badge-padding-x: var(--pui-space-1);
+  --pui-badge-height: 20px;
+  --pui-badge-dot-size: 8px;
+
+  --pui-chip-bg: var(--pui-surface-variant);
+  --pui-chip-fg: var(--pui-text-primary);
+  --pui-chip-radius: 999px;
+  --pui-chip-padding-x: var(--pui-space-3);
+  --pui-chip-gap: var(--pui-space-1);
+
+  --pui-avatar-radius: 999px;
+  --pui-avatar-bg: var(--pui-surface-variant);
+  --pui-avatar-fg: var(--pui-text-secondary);
+  --pui-avatar-status-dot-size: 10px;
+
+  --pui-kbd-bg: var(--pui-surface-variant);
+  --pui-kbd-fg: var(--pui-text-secondary);
+  --pui-kbd-radius: var(--pui-radius-control);
+  --pui-kbd-padding-x: var(--pui-space-1);
+  --pui-kbd-padding-y: 2px;
+  --pui-kbd-shadow: none;
+
+  --pui-checkbox-size: 22px;
+  --pui-checkbox-radius: var(--pui-radius-control);
+  --pui-checkbox-border: var(--pui-outline);
+  --pui-checkbox-checked-bg: var(--pui-color-primary);
+  --pui-checkbox-icon-color: var(--pui-color-on-primary);
+
+  --pui-radio-size: 22px;
+  --pui-radio-border: var(--pui-outline);
+  --pui-radio-checked-border: var(--pui-color-primary);
+  --pui-radio-checked-bg: var(--pui-color-primary);
+
+  --pui-slider-track-height: 6px;
+  --pui-slider-track-bg: var(--pui-surface-variant);
+  --pui-slider-active-track-bg: var(--pui-color-primary);
+  --pui-slider-thumb-size: 22px;
+  --pui-slider-thumb-bg: var(--pui-color-primary);
+
+  --pui-tooltip-bg: var(--pui-surface-raised);
+  --pui-tooltip-fg: var(--pui-text-primary);
+  --pui-popover-bg: var(--pui-surface-base);
+  --pui-popover-border: var(--pui-outline-subtle);
+  --pui-dialog-bg: var(--pui-surface-base);
+  --pui-sheet-bg: var(--pui-surface-base);
+  --pui-drawer-bg: var(--pui-surface-base);
+  --pui-tab-indicator: var(--pui-color-primary);
+  --pui-segment-bg: var(--pui-surface-variant);
+  --pui-breadcrumb-sep: var(--pui-text-disabled);
+  --pui-toolbar-bg: var(--pui-surface-base);
+  --pui-nav-rail-bg: var(--pui-surface-base);
+  --pui-sidebar-bg: var(--pui-surface-base);
+  --pui-list-bg: var(--pui-surface-base);
+  --pui-accordion-divider: var(--pui-outline-subtle);
+  --pui-table-header-bg: var(--pui-surface-variant);
+  --pui-table-border: var(--pui-outline-subtle);
+  --pui-calendar-bg: var(--pui-surface-base);
+  --pui-tree-hover: var(--pui-surface-variant);
+  --pui-tree-selected: var(--pui-color-primary-container);
+
+  --pui-switch-track-bg: var(--pui-apple-separator);
+  --pui-switch-track-checked-bg: var(--pui-color-primary);
+  --pui-switch-thumb-bg: var(--pui-apple-system-background);
+  --pui-switch-track-width: 44px;
+  --pui-switch-track-height: 24px;
+}
+
+/* ==========================================================
+   0A.2.3 Apple Reduced Transparency
+   ========================================================== */
+[data-theme='apple'][data-reduce-transparency='true'] {
+  --pui-apple-material-ultra-thin: var(--pui-apple-secondary-system-background);
+  --pui-apple-material-thin: var(--pui-apple-secondary-system-background);
+  --pui-apple-material-regular: var(--pui-apple-secondary-system-background);
+  --pui-apple-material-thick: var(--pui-apple-system-background);
+  --pui-apple-material-ultra-thick: var(--pui-apple-system-background);
+  --pui-apple-material-blur: 0px;
+
+  --pui-field-bg: var(--pui-apple-secondary-system-background);
+  --pui-surface-base: var(--pui-apple-secondary-system-background);
+  --pui-surface-raised: var(--pui-apple-system-background);
+  --pui-surface-container: var(--pui-apple-secondary-system-background);
+}
+
+/* ==========================================================
+   0A.2.4 Apple Increased Contrast
+   ========================================================== */
+[data-theme='apple'][data-contrast='more'] {
+  --pui-text-secondary: var(--pui-apple-label);
+  --pui-outline: var(--pui-apple-opaque-separator);
+  --pui-outline-subtle: var(--pui-apple-opaque-separator);
+  --pui-button-border-color: var(--pui-apple-opaque-separator);
+}
+
+/* ==========================================================
+   0A.2.6 Apple Button Hover / Active Scale (via CSS)
+   ========================================================== */
+[data-theme='apple'] .pui-button:not(:disabled):hover {
+  transform: scale(var(--pui-button-hover-scale, 1.02));
+}
+[data-theme='apple'] .pui-button:not(:disabled):active {
+  transform: scale(var(--pui-button-active-scale, 0.97));
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='apple'] .pui-button {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================
+   0A.2.2 Apple Material Utility (applied via .pui-apple-material)
+   ========================================================== */
+.pui-apple-material {
+  background: var(--pui-apple-material-regular);
+  border-color: var(--pui-apple-material-border);
+  backdrop-filter: blur(var(--pui-apple-material-blur));
+  -webkit-backdrop-filter: blur(var(--pui-apple-material-blur));
+}
+
+/* ==========================================================
+   Dark mode for Apple track
+   ========================================================== */
+[data-theme='apple'][data-mode='dark'] {
+  /* Labels */
+  --pui-apple-label: oklch(0.92 0.005 260);
+  --pui-apple-secondary-label: oklch(0.62 0.008 260);
+  --pui-apple-tertiary-label: oklch(0.52 0.005 260);
+  --pui-apple-quaternary-label: oklch(0.42 0.004 260);
+
+  /* Backgrounds */
+  --pui-apple-system-background: oklch(0.11 0.003 260);
+  --pui-apple-secondary-system-background: oklch(0.16 0.004 260);
+  --pui-apple-tertiary-system-background: oklch(0.2 0.004 260);
+  --pui-apple-system-grouped-background: oklch(0.11 0.003 260);
+  --pui-apple-secondary-system-grouped-background: oklch(0.14 0.004 260);
+  --pui-apple-tertiary-system-grouped-background: oklch(0.18 0.004 260);
+
+  /* Separators */
+  --pui-apple-separator: oklch(0.32 0.01 260);
+  --pui-apple-opaque-separator: oklch(0.38 0.015 260);
+
+  /* Accents */
+  --pui-apple-link: oklch(0.64 0.14 250);
+  --pui-apple-control-accent: oklch(0.7 0.16 250);
+
+  /* System colors */
+  --pui-apple-system-red: oklch(0.62 0.18 25);
+  --pui-apple-system-orange: oklch(0.68 0.16 60);
+  --pui-apple-system-yellow: oklch(0.76 0.16 90);
+  --pui-apple-system-green: oklch(0.62 0.16 145);
+  --pui-apple-system-mint: oklch(0.68 0.13 170);
+  --pui-apple-system-teal: oklch(0.62 0.12 190);
+  --pui-apple-system-cyan: oklch(0.62 0.13 210);
+  --pui-apple-system-blue: oklch(0.64 0.16 250);
+  --pui-apple-system-indigo: oklch(0.6 0.14 270);
+  --pui-apple-system-purple: oklch(0.64 0.16 290);
+  --pui-apple-system-pink: oklch(0.62 0.18 350);
+  --pui-apple-system-brown: oklch(0.6 0.1 40);
+
+  /* Material tokens dark */
+  --pui-apple-material-ultra-thin: color-mix(
+    in oklch,
+    var(--pui-apple-system-background) 40%,
+    transparent
+  );
+  --pui-apple-material-thin: color-mix(
+    in oklch,
+    var(--pui-apple-system-background) 55%,
+    transparent
+  );
+  --pui-apple-material-regular: color-mix(
+    in oklch,
+    var(--pui-apple-secondary-system-background) 76%,
+    transparent
+  );
+  --pui-apple-material-thick: color-mix(
+    in oklch,
+    var(--pui-apple-tertiary-system-background) 85%,
+    transparent
+  );
+  --pui-apple-material-ultra-thick: color-mix(
+    in oklch,
+    var(--pui-apple-tertiary-system-background) 95%,
+    transparent
+  );
+  --pui-apple-material-border: color-mix(
+    in oklch,
+    var(--pui-apple-separator) 40%,
+    transparent
+  );
+
+  /* Re-map persona tokens for dark */
+  --pui-color-primary: var(--pui-apple-control-accent);
+  --pui-color-on-primary: var(--pui-apple-system-background);
+  --pui-color-primary-container: oklch(0.35 0.1 250);
+  --pui-color-on-primary-container: var(--pui-apple-label);
+
+  --pui-surface-base: var(--pui-apple-material-regular);
+  --pui-surface-raised: var(--pui-apple-material-thick);
+  --pui-surface-container: var(--pui-apple-material-thin);
+
+  --pui-field-bg: var(--pui-apple-material-thin);
+
+  --pui-switch-track-bg: var(--pui-apple-separator);
+}
