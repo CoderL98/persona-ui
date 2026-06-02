@@ -4,14 +4,27 @@
 # =============================================================================
 #  作用：将 packages/lib 发布到 npmjs.com 官方源
 #  作者：Persona UI contributors
-#  用法：./scripts/publish-lib.sh <版本号> [标签] [--dry-run]
-#        例：./scripts/publish-lib.sh 0.1.0-next.0 next
-#        例：./scripts/publish-lib.sh 0.1.0 latest --dry-run
+#
+#  用法：./scripts/publish-lib.sh [标签] [--release]
+#        默认行为 = 干跑（不实际发布），需显式 --release 才执行真正发布。
+#        版本号 = 读取自 packages/lib/package.json#version（唯一来源）。
+#        标签默认根据版本号自动推断：
+#          - 含 -  （预发布，如 0.1.0-next.0）→ tag = next
+#          - 不含 -（稳定版，如 0.1.0      ）→ tag = latest
+#        也可显式传标签覆盖：./scripts/publish-lib.sh latest
+#
+#  示例：
+#    ./scripts/publish-lib.sh                 # 干跑 @ 0.1.0-next.0 / next
+#    ./scripts/publish-lib.sh latest          # 干跑 @ 0.1.0-next.0 / latest（覆盖）
+#    ./scripts/publish-lib.sh --release       # 实跑 @ 0.1.0-next.0 / next
+#    ./scripts/publish-lib.sh latest --release# 实跑 @ 0.1.0-next.0 / latest
+#
 #  前置：
 #    1. 拥有 @persona-ui 组织成员权限的 npm 账号
 #    2. 已创建 bypass-2fa 的 granular access token
-#    3. 设置环境变量 NPM_PUBLISH_TOKEN= npm_xxxx （不写入任何文件）
+#    3. 设置环境变量 NPM_PUBLISH_TOKEN=npm_xxxx（不写入任何文件）
 #    4. 仓库处于可发布状态（构建/检查/测试全部通过）
+#    5. 已在 packages/lib/package.json#version 中写好目标版本号
 # =============================================================================
 
 set -euo pipefail
@@ -65,29 +78,64 @@ cleanup_and_exit() {
 # -----------------------------------------------------------------------------
 # 参数解析
 # -----------------------------------------------------------------------------
-VERSION="${1:-}"
-TAG="${2:-next}"
-DRY_RUN=false
+# 解析参数：可选 1 个 tag，可选 --release / --dry-run
+# 默认行为 = 干跑（最安全）；必须显式 --release 才会真发
+TAG_OVERRIDE=""
+RELEASE=false
 
-# 解析可选的 --dry-run 标记（可在版本号或标签之后）
 for arg in "$@"; do
   case "$arg" in
-    --dry-run|-n) DRY_RUN=true ;;
+    --release|-r)  RELEASE=true ;;
+    --dry-run|-n)  RELEASE=false ;;   # 显式干跑（其实是默认值，写出来更清晰）
+    --help|-h)
+      sed -n '2,30p' "$0"
+      exit 0 ;;
+    -*)
+      log_err "未知选项：$arg（可用：--release / --dry-run / --help）"
+      exit 2 ;;
+    *)
+      # 第一个非选项参数视为 tag 覆盖
+      [ -z "$TAG_OVERRIDE" ] && TAG_OVERRIDE="$arg" || { log_err "多余的位置参数：$arg"; exit 2; }
+      ;;
   esac
 done
 
-if [ -z "$VERSION" ]; then
-  log_err "用法：$0 <版本号> [标签] [--dry-run]"
-  log_err "示例：$0 0.1.0-next.0 next"
-  log_err "      $0 0.1.0 latest --dry-run"
-  exit 2
+# -----------------------------------------------------------------------------
+# 从 package.json 读取版本号（唯一来源）
+# -----------------------------------------------------------------------------
+PKG_JSON="$LIB_DIR/package.json"
+if [ ! -f "$PKG_JSON" ]; then
+  log_err "未找到 $PKG_JSON"
+  exit 3
+fi
+VERSION="$(node -e "console.log(require('$PKG_JSON').version)")"
+if [ -z "$VERSION" ] || [ "$VERSION" = "undefined" ]; then
+  log_err "无法从 $PKG_JSON 读取到 version 字段"
+  exit 3
 fi
 
+# -----------------------------------------------------------------------------
+# 自动推断 tag（如果用户没显式覆盖）
+# -----------------------------------------------------------------------------
+# 规则：含 '-' 视为预发布（next），否则为稳定（latest）
+if [ -n "$TAG_OVERRIDE" ]; then
+  TAG="$TAG_OVERRIDE"
+elif [[ "$VERSION" == *-* ]]; then
+  TAG="next"
+else
+  TAG="latest"
+fi
+
+# 发布计划展示
 log_step "发布计划"
-log_info "版本号：$VERSION"
-log_info "标签：  $TAG"
-log_info "模式：  $([ "$DRY_RUN" = true ] && echo "干跑（不实际发布）" || echo "实际发布")"
-log_info "源：    $NPM_REGISTRY"
+log_info "来源：   packages/lib/package.json#version（单一来源）"
+log_info "版本号： $VERSION"
+log_info "标签：   $TAG$([ -n "$TAG_OVERRIDE" ] && echo '（用户显式覆盖）' || echo '（从版本号自动推断）')"
+log_info "模式：   $([ "$RELEASE" = true ] && echo "🔴 实际发布（将向 npmjs.com 推送）" || echo "🟢 干跑（默认，不实际发布）")"
+log_info "源：     $NPM_REGISTRY"
+log_info ""
+log_warn "版本号来自 package.json，脚本不会自动修改它。"
+log_warn "如需调整：先手动编辑 packages/lib/package.json#version，再重跑本脚本。"
 
 # -----------------------------------------------------------------------------
 # 0. 环境检查
@@ -125,7 +173,7 @@ if ! git -C "$ROOT_DIR" diff --quiet 2>/dev/null || \
    [ -n "$(git -C "$ROOT_DIR" status --porcelain 2>/dev/null)" ]; then
   log_warn "git 工作树有未提交改动（发布前请确认是否需要提交）："
   git -C "$ROOT_DIR" status --short | sed 's/^/    /'
-  if [ "$DRY_RUN" != "true" ]; then
+  if [ "$RELEASE" = "true" ]; then
     read -r -p "是否继续？(y/N) " ans
     [[ "$ans" =~ ^[Yy]$ ]] || { log_err "已中止"; exit 4; }
   fi
@@ -196,35 +244,28 @@ fi
 log_ok "docs 类型检查：0/0（导出兼容性已确认）"
 
 # -----------------------------------------------------------------------------
-# 3. 写入版本号（干跑模式跳过，仅做只读检查）
+# 3. 确认版本号 + publishConfig.tag（不修改任何文件）
 # -----------------------------------------------------------------------------
-log_step "步骤 3/7 — 写入版本号"
+log_step "步骤 3/7 — 确认版本配置"
 
-# 修改 packages/lib/package.json 中的 version 字段（其它字段保持不变）
-PKG_JSON="$LIB_DIR/package.json"
-CURRENT_VER="$(node -e "console.log(require('$PKG_JSON').version)")"
-log_info "当前 version：$CURRENT_VER"
+# 读取当前 package.json 关键字段（用于双重核对，不写回）
+PKG_VER="$(node -e "console.log(require('$PKG_JSON').version)")"
+PKG_TAG="$(node -e "console.log((require('$PKG_JSON').publishConfig || {}).tag || 'latest')")"
+log_info "package.json#version           = $PKG_VER"
+log_info "package.json#publishConfig.tag = $PKG_TAG"
+log_info "本脚本将使用的 TAG              = $TAG"
 
-if [ "$DRY_RUN" = "true" ]; then
-  log_info "干跑模式：不修改 package.json，仅检查与目标版本 $VERSION 是否一致"
-  if [ "$CURRENT_VER" != "$VERSION" ]; then
-    log_warn "当前 $CURRENT_VER ≠ 目标 $VERSION，实际发布时会被自动改写"
-  fi
-else
-  node -e "
-    const fs = require('fs');
-    const p = JSON.parse(fs.readFileSync('$PKG_JSON', 'utf8'));
-    p.version = '$VERSION';
-    // 同步把 publishConfig.tag 调整为本次发布标签
-    if (p.publishConfig) p.publishConfig.tag = '$TAG';
-    fs.writeFileSync('$PKG_JSON', JSON.stringify(p, null, 2) + '\n');
-  "
-  log_ok "已设置 version=$VERSION, publishConfig.tag=$TAG"
-
-  # 重建一次以让 dist 中包含正确版本元信息
-  pnpm --filter @persona-ui/lib build 2>&1 | tail -3
-  log_ok "已重新构建以嵌入新版本号"
+if [ "$PKG_VER" != "$VERSION" ]; then
+  die $LINENO "package.json#version ($PKG_VER) 与读取到的 VERSION ($VERSION) 不一致（理论上不可能）"
 fi
+
+# 友好提示：tag 与 publishConfig.tag 不一致时给出警告
+if [ "$PKG_TAG" != "$TAG" ]; then
+  log_warn "publishConfig.tag=$PKG_TAG 与本次使用 TAG=$TAG 不一致"
+  log_warn "（脚本不会自动改写 — 由你决定是否手动同步）"
+fi
+
+log_ok "版本号与标签已确认（package.json 为唯一来源）"
 
 # -----------------------------------------------------------------------------
 # 4. 干跑（dry-run）展示将发布的文件
@@ -248,9 +289,9 @@ if ! echo "$DRY_OUT" | grep -qE "dist/index\.js"; then
 fi
 log_ok "文件清单安全（仅含 dist/、README、LICENSE）"
 
-# 如果用户只想要干跑，到此结束
-if [ "$DRY_RUN" = "true" ]; then
-  log_ok "干跑完成，未实际发布"
+# 如果是干跑模式（默认），到此处结束
+if [ "$RELEASE" != "true" ]; then
+  log_ok "干跑完成，未实际发布（要真发？请加 --release 参数）"
   cleanup_and_exit 0
 fi
 
@@ -260,8 +301,8 @@ fi
 log_step "步骤 5/7 — 实际发布到 npm"
 
 # 二次确认（防止脚本误触发）
-read -r -p "$(printf "%b即将发布 %b@%b 到 %b，确认？ (y/N)%b" \
-  "$YELLOW" "@persona-ui/lib" "$VERSION" "$NPM_REGISTRY" "$NC")" ans
+read -r -p "$(printf "%b即将发布 %b@%b 到 %b（tag=%b），确认？ (y/N)%b" \
+  "$YELLOW" "@persona-ui/lib" "$VERSION" "$NPM_REGISTRY" "$TAG" "$NC")" ans
 [[ "$ans" =~ ^[Yy]$ ]] || { log_err "用户取消"; cleanup_and_exit 5; }
 
 log_info "执行 npm publish --access public --tag $TAG ..."
@@ -279,7 +320,6 @@ log_step "步骤 6/7 — 验证发布"
 log_info "查询 https://registry.npmjs.org/@persona-ui/lib ..."
 META="$(curl -sS "$NPM_REGISTRY@persona-ui/lib")"
 DIST_TAG="$(echo "$META" | grep -oE "\"$TAG\":\"[0-9][^\"]*\"" | head -1)"
-LATEST="$(echo "$META"  | grep -oE "\"latest\":\"[0-9][^\"]*\"" | head -1)"
 
 if [ -n "$DIST_TAG" ]; then
   log_ok "dist-tag [$TAG] = $DIST_TAG"
@@ -340,9 +380,9 @@ log_step "步骤 7/7 — 清理临时文件"
 
 # 提示用户提交版本号变更
 log_step "发布成功 🎉"
-log_info "下一步建议："
+log_info "下一步建议（脚本不会自动执行）："
 cat <<EOF | sed 's/^/    /'
-git add packages/lib/package.json
+git add packages/lib/package.json packages/lib/dist
 git commit -m "chore: release @persona-ui/lib@$VERSION"
 git tag @persona-ui/lib@$VERSION
 git push --tags
