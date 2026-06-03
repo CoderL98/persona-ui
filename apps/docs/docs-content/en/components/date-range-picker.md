@@ -34,7 +34,7 @@ A calendar-driven range picker with configurable granularity (year, month, day, 
 | `footer`       | `Snippet`             | —             | Custom footer content (e.g. preset shortcuts)        |
 | `class`        | `string`              | —             | Additional CSS classes                               |
 | `style`        | `string`              | —             | Inline style                                         |
-| `onchange`     | `(range: DateRangeValue) => void` | — | Fires when the user picks a range (values are always full `Date` objects) |
+| `onValueChange`     | `(range: DateRangeValue) => void` | — | Fires when the user picks a range (values are always full `Date` objects) |
 
 `DateRangeValue` shape: `{ start: Date \| null, end: Date \| null }`
 

@@ -824,7 +824,7 @@
         Click the button to open the dialog.
       </p>
       <Button onclick={() => (dialogOpen = true)}>Open Dialog</Button>
-      <Dialog open={dialogOpen} onopenchange={(o: boolean) => (dialogOpen = o)}>
+      <Dialog open={dialogOpen} onOpenChange={(o: boolean) => (dialogOpen = o)}>
         {#snippet title()}Confirm Action{/snippet}
         <p>Are you sure you want to proceed?</p>
         {#snippet footer()}

@@ -48,6 +48,6 @@ export type DateRangePickerProps = {
   id?: string;
   "data-testid"?: string;
   /** Fires when range is selected — values are always full Date objects */
-  onchange?: (range: DateRangeValue) => void;
+  onValueChange?: (range: DateRangeValue) => void;
   [key: string]: unknown;
 };

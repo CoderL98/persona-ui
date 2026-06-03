@@ -2,7 +2,7 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import type { AccordionProps, AccordionItem } from './accordion.types.js';
-  let { value: controlledValue, defaultValue, items = [], multiple = false, children, class: className, style, id, 'data-testid': dataTestId, onchange, ...rest }: AccordionProps = $props();
+  let { value: controlledValue, defaultValue, items = [], multiple = false, children, class: className, style, id, 'data-testid': dataTestId, onValueChange, ...rest }: AccordionProps = $props();
   let internalValue = $state<string[]>(untrack(() => defaultValue ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : []));
   let currentValue = $derived(controlledValue !== undefined ? (Array.isArray(controlledValue) ? controlledValue : [controlledValue]) : internalValue);
 
@@ -14,7 +14,7 @@
       next = currentValue.includes(val) ? [] : [val];
     }
     if (controlledValue === undefined) internalValue = next;
-    onchange?.(multiple ? next : (next[0] || ''));
+    onValueChange?.(multiple ? next : (next[0] || ''));
   }
 </script>
 <div {...rest} id={id} class={cn('pui-accordion divide-y divide-(--pui-outline-subtle)', className)} style={style} data-testid={dataTestId}>

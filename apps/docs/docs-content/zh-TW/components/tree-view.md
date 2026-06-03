@@ -14,7 +14,7 @@ group: components
 | `nodes`       | `TreeNode[]`   | 樹狀資料結構              |
 | `selectedId`  | `string`       | 受控的當前選取節點        |
 | `expandedIds` | `string[]`     | 受控的已展開節點清單      |
-| `onselect`    | `(id) => void` | 選取回呼                  |
+| `onSelect`    | `(id) => void` | 選取回呼                  |
 
 ## Usage
 

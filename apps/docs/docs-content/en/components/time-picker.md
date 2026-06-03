@@ -31,7 +31,7 @@ A time-of-day picker with 12h and 24h formats, configurable minute steps, and fu
 | `texts`        | `Record<string, string>` | —     | Override internal display strings          |
 | `class`        | `string`              | —        | Additional CSS classes                     |
 | `style`        | `string`              | —        | Inline style                               |
-| `onchange`     | `(time: string) => void` | —     | Fires when user selects a time             |
+| `onValueChange`     | `(time: string) => void` | —     | Fires when user selects a time             |
 
 ## Usage
 

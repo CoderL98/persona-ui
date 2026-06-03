@@ -13,11 +13,11 @@ group: components
 | ----------- | ---------------- | ------------------------ | ------------------------ |
 | `locale`    | `string`         | `'en-US'`                | 月份 / 星期的语言区域    |
 | `min`/`max` | `Date`           | 可选日期的最小 / 最大值  |                          |
-| `onchange`  | `(date) => void` | 日期选择回调             |                          |
+| `onValueChange`  | `(date) => void` | 日期选择回调             |                          |
 | `texts`     | `{ months: string[], weekdays: string[], prevMonth: string, nextMonth: string }` | 文本覆盖（见下） |
 
 ## Usage
 
 ```svelte
-<Calendar onchange={(d) => console.log(d)} />
+<Calendar onValueChange={(d) => console.log(d)} />
 ```

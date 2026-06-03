@@ -14,6 +14,6 @@ export type SheetProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onopenchange?: (open: boolean) => void;
+  onOpenChange?: (open: boolean) => void;
   [key: string]: unknown;
 };

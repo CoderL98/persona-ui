@@ -31,8 +31,8 @@ group: components
 | `showValue`    | `boolean`                     | `false` | 在標籤旁顯示目前數值                          |
 | `class`        | `string`                      | —       | 額外的 CSS 類別                               |
 | `style`        | `string`                      | —       | 行內樣式                                      |
-| `oninput`      | `(value, e: Event) => void`   | —       | 拖曳時觸發                                    |
-| `onchange`     | `(value, e: Event) => void`   | —       | 放開拖桿時觸發                                |
+| `onInputChange`      | `(value, e: Event) => void`   | —       | 拖曳時觸發                                    |
+| `onValueChange`     | `(value, e: Event) => void`   | —       | 放開拖桿時觸發                                |
 
 `SliderMark` 結構:`{ value: number, label?: string }`
 

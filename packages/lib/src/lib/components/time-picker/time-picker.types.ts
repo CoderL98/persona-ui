@@ -35,6 +35,6 @@ export type TimePickerProps = {
   id?: string;
   "data-testid"?: string;
   /** Fires when user selects a time — receives "HH:MM" string */
-  onchange?: (time: string) => void;
+  onValueChange?: (time: string) => void;
   [key: string]: unknown;
 };

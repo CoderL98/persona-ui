@@ -19,7 +19,7 @@ group: components
 | `children`  | `Snippet`                                                     | —           | 標籤內容                   |
 | `leading`   | `Snippet`                                                     | —           | 前置圖示                   |
 | `trailing`  | `Snippet`                                                     | —           | 後置圖示                   |
-| `onremove`  | `(e: MouseEvent) => void`                                     | —           | 移除事件處理函式           |
+| `onRemove`  | `(e: MouseEvent) => void`                                     | —           | 移除事件處理函式           |
 | `texts`     | `{ remove: string }`                                          | —           | 文案覆寫（見下文）         |
 
 ## 用法

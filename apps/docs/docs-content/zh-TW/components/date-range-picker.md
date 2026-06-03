@@ -34,7 +34,7 @@ group: components
 | `footer`       | `Snippet`             | —           | 自訂頁尾內容（例如預設快捷選項）                                      |
 | `class`        | `string`              | —           | 額外的 CSS 類別                                                       |
 | `style`        | `string`              | —           | 行內樣式                                                              |
-| `onchange`     | `(range: DateRangeValue) => void` | — | 當使用者選取範圍時觸發（值一律為完整的 `Date` 物件）                  |
+| `onValueChange`     | `(range: DateRangeValue) => void` | — | 當使用者選取範圍時觸發（值一律為完整的 `Date` 物件）                  |
 
 `DateRangeValue` 結構:`{ start: Date \| null, end: Date \| null }`
 

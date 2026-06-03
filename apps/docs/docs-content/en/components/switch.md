@@ -25,7 +25,7 @@ A toggle component with accessible `role="switch"`.
 | `label`          | `string`             | —       | Visible label                      |
 | `class`          | `string`             | —       | Additional CSS classes             |
 | `style`          | `string`             | —       | Inline style (for token overrides) |
-| `onchange`       | `(e: Event) => void` | —       | Change handler                     |
+| `onValueChange`       | `(e: Event) => void` | —       | Change handler                     |
 
 All other attributes are forwarded to the root `<div>` element.
 
@@ -33,7 +33,7 @@ All other attributes are forwarded to the root `<div>` element.
 
 ```svelte
 <!-- Controlled -->
-<Switch checked={notifications} onchange={(e) => toggle()} />
+<Switch checked={notifications} onValueChange={(e) => toggle()} />
 
 <!-- Uncontrolled -->
 <Switch defaultChecked label="Enable notifications" />

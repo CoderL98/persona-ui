@@ -31,7 +31,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: DateRangePickerProps = $props();
 
@@ -101,7 +101,7 @@
   function setRange(start: Date | null, end: Date | null) {
     const next: DateRangeValue = { start, end };
     if (controlledValue === undefined) internalValue = next;
-    onchange?.(next);
+    onValueChange?.(next);
   }
 
   function clearRange() {

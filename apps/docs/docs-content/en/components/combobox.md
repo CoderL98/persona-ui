@@ -33,8 +33,8 @@ A filterable single- or multi-select dropdown with a free-text input. Multi-sele
 | `texts`             | `Record<string, string>`   | —       | Override internal display strings per instance       |
 | `class`             | `string`                   | —       | Additional CSS classes                               |
 | `style`             | `string`                   | —       | Inline style                                         |
-| `oninput`           | `(inputValue: string, e: Event) => void` | — | Input text change handler                |
-| `onchange`          | `(value, e: Event) => void` | —       | Selection change handler                             |
+| `onInputChange`           | `(inputValue: string, e: Event) => void` | — | Input text change handler                |
+| `onValueChange`          | `(value, e: Event) => void` | —       | Selection change handler                             |
 
 `ComboboxOption` shape: `{ value: string, label: string, disabled?: boolean }`
 

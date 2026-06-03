@@ -14,7 +14,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: ListboxProps = $props();
   const defaults: ListboxTexts = { options: 'Options' };
@@ -37,10 +37,10 @@
       if (idx >= 0) arr.splice(idx, 1);
       else arr.push(value);
       if (controlledValue === undefined) internalValue = arr;
-      onchange?.(arr, e);
+      onValueChange?.(arr, e);
     } else {
       if (controlledValue === undefined) internalValue = value;
-      onchange?.(value, e);
+      onValueChange?.(value, e);
     }
     activeIndex = options.findIndex((o) => o.value === value);
   }

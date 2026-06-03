@@ -31,7 +31,7 @@ group: components
 | `texts`        | `Record<string, string>` | —     | 覆寫內部顯示文字                      |
 | `class`        | `string`              | —        | 額外的 CSS 類別                       |
 | `style`        | `string`              | —        | 行內樣式                              |
-| `onchange`     | `(time: string) => void` | —     | 當使用者選取時間時觸發                |
+| `onValueChange`     | `(time: string) => void` | —     | 當使用者選取時間時觸發                |
 
 ## 用法
 

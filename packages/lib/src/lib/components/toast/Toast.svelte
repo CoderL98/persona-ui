@@ -4,7 +4,7 @@
   import { cn } from '../../internal/class.js';
   import type { ToastProps, ToastTone } from './toast.types.js';
   type ToastTexts = { dismiss: string };
-  let { tone = 'info' as ToastTone, open: controlledOpen, defaultOpen = false, duration = 5000, title, children, action, dismissible = true, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onopenchange, ...rest }: ToastProps = $props();
+  let { tone = 'info' as ToastTone, open: controlledOpen, defaultOpen = false, duration = 5000, title, children, action, dismissible = true, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onOpenChange, ...rest }: ToastProps = $props();
   const defaults: ToastTexts = { dismiss: 'Dismiss' };
   const t = $derived({ ...defaults, ...localTexts });
   let internalOpen = $state(untrack(() => defaultOpen));
@@ -13,12 +13,12 @@
 
   $effect(() => {
     if (isOpen && duration > 0) {
-      timer = setTimeout(() => { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); }, duration);
+      timer = setTimeout(() => { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }, duration);
     }
     return () => { if (timer) clearTimeout(timer); };
   });
 
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); if (timer) clearTimeout(timer); }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); if (timer) clearTimeout(timer); }
 </script>
 {#if isOpen}
   <div {...rest} id={id} role="status" aria-live="polite" in:slide={{ duration: 300 }} out:fade={{ duration: 200 }}

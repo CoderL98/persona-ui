@@ -57,10 +57,10 @@ describe("Switch", () => {
     expect(sw.required).toBe(true);
   });
 
-  it("fires onchange with checked value on click", () => {
+  it("fires onCheckedChange with checked value on click", () => {
     let checked = false;
     render(Switch, {
-      props: { onchange: (val: boolean) => { checked = val; } },
+      props: { onCheckedChange: (val: boolean) => { checked = val; } },
     });
     const sw = document.querySelector<HTMLInputElement>('input[role="switch"]')!;
     sw.click();

@@ -4,21 +4,21 @@
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
   import type { MenuProps, MenuItem } from './menu.types.js';
-  let { open: controlledOpen, defaultOpen = false, items = [], trigger, children, class: className, style, id, 'data-testid': dataTestId, onselect, onopenchange }: MenuProps = $props();
+  let { open: controlledOpen, defaultOpen = false, items = [], trigger, children, class: className, style, id, 'data-testid': dataTestId, onSelect, onOpenChange }: MenuProps = $props();
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
   let activeIndex = $state(-1);
   const activeItems = $derived(items.filter(i => !i.disabled));
 
-  function toggle(e: Event) { e.stopPropagation(); const next = !isOpen; if (controlledOpen === undefined) internalOpen = next; onopenchange?.(next); if (next) activeIndex = -1; }
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); activeIndex = -1; }
+  function toggle(e: Event) { e.stopPropagation(); const next = !isOpen; if (controlledOpen === undefined) internalOpen = next; onOpenChange?.(next); if (next) activeIndex = -1; }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); activeIndex = -1; }
 
   function selectItem(id: string) {
-    onselect?.(id); close();
+    onSelect?.(id); close();
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'ArrowDown') { e.preventDefault(); if (!isOpen) { if (controlledOpen === undefined) internalOpen = true; onopenchange?.(true); return; } activeIndex = activeIndex < activeItems.length - 1 ? activeIndex + 1 : 0; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (!isOpen) { if (controlledOpen === undefined) internalOpen = true; onOpenChange?.(true); return; } activeIndex = activeIndex < activeItems.length - 1 ? activeIndex + 1 : 0; }
     if (e.key === 'ArrowUp') { e.preventDefault(); activeIndex = activeIndex > 0 ? activeIndex - 1 : activeItems.length - 1; }
     if (e.key === 'Enter' && isOpen && activeIndex >= 0) { e.preventDefault(); selectItem(activeItems[activeIndex].id); }
     if (e.key === 'Escape') { e.preventDefault(); close(); }

@@ -15,6 +15,6 @@ export type CheckboxProps = {
   id?: string;
   "aria-label"?: string;
   "data-testid"?: string;
-  onchange?: (checked: boolean, e: Event) => void;
+  onCheckedChange?: (checked: boolean, e: Event) => void;
   [key: string]: unknown;
 };

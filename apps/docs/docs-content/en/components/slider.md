@@ -31,8 +31,8 @@ A single-value or range slider with optional tick marks, supporting keyboard nav
 | `showValue`    | `boolean`                     | `false` | Display the current value next to the label  |
 | `class`        | `string`                      | —       | Additional CSS classes                       |
 | `style`        | `string`                      | —       | Inline style                                 |
-| `oninput`      | `(value, e: Event) => void`   | —       | Fires while dragging                         |
-| `onchange`     | `(value, e: Event) => void`   | —       | Fires when the user releases the thumb       |
+| `onInputChange`      | `(value, e: Event) => void`   | —       | Fires while dragging                         |
+| `onValueChange`     | `(value, e: Event) => void`   | —       | Fires when the user releases the thumb       |
 
 `SliderMark` shape: `{ value: number, label?: string }`
 

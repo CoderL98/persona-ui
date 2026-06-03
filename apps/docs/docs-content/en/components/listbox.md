@@ -23,7 +23,7 @@ import { Listbox } from '@persona-ui/lib/components/listbox';
 | `options`       | `{ value: string, label: string, disabled?: boolean }[]` | `[]` | Option list                       |
 | `disabled`      | `boolean`                                       | `false` | Disable the whole listbox                                    |
 | `texts`         | `{ options: string }`                           | —       | Text overrides                                               |
-| `onchange`      | `(value, e: Event) => void`                     | —       | Selection change callback                                    |
+| `onValueChange`      | `(value, e: Event) => void`                     | —       | Selection change callback                                    |
 
 ## States
 

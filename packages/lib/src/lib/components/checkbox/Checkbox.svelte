@@ -17,7 +17,7 @@
     id,
     'aria-label': ariaLabel,
     'data-testid': dataTestId,
-    onchange,
+    onCheckedChange,
     ...rest
   }: CheckboxProps = $props();
 
@@ -29,7 +29,7 @@
   function handleChange(e: Event) {
     const next = (e.target as HTMLInputElement).checked;
     if (controlledChecked === undefined) internalChecked = next;
-    onchange?.(next, e);
+    onCheckedChange?.(next, e);
   }
 
   const attrs = $derived(

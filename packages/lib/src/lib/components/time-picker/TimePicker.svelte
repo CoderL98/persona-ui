@@ -24,7 +24,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: TimePickerProps = $props();
   const defaults: TimePickerTexts = { selectTime: 'Select time', hours: 'Hours', minutes: 'Minutes', am: 'AM', pm: 'PM', clear: 'Clear' };
@@ -119,7 +119,7 @@
     if (!withinBounds(hour, parseInt(m, 10))) return;
     const timeStr = `${String(hour).padStart(2, '0')}:${m}`;
     if (controlledValue === undefined) internalValue = timeStr;
-    onchange?.(timeStr);
+    onValueChange?.(timeStr);
     open = false;
   }
 
@@ -132,12 +132,12 @@
     if (!withinBounds(h, parsedMinutes ?? 0)) return;
     const timeStr = `${String(h).padStart(2, '0')}:${String(parsedMinutes ?? 0).padStart(2, '0')}`;
     if (controlledValue === undefined) internalValue = timeStr;
-    onchange?.(timeStr);
+    onValueChange?.(timeStr);
   }
 
   function clear() {
     if (controlledValue === undefined) internalValue = '';
-    onchange?.('');
+    onValueChange?.('');
     open = false;
   }
 

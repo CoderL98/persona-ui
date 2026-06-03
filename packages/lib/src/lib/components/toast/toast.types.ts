@@ -14,7 +14,7 @@ export type ToastProps = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  onopenchange?: (open: boolean) => void;
+  onOpenChange?: (open: boolean) => void;
 };
 export type ToastViewportProps = {
   position?:

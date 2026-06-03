@@ -15,7 +15,7 @@ group: components
 | `modal`               | `boolean`        | `true`  | 是否设置 aria-modal    |
 | `closeOnEscape`       | `boolean`        | `true`  | Escape 关闭            |
 | `closeOnOutsideClick` | `boolean`        | `true`  | 点击遮罩关闭           |
-| `onopenchange`        | `(open) => void` | —       | 打开状态回调           |
+| `onOpenChange`        | `(open) => void` | —       | 打开状态回调           |
 | `texts`               | `{ close: string }`      | —       | 文案覆盖（见下）       |
 
 ## 用法

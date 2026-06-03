@@ -13,7 +13,7 @@ group: components
 | ------------- | ----------------------------------------------------------- | -------------------------------------------- |
 | `items`       | `CommandItem[]`                                             | 命令清單，包含 id/label/description/shortcut |
 | `placeholder` | `string`                                                    | 搜尋輸入框預留位置文字                       |
-| `onselect`    | `(id) => void`                                              | 命令選擇回呼                                 |
+| `onSelect`    | `(id) => void`                                              | 命令選擇回呼                                 |
 | `texts`       | `{ placeholder: string, emptyText: string, close: string }` | 文字覆寫（見下文）                           |
 
 ## 用法

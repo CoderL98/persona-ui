@@ -8,14 +8,14 @@
     selectedId,
     expandedSet,
     depth = 0,
-    onselect,
+    onSelect,
     ontoggle,
   }: {
     node: TreeNode;
     selectedId?: string;
     expandedSet: Set<string>;
     depth?: number;
-    onselect: (id: string) => void;
+    onSelect: (id: string) => void;
     ontoggle: (id: string) => void;
   } = $props();
 
@@ -29,8 +29,8 @@
       !node.disabled && 'cursor-pointer hover:bg-(--pui-surface-variant)',
       node.id === selectedId && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)',
       node.disabled && 'opacity-(--pui-opacity-disabled) pointer-events-none')}
-    onclick={() => { if (!node.disabled) { onselect(node.id); if (hasChildren) ontoggle(node.id); } }}
-    onkeydown={(e) => { if (!node.disabled && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onselect(node.id); if (hasChildren) ontoggle(node.id); } }}>
+    onclick={() => { if (!node.disabled) { onSelect(node.id); if (hasChildren) ontoggle(node.id); } }}
+    onkeydown={(e) => { if (!node.disabled && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(node.id); if (hasChildren) ontoggle(node.id); } }}>
     {#if hasChildren}
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="shrink-0 transition-transform" class:rotate-90={isExpanded}><path d="M4 3l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     {:else}<span class="w-3"></span>{/if}
@@ -39,7 +39,7 @@
   {#if hasChildren && isExpanded}
     <ul role="group" class="pl-4 space-y-0.5 mt-0.5">
       {#each node.children as child}
-        <TreeNodeRow node={child} {selectedId} {expandedSet} depth={depth + 1} {onselect} {ontoggle} />
+        <TreeNodeRow node={child} {selectedId} {expandedSet} depth={depth + 1} {onSelect} {ontoggle} />
       {/each}
     </ul>
   {/if}

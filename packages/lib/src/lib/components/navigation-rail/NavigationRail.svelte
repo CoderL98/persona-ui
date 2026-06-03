@@ -2,10 +2,10 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import type { NavigationRailProps, NavigationRailItem } from './navigation-rail.types.js';
-  let { value: controlledValue, defaultValue, items = [], class: className, style, id, 'data-testid': dataTestId, onchange, ...rest }: NavigationRailProps = $props();
+  let { value: controlledValue, defaultValue, items = [], class: className, style, id, 'data-testid': dataTestId, onValueChange, ...rest }: NavigationRailProps = $props();
   let internalValue = $state(untrack(() => defaultValue ?? (items[0]?.value || '')));
   let currentValue = $derived(controlledValue ?? internalValue);
-  function select(v: string) { if (controlledValue === undefined) internalValue = v; onchange?.(v); }
+  function select(v: string) { if (controlledValue === undefined) internalValue = v; onValueChange?.(v); }
 </script>
 <nav {...rest} id={id} class={cn('pui-navigation-rail flex flex-col items-center gap-1 py-4 w-(--pui-navigation-rail-width,72px) bg-(--pui-surface-base) border-r border-(--pui-outline-subtle)', className)} style={style} data-testid={dataTestId}>
   {#each items as item}

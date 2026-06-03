@@ -19,7 +19,7 @@ group: components
 | `children`  | `Snippet`                                                     | —           | 标签内容                   |
 | `leading`   | `Snippet`                                                     | —           | 前置图标                   |
 | `trailing`  | `Snippet`                                                     | —           | 后置图标                   |
-| `onremove`  | `(e: MouseEvent) => void`                                     | —           | 移除事件处理函数           |
+| `onRemove`  | `(e: MouseEvent) => void`                                     | —           | 移除事件处理函数           |
 | `texts`     | `{ remove: string }`                                          | —           | 文案覆盖（见下文）         |
 
 ## 用法

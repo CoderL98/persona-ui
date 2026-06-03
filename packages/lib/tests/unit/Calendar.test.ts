@@ -11,14 +11,14 @@ describe("Calendar", () => {
     const header = document.querySelector(".pui-calendar span.font-medium");
     expect(header).toBeTruthy();
   });
-  it("fires onchange with selected date", () => {
-    const onchange = vi.fn();
-    render(Calendar, { props: { onchange } });
+  it("fires onValueChange with selected date", () => {
+    const onValueChange = vi.fn();
+    render(Calendar, { props: { onValueChange } });
     const dayBtns = document.querySelectorAll('div.grid-cols-7 button');
     expect(dayBtns.length).toBeGreaterThan(0);
     (dayBtns[0] as HTMLButtonElement).click();
-    expect(onchange).toHaveBeenCalledTimes(1);
-    expect(onchange.mock.calls[0][0]).toBeInstanceOf(Date);
+    expect(onValueChange).toHaveBeenCalledTimes(1);
+    expect(onValueChange.mock.calls[0][0]).toBeInstanceOf(Date);
   });
   it("accepts defaultValue without error", () => {
     // Just verify no crash when passing defaultValue (visual highlight

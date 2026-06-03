@@ -21,8 +21,8 @@
     style,
     id,
     'data-testid': dataTestId,
-    oninput,
-    onchange,
+    onInputChange,
+    onValueChange,
     ...rest
   }: ComboboxProps = $props();
   const defaults: ComboboxTexts = { suggestions: 'Suggestions', removeTag: 'Remove' };
@@ -58,7 +58,7 @@
   function handleInput(e: Event) {
     const v = (e.target as HTMLInputElement).value;
     if (controlledInput === undefined) internalInput = v;
-    oninput?.(v, e);
+    onInputChange?.(v, e);
     open = true;
     activeIndex = -1;
   }
@@ -68,14 +68,14 @@
       const arr = Array.isArray(currentValue) ? [...currentValue] : [];
       if (!arr.includes(val)) arr.push(val);
       if (controlledValue === undefined) internalValue = arr;
-      onchange?.(arr, e);
+      onValueChange?.(arr, e);
       if (controlledInput === undefined) internalInput = '';
       activeIndex = -1;
     } else {
       const opt = options.find((o) => o.value === val);
       if (controlledValue === undefined) internalValue = val;
       if (controlledInput === undefined) internalInput = opt?.label ?? '';
-      onchange?.(val, e);
+      onValueChange?.(val, e);
       open = false;
     }
   }
@@ -85,7 +85,7 @@
     e.stopPropagation();
     const arr = Array.isArray(currentValue) ? currentValue.filter((v) => v !== val) : [];
     if (controlledValue === undefined) internalValue = arr;
-    onchange?.(arr, e);
+    onValueChange?.(arr, e);
   }
 
   function handleKeydown(e: KeyboardEvent) {

@@ -13,7 +13,7 @@ group: components
 | ------------- | -------------------------- | -------------- | -------------- |
 | `items`       | `TabItem[]`                | `[]`           | 分頁定義       |
 | `orientation` | `'horizontal'\|'vertical'` | `'horizontal'` | 方向           |
-| `onchange`    | `(value) => void`          | —              | 選中回呼       |
+| `onValueChange`    | `(value) => void`          | —              | 選中回呼       |
 
 ## 用法
 

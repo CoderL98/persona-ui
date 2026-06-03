@@ -5,7 +5,7 @@
   import Calendar from '../calendar/Calendar.svelte';
   import type { DatePickerProps } from './date-picker.types.js';
   type DatePickerTexts = { pickDate: string };
-  let { value: controlledValue, defaultValue, min, max, locale = 'en-US', disabledDates = [], placeholder, texts: localTexts, label, helperText, error, disabled = false, class: className, style, id, 'data-testid': dataTestId, onchange }: DatePickerProps = $props();
+  let { value: controlledValue, defaultValue, min, max, locale = 'en-US', disabledDates = [], placeholder, texts: localTexts, label, helperText, error, disabled = false, class: className, style, id, 'data-testid': dataTestId, onValueChange }: DatePickerProps = $props();
   const defaults: DatePickerTexts = { pickDate: 'Pick a date' };
   const t = $derived({ ...defaults, ...localTexts });
   const resolvedPlaceholder = $derived(placeholder ?? t.pickDate);
@@ -14,7 +14,7 @@
   let currentValue = $derived(controlledValue ?? internalValue);
   const dpId = $derived(id || `pui-date-picker-${Math.random().toString(36).slice(2, 6)}`);
   const datePickerId = $derived(`${dpId}-button`);
-  function selectDate(d: Date) { if (controlledValue === undefined) internalValue = d; onchange?.(d); open = false; }
+  function selectDate(d: Date) { if (controlledValue === undefined) internalValue = d; onValueChange?.(d); open = false; }
 </script>
 <div id={id} class={cn('pui-date-picker relative', className)} style={style} data-testid={dataTestId}
   use:clickOutside={() => { if (open) open = false; }}>
@@ -27,7 +27,7 @@
   {#if open}
     <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
     <div role="presentation" class="absolute z-(--pui-z-overlay) mt-1" onclick={(e) => e.stopPropagation()}>
-      <Calendar {min} {max} {locale} {disabledDates} onchange={selectDate} />
+      <Calendar {min} {max} {locale} {disabledDates} onValueChange={selectDate} />
     </div>
   {/if}
   {#if error}<p class="text-xs text-(--pui-color-error) mt-1">{error}</p>{:else if helperText}<p class="text-xs text-(--pui-text-secondary) mt-1">{helperText}</p>{/if}

@@ -41,14 +41,14 @@ describe("DataTable", () => {
     render(DataTable, { props: { data, columns: sortCols } });
     expect(document.querySelectorAll("th button").length).toBe(1);
   });
-  it("fires onsort when clicking sortable header", () => {
-    const onsort = vi.fn();
+  it("fires onSort when clicking sortable header", () => {
+    const onSort = vi.fn();
     const sortCols = [
       { key: "name", header: "Name", sortable: true },
     ];
-    render(DataTable, { props: { data, columns: sortCols, onsort } });
+    render(DataTable, { props: { data, columns: sortCols, onSort } });
     (document.querySelector<HTMLElement>("th button"))?.click();
-    expect(onsort).toHaveBeenCalledWith("name", "asc");
+    expect(onSort).toHaveBeenCalledWith("name", "asc");
   });
   it("renders selectable checkboxes", () => {
     render(DataTable, { props: { data, columns, selectable: true } });

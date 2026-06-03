@@ -14,7 +14,7 @@ Tree view with expandable/collapsible nodes and selection.
 | `nodes`       | `TreeNode[]`   | Tree data structure       |
 | `selectedId`  | `string`       | Controlled selected node  |
 | `expandedIds` | `string[]`     | Controlled expanded nodes |
-| `onselect`    | `(id) => void` | Selection callback        |
+| `onSelect`    | `(id) => void` | Selection callback        |
 
 ## Usage
 

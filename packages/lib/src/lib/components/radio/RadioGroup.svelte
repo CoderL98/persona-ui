@@ -2,7 +2,7 @@
   import { untrack, setContext } from 'svelte';
   import { cn } from '../../internal/class.js';
   import type { RadioGroupProps, RadioGroupOrientation } from './radio.types.js';
-  let { value: controlledValue, defaultValue, name = `radio-${Math.random().toString(36).slice(2, 6)}`, orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onchange, children, ...rest }: RadioGroupProps = $props();
+  let { value: controlledValue, defaultValue, name = `radio-${Math.random().toString(36).slice(2, 6)}`, orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onValueChange, children, ...rest }: RadioGroupProps = $props();
   let internalValue = $state(untrack(() => defaultValue ?? ''));
   let currentValue = $derived(controlledValue ?? internalValue);
 
@@ -13,7 +13,7 @@
     get disabled() { return disabled; },
     onChange: (val: string, e: Event) => {
       if (controlledValue === undefined) internalValue = val;
-      onchange?.(val, e);
+      onValueChange?.(val, e);
     }
   });
 
@@ -21,7 +21,7 @@
     const target = e.target as HTMLInputElement;
     if (target.type !== 'radio') return;
     if (controlledValue === undefined) internalValue = target.value;
-    onchange?.(target.value, e);
+    onValueChange?.(target.value, e);
   }
 </script>
 <fieldset {...rest} id={id} class={cn('pui-radio-group', orientation === 'vertical' ? 'flex flex-col gap-2' : 'flex flex-row flex-wrap gap-4', className)} style={style} data-testid={dataTestId} data-orientation={orientation} onchange={handleChange}>

@@ -13,7 +13,7 @@ Dropdown menu with items, keyboard navigation, destructive/shortcut support.
 | ---------- | -------------- | ------------------------------------------------------ |
 | `items`    | `MenuItem[]`   | Menu items with id/label/disabled/destructive/shortcut |
 | `trigger`  | `Snippet`      | Trigger element                                        |
-| `onselect` | `(id) => void` | Selection callback                                     |
+| `onSelect` | `(id) => void` | Selection callback                                     |
 
 ## Usage
 

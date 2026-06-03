@@ -14,7 +14,7 @@ Date picker combining TextField + Popover + Calendar.
 | `label`       | `string`         | —               | Field label             |
 | `placeholder` | `string`         | `'Pick a date'` | Input placeholder       |
 | `locale`      | `string`         | `'en-US'`       | Date format locale      |
-| `onchange`    | `(date) => void` | —               | Date selection callback |
+| `onValueChange`    | `(date) => void` | —               | Date selection callback |
 | `texts`       | `{ pickDate: string }`    | —               | Text overrides (see below) |
 
 ## Usage

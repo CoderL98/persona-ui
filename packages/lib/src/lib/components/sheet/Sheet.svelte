@@ -6,13 +6,13 @@
   import { keydown } from '../../internal/click-outside.js';
   import type { SheetProps, SheetSide } from './sheet.types.js';
   type SheetTexts = { close: string };
-  let { open: controlledOpen, defaultOpen = false, side = 'bottom' as SheetSide, closeOnEscape = true, title, children, footer, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onopenchange, ...rest }: SheetProps = $props();
+  let { open: controlledOpen, defaultOpen = false, side = 'bottom' as SheetSide, closeOnEscape = true, title, children, footer, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onOpenChange, ...rest }: SheetProps = $props();
   const defaults: SheetTexts = { close: 'Close' };
   const t = $derived({ ...defaults, ...localTexts });
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
   const sheetId = $derived(id || `pui-sheet-${Math.random().toString(36).slice(2,6)}`);
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }
   // Focus trap
   let prevFocus: HTMLElement | null = null;
   function getFocusable(el: HTMLElement): HTMLElement[] {

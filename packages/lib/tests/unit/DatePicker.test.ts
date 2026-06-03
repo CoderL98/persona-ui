@@ -20,17 +20,17 @@ describe("DatePicker", () => {
     expect(document.querySelector(".pui-calendar")).toBeTruthy();
   });
 
-  it("fires onchange when day selected", async () => {
-    const onchange = vi.fn();
-    render(DatePicker, { props: { onchange } });
+  it("fires onValueChange when day selected", async () => {
+    const onValueChange = vi.fn();
+    render(DatePicker, { props: { onValueChange } });
     const trigger = document.querySelector("button") as HTMLButtonElement;
     await fireEvent.click(trigger);
     const dayBtns = document.querySelectorAll(".pui-calendar button");
     const firstDay = Array.from(dayBtns).find((b) => /^\d+$/.test((b as HTMLButtonElement).textContent || ""));
     expect(firstDay).toBeTruthy();
     await fireEvent.click(firstDay as HTMLElement);
-    expect(onchange).toHaveBeenCalled();
-    expect(onchange.mock.calls[0][0]).toBeInstanceOf(Date);
+    expect(onValueChange).toHaveBeenCalled();
+    expect(onValueChange.mock.calls[0][0]).toBeInstanceOf(Date);
   });
 
   it("respects min date without crash", () => {

@@ -15,7 +15,7 @@ group: components
 | `open`/`defaultOpen` | `boolean`                               | `false`  | 受控/非受控模式                   |
 | `duration`           | `number`                                | `5000`   | 自动关闭毫秒数（0 表示不自动关闭） |
 | `dismissible`        | `boolean`                               | `true`   | 显示关闭按钮                      |
-| `onopenchange`       | `(open) => void`                        | —        | 打开状态变化回调                  |
+| `onOpenChange`       | `(open) => void`                        | —        | 打开状态变化回调                  |
 | `texts`              | `{ dismiss: string }`                   | —        | 文案覆盖（见下文）                |
 
 ## 用法

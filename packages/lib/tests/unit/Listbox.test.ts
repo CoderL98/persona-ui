@@ -57,7 +57,7 @@ describe("Listbox", () => {
           { value: "a", label: "A" },
           { value: "b", label: "B" },
         ],
-        onchange: (v: string | string[]) => { lastValue = v; },
+        onValueChange: (v: string | string[]) => { lastValue = v; },
       },
     });
     const opts = document.querySelectorAll('[role="option"]');

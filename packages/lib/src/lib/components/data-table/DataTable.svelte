@@ -3,7 +3,7 @@
   import { cn } from '../../internal/class.js';
   import type { DataTableProps } from './data-table.types.js';
   type DataTableTexts = { selectAll: string; selectRow: string };
-  let { data = [], columns = [], sortKey: controlledSortKey, sortDirection: controlledSortDir, selectable, selectedKeys: controlledSelectedKeys = [], getRowKey, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onsort, onselectionchange, ...rest }: DataTableProps = $props();
+  let { data = [], columns = [], sortKey: controlledSortKey, sortDirection: controlledSortDir, selectable, selectedKeys: controlledSelectedKeys = [], getRowKey, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onSort, onSelectionChange, ...rest }: DataTableProps = $props();
   const defaults: DataTableTexts = { selectAll: 'Select all', selectRow: 'Select row' };
   const t = $derived({ ...defaults, ...localTexts });
 
@@ -34,11 +34,11 @@
     if (currentSortKey === colKey) {
       const next: 'asc' | 'desc' = currentSortDir === 'asc' ? 'desc' : 'asc';
       if (controlledSortKey === undefined) internalSortDir = next;
-      onsort?.(colKey, next);
+      onSort?.(colKey, next);
     } else {
       if (controlledSortKey === undefined) internalSortKey = colKey;
       if (controlledSortDir === undefined) internalSortDir = 'asc';
-      onsort?.(colKey, 'asc');
+      onSort?.(colKey, 'asc');
     }
   }
 
@@ -47,18 +47,18 @@
       ? (controlledSelectedKeys ?? internalSelected).filter(k => k !== key)
       : [...(controlledSelectedKeys ?? internalSelected), key];
     if (controlledSelectedKeys === undefined) internalSelected = next;
-    onselectionchange?.(next);
+    onSelectionChange?.(next);
   }
 
   function toggleSelectAll() {
     if (selectedSet.size === sortedData.length) {
       const next: string[] = [];
       if (controlledSelectedKeys === undefined) internalSelected = next;
-      onselectionchange?.(next);
+      onSelectionChange?.(next);
     } else {
       const next = sortedData.map((row, i) => rowKey(row, i));
       if (controlledSelectedKeys === undefined) internalSelected = next;
-      onselectionchange?.(next);
+      onSelectionChange?.(next);
     }
   }
 

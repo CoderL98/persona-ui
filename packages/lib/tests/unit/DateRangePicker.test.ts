@@ -21,9 +21,9 @@ describe("DateRangePicker", () => {
     expect(document.querySelector(".pui-date-range-picker div[class*='absolute']")).toBeTruthy();
   });
 
-  it("fires onchange when first day selected", async () => {
-    const onchange = vi.fn();
-    render(DateRangePicker, { props: { onchange } });
+  it("fires onValueChange when first day selected", async () => {
+    const onValueChange = vi.fn();
+    render(DateRangePicker, { props: { onValueChange } });
     const trigger = document.querySelector("button") as HTMLButtonElement;
     await fireEvent.click(trigger);
     const dayBtn = Array.from(document.querySelectorAll("button")).find(
@@ -31,7 +31,7 @@ describe("DateRangePicker", () => {
     ) as HTMLButtonElement;
     expect(dayBtn).toBeTruthy();
     await fireEvent.click(dayBtn);
-    expect(onchange).toHaveBeenCalled();
+    expect(onValueChange).toHaveBeenCalled();
   });
 
   it("respects min/max constraints", () => {

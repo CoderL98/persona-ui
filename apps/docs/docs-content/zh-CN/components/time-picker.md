@@ -31,7 +31,7 @@ group: components
 | `texts`        | `Record<string, string>` | —     | 覆盖内部展示字符串                         |
 | `class`        | `string`              | —        | 附加的 CSS 类                              |
 | `style`        | `string`              | —        | 内联样式                                   |
-| `onchange`     | `(time: string) => void` | —     | 用户选择时间时触发                         |
+| `onValueChange`     | `(time: string) => void` | —     | 用户选择时间时触发                         |
 
 ## 用法
 

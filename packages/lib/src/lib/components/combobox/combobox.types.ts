@@ -22,7 +22,7 @@ export type ComboboxProps = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  oninput?: (inputValue: string, e: Event) => void;
-  onchange?: (value: string | string[], e: Event) => void;
+  onInputChange?: (inputValue: string, e: Event) => void;
+  onValueChange?: (value: string | string[], e: Event) => void;
   [key: string]: unknown;
 };

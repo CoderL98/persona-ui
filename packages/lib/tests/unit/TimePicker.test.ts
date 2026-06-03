@@ -30,16 +30,16 @@ describe("TimePicker", () => {
     expect(document.body.textContent).toMatch(/AM|PM/);
   });
 
-  it("fires onchange when time selected", async () => {
-    const onchange = vi.fn();
-    render(TimePicker, { props: { onchange } });
+  it("fires onValueChange when time selected", async () => {
+    const onValueChange = vi.fn();
+    render(TimePicker, { props: { onValueChange } });
     const trigger = document.querySelector("button") as HTMLButtonElement;
     await fireEvent.click(trigger);
     const firstHour = document.querySelector("[role='option']") as HTMLElement;
     expect(firstHour).toBeTruthy();
     await fireEvent.click(firstHour);
-    expect(onchange).toHaveBeenCalled();
-    expect(typeof onchange.mock.calls[0][0]).toBe("string");
+    expect(onValueChange).toHaveBeenCalled();
+    expect(typeof onValueChange.mock.calls[0][0]).toBe("string");
   });
 
   it("supports keyboard ArrowDown navigation in list", async () => {

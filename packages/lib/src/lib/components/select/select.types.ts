@@ -21,6 +21,6 @@ export type SelectProps = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  onchange?: (value: string, e: Event) => void;
+  onValueChange?: (value: string, e: Event) => void;
   [key: string]: unknown;
 };

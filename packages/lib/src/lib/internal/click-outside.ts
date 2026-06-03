@@ -43,7 +43,7 @@ export type ClickOutsideAction = Action<HTMLElement, (event: MouseEvent | TouchE
  * 适用场景：弹层内任意位置按 Esc 关闭，焦点陷阱外仍能响应。
  */
 export function keydown(
-  node: HTMLElement,
+  _node: HTMLElement,
   bindings: Record<string, (e: KeyboardEvent) => void>,
 ) {
   function handle(e: KeyboardEvent) {

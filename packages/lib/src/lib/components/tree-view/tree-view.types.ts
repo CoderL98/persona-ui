@@ -13,6 +13,6 @@ export type TreeViewProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onselect?: (id: string) => void;
-  onexpandedchange?: (ids: string[]) => void;
+  onSelect?: (id: string) => void;
+  onExpandedChange?: (ids: string[]) => void;
 };

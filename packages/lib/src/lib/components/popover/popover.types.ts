@@ -17,5 +17,5 @@ export type PopoverProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onopenchange?: (open: boolean) => void;
+  onOpenChange?: (open: boolean) => void;
 };

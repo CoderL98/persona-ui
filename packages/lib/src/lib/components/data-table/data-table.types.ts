@@ -18,6 +18,6 @@ export type DataTableProps<T = Record<string, unknown>> = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  onsort?: (key: string, direction: "asc" | "desc") => void;
-  onselectionchange?: (keys: string[]) => void;
+  onSort?: (key: string, direction: "asc" | "desc") => void;
+  onSelectionChange?: (keys: string[]) => void;
 };

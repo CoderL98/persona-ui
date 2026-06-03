@@ -17,7 +17,7 @@
     id,
     'aria-label': ariaLabel,
     'data-testid': dataTestId,
-    onchange,
+    onCheckedChange,
     ...rest
   }: SwitchProps = $props();
 
@@ -28,7 +28,7 @@
   const currentChecked = $derived(controlledChecked ?? internalChecked);
 
   // controlled 模式下，prop 变化时同步更新 internalChecked
-  // （确保 onchange setter 写入后，UI 不会回弹）
+  // （确保 onCheckedChange setter 写入后，UI 不会回弹）
   $effect(() => {
     if (controlledChecked !== undefined) {
       internalChecked = controlledChecked;
@@ -38,7 +38,7 @@
   function handleChange(e: Event) {
     const next = (e.target as HTMLInputElement).checked;
     if (controlledChecked === undefined) internalChecked = next;
-    onchange?.(next, e);
+    onCheckedChange?.(next, e);
   }
 
   const attrs = $derived(dataAttrs({ checked: currentChecked || undefined, disabled }));
@@ -48,7 +48,7 @@
   Switch 视觉用 <span> 自绘，原生 <input type="checkbox" role="switch"> 隐形覆盖在上方
   —— 这样既保留 a11y + 原生表单提交，又保留 26px 高度 + 圆角 + 缩略图过渡的视觉设计
 
-  用 checked={...} 单向绑定 + onchange 回调，避开 bind:checked 函数式在原生 input 上的兼容性问题
+  用 checked={...} 单向绑定 + onCheckedChange 回调，避开 bind:checked 函数式在原生 input 上的兼容性问题
   （Svelte 5 函数 bind 仅适用于 $bindable 组件 props）
 -->
 <span

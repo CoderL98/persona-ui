@@ -13,7 +13,7 @@ Tab navigation with horizontal/vertical orientation and keyboard support.
 | ------------- | -------------------------- | -------------- | ------------------ |
 | `items`       | `TabItem[]`                | `[]`           | Tab definitions    |
 | `orientation` | `'horizontal'\|'vertical'` | `'horizontal'` | Direction          |
-| `onchange`    | `(value) => void`          | —              | Selection callback |
+| `onValueChange`    | `(value) => void`          | —              | Selection callback |
 
 ## Usage
 

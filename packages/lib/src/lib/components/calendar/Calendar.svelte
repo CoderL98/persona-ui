@@ -3,7 +3,7 @@
   import { cn } from '../../internal/class.js';
   import type { CalendarProps } from './calendar.types.js';
   type CalendarTexts = { months: string[]; weekdays: string[]; prevMonth: string; nextMonth: string };
-  let { value: controlledValue, defaultValue, min, max, locale = 'en-US', disabledDates = [], texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onchange }: CalendarProps = $props();
+  let { value: controlledValue, defaultValue, min, max, locale = 'en-US', disabledDates = [], texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onValueChange }: CalendarProps = $props();
 
   // 用 Intl.DateTimeFormat 本地化月名 / 周缩写；周首日跟随 locale
   function localize(localeStr: string): CalendarTexts {
@@ -39,7 +39,7 @@
   function selectDay(d: number) {
     const selected = new Date(viewDate.getFullYear(), viewDate.getMonth(), d);
     if (controlledValue === undefined) internalValue = selected;
-    onchange?.(selected);
+    onValueChange?.(selected);
   }
   function firstDayOfMonth() { return new Date(viewDate.getFullYear(), viewDate.getMonth(), 1).getDay(); }
   function daysInMonth() { return new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate(); }

@@ -12,7 +12,7 @@ export type RadioGroupProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onchange?: (value: string, e: Event) => void;
+  onValueChange?: (value: string, e: Event) => void;
   children?: Snippet;
   [key: string]: unknown;
 };

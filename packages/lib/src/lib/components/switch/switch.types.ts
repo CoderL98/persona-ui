@@ -23,7 +23,7 @@ export type SwitchProps = {
   /** Test id */
   "data-testid"?: string;
   /** Change event — fires with new checked state */
-  onchange?: (checked: boolean, e: Event) => void;
+  onCheckedChange?: (checked: boolean, e: Event) => void;
   /** All other native attributes */
   [key: string]: unknown;
 };

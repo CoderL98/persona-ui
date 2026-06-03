@@ -5,7 +5,7 @@
   import { lockScroll, unlockScroll } from '../../internal/scroll-lock.js';
   import type { CommandPaletteProps, CommandItem } from './command-palette.types.js';
   type CommandPaletteTexts = { placeholder: string; emptyText: string; close: string };
-  let { open: controlledOpen, defaultOpen = false, items = [], placeholder, emptyText, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onselect, onopenchange: onopenchange }: CommandPaletteProps = $props();
+  let { open: controlledOpen, defaultOpen = false, items = [], placeholder, emptyText, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onSelect, onOpenChange: onOpenChange }: CommandPaletteProps = $props();
   const defaults: CommandPaletteTexts = { placeholder: 'Type a command…', emptyText: 'No results found.', close: 'Close' };
   const t = $derived({ ...defaults, ...localTexts });
   const resolvedPlaceholder = $derived(placeholder ?? t.placeholder);
@@ -16,8 +16,8 @@
   let activeIndex = $state(0);
   const filtered = $derived(query ? items.filter(i => i.label.toLowerCase().includes(query.toLowerCase())) : items);
   function handleInput(e: Event) { query = (e.target as HTMLInputElement).value; activeIndex = 0; }
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); }
-  function selectItem(id: string) { onselect?.(id); close(); }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }
+  function selectItem(id: string) { onSelect?.(id); close(); }
   $effect(() => {
     if (isOpen) lockScroll(); else unlockScroll();
   });

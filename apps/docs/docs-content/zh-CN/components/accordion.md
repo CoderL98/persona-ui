@@ -13,7 +13,7 @@ group: components
 | ---------- | ----------------- | ------------------------------- |
 | `items`    | `AccordionItem[]` | 包含 value / title / disabled 的项 |
 | `multiple` | `boolean`         | 允许多个面板同时打开            |
-| `onchange` | `(value) => void` | 选中回调                        |
+| `onValueChange` | `(value) => void` | 选中回调                        |
 
 ## Usage
 

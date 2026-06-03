@@ -12,7 +12,7 @@ Vertical navigation rail with icon + label items.
 | Prop       | Type                   | Description                          |
 | ---------- | ---------------------- | ------------------------------------ |
 | `items`    | `NavigationRailItem[]` | Items with value/label/icon/disabled |
-| `onchange` | `(value) => void`      | Selection callback                   |
+| `onValueChange` | `(value) => void`      | Selection callback                   |
 
 ## Usage
 

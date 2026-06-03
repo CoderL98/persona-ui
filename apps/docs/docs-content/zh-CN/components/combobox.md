@@ -33,8 +33,8 @@ group: components
 | `texts`             | `Record<string, string>`   | —       | 按实例覆盖内部展示字符串                             |
 | `class`             | `string`                   | —       | 附加的 CSS 类                                        |
 | `style`             | `string`                   | —       | 内联样式                                             |
-| `oninput`           | `(inputValue: string, e: Event) => void` | — | 输入文本变更处理函数                       |
-| `onchange`          | `(value, e: Event) => void` | —       | 选择变更处理函数                                     |
+| `onInputChange`           | `(inputValue: string, e: Event) => void` | — | 输入文本变更处理函数                       |
+| `onValueChange`          | `(value, e: Event) => void` | —       | 选择变更处理函数                                     |
 
 `ComboboxOption` 结构：`{ value: string, label: string, disabled?: boolean }`
 

@@ -32,7 +32,7 @@ group: components
 | `texts`        | `Record<string, string>` | — | 為個別實例覆寫內部顯示文字                            |
 | `class`        | `string`         | —       | 額外的 CSS 類別                                       |
 | `style`        | `string`         | —       | 行內樣式                                              |
-| `onchange`     | `(value: string, e: Event) => void` | — | 選取變更處理函式                                      |
+| `onValueChange`     | `(value: string, e: Event) => void` | — | 選取變更處理函式                                      |
 
 `SelectOption` 結構:`{ value: string, label: string, disabled?: boolean }`
 

@@ -21,7 +21,7 @@ export type SliderProps = {
   id?: string;
   "aria-label"?: string;
   "data-testid"?: string;
-  oninput?: (value: number | [number, number], e: Event) => void;
-  onchange?: (value: number | [number, number], e: Event) => void;
+  onInputChange?: (value: number | [number, number], e: Event) => void;
+  onValueChange?: (value: number | [number, number], e: Event) => void;
   [key: string]: unknown;
 };

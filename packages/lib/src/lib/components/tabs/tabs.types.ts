@@ -10,6 +10,6 @@ export type TabsProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onchange?: (value: string) => void;
+  onValueChange?: (value: string) => void;
   [key: string]: unknown;
 };

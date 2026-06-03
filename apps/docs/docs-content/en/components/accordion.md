@@ -13,7 +13,7 @@ Collapsible accordion with single/multi expand.
 | ---------- | ----------------- | ------------------------------- |
 | `items`    | `AccordionItem[]` | Items with value/title/disabled |
 | `multiple` | `boolean`         | Allow multiple open panels      |
-| `onchange` | `(value) => void` | Selection callback              |
+| `onValueChange` | `(value) => void` | Selection callback              |
 
 ## Usage
 

@@ -20,7 +20,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: SelectProps = $props();
   const defaults: SelectTexts = { placeholder: 'Select…', options: 'Options' };
@@ -37,7 +37,7 @@
   function toggle() { if (!disabled) open = !open; }
   function selectOption(value: string, e: Event) {
     if (controlledValue === undefined) internalValue = value;
-    onchange?.(value, e);
+    onValueChange?.(value, e);
     open = false;
   }
 

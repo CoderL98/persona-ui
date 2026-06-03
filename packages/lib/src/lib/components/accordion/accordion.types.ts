@@ -16,6 +16,6 @@ export type AccordionProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onchange?: (value: string | string[]) => void;
+  onValueChange?: (value: string | string[]) => void;
   [key: string]: unknown;
 };

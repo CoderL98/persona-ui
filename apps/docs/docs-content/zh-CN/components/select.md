@@ -32,7 +32,7 @@ group: components
 | `texts`        | `Record<string, string>` | — | 按实例覆盖任何内部展示字符串                     |
 | `class`        | `string`         | —       | 附加的 CSS 类                                     |
 | `style`        | `string`         | —       | 内联样式                                          |
-| `onchange`     | `(value: string, e: Event) => void` | — | 选择变更处理函数                          |
+| `onValueChange`     | `(value: string, e: Event) => void` | — | 选择变更处理函数                          |
 
 `SelectOption` 结构：`{ value: string, label: string, disabled?: boolean }`
 

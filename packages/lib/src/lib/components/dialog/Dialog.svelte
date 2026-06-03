@@ -20,7 +20,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onopenchange: onopenchange,
+    onOpenChange: onOpenChange,
     ...rest
   }: DialogProps = $props();
   const defaults: DialogTexts = { close: 'Close' };
@@ -35,7 +35,7 @@
 
   function close() {
     if (controlledOpen === undefined) internalOpen = false;
-    onopenchange?.(false);
+    onOpenChange?.(false);
   }
 
   function handleBackdropClick(e: MouseEvent) {

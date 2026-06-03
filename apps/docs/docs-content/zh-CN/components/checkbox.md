@@ -30,7 +30,7 @@ group: components
 | `required`       | `boolean`                             | `false` | 必填标记                                                   |
 | `class`          | `string`                              | —       | 附加的 CSS 类                                              |
 | `style`          | `string`                              | —       | 内联样式                                                   |
-| `onchange`       | `(checked: boolean, e: Event) => void` | —       | 变更处理函数                                               |
+| `onValueChange`       | `(checked: boolean, e: Event) => void` | —       | 变更处理函数                                               |
 
 ## 状态
 

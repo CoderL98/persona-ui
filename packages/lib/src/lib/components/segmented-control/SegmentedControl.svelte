@@ -16,7 +16,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: SegmentedControlProps = $props();
 
@@ -29,7 +29,7 @@
 
   function select(v: string) {
     if (controlledValue === undefined) internalValue = v;
-    onchange?.(v);
+    onValueChange?.(v);
   }
 
   // 键盘导航：ArrowLeft/Right 切换，Home/End 跳到首尾

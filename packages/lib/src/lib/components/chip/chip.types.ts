@@ -19,6 +19,6 @@ export type ChipProps = {
   id?: string;
   "data-testid"?: string;
   onclick?: (e: MouseEvent) => void;
-  onremove?: (e: MouseEvent) => void;
+  onRemove?: (e: MouseEvent) => void;
   [key: string]: unknown;
 };

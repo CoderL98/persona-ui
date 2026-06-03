@@ -32,7 +32,7 @@ A dropdown selector with both an in-page listbox and a native `<select>` renderi
 | `texts`        | `Record<string, string>` | — | Override any internal display strings per instance |
 | `class`        | `string`         | —       | Additional CSS classes                            |
 | `style`        | `string`         | —       | Inline style                                      |
-| `onchange`     | `(value: string, e: Event) => void` | — | Selection change handler              |
+| `onValueChange`     | `(value: string, e: Event) => void` | — | Selection change handler              |
 
 `SelectOption` shape: `{ value: string, label: string, disabled?: boolean }`
 

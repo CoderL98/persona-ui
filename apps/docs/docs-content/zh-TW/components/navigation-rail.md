@@ -12,7 +12,7 @@ group: components
 | 屬性      | 類型                  | 說明                                  |
 | --------- | --------------------- | ------------------------------------- |
 | `items`   | `NavigationRailItem[]` | 條目（value / label / icon / disabled） |
-| `onchange` | `(value) => void`    | 選取回呼                              |
+| `onValueChange` | `(value) => void`    | 選取回呼                              |
 
 ## 用法
 

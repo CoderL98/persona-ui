@@ -16,6 +16,6 @@ export type MenuProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onselect?: (id: string) => void;
-  onopenchange?: (open: boolean) => void;
+  onSelect?: (id: string) => void;
+  onOpenChange?: (open: boolean) => void;
 };

@@ -16,6 +16,6 @@ export type CommandPaletteProps = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  onselect?: (id: string) => void;
-  onopenchange?: (open: boolean) => void;
+  onSelect?: (id: string) => void;
+  onOpenChange?: (open: boolean) => void;
 };

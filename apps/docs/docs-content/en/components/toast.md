@@ -15,7 +15,7 @@ Temporary notification with auto-dismiss, 4 tones, and action support.
 | `open`/`defaultOpen` | `boolean`                               | `false`  | Controlled/uncontrolled        |
 | `duration`           | `number`                                | `5000`   | Auto-dismiss ms (0=no dismiss) |
 | `dismissible`        | `boolean`                               | `true`   | Show close button              |
-| `onopenchange`       | `(open) => void`                        | —        | Open state callback            |
+| `onOpenChange`       | `(open) => void`                        | —        | Open state callback            |
 | `texts`              | `{ dismiss: string }`                      | —        | Text overrides (see below) |
 
 ## Usage

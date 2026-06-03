@@ -17,10 +17,10 @@ describe("Toast", () => {
     expect(el).toBeTruthy();
     expect(el?.getAttribute("aria-live")).toBe("polite");
   });
-  it("fires onopenchange on dismiss", async () => {
+  it("fires onOpenChange on dismiss", async () => {
     let val = true;
     render(Toast, {
-      props: { defaultOpen: true, onopenchange: (v: boolean) => { val = v; } },
+      props: { defaultOpen: true, onOpenChange: (v: boolean) => { val = v; } },
     });
     (document.querySelector<HTMLElement>('button[aria-label="Dismiss"]'))?.click();
     await tick();

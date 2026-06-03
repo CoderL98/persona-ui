@@ -29,7 +29,7 @@ A single-selection group of mutually exclusive options, plus standalone `Radio` 
 | `label`        | `string`                            | —             | Group label                            |
 | `class`        | `string`                            | —             | Additional CSS classes                 |
 | `style`        | `string`                            | —             | Inline style                           |
-| `onchange`     | `(value: string, e: Event) => void` | —             | Selection change handler               |
+| `onValueChange`     | `(value: string, e: Event) => void` | —             | Selection change handler               |
 
 ### Radio
 

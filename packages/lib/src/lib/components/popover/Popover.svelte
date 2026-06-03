@@ -4,13 +4,13 @@
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
   import type { PopoverProps, PopoverPlacement } from './popover.types.js';
-  let { open: controlledOpen, defaultOpen = false, placement = 'bottom' as PopoverPlacement, modal = false, trigger, children, class: className, style, id, 'data-testid': dataTestId, onopenchange }: PopoverProps = $props();
+  let { open: controlledOpen, defaultOpen = false, placement = 'bottom' as PopoverPlacement, modal = false, trigger, children, class: className, style, id, 'data-testid': dataTestId, onOpenChange }: PopoverProps = $props();
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
 
-  function toggle(e: Event) { e.stopPropagation(); const next = !isOpen; if (controlledOpen === undefined) internalOpen = next; onopenchange?.(next); }
-  function open(e: Event) { e.stopPropagation(); if (controlledOpen === undefined) internalOpen = true; onopenchange?.(true); }
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); }
+  function toggle(e: Event) { e.stopPropagation(); const next = !isOpen; if (controlledOpen === undefined) internalOpen = next; onOpenChange?.(next); }
+  function open(e: Event) { e.stopPropagation(); if (controlledOpen === undefined) internalOpen = true; onOpenChange?.(true); }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }
 
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') { e.preventDefault(); close(); }

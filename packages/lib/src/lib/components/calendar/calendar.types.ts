@@ -12,5 +12,5 @@ export type CalendarProps = {
   style?: string;
   id?: string;
   "data-testid"?: string;
-  onchange?: (date: Date) => void;
+  onValueChange?: (date: Date) => void;
 };

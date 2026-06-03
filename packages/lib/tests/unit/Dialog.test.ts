@@ -18,7 +18,7 @@ describe("Dialog", () => {
   it("closes when clicking close button", async () => {
     let open = true;
     render(Dialog, {
-      props: { defaultOpen: true, onopenchange: (v: boolean) => { open = v; } },
+      props: { defaultOpen: true, onOpenChange: (v: boolean) => { open = v; } },
     });
     (document.querySelector<HTMLElement>('button[aria-label="Close"]'))?.click();
     await tick();

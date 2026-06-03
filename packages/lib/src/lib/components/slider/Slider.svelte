@@ -18,8 +18,8 @@
     id,
     'aria-label': ariaLabel,
     'data-testid': dataTestId,
-    oninput,
-    onchange,
+    onInputChange,
+    onValueChange,
     ...rest
   }: SliderProps = $props();
   const isRange = $derived(range || Array.isArray(controlledValue) || Array.isArray(defaultValue));
@@ -41,10 +41,10 @@
   const highPct = $derived(((high - min) / (max - min)) * 100);
   function setValue(next: number | [number, number], e: Event) {
     if (controlledValue === undefined) internalValue = next;
-    oninput?.(next, e);
+    onInputChange?.(next, e);
   }
   function setChange(next: number | [number, number], e: Event) {
-    onchange?.(next, e);
+    onValueChange?.(next, e);
   }
   function handleLow(e: Event) {
     const v = parseFloat((e.target as HTMLInputElement).value);

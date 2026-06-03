@@ -25,7 +25,7 @@ group: components
 | `label`          | `string`             | —       | 可見標籤                 |
 | `class`          | `string`             | —       | 額外的 CSS 類別          |
 | `style`          | `string`             | —       | 行內樣式（用於 token 覆寫） |
-| `onchange`       | `(e: Event) => void` | —       | 變更處理器               |
+| `onValueChange`       | `(e: Event) => void` | —       | 變更處理器               |
 
 其餘屬性會轉發至根 `<div>` 元素。
 
@@ -33,7 +33,7 @@ group: components
 
 ```svelte
 <!-- Controlled -->
-<Switch checked={notifications} onchange={(e) => toggle()} />
+<Switch checked={notifications} onValueChange={(e) => toggle()} />
 
 <!-- Uncontrolled -->
 <Switch defaultChecked label="Enable notifications" />

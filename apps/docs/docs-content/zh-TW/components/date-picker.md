@@ -14,7 +14,7 @@ group: components
 | `label`       | `string`         | —               | 欄位標籤                |
 | `placeholder` | `string`         | `'Pick a date'` | 輸入佔位文字            |
 | `locale`      | `string`         | `'en-US'`       | 日期格式語系            |
-| `onchange`    | `(date) => void` | —               | 日期選擇回呼            |
+| `onValueChange`    | `(date) => void` | —               | 日期選擇回呼            |
 | `texts`       | `{ pickDate: string }`    | —               | 文字覆寫（見下）        |
 
 ## Usage

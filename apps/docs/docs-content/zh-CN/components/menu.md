@@ -13,7 +13,7 @@ group: components
 | ---------- | -------------- | ------------------------------------------------------ |
 | `items`    | `MenuItem[]`   | 菜单项，包含 id/label/disabled/destructive/shortcut    |
 | `trigger`  | `Snippet`      | 触发元素                                               |
-| `onselect` | `(id) => void` | 选中回调                                               |
+| `onSelect` | `(id) => void` | 选中回调                                               |
 
 ## 用法
 

@@ -5,11 +5,11 @@
   import { lockScroll, unlockScroll } from '../../internal/scroll-lock.js';
   import { keydown } from '../../internal/click-outside.js';
   import type { DrawerProps, DrawerSide } from './drawer.types.js';
-  let { open: controlledOpen, defaultOpen = false, side = 'left' as DrawerSide, closeOnEscape = true, title, children, footer, class: className, style, id, 'data-testid': dataTestId, onopenchange: onopenchange, ...rest }: DrawerProps = $props();
+  let { open: controlledOpen, defaultOpen = false, side = 'left' as DrawerSide, closeOnEscape = true, title, children, footer, class: className, style, id, 'data-testid': dataTestId, onOpenChange: onOpenChange, ...rest }: DrawerProps = $props();
   const drawerId = $derived(id || `pui-drawer-${Math.random().toString(36).slice(2,6)}`);
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
-  function close() { if (controlledOpen === undefined) internalOpen = false; onopenchange?.(false); }
+  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }
   // Focus trap
   let prevFocus: HTMLElement | null = null;
   function trapFocus(e: KeyboardEvent) {

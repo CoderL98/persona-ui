@@ -18,7 +18,7 @@
     id,
     'data-testid': dataTestId,
     onclick,
-    onremove,
+    onRemove,
     ...rest
   }: ChipProps = $props();
 
@@ -103,7 +103,7 @@
       onclick={(e) => {
         e.stopPropagation();
         if (disabled) return;
-        onremove?.(e);
+        onRemove?.(e);
       }}
     >
       <svg

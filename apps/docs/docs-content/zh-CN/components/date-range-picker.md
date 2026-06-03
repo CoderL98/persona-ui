@@ -34,7 +34,7 @@ group: components
 | `footer`       | `Snippet`             | —             | 自定义页脚内容（例如预设快捷方式）                   |
 | `class`        | `string`              | —             | 附加的 CSS 类                                        |
 | `style`        | `string`              | —             | 内联样式                                             |
-| `onchange`     | `(range: DateRangeValue) => void` | — | 用户选定范围时触发（取值始终是完整的 `Date` 对象） |
+| `onValueChange`     | `(range: DateRangeValue) => void` | — | 用户选定范围时触发（取值始终是完整的 `Date` 对象） |
 
 `DateRangeValue` 结构：`{ start: Date \| null, end: Date \| null }`
 

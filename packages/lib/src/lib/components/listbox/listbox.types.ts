@@ -16,6 +16,6 @@ export type ListboxProps = {
   id?: string;
   texts?: Record<string, string>;
   "data-testid"?: string;
-  onchange?: (value: string | string[], e: Event) => void;
+  onValueChange?: (value: string | string[], e: Event) => void;
   [key: string]: unknown;
 };

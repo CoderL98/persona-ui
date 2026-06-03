@@ -23,7 +23,7 @@ import { Listbox } from '@persona-ui/lib/components/listbox';
 | `options`       | `{ value: string, label: string, disabled?: boolean }[]` | `[]` | 選項清單                       |
 | `disabled`      | `boolean`                                       | `false`| 停用整個列表方塊                                      |
 | `texts`         | `{ options: string }`                           | —      | 文字覆寫                                              |
-| `onchange`      | `(value, e: Event) => void`                     | —      | 選擇變化回呼                                          |
+| `onValueChange`      | `(value, e: Event) => void`                     | —      | 選擇變化回呼                                          |
 
 ## 狀態
 

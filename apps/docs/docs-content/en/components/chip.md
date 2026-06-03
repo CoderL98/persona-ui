@@ -19,7 +19,7 @@ A compact interactive label for tags, filters, or choices.
 | `children`  | `Snippet`                                                     | —           | Label content      |
 | `leading`   | `Snippet`                                                     | —           | Leading icon       |
 | `trailing`  | `Snippet`                                                     | —           | Trailing icon      |
-| `onremove`  | `(e: MouseEvent) => void`                                     | —           | Remove handler     |
+| `onRemove`  | `(e: MouseEvent) => void`                                     | —           | Remove handler     |
 | `texts`     | `{ remove: string }`                                          | —           | Text overrides (see below) |
 
 ## Usage

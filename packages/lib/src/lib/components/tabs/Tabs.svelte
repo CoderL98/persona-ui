@@ -14,7 +14,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onchange,
+    onValueChange,
     ...rest
   }: TabsProps = $props();
 
@@ -28,7 +28,7 @@
 
   function select(v: string) {
     if (controlledValue === undefined) internalValue = v;
-    onchange?.(v);
+    onValueChange?.(v);
   }
 
   // 键盘导航：ArrowLeft/Right 切换 tab（水平），Home/End 跳到首/尾

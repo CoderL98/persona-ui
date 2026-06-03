@@ -31,8 +31,8 @@ group: components
 | `showValue`    | `boolean`                     | `false` | 在标签旁显示当前值                                |
 | `class`        | `string`                      | —       | 附加的 CSS 类                                     |
 | `style`        | `string`                      | —       | 内联样式                                          |
-| `oninput`      | `(value, e: Event) => void`   | —       | 拖动过程中触发                                    |
-| `onchange`     | `(value, e: Event) => void`   | —       | 用户释放手柄时触发                                |
+| `onInputChange`      | `(value, e: Event) => void`   | —       | 拖动过程中触发                                    |
+| `onValueChange`     | `(value, e: Event) => void`   | —       | 用户释放手柄时触发                                |
 
 `SliderMark` 结构：`{ value: number, label?: string }`
 

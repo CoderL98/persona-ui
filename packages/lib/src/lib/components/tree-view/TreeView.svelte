@@ -3,21 +3,21 @@
   import { cn } from '../../internal/class.js';
   import TreeNodeRow from './TreeNodeRow.svelte';
   import type { TreeViewProps, TreeNode } from './tree-view.types.js';
-  let { nodes = [], selectedId: controlledSelected, expandedIds: controlledExpanded, defaultExpandedIds = [], class: className, style, id, 'data-testid': dataTestId, onselect, onexpandedchange, ...rest }: TreeViewProps = $props();
+  let { nodes = [], selectedId: controlledSelected, expandedIds: controlledExpanded, defaultExpandedIds = [], class: className, style, id, 'data-testid': dataTestId, onSelect, onExpandedChange, ...rest }: TreeViewProps = $props();
   let expanded = $state<string[]>(untrack(() => defaultExpandedIds));
   let expandedSet = $derived(new Set(controlledExpanded ?? expanded));
 
   function toggle(id: string) {
     if (controlledExpanded) {
       const next = expandedSet.has(id) ? controlledExpanded.filter(e => e !== id) : [...controlledExpanded, id];
-      onexpandedchange?.(next);
+      onExpandedChange?.(next);
     } else {
       const next = expandedSet.has(id) ? expanded.filter(e => e !== id) : [...expanded, id];
       expanded = next;
-      onexpandedchange?.(next);
+      onExpandedChange?.(next);
     }
   }
-  function select(id: string) { onselect?.(id); }
+  function select(id: string) { onSelect?.(id); }
 
   // Flat list of visible nodes for keyboard navigation
   function flattenVisible(nodes: TreeNode[]): TreeNode[] {
@@ -89,6 +89,6 @@
 </script>
 <ul {...rest} id={id} role="tree" class={cn('pui-tree-view space-y-0.5', className)} style={style} data-testid={dataTestId} onkeydown={handleTreeKeydown}>
   {#each nodes as node}
-    <TreeNodeRow {node} selectedId={controlledSelected} {expandedSet} depth={0} onselect={select} ontoggle={toggle} />
+    <TreeNodeRow {node} selectedId={controlledSelected} {expandedSet} depth={0} onSelect={select} ontoggle={toggle} />
   {/each}
 </ul>

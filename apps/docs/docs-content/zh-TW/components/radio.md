@@ -29,7 +29,7 @@ group: components
 | `label`        | `string`                            | —             | 群組標籤                            |
 | `class`        | `string`                            | —             | 額外的 CSS 類別                     |
 | `style`        | `string`                            | —             | 行內樣式                            |
-| `onchange`     | `(value: string, e: Event) => void` | —             | 選取變更處理函式                    |
+| `onValueChange`     | `(value: string, e: Event) => void` | —             | 選取變更處理函式                    |
 
 ### Radio
 
