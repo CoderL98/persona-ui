@@ -311,3 +311,26 @@ export type {
 
 export { default as Message } from "./components/message/Message.svelte";
 export type { MessageProps, MessageTone } from "./components/message/message.types.js";
+
+// ── Overlays & Layout (M3 batch 6) ──
+export { default as ContextMenu } from "./components/context-menu/ContextMenu.svelte";
+export type {
+  ContextMenuProps,
+  ContextMenuItem,
+} from "./components/context-menu/context-menu.types.js";
+
+export { default as HoverCard } from "./components/hover-card/HoverCard.svelte";
+export type {
+  HoverCardProps,
+  HoverCardPlacement,
+} from "./components/hover-card/hover-card.types.js";
+
+export { default as Stack } from "./components/stack/Stack.svelte";
+export type {
+  StackProps,
+  StackDirection,
+  StackAlign,
+  StackJustify,
+  StackGap,
+  StackWrap,
+} from "./components/stack/stack.types.js";
