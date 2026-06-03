@@ -1,5 +1,5 @@
 ---
-title: Pagination
+title: 分頁
 group: components
 ---
 

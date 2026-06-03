@@ -248,6 +248,8 @@ log_ok "lib 单元测试通过"
 
 # 2.5 文档应用类型检查（验证 lib 仍可被消费方解析）
 log_info "执行 docs 类型检查（验证导出兼容性）..."
+# 先 svelte-kit sync 生成 $types.js（svelte-check 不自动生成 SvelteKit 类型）
+pnpm --filter @persona-ui/docs exec svelte-kit sync 2>&1 | tail -2
 DOCS_OUT="$(pnpm --filter @persona-ui/docs check 2>&1)"
 echo "$DOCS_OUT" | tail -3
 if ! echo "$DOCS_OUT" | grep -qE "0 errors and 0 warnings"; then

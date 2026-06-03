@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { docs, getTitle } from '../../../lib/docs';
-	import { currentLocale } from '../../../lib/i18n/store.svelte';
-	import { localeToPath } from '../../../lib/i18n/locales';
+	import { localeToPath, pathToLocale } from '../../../lib/i18n/locales';
 	import { t } from '../../../lib/i18n/t';
 	import SearchModal from '../../../lib/components/SearchModal.svelte';
 	import type { Snippet } from 'svelte';
@@ -10,7 +9,8 @@
 	let { children }: { children?: Snippet } = $props();
 	let searchOpen = $state(false);
 
-	const locale = $derived(currentLocale.value);
+	// URL 段是 locale 的权威来源（prerender 时不能依赖 currentLocale）
+	const locale = $derived(pathToLocale(page.params.lang));
 
 	const guide = $derived(
 		docs(locale)

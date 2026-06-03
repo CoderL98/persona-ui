@@ -1,5 +1,5 @@
 ---
-title: Stack
+title: 堆疊
 group: components
 ---
 

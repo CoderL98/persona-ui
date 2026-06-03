@@ -1,5 +1,5 @@
 ---
-title: InputGroup
+title: 輸入框群組
 group: components
 ---
 

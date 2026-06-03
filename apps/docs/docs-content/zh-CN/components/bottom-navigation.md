@@ -1,5 +1,5 @@
 ---
-title: BottomNavigation
+title: 底部导航
 group: components
 ---
 
@@ -21,7 +21,7 @@ group: components
 | ---------------- | ------------------------------------- | ----------------------- | ------------------------ |
 | `value`          | `string`                              | —                       | 受控活动项 id             |
 | `defaultValue`   | `string`                              | —                       | 非受控默认值              |
-| `items`          | `BottomNavigationItem[]`               | —                       | 要显示的项                |
+| `items`          | `BottomNavigationItem[]`              | —                       | 要显示的项                |
 | `showLabels`     | `boolean`                             | `true`                  | 在图标旁显示文字          |
 | `iconsOnly`      | `boolean`                             | `false`                 | 隐藏文字（仅图标）        |
 | `aria-label`     | `string`                              | `'底部导航'`            | 导航的无障碍标签          |

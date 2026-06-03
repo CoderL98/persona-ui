@@ -1,30 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getRaw, renderHtml } from '../../../../lib/docs';
-	import { currentLocale } from '../../../../lib/i18n/store.svelte';
+	import { getRaw, getTitle, renderHtml } from '../../../../lib/docs';
 	import { t } from '../../../../lib/i18n/t';
 	import { page } from '$app/state';
-	import { localeToPath, LOCALES } from '../../../../lib/i18n/locales';
+	import { localeToPath, LOCALES, pathToLocale } from '../../../../lib/i18n/locales';
 
-	const locale = $derived(currentLocale.value);
+	// URL 段是 locale 的唯一权威来源（避免 prerender 时 currentLocale 始终为 en）
+	const locale = $derived(pathToLocale(page.params.lang));
 	const slug = $derived(page.params.slug ?? '');
 	const raw = $derived(getRaw(slug, locale));
 	const html = $derived(raw ? enhanceCodeBlocks(renderHtml(raw)) : '');
 
 	const notFound = $derived(!raw);
 
-	// 从 md frontmatter 解析 title
-	function titleFromRaw(md: string | undefined): string {
-		if (!md) return slug.split('/').pop() ?? '';
-		const m = md.match(/^---\s*\n([\s\S]*?)\n---/);
-		if (!m) return slug.split('/').pop() ?? '';
-		const fm = m[1];
-		const titleLine = fm.split('\n').find((l) => l.startsWith('title:'));
-		if (!titleLine) return slug.split('/').pop() ?? '';
-		return titleLine.replace(/^title:\s*/, '').replace(/^['"]|['"]$/g, '').trim();
-	}
-
-	const pageTitle = $derived(titleFromRaw(raw));
+	// 当前 locale 的 frontmatter 标题（无 frontmatter 时回退到 slug 末段）
+	const pageTitle = $derived(getTitle(slug, locale) ?? slug.split('/').pop() ?? '');
 
 	// SEO 用的绝对 URL（SSR 时 fallback 到 production 域名）
 	const origin =

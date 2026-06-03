@@ -1,5 +1,5 @@
 ---
-title: CodeBlock
+title: 代码块
 group: components
 ---
 

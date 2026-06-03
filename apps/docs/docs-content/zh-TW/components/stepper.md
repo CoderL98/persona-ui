@@ -1,5 +1,5 @@
 ---
-title: Stepper
+title: 步驟條
 group: components
 ---
 

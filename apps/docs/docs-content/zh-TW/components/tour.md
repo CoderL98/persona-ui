@@ -1,5 +1,5 @@
 ---
-title: Tour
+title: 導覽
 group: components
 ---
 

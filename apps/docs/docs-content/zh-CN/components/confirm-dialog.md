@@ -1,5 +1,5 @@
 ---
-title: ConfirmDialog
+title: 确认对话框
 group: components
 ---
 

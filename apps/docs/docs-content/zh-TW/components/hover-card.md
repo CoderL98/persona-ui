@@ -1,5 +1,5 @@
 ---
-title: HoverCard
+title: 懸浮卡片
 group: components
 ---
 

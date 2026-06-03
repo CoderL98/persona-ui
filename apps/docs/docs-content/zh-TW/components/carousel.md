@@ -1,5 +1,5 @@
 ---
-title: Carousel
+title: 輪播圖
 group: components
 ---
 

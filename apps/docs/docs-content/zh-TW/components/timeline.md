@@ -1,5 +1,5 @@
 ---
-title: Timeline
+title: 時間軸
 group: components
 ---
 

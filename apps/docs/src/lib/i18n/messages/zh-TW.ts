@@ -41,6 +41,8 @@ export const messages: Messages = {
 	sectionOverlays: '浮層',
 	sectionNavigation: '導覽',
 	sectionData: '資料',
+	sectionAdvanced: '進階',
+	sectionAdvancedDesc: '專用原語 —— Carousel、Chart、CodeBlock、ColorPicker、Stepper、Timeline、Tour 等。',
 	sectionFoundationDesc: '系統的原子 —— 按鈕、容器、狀態指示。所有其他元件都由這些原語組合而成。',
 	sectionFormDesc: '遵循設計語言的輸入控制項。所有表單元件在不同主題下共用同一套 props API。',
 	sectionFeedbackDesc: 'Alert、Banner、Toast、Progress、Spinner —— 系統與使用者溝通的表面。',

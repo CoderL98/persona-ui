@@ -42,6 +42,9 @@ export const messages: Messages = {
 	sectionOverlays: 'Overlays',
 	sectionNavigation: 'Navigation',
 	sectionData: 'Data',
+	sectionAdvanced: 'Advanced',
+	sectionAdvancedDesc:
+		'Specialized primitives — carousels, charts, code blocks, color pickers, steppers, timelines, tours and more.',
 	sectionFoundationDesc:
 		'The atoms of the system — buttons, surfaces, status indicators. Every other component composes these primitives.',
 	sectionFormDesc:

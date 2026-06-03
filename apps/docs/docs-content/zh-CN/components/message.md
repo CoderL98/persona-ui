@@ -1,5 +1,5 @@
 ---
-title: Message
+title: 消息
 group: components
 ---
 

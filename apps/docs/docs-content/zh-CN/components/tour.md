@@ -1,5 +1,5 @@
 ---
-title: Tour
+title: 漫游引导
 group: components
 ---
 

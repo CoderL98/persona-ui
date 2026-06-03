@@ -1,5 +1,5 @@
 ---
-title: Rating
+title: 評分
 group: components
 ---
 

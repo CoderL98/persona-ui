@@ -1,5 +1,5 @@
 ---
-title: VirtualList
+title: 虚拟列表
 group: components
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Message
+title: 訊息
 group: components
 ---
 

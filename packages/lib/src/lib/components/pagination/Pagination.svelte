@@ -85,9 +85,10 @@
 <nav
   {id}
   aria-label={ariaLabel}
+  class="pui-pagination"
 >
   <div
-    class={cn("pui-pagination flex items-center gap-1", className)}
+    class={cn("flex items-center gap-1", className)}
     {style}
     data-testid={dataTestId}
     onkeydown={handleKeydown}

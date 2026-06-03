@@ -1,5 +1,5 @@
 ---
-title: FileUpload
+title: 文件上传
 group: components
 ---
 

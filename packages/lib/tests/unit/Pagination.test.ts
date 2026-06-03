@@ -70,22 +70,20 @@ describe("Pagination", () => {
   it("keyboard ArrowLeft/Right navigates", async () => {
     const onValueChange = vi.fn();
     render(Pagination, { props: { total: 5, defaultValue: 3, onValueChange } });
-    const nav = document.querySelector("nav.pui-pagination")!;
-    nav.focus();
-    await fireEvent.keyDown(nav, { key: "ArrowLeft" });
+    const inner = document.querySelector("nav.pui-pagination > div")!;
+    await fireEvent.keyDown(inner, { key: "ArrowLeft" });
     expect(onValueChange).toHaveBeenLastCalledWith(2);
-    await fireEvent.keyDown(nav, { key: "ArrowRight" });
+    await fireEvent.keyDown(inner, { key: "ArrowRight" });
     expect(onValueChange).toHaveBeenLastCalledWith(3);
   });
 
   it("Home/End jumps to first/last", async () => {
     const onValueChange = vi.fn();
     render(Pagination, { props: { total: 10, defaultValue: 5, onValueChange } });
-    const nav = document.querySelector("nav.pui-pagination")!;
-    nav.focus();
-    await fireEvent.keyDown(nav, { key: "Home" });
+    const inner = document.querySelector("nav.pui-pagination > div")!;
+    await fireEvent.keyDown(inner, { key: "Home" });
     expect(onValueChange).toHaveBeenLastCalledWith(1);
-    await fireEvent.keyDown(nav, { key: "End" });
+    await fireEvent.keyDown(inner, { key: "End" });
     expect(onValueChange).toHaveBeenLastCalledWith(10);
   });
 

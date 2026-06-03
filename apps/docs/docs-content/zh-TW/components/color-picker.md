@@ -1,5 +1,5 @@
 ---
-title: ColorPicker
+title: 色彩選擇器
 group: components
 ---
 

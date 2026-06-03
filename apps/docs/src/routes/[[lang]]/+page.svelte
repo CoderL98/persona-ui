@@ -46,6 +46,31 @@
   import { DateRangePicker } from '@persona-ui/lib/components/date-range-picker';
   // ── Local ──
   import { SectionHeading } from '@persona-ui/lib/components/section-heading';
+  // ── Advanced (M3 batches) ──
+  import { Carousel } from '@persona-ui/lib/components/carousel';
+  import { Chart } from '@persona-ui/lib/components/chart';
+  import { CodeBlock } from '@persona-ui/lib/components/code-block';
+  import { ColorPicker } from '@persona-ui/lib/components/color-picker';
+  import { ConfirmDialog } from '@persona-ui/lib/components/confirm-dialog';
+  import { ContextMenu } from '@persona-ui/lib/components/context-menu';
+  import { DataTable } from '@persona-ui/lib/components/data-table';
+  import { DatePicker } from '@persona-ui/lib/components/date-picker';
+  import { Drawer } from '@persona-ui/lib/components/drawer';
+  import { FileUpload } from '@persona-ui/lib/components/file-upload';
+  import { HoverCard } from '@persona-ui/lib/components/hover-card';
+  import { InputGroup } from '@persona-ui/lib/components/input-group';
+  import { InputOTP } from '@persona-ui/lib/components/input-otp';
+  import { Message } from '@persona-ui/lib/components/message';
+  import { NavigationRail } from '@persona-ui/lib/components/navigation-rail';
+  import { Pagination } from '@persona-ui/lib/components/pagination';
+  import { Rating } from '@persona-ui/lib/components/rating';
+  import { Sheet } from '@persona-ui/lib/components/sheet';
+  import { Stack } from '@persona-ui/lib/components/stack';
+  import { Stepper } from '@persona-ui/lib/components/stepper';
+  import { Timeline } from '@persona-ui/lib/components/timeline';
+  import { Tour } from '@persona-ui/lib/components/tour';
+  import { TreeView } from '@persona-ui/lib/components/tree-view';
+  import { VirtualList } from '@persona-ui/lib/components/virtual-list';
   import { t, brand } from '../../lib/i18n/t';
   import { currentLocale } from '../../lib/i18n/store.svelte';
   import { localeToPath } from '../../lib/i18n/locales';
@@ -58,10 +83,14 @@
     { id: 'overlays', eyebrow: '04', label: t('sectionOverlays'), desc: t('sectionOverlaysDesc') },
     { id: 'navigation', eyebrow: '05', label: t('sectionNavigation'), desc: t('sectionNavigationDesc') },
     { id: 'data', eyebrow: '06', label: t('sectionData'), desc: t('sectionDataDesc') },
+    { id: 'advanced', eyebrow: '07', label: t('sectionAdvanced'), desc: t('sectionAdvancedDesc') },
   ]);
 
   let activeSection = $state('foundation');
   let dialogOpen = $state(false);
+  let sheetOpen = $state(false);
+  let drawerOpen = $state(false);
+  let confirmOpen = $state(false);
 
   // locale-aware 跳转链接
   const locale = $derived(currentLocale.value);
@@ -1036,6 +1065,280 @@
         <div class="space-y-4">
           <TimePicker label="Time" />
           <DateRangePicker granularity="day" label="Date Range" />
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- =================== 07 ADVANCED =================== -->
+<section
+  id="advanced"
+  aria-labelledby="heading-advanced"
+  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+>
+  <SectionHeading
+    eyebrow="07"
+    title={t('sectionAdvanced')}
+    description={t('sectionAdvancedDesc')}
+    level={2}
+  />
+
+  <div class="pui-reveal-stagger space-y-10">
+    <!-- Carousel -->
+    <section class="space-y-4" aria-labelledby="carousel-heading">
+      <h3
+        id="carousel-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Carousel
+      </h3>
+      <Carousel
+        slides={[
+          { id: 'a', alt: 'Slide A' },
+          { id: 'b', alt: 'Slide B' },
+          { id: 'c', alt: 'Slide C' },
+        ]}
+      />
+    </section>
+
+    <!-- Chart -->
+    <section class="space-y-4" aria-labelledby="chart-heading">
+      <h3
+        id="chart-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Chart
+      </h3>
+      <Chart
+        kind="line"
+        labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+        series={[
+          { name: 'Revenue', data: [120, 200, 180, 240, 220, 300] },
+          { name: 'Profit', data: [40, 60, 55, 80, 70, 95] },
+        ]}
+      />
+    </section>
+
+    <!-- CodeBlock + Stack -->
+    <section class="space-y-4" aria-labelledby="code-heading">
+      <h3
+        id="code-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        CodeBlock &amp; Stack
+      </h3>
+      <Stack direction="row" gap={4} wrap="wrap">
+        <div class="min-w-65 flex-1">
+          <CodeBlock
+            code={`import { Button } from '@persona-ui/lib';
+<Button variant="filled">Hello</Button>`}
+            language="ts"
+            filename="example.ts"
+          />
+        </div>
+        <div class="min-w-50 flex-1">
+          <CodeBlock
+            code={`function add(a, b) {
+  return a + b;
+}`}
+            language="js"
+            showLineNumbers
+          />
+        </div>
+      </Stack>
+    </section>
+
+    <!-- ColorPicker + Rating + InputOTP -->
+    <section class="space-y-4" aria-labelledby="inputs-heading">
+      <h3
+        id="inputs-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Color, Rating &amp; OTP
+      </h3>
+      <Stack direction="row" gap={6} wrap="wrap" align="start">
+        <div class="space-y-2">
+          <span class="text-xs text-(--pui-text-secondary)">ColorPicker</span>
+          <ColorPicker defaultValue="#5b8def" />
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs text-(--pui-text-secondary)">Rating</span>
+          <Rating defaultValue={3.5} allowHalf />
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs text-(--pui-text-secondary)">InputOTP</span>
+          <InputOTP length={6} defaultValue="123456" />
+        </div>
+      </Stack>
+    </section>
+
+    <!-- Stepper + Timeline -->
+    <section class="space-y-4" aria-labelledby="flow-heading">
+      <h3
+        id="flow-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Stepper &amp; Timeline
+      </h3>
+      <Stepper
+        defaultValue={1}
+        steps={[
+          { label: 'Cart' },
+          { label: 'Shipping' },
+          { label: 'Payment' },
+          { label: 'Review' },
+        ]}
+      />
+      <Timeline
+        items={[
+          { title: 'Order placed', timestamp: '2024-01-15 10:32', status: 'success' },
+          { title: 'Paid', timestamp: '2024-01-15 10:33', status: 'success' },
+          { title: 'Shipped', timestamp: '2024-01-16 09:00', status: 'info' },
+          { title: 'Delivered', timestamp: 'Pending', status: 'default' },
+        ]}
+      />
+    </section>
+
+    <!-- HoverCard + InputGroup + Pagination -->
+    <section class="space-y-4" aria-labelledby="input-extras-heading">
+      <h3
+        id="input-extras-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        HoverCard, InputGroup &amp; Pagination
+      </h3>
+      <Stack direction="row" gap={4} wrap="wrap" align="start">
+        <HoverCard>
+          {#snippet content()}
+            <p class="text-sm">Hover cards surface rich content on demand — without leaving the page.</p>
+          {/snippet}
+          <Button variant="text">Hover me</Button>
+        </HoverCard>
+        <InputGroup>
+          {#snippet leading()}
+            <span class="text-sm text-(--pui-text-secondary)">https://</span>
+          {/snippet}
+          <TextField placeholder="your-domain" />
+        </InputGroup>
+      </Stack>
+      <Pagination total={12} defaultValue={5} />
+    </section>
+
+    <!-- Sheet + Drawer + ConfirmDialog + Tour -->
+    <section class="space-y-4" aria-labelledby="overlays-extras-heading">
+      <h3
+        id="overlays-extras-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        Sheet, Drawer &amp; Confirm
+      </h3>
+      <Stack direction="row" gap={3} wrap="wrap">
+        <Button
+          variant="outlined"
+          onclick={() => (sheetOpen = true)}
+        >
+          Open Sheet
+        </Button>
+        <Button
+          variant="outlined"
+          onclick={() => (drawerOpen = true)}
+        >
+          Open Drawer
+        </Button>
+        <Button
+          variant="tonal"
+          onclick={() => (confirmOpen = true)}
+        >
+          Confirm
+        </Button>
+      </Stack>
+    </section>
+
+    <Sheet open={sheetOpen} onOpenChange={(o: boolean) => (sheetOpen = o)}>
+      {#snippet title()}<span>Sheet Title</span>{/snippet}
+      <p class="text-sm">Sheet content slides in from the bottom.</p>
+    </Sheet>
+
+    <Drawer open={drawerOpen} onOpenChange={(o: boolean) => (drawerOpen = o)}>
+      {#snippet title()}<span>Drawer Title</span>{/snippet}
+      <p class="text-sm">Drawer content slides in from the left.</p>
+    </Drawer>
+
+    <ConfirmDialog
+      open={confirmOpen}
+      onOpenChange={(o: boolean) => (confirmOpen = o)}
+      title="Delete this item?"
+      description="This action cannot be undone."
+      tone="danger"
+      onConfirm={() => (confirmOpen = false)}
+    />
+
+    <!-- DataTable + NavigationRail + TreeView + VirtualList -->
+    <section class="space-y-4" aria-labelledby="data-extras-heading">
+      <h3
+        id="data-extras-heading"
+        class="font-(family-name:--pui-font-display) text-xl font-normal tracking-[-0.01em]
+               text-(--pui-text-primary)"
+      >
+        DataTable, NavigationRail, TreeView &amp; VirtualList
+      </h3>
+      <div class="grid gap-4 lg:grid-cols-2">
+        <DataTable
+          data={[
+            { name: 'Alice', role: 'Admin', status: 'active' },
+            { name: 'Bob', role: 'User', status: 'pending' },
+            { name: 'Carol', role: 'User', status: 'active' },
+          ]}
+          columns={[
+            { key: 'name', header: 'Name', sortable: true },
+            { key: 'role', header: 'Role' },
+            { key: 'status', header: 'Status' },
+          ]}
+        />
+        <NavigationRail
+          defaultValue="home"
+          items={[
+            { value: 'home', label: 'Home' },
+            { value: 'search', label: 'Search' },
+            { value: 'profile', label: 'Profile' },
+            { value: 'settings', label: 'Settings' },
+          ]}
+        />
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        <TreeView
+          nodes={[
+            {
+              id: '1',
+              label: 'src',
+              children: [
+                { id: '1.1', label: 'components' },
+                { id: '1.2', label: 'lib' },
+                { id: '1.3', label: 'routes' },
+              ],
+            },
+            { id: '2', label: 'package.json' },
+            { id: '3', label: 'README.md' },
+          ]}
+        />
+        <div class="h-48 overflow-hidden rounded-(--pui-radius-control) border border-(--pui-outline-subtle)">
+          <VirtualList
+            itemCount={1000}
+            itemHeight={32}
+            height={192}
+          >
+            {#snippet item(p)}
+              <div class="flex items-center px-3 text-sm">Item {p.index + 1}</div>
+            {/snippet}
+          </VirtualList>
         </div>
       </div>
     </section>

@@ -91,36 +91,36 @@ describe("Carousel", () => {
   it("keyboard ArrowRight advances", async () => {
     const onValueChange = vi.fn();
     render(Carousel, { props: { slides, onValueChange } });
-    const root = document.querySelector(".pui-carousel") as HTMLElement;
-    root.focus();
-    await fireEvent.keyDown(root, { key: "ArrowRight" });
+    const nextBtn = document.querySelector("button[aria-label='Next slide']") as HTMLButtonElement;
+    nextBtn.focus();
+    await fireEvent.keyDown(nextBtn, { key: "ArrowRight" });
     expect(onValueChange).toHaveBeenCalledWith(1);
   });
 
   it("keyboard ArrowLeft goes back", async () => {
     const onValueChange = vi.fn();
     render(Carousel, { props: { slides, value: 2, onValueChange } });
-    const root = document.querySelector(".pui-carousel") as HTMLElement;
-    root.focus();
-    await fireEvent.keyDown(root, { key: "ArrowLeft" });
+    const prevBtn = document.querySelector("button[aria-label='Previous slide']") as HTMLButtonElement;
+    prevBtn.focus();
+    await fireEvent.keyDown(prevBtn, { key: "ArrowLeft" });
     expect(onValueChange).toHaveBeenCalledWith(1);
   });
 
   it("keyboard Home goes to first", async () => {
     const onValueChange = vi.fn();
     render(Carousel, { props: { slides, value: 2, onValueChange } });
-    const root = document.querySelector(".pui-carousel") as HTMLElement;
-    root.focus();
-    await fireEvent.keyDown(root, { key: "Home" });
+    const prevBtn = document.querySelector("button[aria-label='Previous slide']") as HTMLButtonElement;
+    prevBtn.focus();
+    await fireEvent.keyDown(prevBtn, { key: "Home" });
     expect(onValueChange).toHaveBeenCalledWith(0);
   });
 
   it("keyboard End goes to last", async () => {
     const onValueChange = vi.fn();
     render(Carousel, { props: { slides, onValueChange } });
-    const root = document.querySelector(".pui-carousel") as HTMLElement;
-    root.focus();
-    await fireEvent.keyDown(root, { key: "End" });
+    const nextBtn = document.querySelector("button[aria-label='Next slide']") as HTMLButtonElement;
+    nextBtn.focus();
+    await fireEvent.keyDown(nextBtn, { key: "End" });
     expect(onValueChange).toHaveBeenCalledWith(2);
   });
 

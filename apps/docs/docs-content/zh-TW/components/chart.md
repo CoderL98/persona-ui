@@ -1,5 +1,5 @@
 ---
-title: Chart
+title: 圖表
 group: components
 ---
 

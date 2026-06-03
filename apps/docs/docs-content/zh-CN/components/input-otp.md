@@ -1,5 +1,5 @@
 ---
-title: InputOTP
+title: 一次性密码
 group: components
 ---
 

@@ -41,12 +41,14 @@ export interface Messages {
 	sectionOverlays: string;
 	sectionNavigation: string;
 	sectionData: string;
+	sectionAdvanced: string;
 	sectionFoundationDesc: string;
 	sectionFormDesc: string;
 	sectionFeedbackDesc: string;
 	sectionOverlaysDesc: string;
 	sectionNavigationDesc: string;
 	sectionDataDesc: string;
+	sectionAdvancedDesc: string;
 	sectionNavAria: string;
 	skipToContent: string;
 

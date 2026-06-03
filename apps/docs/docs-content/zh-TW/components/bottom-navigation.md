@@ -1,5 +1,5 @@
 ---
-title: BottomNavigation
+title: 底部導覽列
 group: components
 ---
 
