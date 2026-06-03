@@ -237,3 +237,18 @@ export type { DateRangePickerProps, DateRangeValue } from "./components/date-ran
 // Internal utilities (public for advanced use)
 export { cn } from "./internal/class.js";
 export { dataAttrs } from "./internal/attrs.js";
+
+// ── Form (M3 batch 1) ──
+export { default as Form } from "./components/form/Form.svelte";
+export { default as FormField } from "./components/form/FormField.svelte";
+export type { FormProps, FormLayout } from "./components/form/form.types.js";
+
+export { default as FileUpload } from "./components/file-upload/FileUpload.svelte";
+export type {
+  FileUploadProps,
+  FileUploadFile,
+  FileUploadStatus,
+} from "./components/file-upload/file-upload.types.js";
+
+export { default as InputOTP } from "./components/input-otp/InputOTP.svelte";
+export type { InputOTPProps } from "./components/input-otp/input-otp.types.js";
