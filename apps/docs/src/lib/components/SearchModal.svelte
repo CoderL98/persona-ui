@@ -79,7 +79,6 @@
 />
 
 {#if open}
-	<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
 	<div
 		class="fixed inset-0 z-(--pui-z-modal) flex items-start justify-center pt-20 px-4"
 		role="dialog"
@@ -88,6 +87,7 @@
 	>
 		<div
 			class="absolute inset-0 bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.4))"
+			role="presentation"
 			onclick={close}
 		></div>
 		<div

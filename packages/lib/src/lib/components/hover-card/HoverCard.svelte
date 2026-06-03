@@ -79,6 +79,7 @@
 <span
   bind:this={triggerEl}
   class="inline-block"
+  role="presentation"
   onmouseenter={show}
   onmouseleave={hide}
   onfocusin={show}

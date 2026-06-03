@@ -20,3 +20,4 @@ packages/lib/.npmrc
 *.md
 !README.md
 !README_CN.md
+.env

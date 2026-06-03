@@ -43,22 +43,6 @@
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      prev();
-    } else if (e.key === "ArrowRight") {
-      e.preventDefault();
-      next();
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      goTo(0);
-    } else if (e.key === "End") {
-      e.preventDefault();
-      goTo(slides.length - 1);
-    }
-  }
-
   // Touch support
   let touchStartX = 0;
   function handleTouchStart(e: TouchEvent) {
@@ -85,23 +69,24 @@
 
 <section
   {id}
-  class={cn(
-    "pui-carousel relative overflow-hidden rounded-(--pui-radius-container) bg-(--pui-surface-base)",
-    className,
-  )}
-  {style}
-  data-testid={dataTestId}
   aria-roledescription="carousel"
   aria-label={ariaLabel}
-  onmouseenter={() => { hovering = true; }}
-  onmouseleave={() => { hovering = false; }}
-  onfocusin={() => { focused = true; }}
-  onfocusout={() => { focused = false; }}
-  onkeydown={handleKeydown}
-  ontouchstart={handleTouchStart}
-  ontouchend={handleTouchEnd}
-  tabindex={0}
 >
+  <div
+    class={cn(
+      "pui-carousel relative overflow-hidden rounded-(--pui-radius-container) bg-(--pui-surface-base)",
+      className,
+    )}
+    {style}
+    role="presentation"
+    data-testid={dataTestId}
+    onmouseenter={() => { hovering = true; }}
+    onmouseleave={() => { hovering = false; }}
+    onfocusin={() => { focused = true; }}
+    onfocusout={() => { focused = false; }}
+    ontouchstart={handleTouchStart}
+    ontouchend={handleTouchEnd}
+  >
   <div
     class="flex transition-transform duration-(--pui-duration-swap,200ms) ease-out"
     style="transform: translateX(-{current * 100}%);"
@@ -130,6 +115,7 @@
       type="button"
       aria-label="Previous slide"
       onclick={prev}
+      onkeydown={(e) => { if (e.key === "ArrowLeft") { e.preventDefault(); prev(); } else if (e.key === "Home") { e.preventDefault(); goTo(0); } }}
       class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 inline-flex items-center justify-center rounded-full bg-(--pui-surface-base)/80 backdrop-blur shadow-(--pui-elevation-2) text-(--pui-text-primary) hover:bg-(--pui-surface-base) transition-colors"
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -140,6 +126,7 @@
       type="button"
       aria-label="Next slide"
       onclick={next}
+      onkeydown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); next(); } else if (e.key === "End") { e.preventDefault(); goTo(slides.length - 1); } }}
       class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 inline-flex items-center justify-center rounded-full bg-(--pui-surface-base)/80 backdrop-blur shadow-(--pui-elevation-2) text-(--pui-text-primary) hover:bg-(--pui-surface-base) transition-colors"
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -165,4 +152,6 @@
       {/each}
     </div>
   {/if}
+  </div>
 </section>
+

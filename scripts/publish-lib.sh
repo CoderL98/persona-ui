@@ -22,7 +22,7 @@
 #  前置：
 #    1. 拥有 @persona-ui 组织成员权限的 npm 账号
 #    2. 已创建 bypass-2fa 的 granular access token
-#    3. 设置环境变量 NPM_PUBLISH_TOKEN=npm_xxxx（不写入任何文件）
+#    3. 在项目根目录 .env 文件中设置 NPM_PUBLISH_TOKEN=npm_xxxx（已 .gitignore）
 #    4. 仓库处于可发布状态（构建/检查/测试全部通过）
 #    5. 已在 packages/lib/package.json#version 中写好目标版本号
 # =============================================================================
@@ -155,20 +155,32 @@ command -v npm  >/dev/null 2>&1 || { log_err "未找到 npm";  exit 3; }
 command -v node >/dev/null 2>&1 || { log_err "未找到 node"; exit 3; }
 log_ok "pnpm: $(pnpm --version)  node: $(node --version)  npm: $(npm --version)"
 
-# 0.3 检查 token（必须通过环境变量传入，永不写入磁盘）
+# 0.3 从 .env 文件加载 token（如果存在）
+ENV_FILE="$ROOT_DIR/.env"
+if [ -f "$ENV_FILE" ]; then
+  set -a
+  source "$ENV_FILE"
+  set +a
+  log_ok "已从 $ENV_FILE 加载环境变量"
+fi
+
+# 0.4 检查 token（必须通过环境变量传入，永不写入磁盘）
 if [ -z "${NPM_PUBLISH_TOKEN:-}" ]; then
   log_err "环境变量 NPM_PUBLISH_TOKEN 未设置"
   log_err "请先在 npmjs.com 创建 bypass-2fa 的 granular access token，然后："
-  log_err "  export NPM_PUBLISH_TOKEN=npm_xxxx"
+  log_err "  在项目根目录创建 .env 文件，内容为："
+  log_err "    NPM_PUBLISH_TOKEN=npm_xxxx"
+  log_err "  或通过环境变量传入："
+  log_err "    export NPM_PUBLISH_TOKEN=npm_xxxx"
   exit 3
 fi
 log_ok "NPM_PUBLISH_TOKEN 已设置（长度 ${#NPM_PUBLISH_TOKEN}）"
 
-# 0.4 解除代理（避免 SOCKS 代理干扰 npm 请求）
+# 0.6 解除代理（避免 SOCKS 代理干扰 npm 请求）
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
 log_ok "已解除系统代理"
 
-# 0.5 检查 git 状态：工作树必须干净或仅有预期改动
+# 0.7 检查 git 状态：工作树必须干净或仅有预期改动
 if ! git -C "$ROOT_DIR" diff --quiet 2>/dev/null || \
    [ -n "$(git -C "$ROOT_DIR" status --porcelain 2>/dev/null)" ]; then
   log_warn "git 工作树有未提交改动（发布前请确认是否需要提交）："

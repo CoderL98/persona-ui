@@ -84,13 +84,15 @@
 
 <nav
   {id}
-  class={cn("pui-pagination flex items-center gap-1", className)}
-  {style}
-  data-testid={dataTestId}
   aria-label={ariaLabel}
-  onkeydown={handleKeydown}
-  tabindex="-1"
 >
+  <div
+    class={cn("pui-pagination flex items-center gap-1", className)}
+    {style}
+    data-testid={dataTestId}
+    onkeydown={handleKeydown}
+    role="none"
+  >
   <button
     type="button"
     aria-label="Previous page"
@@ -151,4 +153,5 @@
       />
     </form>
   {/if}
+  </div>
 </nav>

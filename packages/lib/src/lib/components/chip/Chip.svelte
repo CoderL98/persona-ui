@@ -32,8 +32,8 @@
 </script>
 
 <div
-  role={removable ? undefined : 'button'}
-  tabindex={removable || disabled ? undefined : 0}
+  role="button"
+  tabindex={disabled ? -1 : 0}
   {...rest}
   {...attrs}
   {id}
