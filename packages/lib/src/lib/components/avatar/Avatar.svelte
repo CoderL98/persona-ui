@@ -80,7 +80,8 @@
              bg-[var(--pui-avatar-status-color,var(--pui-color-tertiary))]
              {status === 'busy' && 'bg-[var(--pui-color-error)]'}
              {status === 'away' && 'bg-[var(--pui-apple-system-yellow,var(--pui-color-primary))]'}"
-      aria-label={`${status}`}
+      role="img"
+      aria-label={status === 'online' ? 'Online' : status === 'busy' ? 'Busy' : status === 'away' ? 'Away' : status === 'offline' ? 'Offline' : status}
     ></span>
   {/if}
 </span>

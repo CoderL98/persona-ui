@@ -193,7 +193,7 @@
         <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
       </div>
       <div class="flex items-center gap-2 text-xs text-(--pui-text-secondary)">
-        <Switch defaultChecked size="sm" />
+        <Switch defaultChecked size="sm" aria-label="Preview option" />
         <span>{t('previewLive')}</span>
       </div>
     </div>
@@ -225,7 +225,7 @@
       <div
         class="flex items-center gap-2 text-xs text-(--pui-md-sys-color-on-surface-variant)"
       >
-        <Switch defaultChecked size="sm" />
+        <Switch defaultChecked size="sm" aria-label="Preview option" />
         <span>{t('previewLive')}</span>
       </div>
     </div>

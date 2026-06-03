@@ -32,8 +32,8 @@
 </script>
 
 <div
-  role="button"
-  tabindex={disabled ? -1 : 0}
+  role={removable ? undefined : 'button'}
+  tabindex={removable || disabled ? undefined : 0}
   {...rest}
   {...attrs}
   {id}
@@ -98,8 +98,8 @@
              rounded-full transition-colors
              text-(--pui-text-secondary) hover:bg-(--pui-surface-variant) hover:text-(--pui-text-primary)
              focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pui-color-primary)"
-      aria-label={t.remove}
-      tabindex="-1"
+       aria-label={t.remove}
+      tabindex={removable ? 0 : -1}
       onclick={(e) => {
         e.stopPropagation();
         if (disabled) return;

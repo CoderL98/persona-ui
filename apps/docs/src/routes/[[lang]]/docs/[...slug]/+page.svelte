@@ -48,19 +48,19 @@
 			(_match, lang, code) => {
 				const langLabel = lang ? lang.toUpperCase() : '';
 				const codeText = decodeHtml(code);
-				return `<div class="docs-code-block" data-lang="${lang || 'text'}">
-					<div class="docs-code-block__bar">
-						${langLabel ? `<span class="docs-code-block__lang">${langLabel}</span>` : '<span></span>'}
-						<button type="button" class="docs-code-block__copy" aria-label="Copy code" data-copy="${encodeAttr(codeText)}">
-							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-								<rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
-								<path d="M5 3V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.2" fill="none"/>
-							</svg>
-							<span>Copy</span>
-						</button>
-					</div>
-					<pre><code class="language-${lang || 'text'}">${code}</code></pre>
-				</div>`;
+			return `<div class="docs-code-block" data-lang="${lang || 'text'}">
+				<div class="docs-code-block__bar">
+					${langLabel ? `<span class="docs-code-block__lang">${langLabel}</span>` : '<span></span>'}
+					<button type="button" class="docs-code-block__copy" aria-label="Copy code" data-copy="${encodeAttr(codeText)}">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+							<rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+							<path d="M5 3V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.2" fill="none"/>
+						</svg>
+						<span>Copy</span>
+					</button>
+				</div>
+				<pre tabindex="0"><code class="language-${lang || 'text'}">${code}</code></pre>
+			</div>`;
 			},
 		);
 	}

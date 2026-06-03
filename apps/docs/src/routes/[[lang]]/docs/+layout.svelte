@@ -340,6 +340,20 @@
 		line-height: 1.6;
 		color: inherit;
 		overflow-x: auto;
+		tab-size: 2;
+	}
+
+	.docs-content :global(.docs-code-block pre code) {
+		background: transparent;
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+	}
+
+	/* 让横向滚动的代码块可键盘聚焦（axe scrollable-region-focusable） */
+	.docs-content :global(.docs-code-block pre:focus-visible) {
+		outline: 2px solid var(--pui-color-primary, oklch(0.5 0.18 250));
+		outline-offset: -2px;
 	}
 
 	.docs-content :global(.docs-code-block pre code) {
