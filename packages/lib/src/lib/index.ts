@@ -271,3 +271,17 @@ export type {
   StepperStep,
   StepperOrientation,
 } from "./components/stepper/stepper.types.js";
+
+// ── Display & UX (M3 batch 3) ──
+export { default as Timeline } from "./components/timeline/Timeline.svelte";
+export type {
+  TimelineProps,
+  TimelineItem,
+  TimelineOrientation,
+} from "./components/timeline/timeline.types.js";
+
+export { default as Tour } from "./components/tour/Tour.svelte";
+export type { TourProps, TourStep } from "./components/tour/tour.types.js";
+
+export { default as VirtualList } from "./components/virtual-list/VirtualList.svelte";
+export type { VirtualListProps } from "./components/virtual-list/virtual-list.types.js";

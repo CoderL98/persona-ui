@@ -89,6 +89,7 @@
   data-testid={dataTestId}
   aria-label={ariaLabel}
   onkeydown={handleKeydown}
+  tabindex="-1"
 >
   <button
     type="button"

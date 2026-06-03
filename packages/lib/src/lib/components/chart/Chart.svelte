@@ -162,6 +162,7 @@
           {@const bx = barX(i, si)}
           {@const by = barY(v)}
           {@const bh = barH(v)}
+          <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions a11y_interactive_supports_focus -->
           <rect
             x={bx}
             y={by}
@@ -172,6 +173,7 @@
             class="cursor-pointer transition-opacity hover:opacity-80"
             onclick={() => onPointClick?.(i, si)}
             role="button"
+            tabindex={onPointClick ? 0 : -1}
             aria-label={`${ds.name} ${effectiveLabels[i]}: ${v}`}
           >
             <title>{ds.name} · {effectiveLabels[i]} · {v}</title>
@@ -234,6 +236,7 @@
           stroke-linejoin="round"
         />
         {#each ds.data as v, i}
+          <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions a11y_interactive_supports_focus -->
           <circle
             cx={lineX(i)}
             cy={lineY(v)}
@@ -242,6 +245,7 @@
             class="cursor-pointer transition-opacity hover:opacity-80"
             onclick={() => onPointClick?.(i, si)}
             role="button"
+            tabindex={onPointClick ? 0 : -1}
             aria-label={`${ds.name} ${effectiveLabels[i]}: ${v}`}
           >
             <title>{ds.name} · {effectiveLabels[i]} · {v}</title>
