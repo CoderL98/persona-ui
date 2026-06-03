@@ -91,7 +91,7 @@
         opt.disabled && 'opacity-(--pui-opacity-disabled) pointer-events-none',
         !opt.disabled && !isSelected(opt.value) && 'hover:bg-(--pui-surface-variant)',
       )}
-      onclick={() => { if (!opt.disabled) selectOption(opt.value, new Event('change')); }}
+      onclick={(e) => { if (!opt.disabled) selectOption(opt.value, e); }}
       onkeydown={(e) => handleOptionKeydown(e, opt.value, opt.disabled)}
     >
       {#if multiple}

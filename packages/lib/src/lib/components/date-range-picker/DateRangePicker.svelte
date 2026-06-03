@@ -86,6 +86,12 @@
       && a.getDate() === b.getDate();
   }
 
+  function isDateDisabled(d: Date): boolean {
+    if (min && d < min) return true;
+    if (max && d > max) return true;
+    return false;
+  }
+
   function cloneWithTime(base: Date | null, h: number, m: number, s: number): Date | null {
     if (!base) return null;
     return new Date(base.getFullYear(), base.getMonth(), base.getDate(), h, m, s);
@@ -136,11 +142,13 @@
   function selectDatePart(year: number, month: number, day: number) {
     if (selecting === 'start') {
       const d = new Date(year, month, day, startHour, startMinute, startSecond);
+      if (isDateDisabled(d)) return;
       setRange(d, null);
       selecting = 'end';
     } else {
       const s = currentValue.start;
       const d = new Date(year, month, day, endHour, endMinute, endSecond);
+      if (isDateDisabled(d)) return;
       // If clicked before start, reset as new start
       if (s && d <= s) {
         setRange(d, null);
@@ -155,6 +163,7 @@
   }
 
   function selectYear(yr: number) {
+    if (isDateDisabled(new Date(yr, 0, 1))) return;
     if (selecting === 'start') {
       setRange(new Date(yr, 0, 1), null);
       selecting = 'end';
@@ -167,6 +176,7 @@
   }
 
   function selectMonth(yr: number, mo: number) {
+    if (isDateDisabled(new Date(yr, mo, 1))) return;
     if (selecting === 'start') {
       setRange(new Date(yr, mo, 1), null);
       selecting = 'end';
@@ -345,14 +355,16 @@
                       {@const isE = isRangeEnd(date)}
                       {@const inR = isInRange(date)}
                       {@const isToday = datesEqual(date, new Date())}
-                      <button type="button" aria-label={date.toLocaleDateString(locale)}
+                      {@const isDis = isDateDisabled(date)}
+                      <button type="button" aria-label={date.toLocaleDateString(locale)} disabled={isDis}
                         class={cn('h-8 w-8 rounded-full text-xs transition-colors relative',
                           isS && 'bg-(--pui-color-primary) text-(--pui-color-on-primary) font-medium rounded-r-none',
                           isE && 'bg-(--pui-color-primary) text-(--pui-color-on-primary) font-medium rounded-l-none',
                           inR && !isS && !isE && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)',
                           !isS && !isE && !inR && 'hover:bg-(--pui-surface-variant) text-(--pui-text-primary)',
                           isToday && !isS && !isE && !inR && 'ring-1 ring-(--pui-color-primary) ring-inset',
-                          currentValue.start && !currentValue.end && selecting === 'end' && 'hover:bg-(--pui-color-primary) hover:text-(--pui-color-on-primary)')}
+                          currentValue.start && !currentValue.end && selecting === 'end' && 'hover:bg-(--pui-color-primary) hover:text-(--pui-color-on-primary)',
+                          isDis && 'opacity-(--pui-opacity-disabled) cursor-not-allowed')}
                         onclick={() => selectDatePart(mDate.getFullYear(), mDate.getMonth(), day)}>
                         {day}
                       </button>

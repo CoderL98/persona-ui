@@ -195,7 +195,7 @@
           id={`${comboId}-opt-${idx}`}
           role="option"
           tabindex={0}
-          aria-selected={false}
+          aria-selected={idx === activeIndex}
           class={cn(
             'px-(--pui-space-3) py-(--pui-space-2) text-sm cursor-pointer transition-colors',
             idx === activeIndex && 'bg-(--pui-surface-variant)',
