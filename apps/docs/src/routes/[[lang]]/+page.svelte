@@ -300,7 +300,7 @@
         <Button size="lg">Lg</Button>
         <Button
           variant="filled"
-          style="--pui-button-radius:2px;--pui-button-bg:oklch(0.6 0.2 250)"
+          style="--pui-button-radius:2px;--pui-button-bg:oklch(0.4 0.16 250)"
         >
           Override
         </Button>

@@ -63,6 +63,7 @@
     type="checkbox"
     role="switch"
     checked={currentChecked}
+    aria-checked={currentChecked}
     {disabled}
     {name}
     {value}

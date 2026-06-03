@@ -18,12 +18,7 @@ test.describe("TextField Accessibility", () => {
 
   test("TextField label is associated with input", async ({ page }) => {
     await page.goto("/");
-    const label = page.locator("label").first();
-    if ((await label.count()) > 0) {
-      const forAttr = await label.getAttribute("for");
-      expect(forAttr).toBeTruthy();
-      const input = page.locator(`#${forAttr}`);
-      await expect(input).toBeVisible();
-    }
+    const textField = page.getByLabel("Username");
+    await expect(textField).toBeVisible();
   });
 });

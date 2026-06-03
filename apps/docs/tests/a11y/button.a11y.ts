@@ -33,6 +33,6 @@ test.describe("Button A11y", () => {
     // axe-playwright is in devDependencies
     const { injectAxe, checkA11y } = await import("axe-playwright");
     await injectAxe(page);
-    await checkA11y(page, 'section[id="buttons"]', undefined, false);
+    await checkA11y(page, 'section[aria-labelledby="buttons-heading"]', undefined, false);
   });
 });

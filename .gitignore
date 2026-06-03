@@ -16,5 +16,7 @@ audit-report.md
 batch-*.png
 batch-*.jpg
 batch-*.webp
-task_plan.md
 packages/lib/.npmrc
+*.md
+!README.md
+!README_CN.md

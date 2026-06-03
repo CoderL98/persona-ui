@@ -23,6 +23,7 @@ export interface Messages {
 	ctaGetStarted: string;
 	ctaBrowse: string;
 	hintSearch: string;
+	search: string;
 
 	// Hero preview cards
 	previewLabelApple: string;
