@@ -95,10 +95,10 @@ pnpm add @persona-ui/lib
 
 ## 下一步
 
-- [主題設定指南](theming.md) — 詳細的主題概念
-- [設計權杖參考](tokens.md) — 全部 CSS 變數
+- [主題設定指南](theming) — 詳細的主題概念
+- [設計權杖參考](tokens) — 全部 CSS 變數
 - [元件](/docs/components/)：
-  - [Button](components/button.md)
-  - [Card](components/card.md)
-  - [TextField](components/text-field.md)
-  - [Switch](components/switch.md)
+  - [Button](components/button)
+  - [Card](components/card)
+  - [TextField](components/text-field)
+  - [Switch](components/switch)

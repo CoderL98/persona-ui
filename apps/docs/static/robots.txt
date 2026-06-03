@@ -1,0 +1,8 @@
+# robots.txt — Persona UI 文档站
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# 站点地图
+Sitemap: https://persona-ui.dev/sitemap.xml

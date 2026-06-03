@@ -86,7 +86,7 @@ Persona UI 採用四層 CSS 變數架構：
 
 每個元件都會暴露各自的權杖。詳見各元件文件：
 
-- [Button 權杖](components/button.md)
-- [Card 權杖](components/card.md)
-- [TextField 權杖](components/text-field.md)
-- [Switch 權杖](components/switch.md)
+- [Button 權杖](components/button)
+- [Card 權杖](components/card)
+- [TextField 權杖](components/text-field)
+- [Switch 權杖](components/switch)

@@ -1,12 +1,17 @@
-import { redirect } from '@sveltejs/kit';
+// 默认跳转：访问 /docs 时重定向到该 locale 的 getting-started
+import { LOCALES } from '../../../lib/i18n/locales';
 import { docs } from '../../../lib/docs';
-import { pathToLocale, localeToPath } from '../../../lib/i18n/locales';
+import { redirect } from '@sveltejs/kit';
+
+export const prerender = true;
 
 export const load = ({ url }: { url: URL }) => {
 	const segments = url.pathname.split('/').filter(Boolean);
-	// [[lang]]/docs → segments[0] 可能是 locale 或 'docs'
-	const locale = pathToLocale(segments[0] === 'docs' ? undefined : segments[0]);
+	const locale = segments[0] && LOCALES.includes(segments[0] as (typeof LOCALES)[number])
+		? (segments[0] as (typeof LOCALES)[number])
+		: 'en';
 	const list = docs(locale);
 	const first = list.find((d) => d.slug === 'getting-started') ?? list[0];
-	throw redirect(302, `${localeToPath(locale)}/docs/${first.slug}`);
+	const prefix = locale === 'en' ? '' : `/${locale.toLowerCase()}`;
+	throw redirect(302, `${prefix}/docs/${first.slug}`);
 };

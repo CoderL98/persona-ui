@@ -95,10 +95,10 @@ You can also scope a theme to a subtree:
 
 ## Next Steps
 
-- [Theming Guide](theming.md) — detailed theming concepts
-- [Token Reference](tokens.md) — all CSS variables
+- [Theming Guide](theming) — detailed theming concepts
+- [Token Reference](tokens) — all CSS variables
 - [Components](/docs/components/):
-  - [Button](components/button.md)
-  - [Card](components/card.md)
-  - [TextField](components/text-field.md)
-  - [Switch](components/switch.md)
+  - [Button](components/button)
+  - [Card](components/card)
+  - [TextField](components/text-field)
+  - [Switch](components/switch)

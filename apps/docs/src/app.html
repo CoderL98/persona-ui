@@ -3,29 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <!-- 关键字体 preload（latin 子集），减少 FOUT -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="%sveltekit.assets%/fonts/InstrumentSerif-Regular.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="%sveltekit.assets%/fonts/BricolageGrotesque.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="%sveltekit.assets%/fonts/Geist-Sans.woff2"
-      crossorigin
-    />
+
+    <!-- Favicon + 移动端图标 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png" />
+    <link rel="icon" type="image/png" href="%sveltekit.assets%/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png" />
+    <link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
+
+    <!-- 浏览器 chrome 颜色（与 primary 容器协调） -->
+    <meta name="theme-color" content="#6366F1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1E1B4B" media="(prefers-color-scheme: dark)" />
+
+    <!-- 关键字体 preload（5 个 woff2 全部预加载） -->
+    <link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/InstrumentSerif-Regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/InstrumentSerif-Italic.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/BricolageGrotesque.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/Geist-Sans.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="%sveltekit.assets%/fonts/Geist-Mono.woff2" crossorigin />
+
+    <!-- i18n 自动检测：把 navigator.language 读到的语言同步到 <html>，避免 en → zh-CN 闪烁 -->
+    <script>
+      (function () {
+        try {
+          var lang = (navigator.language || 'en').toLowerCase();
+          var stored = null;
+          try { stored = localStorage.getItem('pui-locale'); } catch (_) {}
+          var target = stored;
+          if (!target) {
+            if (lang.startsWith('zh')) {
+              if (lang.includes('tw') || lang.includes('hant') || lang.includes('hk')) target = 'zh-TW';
+              else target = 'zh-CN';
+            } else {
+              target = 'en';
+            }
+          }
+          document.documentElement.lang = target;
+        } catch (_) { /* 忽略 */ }
+      })();
+    </script>
+
     %sveltekit.head%
   </head>
   <body>

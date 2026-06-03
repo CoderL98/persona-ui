@@ -86,7 +86,7 @@ Persona UI 采用四层 CSS 变量架构：
 
 每个组件都暴露各自的令牌。详见各组件文档：
 
-- [Button 令牌](components/button.md)
-- [Card 令牌](components/card.md)
-- [TextField 令牌](components/text-field.md)
-- [Switch 令牌](components/switch.md)
+- [Button 令牌](components/button)
+- [Card 令牌](components/card)
+- [TextField 令牌](components/text-field)
+- [Switch 令牌](components/switch)

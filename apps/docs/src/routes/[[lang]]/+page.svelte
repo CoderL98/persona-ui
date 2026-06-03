@@ -68,6 +68,10 @@
   const gettingStartedHref = $derived(`${localeToPath(locale)}/docs/getting-started`);
   const browseComponentsHref = $derived(`${localeToPath(locale)}/docs/components/button`);
 
+  // 站点 baseUrl（用于 OG/Twitter/canonical 绝对地址）
+  const origin = $derived(typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.dev');
+  const baseUrl = $derived(`${origin}${localeToPath(locale)}`);
+
   // IntersectionObserver：标记当前 section
   $effect(() => {
     if (typeof window === 'undefined') return;
@@ -90,11 +94,24 @@
 </script>
 
 <svelte:head>
-  <title>{t('pageTitle')}</title>
-  <meta
-    name="description"
-    content={t('pageDescription')}
-  />
+	<title>{t('pageTitle')}</title>
+	<meta name="description" content={t('pageDescription')} />
+	<!-- Open Graph / Twitter Card -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={t('pageTitle')} />
+	<meta property="og:description" content={t('pageDescription')} />
+	<meta property="og:image" content="{baseUrl}/og-image.png" />
+	<meta property="og:url" content={baseUrl} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={t('pageTitle')} />
+	<meta name="twitter:description" content={t('pageDescription')} />
+	<meta name="twitter:image" content="{baseUrl}/og-image.png" />
+	<!-- hreflang：三语互链 -->
+	<link rel="canonical" href={baseUrl} />
+	<link rel="alternate" hreflang="en" href="{origin}/" />
+	<link rel="alternate" hreflang="zh-CN" href="{origin}/zh-cn/" />
+	<link rel="alternate" hreflang="zh-TW" href="{origin}/zh-tw/" />
+	<link rel="alternate" hreflang="x-default" href="{origin}/" />
 </svelte:head>
 
 <div id="top"></div>
@@ -870,7 +887,7 @@
       <Breadcrumb
         items={[
           { label: 'Home', href: '/' },
-          { label: 'Products', href: '/products' },
+          { label: 'Products', href: 'https://example.com/products' },
           { label: 'Details', current: true },
         ]}
       />

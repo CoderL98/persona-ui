@@ -16,5 +16,5 @@ audit-report.md
 batch-*.png
 batch-*.jpg
 batch-*.webp
-task_plan.mdpackages/lib/.npmrc
+task_plan.md
 packages/lib/.npmrc

@@ -86,7 +86,7 @@ All tokens use the `--pui-` prefix to avoid collisions.
 
 Each component exposes its own tokens. See individual component docs:
 
-- [Button tokens](components/button.md)
-- [Card tokens](components/card.md)
-- [TextField tokens](components/text-field.md)
-- [Switch tokens](components/switch.md)
+- [Button tokens](components/button)
+- [Card tokens](components/card)
+- [TextField tokens](components/text-field)
+- [Switch tokens](components/switch)
