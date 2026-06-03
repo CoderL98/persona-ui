@@ -295,3 +295,19 @@ export type { RatingProps, RatingSize } from "./components/rating/rating.types.j
 
 export { default as InputGroup } from "./components/input-group/InputGroup.svelte";
 export type { InputGroupProps } from "./components/input-group/input-group.types.js";
+
+// ── Navigation & Feedback (M3 batch 5) ──
+export { default as BottomNavigation } from "./components/bottom-navigation/BottomNavigation.svelte";
+export type {
+  BottomNavigationProps,
+  BottomNavigationItem,
+} from "./components/bottom-navigation/bottom-navigation.types.js";
+
+export { default as ConfirmDialog } from "./components/confirm-dialog/ConfirmDialog.svelte";
+export type {
+  ConfirmDialogProps,
+  ConfirmTone,
+} from "./components/confirm-dialog/confirm-dialog.types.js";
+
+export { default as Message } from "./components/message/Message.svelte";
+export type { MessageProps, MessageTone } from "./components/message/message.types.js";
