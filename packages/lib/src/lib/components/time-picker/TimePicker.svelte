@@ -177,7 +177,7 @@
     // 同步滚动到可见区
     queueMicrotask(() => {
       const el = document.getElementById(`${list === 'hours' ? hoursListId : minutesListId}-${idx}`);
-      el?.scrollIntoView({ block: 'nearest' });
+      el?.scrollIntoView?.({ block: 'nearest' });
     });
   }
 
@@ -187,8 +187,8 @@
     queueMicrotask(() => {
       const h = document.getElementById(`${hoursListId}-${activeHourIndex}`);
       const m = document.getElementById(`${minutesListId}-${activeMinuteIndex}`);
-      h?.scrollIntoView({ block: 'nearest' });
-      m?.scrollIntoView({ block: 'nearest' });
+      h?.scrollIntoView?.({ block: 'nearest' });
+      m?.scrollIntoView?.({ block: 'nearest' });
     });
   });
 </script>
@@ -197,32 +197,33 @@
   use:clickOutside={() => { if (open) open = false; }}>
   {#if label}<label for={triggerId} class="block text-sm font-medium text-(--pui-text-secondary) mb-1">{label}</label>{/if}
 
-  <div class="relative">
+  <div class="relative flex items-stretch">
     <button id={triggerId} type="button" disabled={disabled}
-      class={cn('flex w-full items-center justify-between gap-2 bg-(--pui-field-bg,var(--pui-surface-base)) rounded-(--pui-field-radius,var(--pui-radius-control)) border px-(--pui-field-padding-x,var(--pui-space-3)) py-(--pui-field-padding-y,var(--pui-space-2)) text-left transition-colors',
+      class={cn('flex flex-1 items-center justify-between gap-2 bg-(--pui-field-bg,var(--pui-surface-base)) rounded-(--pui-field-radius,var(--pui-radius-control)) border px-(--pui-field-padding-x,var(--pui-space-3)) py-(--pui-field-padding-y,var(--pui-space-2)) text-left transition-colors',
         error ? 'border-(--pui-color-error)' : 'border-(--pui-field-border,var(--pui-outline))',
         !disabled && 'cursor-pointer hover:border-(--pui-color-primary)',
-        disabled && 'opacity-(--pui-opacity-disabled)')}
+        disabled && 'opacity-(--pui-opacity-disabled)',
+        clearable && currentValue && 'rounded-r-none')}
       aria-haspopup="listbox"
       aria-expanded={open}
       onclick={() => { if (!disabled) open = !open; }}>
       <span class={cn('flex-1', currentValue ? 'text-(--pui-text-primary)' : 'text-(--pui-text-disabled)')}>
         {currentValue || resolvedPlaceholder}
       </span>
-      {#if clearable && currentValue && !disabled}
-        <button type="button" aria-label={t.clear}
-          class="shrink-0 p-0.5 -m-0.5 rounded-full hover:bg-(--pui-surface-variant)"
-          onclick={(e) => { e.stopPropagation(); clear(); }}>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
-      {/if}
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="shrink-0 text-(--pui-text-secondary)">
         <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 4.5V8l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </button>
+    {#if clearable && currentValue && !disabled}
+      <button type="button" aria-label={t.clear}
+        class="shrink-0 px-3 border border-l-0 border-(--pui-field-border,var(--pui-outline)) rounded-r-(--pui-field-radius,var(--pui-radius-control)) hover:bg-(--pui-surface-variant) text-(--pui-text-secondary) hover:text-(--pui-text-primary) transition-colors"
+        onclick={(e) => { e.stopPropagation(); clear(); }}>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    {/if}
   </div>
 
   {#if open}
