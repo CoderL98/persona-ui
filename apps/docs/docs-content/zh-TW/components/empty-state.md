@@ -5,6 +5,14 @@ group: components
 
 # EmptyState 空狀態
 
+## Import
+
+```svelte
+<script>
+  import { 空狀態 } from '@persona-ui/lib';
+</script>
+```
+
 帶有圖示、標題、描述與操作的空狀態展示。
 
 ## API

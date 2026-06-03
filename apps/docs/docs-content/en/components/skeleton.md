@@ -5,6 +5,14 @@ group: components
 
 # Skeleton
 
+## Import
+
+```svelte
+<script>
+  import { Skeleton } from '@persona-ui/lib';
+</script>
+```
+
 Placeholder loading shapes.
 
 ## API

@@ -5,6 +5,14 @@ group: components
 
 # 日期范围选择器
 
+## Import
+
+```svelte
+<script>
+  import { 日期范围选择器 } from '@persona-ui/lib';
+</script>
+```
+
 由日历驱动的日期区间选择器，可配置粒度（年、月、日、时、分、秒）。
 
 ## 导入

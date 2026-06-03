@@ -5,6 +5,14 @@ group: components
 
 # Alert
 
+## Import
+
+```svelte
+<script>
+  import { 提示框 } from '@persona-ui/lib';
+</script>
+```
+
 Alert 组件，支持 4 种语义色调（info/success/warning/error）、3 种视觉变体，以及可关闭模式。
 
 ## API

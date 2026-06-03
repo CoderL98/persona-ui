@@ -5,6 +5,14 @@ group: components
 
 # 对话框
 
+## Import
+
+```svelte
+<script>
+  import { 对话框 } from '@persona-ui/lib';
+</script>
+```
+
 模态对话框，包含标题、描述、底部区域，支持焦点陷阱与 Escape 关闭。
 
 ## API

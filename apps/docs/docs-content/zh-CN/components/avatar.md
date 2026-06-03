@@ -5,6 +5,14 @@ group: components
 
 # Avatar 头像
 
+## Import
+
+```svelte
+<script>
+  import { 头像 } from '@persona-ui/lib';
+</script>
+```
+
 用户头像组件，支持图片、缩写字母回退和状态指示点。
 
 ## API

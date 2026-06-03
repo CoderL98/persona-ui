@@ -5,6 +5,14 @@ group: components
 
 # 工具提示
 
+## Import
+
+```svelte
+<script>
+  import { 工具提示 } from '@persona-ui/lib';
+</script>
+```
+
 支援 4 個方向的工具提示，可控制顯示延遲，hover/focus 觸發。
 
 ## API

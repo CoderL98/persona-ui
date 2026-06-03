@@ -5,6 +5,14 @@ group: components
 
 # 搜尋框
 
+## Import
+
+```svelte
+<script>
+  import { 搜尋框 } from '@persona-ui/lib';
+</script>
+```
+
 搜尋風格的輸入框,前置放大鏡圖示,並可選擇是否顯示清除按鈕。
 
 ## 匯入

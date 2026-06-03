@@ -5,6 +5,14 @@ group: components
 
 # 标签页
 
+## Import
+
+```svelte
+<script>
+  import { 标签页 } from '@persona-ui/lib';
+</script>
+```
+
 标签页导航，支持水平/垂直方向与键盘操作。
 
 ## API

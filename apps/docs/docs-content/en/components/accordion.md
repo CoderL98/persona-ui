@@ -5,6 +5,14 @@ group: components
 
 # Accordion
 
+## Import
+
+```svelte
+<script>
+  import { Accordion } from '@persona-ui/lib';
+</script>
+```
+
 Collapsible accordion with single/multi expand.
 
 ## API

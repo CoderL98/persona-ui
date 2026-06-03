@@ -5,6 +5,14 @@ group: components
 
 # 滑块
 
+## Import
+
+```svelte
+<script>
+  import { 滑块 } from '@persona-ui/lib';
+</script>
+```
+
 支持单值或区间的滑块控件，可选刻度标记，支持键盘操作。
 
 ## 导入

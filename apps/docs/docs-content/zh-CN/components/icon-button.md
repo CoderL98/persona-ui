@@ -5,6 +5,14 @@ group: components
 
 # IconButton 图标按钮
 
+## Import
+
+```svelte
+<script>
+  import { 图标按钮 } from '@persona-ui/lib';
+</script>
+```
+
 一个带有可访问标签的圆形纯图标按钮。
 
 ## 导入

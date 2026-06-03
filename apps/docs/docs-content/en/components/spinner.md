@@ -5,6 +5,14 @@ group: components
 
 # Spinner
 
+## Import
+
+```svelte
+<script>
+  import { Spinner } from '@persona-ui/lib';
+</script>
+```
+
 Loading spinner with 3 sizes and decorative mode.
 
 ## API

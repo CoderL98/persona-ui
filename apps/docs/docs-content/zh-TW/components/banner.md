@@ -5,6 +5,14 @@ group: components
 
 # Banner
 
+## Import
+
+```svelte
+<script>
+  import { 橫幅 } from '@persona-ui/lib';
+</script>
+```
+
 頁面級橫幅，支援 4 種語義色調與吸頂模式。
 
 ## API

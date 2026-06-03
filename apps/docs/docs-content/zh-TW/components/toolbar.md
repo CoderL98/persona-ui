@@ -5,6 +5,14 @@ group: components
 
 # Toolbar
 
+## Import
+
+```svelte
+<script>
+  import { 工具列 } from '@persona-ui/lib';
+</script>
+```
+
 頂部工具列，包含 leading/trailing/children 插槽，支援 sticky 模式。
 
 ## API

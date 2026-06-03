@@ -5,6 +5,14 @@ group: components
 
 # Chip 标签芯片
 
+## Import
+
+```svelte
+<script>
+  import { 标签芯片 } from '@persona-ui/lib';
+</script>
+```
+
 一种用于标签、筛选器或选项的紧凑型交互式标签。
 
 ## API

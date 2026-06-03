@@ -5,6 +5,14 @@ group: components
 
 # 選單
 
+## Import
+
+```svelte
+<script>
+  import { 選單 } from '@persona-ui/lib';
+</script>
+```
+
 下拉選單，包含選單項目與鍵盤導覽，支援危險操作與快捷鍵。
 
 ## API

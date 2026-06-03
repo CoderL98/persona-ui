@@ -5,6 +5,14 @@ group: components
 
 # 單選
 
+## Import
+
+```svelte
+<script>
+  import { 單選 } from '@persona-ui/lib';
+</script>
+```
+
 互斥選項的單選群組,亦提供獨立的 `Radio` 項目。
 
 ## 匯入

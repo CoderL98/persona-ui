@@ -5,6 +5,14 @@ group: components
 
 # Toast
 
+## Import
+
+```svelte
+<script>
+  import { 轻提示 } from '@persona-ui/lib';
+</script>
+```
+
 临时通知组件，支持自动消失、4 种语义色调和操作按钮。
 
 ## API

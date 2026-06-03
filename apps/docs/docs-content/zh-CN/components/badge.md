@@ -5,6 +5,14 @@ group: components
 
 # Badge 徽章
 
+## Import
+
+```svelte
+<script>
+  import { 徽章 } from '@persona-ui/lib';
+</script>
+```
+
 用于显示计数、状态或通知的小型标签。
 
 ## API

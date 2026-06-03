@@ -5,6 +5,14 @@ group: components
 
 # TreeView
 
+## Import
+
+```svelte
+<script>
+  import { TreeView } from '@persona-ui/lib';
+</script>
+```
+
 Tree view with expandable/collapsible nodes and selection.
 
 ## API

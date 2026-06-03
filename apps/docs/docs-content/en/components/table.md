@@ -5,6 +5,14 @@ group: components
 
 # Table
 
+## Import
+
+```svelte
+<script>
+  import { Table } from '@persona-ui/lib';
+</script>
+```
+
 Basic HTML table with density and striped mode.
 
 ## API

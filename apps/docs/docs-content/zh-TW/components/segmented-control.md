@@ -5,6 +5,14 @@ group: components
 
 # SegmentedControl
 
+## Import
+
+```svelte
+<script>
+  import { 分段控制器 } from '@persona-ui/lib';
+</script>
+```
+
 分段按鈕組，單選，行為類似單選組。
 
 ## API

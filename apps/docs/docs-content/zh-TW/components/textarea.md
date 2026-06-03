@@ -5,6 +5,14 @@ group: components
 
 # 文字區域
 
+## Import
+
+```svelte
+<script>
+  import { 文字區域 } from '@persona-ui/lib';
+</script>
+```
+
 多行文字輸入框,支援標籤、輔助文字、錯誤狀態與可設定的調整大小行為。
 
 ## 匯入

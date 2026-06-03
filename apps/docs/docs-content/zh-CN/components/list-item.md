@@ -5,6 +5,14 @@ group: components
 
 # 列表项
 
+## Import
+
+```svelte
+<script>
+  import { 列表项 } from '@persona-ui/lib';
+</script>
+```
+
 带 title / description / leading / trailing 插槽与链接支持的列表项。
 
 ## API

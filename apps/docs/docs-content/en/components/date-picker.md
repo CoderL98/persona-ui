@@ -5,6 +5,14 @@ group: components
 
 # DatePicker
 
+## Import
+
+```svelte
+<script>
+  import { DatePicker } from '@persona-ui/lib';
+</script>
+```
+
 Date picker combining TextField + Popover + Calendar.
 
 ## API

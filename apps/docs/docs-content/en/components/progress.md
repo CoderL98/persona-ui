@@ -5,6 +5,14 @@ group: components
 
 # Progress
 
+## Import
+
+```svelte
+<script>
+  import { Progress } from '@persona-ui/lib';
+</script>
+```
+
 Progress bar with determinate and indeterminate modes.
 
 ## API

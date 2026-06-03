@@ -5,6 +5,14 @@ group: components
 
 # Menu
 
+## Import
+
+```svelte
+<script>
+  import { Menu } from '@persona-ui/lib';
+</script>
+```
+
 Dropdown menu with items, keyboard navigation, destructive/shortcut support.
 
 ## API

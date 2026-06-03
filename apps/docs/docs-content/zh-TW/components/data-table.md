@@ -5,6 +5,14 @@ group: components
 
 # DataTable
 
+## Import
+
+```svelte
+<script>
+  import { 資料表格 } from '@persona-ui/lib';
+</script>
+```
+
 由資料驅動的表格，支援欄位定義、排序與選取。
 
 ## API

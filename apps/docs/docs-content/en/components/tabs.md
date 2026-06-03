@@ -5,6 +5,14 @@ group: components
 
 # Tabs
 
+## Import
+
+```svelte
+<script>
+  import { Tabs } from '@persona-ui/lib';
+</script>
+```
+
 Tab navigation with horizontal/vertical orientation and keyboard support.
 
 ## API

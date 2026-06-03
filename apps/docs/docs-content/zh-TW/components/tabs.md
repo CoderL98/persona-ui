@@ -5,6 +5,14 @@ group: components
 
 # 分頁
 
+## Import
+
+```svelte
+<script>
+  import { 分頁 } from '@persona-ui/lib';
+</script>
+```
+
 分頁導覽，支援水平/垂直方向與鍵盤操作。
 
 ## API

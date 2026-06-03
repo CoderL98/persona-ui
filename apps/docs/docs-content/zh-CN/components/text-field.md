@@ -5,6 +5,14 @@ group: components
 
 # 文本框
 
+## Import
+
+```svelte
+<script>
+  import { 文本框 } from '@persona-ui/lib';
+</script>
+```
+
 带标签、辅助文字与错误状态的文本输入组件。
 
 ## 导入

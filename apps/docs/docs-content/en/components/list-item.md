@@ -5,6 +5,14 @@ group: components
 
 # ListItem
 
+## Import
+
+```svelte
+<script>
+  import { ListItem } from '@persona-ui/lib';
+</script>
+```
+
 List item with title/description/leading/trailing slots and link support.
 
 ## API

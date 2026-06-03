@@ -5,6 +5,14 @@ group: components
 
 # Skeleton
 
+## Import
+
+```svelte
+<script>
+  import { 骨架屏 } from '@persona-ui/lib';
+</script>
+```
+
 載入時的佔位形狀元件。
 
 ## API

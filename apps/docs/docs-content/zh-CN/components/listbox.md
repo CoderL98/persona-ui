@@ -5,6 +5,14 @@ group: components
 
 # 列表框 (Listbox)
 
+## Import
+
+```svelte
+<script>
+  import { 列表框 } from '@persona-ui/lib';
+</script>
+```
+
 独立的、可访问的选项列表 — 支持单选或多选，完整的键盘导航。
 
 ## 导入

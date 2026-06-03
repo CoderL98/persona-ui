@@ -5,6 +5,14 @@ group: components
 
 # NavigationRail
 
+## Import
+
+```svelte
+<script>
+  import { NavigationRail } from '@persona-ui/lib';
+</script>
+```
+
 Vertical navigation rail with icon + label items.
 
 ## API

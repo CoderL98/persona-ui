@@ -5,6 +5,14 @@ group: components
 
 # 列表方塊 (Listbox)
 
+## Import
+
+```svelte
+<script>
+  import { 列表方塊 } from '@persona-ui/lib';
+</script>
+```
+
 獨立的、無障礙的選項清單 — 支援單選或多選，完整的鍵盤導覽。
 
 ## 匯入

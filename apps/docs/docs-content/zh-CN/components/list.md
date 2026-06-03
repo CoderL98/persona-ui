@@ -5,6 +5,14 @@ group: components
 
 # 列表
 
+## Import
+
+```svelte
+<script>
+  import { 列表 } from '@persona-ui/lib';
+</script>
+```
+
 提供 plain / inset / grouped 变体的列表容器。
 
 ## API

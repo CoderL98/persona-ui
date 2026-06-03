@@ -5,6 +5,14 @@ group: components
 
 # 文字方塊
 
+## Import
+
+```svelte
+<script>
+  import { 文字方塊 } from '@persona-ui/lib';
+</script>
+```
+
 帶有標籤、輔助文字與錯誤狀態的文字輸入元件。
 
 ## 匯入

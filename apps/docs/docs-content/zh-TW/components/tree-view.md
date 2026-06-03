@@ -5,6 +5,14 @@ group: components
 
 # 樹狀檢視
 
+## Import
+
+```svelte
+<script>
+  import { 樹狀檢視 } from '@persona-ui/lib';
+</script>
+```
+
 支援節點展開 / 收合與選取的樹狀檢視。
 
 ## API

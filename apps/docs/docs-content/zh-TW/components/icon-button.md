@@ -5,6 +5,14 @@ group: components
 
 # IconButton 圖示按鈕
 
+## Import
+
+```svelte
+<script>
+  import { 圖示按鈕 } from '@persona-ui/lib';
+</script>
+```
+
 一個帶有可存取標籤的圓形純圖示按鈕。
 
 ## 匯入

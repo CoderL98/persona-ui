@@ -5,6 +5,14 @@ group: components
 
 # 行事曆
 
+## Import
+
+```svelte
+<script>
+  import { 行事曆 } from '@persona-ui/lib';
+</script>
+```
+
 月檢視行事曆，支援日期選擇。
 
 ## API

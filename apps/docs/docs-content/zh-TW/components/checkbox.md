@@ -5,6 +5,14 @@ group: components
 
 # 核取方塊
 
+## Import
+
+```svelte
+<script>
+  import { 核取方塊 } from '@persona-ui/lib';
+</script>
+```
+
 帶有標籤與說明文字的二切換開,支援 `indeterminate` 狀態以處理部分選取。
 
 ## 匯入

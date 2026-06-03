@@ -5,6 +5,14 @@ group: components
 
 # 彈出層
 
+## Import
+
+```svelte
+<script>
+  import { 彈出層 } from '@persona-ui/lib';
+</script>
+```
+
 Popover 彈出層，支援觸發切換、Escape 關閉和 6 個彈出位置。
 
 ## API

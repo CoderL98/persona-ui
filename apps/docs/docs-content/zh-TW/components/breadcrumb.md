@@ -5,6 +5,14 @@ group: components
 
 # Breadcrumb
 
+## Import
+
+```svelte
+<script>
+  import { 麵包屑 } from '@persona-ui/lib';
+</script>
+```
+
 導覽麵包屑，支援連結與當前頁標記。
 
 ## API

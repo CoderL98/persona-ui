@@ -5,6 +5,14 @@ group: components
 
 # List
 
+## Import
+
+```svelte
+<script>
+  import { List } from '@persona-ui/lib';
+</script>
+```
+
 List container with plain/inset/grouped variants.
 
 ## API

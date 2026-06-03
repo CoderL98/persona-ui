@@ -5,6 +5,14 @@ group: components
 
 # Card 卡片
 
+## Import
+
+```svelte
+<script>
+  import { 卡片 } from '@persona-ui/lib';
+</script>
+```
+
 用于将相关内容组合在一起的容器组件。
 
 ## 导入

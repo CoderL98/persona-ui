@@ -5,6 +5,14 @@ group: components
 
 # CommandPalette
 
+## Import
+
+```svelte
+<script>
+  import { CommandPalette } from '@persona-ui/lib';
+</script>
+```
+
 Command palette dialog with search filtering and keyboard navigation.
 
 ## API

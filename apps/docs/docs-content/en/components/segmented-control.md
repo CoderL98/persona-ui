@@ -5,6 +5,14 @@ group: components
 
 # SegmentedControl
 
+## Import
+
+```svelte
+<script>
+  import { SegmentedControl } from '@persona-ui/lib';
+</script>
+```
+
 Segmented button group, single-select, radio group behavior.
 
 ## API

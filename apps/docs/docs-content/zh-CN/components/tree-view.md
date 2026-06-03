@@ -5,6 +5,14 @@ group: components
 
 # 树视图
 
+## Import
+
+```svelte
+<script>
+  import { 树视图 } from '@persona-ui/lib';
+</script>
+```
+
 支持节点展开 / 折叠与选中的树视图。
 
 ## API

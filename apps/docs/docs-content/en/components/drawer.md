@@ -5,6 +5,14 @@ group: components
 
 # Drawer
 
+## Import
+
+```svelte
+<script>
+  import { Drawer } from '@persona-ui/lib';
+</script>
+```
+
 Side drawer for navigation or secondary content.
 
 ## API

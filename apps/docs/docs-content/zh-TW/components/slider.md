@@ -5,6 +5,14 @@ group: components
 
 # 滑桿
 
+## Import
+
+```svelte
+<script>
+  import { 滑桿 } from '@persona-ui/lib';
+</script>
+```
+
 單值或範圍滑桿,支援刻度標記與鍵盤操作。
 
 ## 匯入

@@ -5,6 +5,14 @@ group: components
 
 # NavigationRail
 
+## Import
+
+```svelte
+<script>
+  import { 导航栏 } from '@persona-ui/lib';
+</script>
+```
+
 带图标 + 标签的垂直导航栏。
 
 ## API

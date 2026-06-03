@@ -4,9 +4,11 @@
 	import { currentLocale } from '../../../lib/i18n/store.svelte';
 	import { localeToPath } from '../../../lib/i18n/locales';
 	import { t } from '../../../lib/i18n/t';
+	import SearchModal from '../../../lib/components/SearchModal.svelte';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children?: Snippet } = $props();
+	let searchOpen = $state(false);
 
 	const locale = $derived(currentLocale.value);
 
@@ -51,6 +53,19 @@
 	<aside class="docs-sidebar">
 		<a class="docs-sidebar__back" href="{localeToPath(locale)}/">{t('backToHome')}</a>
 
+		<button
+			type="button"
+			class="docs-search-trigger w-full mt-2 mb-3 flex items-center gap-2 px-3 py-2 text-sm rounded-(--pui-radius-control) bg-(--pui-surface-variant) text-(--pui-text-secondary) hover:bg-(--pui-surface-base) border border-(--pui-outline-subtle) transition-colors"
+			onclick={() => { searchOpen = true; }}
+		>
+			<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+				<circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+				<path d="M9 9l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+			</svg>
+			<span class="flex-1 text-left">{t('search')}</span>
+			<kbd class="text-[10px] font-mono bg-(--pui-surface-base) px-1.5 py-0.5 rounded border border-(--pui-outline-subtle)">⌘K</kbd>
+		</button>
+
 		<nav class="docs-nav">
 			<section class="docs-nav__group">
 				<h3>{t('sidebarGuides')}</h3>
@@ -85,6 +100,8 @@
 			</section>
 		</nav>
 	</aside>
+
+	<SearchModal bind:open={searchOpen} />
 
 	<article class="docs-content">
 		{@render children?.()}
@@ -265,6 +282,71 @@
 
 	.docs-content :global(a:hover) {
 		text-decoration-thickness: 2px;
+	}
+
+	.docs-content :global(.docs-code-block) {
+		position: relative;
+		margin: 1.25rem 0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: oklch(0.15 0 0);
+		color: oklch(0.9 0 0);
+		border: 1px solid var(--pui-color-border, rgba(0, 0, 0, 0.1));
+	}
+
+	:global(.docs-code-block__bar) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.4rem 0.75rem;
+		background: oklch(0.2 0 0);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.7rem;
+	}
+
+	:global(.docs-code-block__lang) {
+		color: oklch(0.65 0 0);
+		font-family: var(--pui-font-mono, monospace);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	:global(.docs-code-block__copy) {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.2rem 0.5rem;
+		border-radius: 0.25rem;
+		background: transparent;
+		border: 0;
+		color: oklch(0.7 0 0);
+		cursor: pointer;
+		font-size: 0.7rem;
+		font-family: inherit;
+		transition: color 0.15s, background-color 0.15s;
+	}
+
+	:global(.docs-code-block__copy:hover) {
+		color: oklch(0.9 0 0);
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.docs-content :global(.docs-code-block pre) {
+		margin: 0;
+		padding: 1rem;
+		background: transparent;
+		border: 0;
+		font-size: 0.8rem;
+		line-height: 1.6;
+		color: inherit;
+		overflow-x: auto;
+	}
+
+	.docs-content :global(.docs-code-block pre code) {
+		background: transparent;
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
 	}
 
 	.docs-content :global(blockquote) {

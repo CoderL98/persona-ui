@@ -5,6 +5,14 @@ group: components
 
 # DataTable
 
+## Import
+
+```svelte
+<script>
+  import { DataTable } from '@persona-ui/lib';
+</script>
+```
+
 Data-driven table with columns, sorting, and selection.
 
 ## API

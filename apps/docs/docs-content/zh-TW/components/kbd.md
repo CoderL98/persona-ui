@@ -5,6 +5,14 @@ group: components
 
 # Kbd 鍵盤按鍵
 
+## Import
+
+```svelte
+<script>
+  import { 鍵盤按鍵 } from '@persona-ui/lib';
+</script>
+```
+
 用於展示鍵盤快捷鍵。
 
 ## API

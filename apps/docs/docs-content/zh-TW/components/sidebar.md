@@ -5,6 +5,14 @@ group: components
 
 # Sidebar
 
+## Import
+
+```svelte
+<script>
+  import { 側邊欄 } from '@persona-ui/lib';
+</script>
+```
+
 可摺疊側邊欄，包含 header/content/footer 區域。
 
 ## API

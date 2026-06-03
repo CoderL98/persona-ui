@@ -5,6 +5,14 @@ group: components
 
 # Progress
 
+## Import
+
+```svelte
+<script>
+  import { 进度条 } from '@persona-ui/lib';
+</script>
+```
+
 进度条组件，支持确定进度和不确定进度两种模式。
 
 ## API

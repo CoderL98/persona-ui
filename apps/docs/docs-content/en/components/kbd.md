@@ -5,6 +5,14 @@ group: components
 
 # Kbd
 
+## Import
+
+```svelte
+<script>
+  import { Kbd } from '@persona-ui/lib';
+</script>
+```
+
 Keyboard shortcut display.
 
 ## API

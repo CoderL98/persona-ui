@@ -5,6 +5,14 @@ group: components
 
 # 文本域
 
+## Import
+
+```svelte
+<script>
+  import { 文本域 } from '@persona-ui/lib';
+</script>
+```
+
 一个多行文本输入控件，支持标签、帮助文本、错误状态以及可配置的尺寸调整行为。
 
 ## 导入

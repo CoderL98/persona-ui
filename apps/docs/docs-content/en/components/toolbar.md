@@ -5,6 +5,14 @@ group: components
 
 # Toolbar
 
+## Import
+
+```svelte
+<script>
+  import { Toolbar } from '@persona-ui/lib';
+</script>
+```
+
 Top toolbar with leading/trailing/children slots, sticky mode.
 
 ## API

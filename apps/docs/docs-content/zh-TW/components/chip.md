@@ -5,6 +5,14 @@ group: components
 
 # Chip 標籤晶片
 
+## Import
+
+```svelte
+<script>
+  import { 標籤晶片 } from '@persona-ui/lib';
+</script>
+```
+
 一種用於標籤、篩選器或選項的緊湊型互動式標籤。
 
 ## API

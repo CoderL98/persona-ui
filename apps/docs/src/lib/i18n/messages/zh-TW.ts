@@ -62,6 +62,7 @@ export const messages: Messages = {
 	backToHome: '← 返回首頁',
 	sidebarGuides: '指南',
 	sidebarComponents: '元件',
+	search: '搜尋文件…',
 
 	// Docs page
 	docNotFound: '找不到文件',

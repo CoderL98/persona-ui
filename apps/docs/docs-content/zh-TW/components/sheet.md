@@ -5,6 +5,14 @@ group: components
 
 # Sheet
 
+## Import
+
+```svelte
+<script>
+  import { 抽屜面板 } from '@persona-ui/lib';
+</script>
+```
+
 由底部/左側/右側/頂部滑出的浮層面板。
 
 ## API

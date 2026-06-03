@@ -5,6 +5,14 @@ group: components
 
 # 手风琴
 
+## Import
+
+```svelte
+<script>
+  import { 手风琴 } from '@persona-ui/lib';
+</script>
+```
+
 支持单 / 多面板展开的可折叠手风琴。
 
 ## API

@@ -5,6 +5,14 @@ group: components
 
 # 选择器
 
+## Import
+
+```svelte
+<script>
+  import { 选择器 } from '@persona-ui/lib';
+</script>
+```
+
 下拉选择器，同时支持页面内 listbox 渲染与原生 `<select>` 渲染两种模式。
 
 ## 导入

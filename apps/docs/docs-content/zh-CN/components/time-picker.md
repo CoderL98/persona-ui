@@ -5,6 +5,14 @@ group: components
 
 # 时间选择器
 
+## Import
+
+```svelte
+<script>
+  import { 时间选择器 } from '@persona-ui/lib';
+</script>
+```
+
 支持 12 小时制与 24 小时制的时刻选择器，分钟步长可配置，完整支持键盘操作。
 
 ## 导入

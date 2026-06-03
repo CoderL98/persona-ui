@@ -5,6 +5,14 @@ group: components
 
 # Spinner
 
+## Import
+
+```svelte
+<script>
+  import { 載入指示器 } from '@persona-ui/lib';
+</script>
+```
+
 載入指示器，支援 3 種尺寸及裝飾模式。
 
 ## API

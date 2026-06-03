@@ -5,6 +5,14 @@ group: components
 
 # 开关
 
+## Import
+
+```svelte
+<script>
+  import { 开关 } from '@persona-ui/lib';
+</script>
+```
+
 带无障碍 `role="switch"` 的开关组件。
 
 ## 导入

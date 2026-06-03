@@ -5,6 +5,14 @@ group: components
 
 # Breadcrumb
 
+## Import
+
+```svelte
+<script>
+  import { Breadcrumb } from '@persona-ui/lib';
+</script>
+```
+
 Navigation breadcrumb with link and current page support.
 
 ## API

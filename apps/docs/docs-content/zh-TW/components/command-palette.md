@@ -5,6 +5,14 @@ group: components
 
 # CommandPalette
 
+## Import
+
+```svelte
+<script>
+  import { 命令面板 } from '@persona-ui/lib';
+</script>
+```
+
 命令面板對話方塊，支援搜尋篩選與鍵盤導覽。
 
 ## API

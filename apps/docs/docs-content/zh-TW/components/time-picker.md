@@ -5,6 +5,14 @@ group: components
 
 # 時間選擇器
 
+## Import
+
+```svelte
+<script>
+  import { 時間選擇器 } from '@persona-ui/lib';
+</script>
+```
+
 提供 12 小時與 24 小時制、可設定分鐘刻度,並完整支援鍵盤操作的時間選擇器。
 
 ## 匯入

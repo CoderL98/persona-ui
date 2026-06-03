@@ -5,6 +5,14 @@ group: components
 
 # Sidebar
 
+## Import
+
+```svelte
+<script>
+  import { Sidebar } from '@persona-ui/lib';
+</script>
+```
+
 Collapsible sidebar with header/content/footer sections.
 
 ## API

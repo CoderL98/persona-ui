@@ -5,6 +5,14 @@ group: components
 
 # Divider
 
+## Import
+
+```svelte
+<script>
+  import { Divider } from '@persona-ui/lib';
+</script>
+```
+
 A separator line, optionally with a label.
 
 ## API

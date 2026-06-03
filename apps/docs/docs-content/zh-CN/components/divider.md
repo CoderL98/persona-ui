@@ -5,6 +5,14 @@ group: components
 
 # Divider 分隔符
 
+## Import
+
+```svelte
+<script>
+  import { 分隔符 } from '@persona-ui/lib';
+</script>
+```
+
 一条分隔线，可选附加标签。
 
 ## API

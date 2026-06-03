@@ -5,6 +5,14 @@ group: components
 
 # 折疊面板
 
+## Import
+
+```svelte
+<script>
+  import { 折疊面板 } from '@persona-ui/lib';
+</script>
+```
+
 支援單 / 多面板展開的可收合元件。
 
 ## API

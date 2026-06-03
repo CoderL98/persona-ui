@@ -5,6 +5,14 @@ group: components
 
 # 组合框
 
+## Import
+
+```svelte
+<script>
+  import { 组合框 } from '@persona-ui/lib';
+</script>
+```
+
 带自由文本输入的可过滤单选或多选下拉。多选模式下，已选项以可删除的标签形式呈现。
 
 ## 导入

@@ -69,6 +69,7 @@ export const messages: Messages = {
 	backToHome: '← Back to home',
 	sidebarGuides: 'Guides',
 	sidebarComponents: 'Components',
+	search: 'Search docs…',
 
 	// Docs page
 	docNotFound: 'Document not found',

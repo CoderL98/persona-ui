@@ -5,6 +5,14 @@ group: components
 
 # 組合方塊
 
+## Import
+
+```svelte
+<script>
+  import { 組合方塊 } from '@persona-ui/lib';
+</script>
+```
+
 支援可篩選的單選或多選下拉,搭配自由輸入文字。多選模式會以可移除的標籤呈現已選項目。
 
 ## 匯入

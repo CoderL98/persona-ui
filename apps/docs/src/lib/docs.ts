@@ -91,6 +91,48 @@ export function getGroup(slug: string): 'guide' | 'components' | undefined {
 	return undefined;
 }
 
+export interface SearchResult {
+	slug: string;
+	title: string;
+	group: 'guide' | 'components';
+	locale: Locale;
+	excerpt: string;
+	score: number;
+}
+
+/**
+ * 全文搜索：对所有 locale 的标题和正文做大小写不敏感的子串匹配。
+ * 标题命中得分高于正文，slug 完全匹配得分最高。
+ */
+export function searchDocs(query: string, locale: Locale, limit = 12): SearchResult[] {
+	const q = query.trim().toLowerCase();
+	if (!q) return [];
+	const results: SearchResult[] = [];
+	for (const [key, { fm, body }] of Object.entries(INDEX)) {
+		const [kLocale, ...rest] = key.split('/');
+		if (kLocale !== locale) continue;
+		const slug = rest.join('/');
+		const titleLower = fm.title.toLowerCase();
+		const bodyLower = body.toLowerCase();
+		const slugLower = slug.toLowerCase();
+		let score = 0;
+		if (slugLower === q) score += 1000;
+		if (titleLower === q) score += 500;
+		if (titleLower.includes(q)) score += 100;
+		if (bodyLower.includes(q)) score += 1;
+		// 计算匹配位置用于 excerpt
+		const idx = bodyLower.indexOf(q);
+		const start = Math.max(0, idx > 0 ? idx - 30 : 0);
+		const end = Math.min(body.length, start + 120);
+		const excerpt = idx >= 0 ? '…' + body.slice(start, end).replace(/\n/g, ' ') + '…' : '';
+		if (score > 0) {
+			results.push({ slug, title: fm.title, group: fm.group, locale, excerpt, score });
+		}
+	}
+	results.sort((a, b) => b.score - a.score);
+	return results.slice(0, limit);
+}
+
 export function docs(locale: Locale): DocEntry[] {
 	return ENTRIES[locale];
 }

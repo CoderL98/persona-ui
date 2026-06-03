@@ -5,6 +5,14 @@ group: components
 
 # Banner
 
+## Import
+
+```svelte
+<script>
+  import { Banner } from '@persona-ui/lib';
+</script>
+```
+
 Page-level banner with 4 tones and sticky mode.
 
 ## API

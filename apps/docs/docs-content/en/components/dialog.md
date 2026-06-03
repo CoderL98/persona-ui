@@ -5,6 +5,14 @@ group: components
 
 # Dialog
 
+## Import
+
+```svelte
+<script>
+  import { Dialog } from '@persona-ui/lib';
+</script>
+```
+
 Modal dialog with title, description, footer, focus trap, and Escape close.
 
 ## API

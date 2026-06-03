@@ -5,6 +5,14 @@ group: components
 
 # 菜单
 
+## Import
+
+```svelte
+<script>
+  import { 菜单 } from '@persona-ui/lib';
+</script>
+```
+
 下拉菜单，包含菜单项与键盘导航，支持危险操作与快捷键。
 
 ## API

@@ -5,6 +5,14 @@ group: components
 
 # Calendar
 
+## Import
+
+```svelte
+<script>
+  import { Calendar } from '@persona-ui/lib';
+</script>
+```
+
 Month-view calendar with date selection.
 
 ## API

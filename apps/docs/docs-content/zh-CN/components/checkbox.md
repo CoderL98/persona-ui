@@ -5,6 +5,14 @@ group: components
 
 # 复选框
 
+## Import
+
+```svelte
+<script>
+  import { 复选框 } from '@persona-ui/lib';
+</script>
+```
+
 带标签和说明的二态开关，支持用于部分选中场景的 `indeterminate` 状态。
 
 ## 导入

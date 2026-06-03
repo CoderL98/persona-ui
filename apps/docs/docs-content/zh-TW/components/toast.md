@@ -5,6 +5,14 @@ group: components
 
 # Toast
 
+## Import
+
+```svelte
+<script>
+  import { 輕提示 } from '@persona-ui/lib';
+</script>
+```
+
 暫時性通知元件，支援自動關閉、4 種語義色調及操作按鈕。
 
 ## API

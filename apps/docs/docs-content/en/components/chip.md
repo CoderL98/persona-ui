@@ -5,6 +5,14 @@ group: components
 
 # Chip
 
+## Import
+
+```svelte
+<script>
+  import { Chip } from '@persona-ui/lib';
+</script>
+```
+
 A compact interactive label for tags, filters, or choices.
 
 ## API

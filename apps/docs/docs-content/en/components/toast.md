@@ -5,6 +5,14 @@ group: components
 
 # Toast
 
+## Import
+
+```svelte
+<script>
+  import { Toast } from '@persona-ui/lib';
+</script>
+```
+
 Temporary notification with auto-dismiss, 4 tones, and action support.
 
 ## API

@@ -5,6 +5,14 @@ group: components
 
 # EmptyState
 
+## Import
+
+```svelte
+<script>
+  import { EmptyState } from '@persona-ui/lib';
+</script>
+```
+
 Empty state display with icon, title, description, and actions.
 
 ## API

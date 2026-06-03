@@ -5,6 +5,14 @@ group: components
 
 # Tooltip
 
+## Import
+
+```svelte
+<script>
+  import { Tooltip } from '@persona-ui/lib';
+</script>
+```
+
 Tooltip with 4 placement directions, delay control, hover/focus trigger.
 
 ## API

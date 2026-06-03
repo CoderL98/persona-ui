@@ -5,6 +5,14 @@ group: components
 
 # Breadcrumb
 
+## Import
+
+```svelte
+<script>
+  import { 面包屑 } from '@persona-ui/lib';
+</script>
+```
+
 导航面包屑，支持链接与当前页标记。
 
 ## API

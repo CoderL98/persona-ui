@@ -5,6 +5,14 @@ group: components
 
 # 抽屉
 
+## Import
+
+```svelte
+<script>
+  import { 抽屉 } from '@persona-ui/lib';
+</script>
+```
+
 侧边抽屉，用于导航或辅助内容。
 
 ## API

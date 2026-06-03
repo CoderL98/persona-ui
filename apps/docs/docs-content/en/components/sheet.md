@@ -5,6 +5,14 @@ group: components
 
 # Sheet
 
+## Import
+
+```svelte
+<script>
+  import { Sheet } from '@persona-ui/lib';
+</script>
+```
+
 Bottom/left/right/top sheet overlay.
 
 ## API

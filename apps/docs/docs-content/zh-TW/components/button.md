@@ -5,6 +5,14 @@ group: components
 
 # Button 按鈕
 
+## Import
+
+```svelte
+<script>
+  import { 按鈕 } from '@persona-ui/lib';
+</script>
+```
+
 一個多功能的按鈕元件，提供 4 種視覺變體與 3 種尺寸。
 
 ## 匯入

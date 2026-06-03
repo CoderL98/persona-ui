@@ -5,6 +5,14 @@ group: components
 
 # 日期选择器
 
+## Import
+
+```svelte
+<script>
+  import { 日期选择器 } from '@persona-ui/lib';
+</script>
+```
+
 由 TextField + Popover + Calendar 组合而成的日期选择器。
 
 ## API

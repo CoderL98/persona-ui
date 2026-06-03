@@ -5,6 +5,14 @@ group: components
 
 # Badge
 
+## Import
+
+```svelte
+<script>
+  import { Badge } from '@persona-ui/lib';
+</script>
+```
+
 A small label for counts, statuses, or notifications.
 
 ## API

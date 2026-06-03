@@ -5,6 +5,14 @@ group: components
 
 # Avatar
 
+## Import
+
+```svelte
+<script>
+  import { Avatar } from '@persona-ui/lib';
+</script>
+```
+
 A user avatar with image, initials fallback, and status dot.
 
 ## API

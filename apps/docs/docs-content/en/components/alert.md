@@ -5,6 +5,14 @@ group: components
 
 # Alert
 
+## Import
+
+```svelte
+<script>
+  import { Alert } from '@persona-ui/lib';
+</script>
+```
+
 Alert component with 4 tones (info/success/warning/error), 3 variants, and dismissible mode.
 
 ## API

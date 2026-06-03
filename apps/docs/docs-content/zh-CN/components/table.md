@@ -5,6 +5,14 @@ group: components
 
 # 表格
 
+## Import
+
+```svelte
+<script>
+  import { 表格 } from '@persona-ui/lib';
+</script>
+```
+
 基础 HTML 表格，支持密度与斑马纹模式。
 
 ## API
