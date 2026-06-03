@@ -285,3 +285,13 @@ export type { TourProps, TourStep } from "./components/tour/tour.types.js";
 
 export { default as VirtualList } from "./components/virtual-list/VirtualList.svelte";
 export type { VirtualListProps } from "./components/virtual-list/virtual-list.types.js";
+
+// ── Inputs (M3 batch 4) ──
+export { default as ColorPicker } from "./components/color-picker/ColorPicker.svelte";
+export type { ColorPickerProps, ColorPickerFormat } from "./components/color-picker/color-picker.types.js";
+
+export { default as Rating } from "./components/rating/Rating.svelte";
+export type { RatingProps, RatingSize } from "./components/rating/rating.types.js";
+
+export { default as InputGroup } from "./components/input-group/InputGroup.svelte";
+export type { InputGroupProps } from "./components/input-group/input-group.types.js";
