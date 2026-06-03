@@ -252,3 +252,22 @@ export type {
 
 export { default as InputOTP } from "./components/input-otp/InputOTP.svelte";
 export type { InputOTPProps } from "./components/input-otp/input-otp.types.js";
+
+// ── Data Viz & Navigation (M3 batch 2) ──
+export { default as Chart } from "./components/chart/Chart.svelte";
+export type {
+  ChartProps,
+  ChartKind,
+  ChartSeries,
+  ChartDataPoint,
+} from "./components/chart/chart.types.js";
+
+export { default as Pagination } from "./components/pagination/Pagination.svelte";
+export type { PaginationProps } from "./components/pagination/pagination.types.js";
+
+export { default as Stepper } from "./components/stepper/Stepper.svelte";
+export type {
+  StepperProps,
+  StepperStep,
+  StepperOrientation,
+} from "./components/stepper/stepper.types.js";
