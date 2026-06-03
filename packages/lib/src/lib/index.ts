@@ -334,3 +334,16 @@ export type {
   StackGap,
   StackWrap,
 } from "./components/stack/stack.types.js";
+
+// ── Display (M3 batch 7) ──
+export { default as CodeBlock } from "./components/code-block/CodeBlock.svelte";
+export type {
+  CodeBlockProps,
+  CodeBlockLanguage,
+} from "./components/code-block/code-block.types.js";
+
+export { default as Carousel } from "./components/carousel/Carousel.svelte";
+export type {
+  CarouselProps,
+  CarouselSlide,
+} from "./components/carousel/carousel.types.js";
