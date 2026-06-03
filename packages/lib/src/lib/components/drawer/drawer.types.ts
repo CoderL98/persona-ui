@@ -4,6 +4,7 @@ export type DrawerProps = {
   open?: boolean;
   defaultOpen?: boolean;
   side?: DrawerSide;
+  closeOnEscape?: boolean;
   title?: Snippet;
   children?: Snippet;
   footer?: Snippet;

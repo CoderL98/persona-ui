@@ -2,7 +2,7 @@ export type TimePickerFormat = "12h" | "24h";
 
 
 export type TimePickerProps = {
-  /** Controlled value (HH:MM string or Date whose time portion is used) */
+  /** Controlled value as "HH:MM" string */
   value?: string;
   /** Uncontrolled default value */
   defaultValue?: string;
@@ -20,6 +20,14 @@ export type TimePickerProps = {
   error?: string;
   /** Disabled state */
   disabled?: boolean;
+  /** BCP 47 locale tag for AM/PM labels and date formatting. Default: navigator.language */
+  locale?: string;
+  /** Earliest selectable time as "HH:MM" (inclusive) */
+  minTime?: string;
+  /** Latest selectable time as "HH:MM" (inclusive) */
+  maxTime?: string;
+  /** Show a clear button to reset the value */
+  clearable?: boolean;
   /** Override display texts for this instance */
   texts?: Record<string, string>;
   class?: string;

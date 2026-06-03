@@ -23,6 +23,17 @@
       : undefined
   );
 
+  // 跟踪图片加载失败状态，失败时显示 initials/children fallback
+  let imgFailed = $state(false);
+  // src 变化时（如重试）重置失败标记
+  let prevSrc = $state<string | undefined>(undefined);
+  $effect(() => {
+    if (prevSrc !== src) {
+      imgFailed = false;
+      prevSrc = src;
+    }
+  });
+
   const attrs = $derived(dataAttrs({ size, status }));
 </script>
 
@@ -48,15 +59,14 @@
   style={style}
   data-testid={dataTestId}
 >
-  {#if src}
+  {#if src && !imgFailed}
     <img
       src={src}
       alt={alt || name || ''}
+      loading="lazy"
+      decoding="async"
       class="h-full w-full object-cover"
-      onerror={(e) => {
-        // Hide broken image and show fallback
-        (e.target as HTMLElement).style.display = 'none';
-      }}
+      onerror={() => { imgFailed = true; }}
     />
   {:else if initials}
     <span class="select-none">{initials}</span>
@@ -74,3 +84,4 @@
     ></span>
   {/if}
 </span>
+

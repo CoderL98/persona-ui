@@ -33,3 +33,32 @@ export function clickOutside(
 
 // 类型别名，方便使用方声明
 export type ClickOutsideAction = Action<HTMLElement, (event: MouseEvent | TouchEvent) => void>;
+
+/**
+ * Svelte action: 监听 keydown 事件，转发到回调。
+ *
+ * 用法：
+ *   <div use:keydown={{ Escape: () => open = false }}>...</div>
+ *
+ * 适用场景：弹层内任意位置按 Esc 关闭，焦点陷阱外仍能响应。
+ */
+export function keydown(
+  node: HTMLElement,
+  bindings: Record<string, (e: KeyboardEvent) => void>,
+) {
+  function handle(e: KeyboardEvent) {
+    const fn = bindings[e.key];
+    if (fn) fn(e);
+  }
+  document.addEventListener('keydown', handle);
+  return {
+    update(next: Record<string, (e: KeyboardEvent) => void>) {
+      bindings = next;
+    },
+    destroy() {
+      document.removeEventListener('keydown', handle);
+    },
+  };
+}
+
+export type KeydownAction = Action<HTMLElement, Record<string, (e: KeyboardEvent) => void>>;

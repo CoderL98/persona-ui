@@ -5,6 +5,7 @@ export type SheetProps = {
   open?: boolean;
   defaultOpen?: boolean;
   side?: SheetSide;
+  closeOnEscape?: boolean;
   title?: Snippet;
   children?: Snippet;
   footer?: Snippet;

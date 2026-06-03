@@ -24,7 +24,16 @@
   const fieldId = $derived(id || `pui-switch-${Math.random().toString(36).slice(2, 8)}`);
   // Uncontrolled mode — initialize once from defaultChecked
   let internalChecked = $state(untrack(() => defaultChecked));
-  let currentChecked = $derived(controlledChecked ?? internalChecked);
+  // Source of truth: controlled 优先；fallback 到 internal
+  const currentChecked = $derived(controlledChecked ?? internalChecked);
+
+  // controlled 模式下，prop 变化时同步更新 internalChecked
+  // （确保 onchange setter 写入后，UI 不会回弹）
+  $effect(() => {
+    if (controlledChecked !== undefined) {
+      internalChecked = controlledChecked;
+    }
+  });
 
   function handleChange(e: Event) {
     const next = (e.target as HTMLInputElement).checked;
@@ -38,6 +47,9 @@
 <!--
   Switch 视觉用 <span> 自绘，原生 <input type="checkbox" role="switch"> 隐形覆盖在上方
   —— 这样既保留 a11y + 原生表单提交，又保留 26px 高度 + 圆角 + 缩略图过渡的视觉设计
+
+  用 checked={...} 单向绑定 + onchange 回调，避开 bind:checked 函数式在原生 input 上的兼容性问题
+  （Svelte 5 函数 bind 仅适用于 $bindable 组件 props）
 -->
 <span
   {...rest}
@@ -50,10 +62,7 @@
     id={fieldId}
     type="checkbox"
     role="switch"
-    bind:checked={
-      () => currentChecked,
-      (v) => { if (controlledChecked === undefined) internalChecked = v; }
-    }
+    checked={currentChecked}
     {disabled}
     {name}
     {value}
@@ -102,4 +111,5 @@
     </label>
   {/if}
 </span>
+
 

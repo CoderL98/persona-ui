@@ -22,12 +22,15 @@
   const t = $derived({ ...defaults, ...localTexts });
   let internalCollapsed = $state(untrack(() => defaultCollapsed));
   let isCollapsed = $derived(controlledCollapsed ?? internalCollapsed);
-  // 响应式：窗口宽度低于断点时自动折叠（可通过控制覆盖）
-  let viewportWidth = $state(typeof window === 'undefined' ? 1280 : window.innerWidth);
-  const isResponsive = $derived(responsiveBreakpoint > 0 && viewportWidth < responsiveBreakpoint);
-  const effectiveCollapsed = $derived(isResponsive ? true : isCollapsed);
+  // 响应式：-1 表示未水合（SSR/CSR 一致），>=0 才是真实视口宽度
+  // 这样避免 SSR 渲染 1280、client 突然跳到 360 引发的 hydration 突变
+  let viewportWidth = $state(-1);
+  const isResponsive = $derived(responsiveBreakpoint > 0 && viewportWidth >= 0 && viewportWidth < responsiveBreakpoint);
+  // 未水合时用用户传入的折叠偏好，避免首屏布局跳变
+  const effectiveCollapsed = $derived(viewportWidth < 0 ? isCollapsed : (isResponsive ? true : isCollapsed));
 
   onMount(() => {
+    viewportWidth = window.innerWidth;
     const onResize = () => { viewportWidth = window.innerWidth; };
     window.addEventListener('resize', onResize, { passive: true });
     return () => window.removeEventListener('resize', onResize);
