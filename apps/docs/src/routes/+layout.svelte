@@ -86,7 +86,7 @@
 		<!-- Logo + 名称 + 主题徽章 -->
 		<div class="flex items-center gap-3">
 			<a
-				href="#top"
+				href="/"
 				class="group flex items-center gap-2.5 outline-none"
 				aria-label={t('brandAria')}
 			>
