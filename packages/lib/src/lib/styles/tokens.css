@@ -79,6 +79,22 @@
   --pui-color-on-error: var(--pui-ref-gray-0);
   --pui-color-error-container: var(--pui-ref-red-90);
 
+  /* Success / Warning / Info（MD3 2024 扩展色板；非 Material 主题下也可用）
+     直接 oklch() 值：ref- palette 当前只有 blue/green/red/yellow 部分档位，
+     用直接值更稳定。 */
+  --pui-color-success: oklch(0.6 0.18 160);          /* 同 tertiary 主色 */
+  --pui-color-on-success: oklch(1 0 0);
+  --pui-color-success-container: oklch(0.92 0.06 160);
+  --pui-color-on-success-container: oklch(0.18 0.05 160);
+  --pui-color-warning: oklch(0.7 0.18 60);            /* 暖橙 */
+  --pui-color-on-warning: oklch(0.15 0.05 60);
+  --pui-color-warning-container: oklch(0.94 0.06 60);
+  --pui-color-on-warning-container: oklch(0.2 0.05 60);
+  --pui-color-info: oklch(0.55 0.18 255);             /* 同 primary 主色 */
+  --pui-color-on-info: oklch(1 0 0);
+  --pui-color-info-container: oklch(0.92 0.04 255);
+  --pui-color-on-info-container: oklch(0.18 0.06 255);
+
   /* Surfaces */
   --pui-surface-base: var(--pui-ref-gray-0);
   --pui-surface-raised: var(--pui-ref-gray-10);
@@ -166,4 +182,18 @@
   --pui-outline: var(--pui-ref-gray-60);
   --pui-outline-subtle: var(--pui-ref-gray-70);
   --pui-outline-strong: var(--pui-ref-gray-40);
+
+  /* Success / Warning / Info dark defaults（直接 oklch 值） */
+  --pui-color-success: oklch(0.75 0.15 160);
+  --pui-color-on-success: oklch(0.18 0.05 160);
+  --pui-color-success-container: oklch(0.3 0.08 160);
+  --pui-color-on-success-container: oklch(0.92 0.06 160);
+  --pui-color-warning: oklch(0.78 0.16 60);
+  --pui-color-on-warning: oklch(0.2 0.05 60);
+  --pui-color-warning-container: oklch(0.32 0.08 60);
+  --pui-color-on-warning-container: oklch(0.94 0.06 60);
+  --pui-color-info: oklch(0.7 0.15 255);
+  --pui-color-on-info: oklch(0.18 0.06 255);
+  --pui-color-info-container: oklch(0.3 0.08 255);
+  --pui-color-on-info-container: oklch(0.92 0.04 255);
 }
