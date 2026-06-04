@@ -1,5 +1,15 @@
 # @persona-ui/lib
 
+## Unreleased
+
+### Patch Changes
+
+- fix: 27 个组件用 `crypto.randomUUID()` 替代 `Math.random()` 生成 fallback id，避免 SSR/CSR hydration mismatch 与 ARIA 关联断裂
+- fix(toast): 修复 ToastViewport $effect cleanup 误清除所有 toast timer 的 bug；Toast 单例 timer 改用 untrack 写入，闭包不再持有旧值
+- fix(list): 实装 `variant="inset"` 变体（原实现被静默忽略）
+- docs: 补 SectionHeading 三语言文档
+- docs: 修正 checkbox / switch / alert 文档中 `onValueChange` / `ondismiss` 为与实现一致的 `onCheckedChange` / `onDismiss`（驼峰）
+
 ## 1.0.0
 
 ### Major Changes

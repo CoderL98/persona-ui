@@ -26,7 +26,7 @@ Alert component with 4 tones (info/success/warning/error), 3 variants, and dismi
 | `children`    | `Snippet`                               | —        | Body content      |
 | `icon`        | `Snippet`                               | —        | Leading icon      |
 | `actions`     | `Snippet`                               | —        | Action buttons    |
-| `ondismiss`   | `(e) => void`                           | —        | Dismiss handler   |
+| `onDismiss`   | `(e) => void`                           | —        | Dismiss handler   |
 | `texts`       | `{ dismiss: string }`                   | —        | Text overrides (see below) |
 
 ## Usage

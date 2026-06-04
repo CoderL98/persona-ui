@@ -26,7 +26,7 @@ Alert 元件，支援 4 種語義色調（info/success/warning/error）、3 種�
 | `children`    | `Snippet`                               | —        | 主體內容          |
 | `icon`        | `Snippet`                               | —        | 前置圖示          |
 | `actions`     | `Snippet`                               | —        | 操作按鈕          |
-| `ondismiss`   | `(e) => void`                           | —        | 關閉事件處理函式  |
+| `onDismiss`   | `(e) => void`                           | —        | 關閉事件處理函式  |
 | `texts`       | `{ dismiss: string }`                   | —        | 文字覆寫（見下文）|
 
 ## 用法

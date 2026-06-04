@@ -33,7 +33,7 @@ group: components
 | `label`          | `string`             | —       | 可见标签                   |
 | `class`          | `string`             | —       | 额外的 CSS 类名            |
 | `style`          | `string`             | —       | 内联样式（用于 token 覆盖） |
-| `onValueChange`       | `(e: Event) => void` | —       | 变更处理器                 |
+| `onCheckedChange`     | `(e: Event) => void` | —       | 变更处理器                 |
 
 其余属性会透传到根 `<div>` 元素。
 
@@ -41,7 +41,7 @@ group: components
 
 ```svelte
 <!-- Controlled -->
-<Switch checked={notifications} onValueChange={(e) => toggle()} />
+<Switch checked={notifications} onCheckedChange={(e) => toggle()} />
 
 <!-- Uncontrolled -->
 <Switch defaultChecked label="Enable notifications" />

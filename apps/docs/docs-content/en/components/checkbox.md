@@ -30,7 +30,7 @@ A binary toggle with label and description, supporting `indeterminate` state for
 | `required`       | `boolean`                             | `false` | Required indicator                                   |
 | `class`          | `string`                              | —       | Additional CSS classes                               |
 | `style`          | `string`                              | —       | Inline style                                         |
-| `onValueChange`       | `(checked: boolean, e: Event) => void` | —       | Change handler                                       |
+| `onCheckedChange`     | `(checked: boolean, e: Event) => void` | —       | Change handler                                       |
 
 ## States
 

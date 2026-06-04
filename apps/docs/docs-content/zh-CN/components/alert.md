@@ -26,7 +26,7 @@ Alert 组件，支持 4 种语义色调（info/success/warning/error）、3 种�
 | `children`    | `Snippet`                               | —        | 主体内容          |
 | `icon`        | `Snippet`                               | —        | 前置图标          |
 | `actions`     | `Snippet`                               | —        | 操作按钮          |
-| `ondismiss`   | `(e) => void`                           | —        | 关闭事件处理函数  |
+| `onDismiss`   | `(e) => void`                           | —        | 关闭事件处理函数  |
 | `texts`       | `{ dismiss: string }`                   | —        | 文案覆盖（见下文） |
 
 ## 用法
