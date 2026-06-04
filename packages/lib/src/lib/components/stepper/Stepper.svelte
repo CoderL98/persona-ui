@@ -1,6 +1,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { StepperProps } from "./stepper.types.js";
 
   let {
@@ -21,7 +22,7 @@
 
   let internalValue = $state(untrack(() => defaultValue));
   let current = $derived(controlledValue ?? internalValue);
-  const stepperId = $derived(id || `pui-stepper-${Math.random().toString(36).slice(2, 6)}`);
+  const stepperId = $derived(id || uniqueId('pui-stepper'));
 
   function goTo(i: number) {
     if (i < 0 || i >= steps.length || i === current) return;

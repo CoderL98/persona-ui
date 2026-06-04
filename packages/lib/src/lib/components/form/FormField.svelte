@@ -1,5 +1,6 @@
 <script lang="ts">
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
 
   let {
     label,
@@ -23,7 +24,7 @@
     "data-testid"?: string;
   } = $props();
 
-  const fieldId = $derived(id || `pui-formfield-${Math.random().toString(36).slice(2, 8)}`);
+  const fieldId = $derived(id || uniqueId('pui-formfield'));
 </script>
 
 <div

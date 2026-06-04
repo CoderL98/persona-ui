@@ -1,8 +1,9 @@
 <script lang="ts">
   import { untrack, setContext } from 'svelte';
   import { cn } from '../../internal/class.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { RadioGroupProps, RadioGroupOrientation } from './radio.types.js';
-  let { value: controlledValue, defaultValue, name = `radio-${Math.random().toString(36).slice(2, 6)}`, orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onValueChange, children, ...rest }: RadioGroupProps = $props();
+  let { value: controlledValue, defaultValue, name = uniqueId('radio'), orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onValueChange, children, ...rest }: RadioGroupProps = $props();
   let internalValue = $state(untrack(() => defaultValue ?? ''));
   let currentValue = $derived(controlledValue ?? internalValue);
 

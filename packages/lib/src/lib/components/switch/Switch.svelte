@@ -2,6 +2,7 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { SwitchProps } from './switch.types.js';
 
   let {
@@ -21,7 +22,7 @@
     ...rest
   }: SwitchProps = $props();
 
-  const fieldId = $derived(id || `pui-switch-${Math.random().toString(36).slice(2, 8)}`);
+  const fieldId = $derived(id || uniqueId('pui-switch'));
   // Uncontrolled mode — initialize once from defaultChecked
   let internalChecked = $state(untrack(() => defaultChecked));
   // Source of truth: controlled 优先；fallback 到 internal

@@ -2,6 +2,7 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { SelectProps } from './select.types.js';
   type SelectTexts = { placeholder: string; options: string };
   let {
@@ -30,7 +31,7 @@
   let currentValue = $derived(controlledValue ?? internalValue);
   let open = $state(false);
   let activeIndex = $state(-1);
-  const selectId = $derived(id || `pui-select-${Math.random().toString(36).slice(2, 6)}`);
+  const selectId = $derived(id || uniqueId('pui-select'));
   const triggerId = $derived(`${selectId}-trigger`);
   const selectedLabel = $derived(options.find(o => o.value === currentValue)?.label || resolvedPlaceholder);
 

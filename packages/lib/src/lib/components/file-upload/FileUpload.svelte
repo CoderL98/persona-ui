@@ -1,6 +1,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { FileUploadProps, FileUploadFile } from "./file-upload.types.js";
 
   let {
@@ -27,7 +28,7 @@
   let currentValue = $derived(controlledValue ?? internalValue);
   let dragOver = $state(false);
   let inputEl: HTMLInputElement | undefined = $state();
-  const uploadId = $derived(id || `pui-upload-${Math.random().toString(36).slice(2, 6)}`);
+  const uploadId = $derived(id || uniqueId('pui-upload'));
 
   function toFileInfo(file: File): FileUploadFile {
     return { name: file.name, size: file.size, type: file.type };

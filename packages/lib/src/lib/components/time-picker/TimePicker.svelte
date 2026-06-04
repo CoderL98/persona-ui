@@ -3,6 +3,7 @@
   import { scale } from 'svelte/transition';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { TimePickerProps, TimePickerFormat } from './time-picker.types.js';
   type TimePickerTexts = { selectTime: string; hours: string; minutes: string; am: string; pm: string; clear: string };
   let {
@@ -53,7 +54,7 @@
   let currentValue = $derived(controlledValue ?? internalValue);
   let open = $state(false);
 
-  const tpId = $derived(id || `pui-time-${Math.random().toString(36).slice(2, 6)}`);
+  const tpId = $derived(id || uniqueId('pui-time'));
   const triggerId = $derived(`${tpId}-trigger`);
   const hoursListId = $derived(`${tpId}-hours`);
   const minutesListId = $derived(`${tpId}-minutes`);

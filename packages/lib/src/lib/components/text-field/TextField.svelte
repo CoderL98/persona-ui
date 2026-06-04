@@ -1,6 +1,7 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { TextFieldProps } from './text-field.types.js';
 
   let {
@@ -48,7 +49,7 @@
 
   // Unique id for label/input association
   const fieldId = $derived(
-    id || `pui-field-${Math.random().toString(36).slice(2, 8)}`,
+    id || uniqueId('pui-field'),
   );
 
   function handleInput(e: Event) {

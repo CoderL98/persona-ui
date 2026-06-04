@@ -1,6 +1,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { CarouselProps } from "./carousel.types.js";
 
   let {
@@ -25,7 +26,7 @@
   let hovering = $state(false);
   let focused = $state(false);
 
-  const carouselId = $derived(id || `pui-carousel-${Math.random().toString(36).slice(2, 6)}`);
+  const carouselId = $derived(id || uniqueId('pui-carousel'));
 
   function goTo(i: number) {
     let next = i;

@@ -3,6 +3,7 @@
   import { fade, scale } from 'svelte/transition';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { DateRangePickerProps, DateRangeValue, DateRangeGranularity } from './date-range-picker.types.js';
 
   type DateRangePickerTexts = {
@@ -68,7 +69,7 @@
   let viewYear = $state(new Date().getFullYear());
   let viewMonth = $state(new Date().getMonth());
 
-  const drpId = $derived(id || `pui-daterange-${Math.random().toString(36).slice(2, 6)}`);
+  const drpId = $derived(id || uniqueId('pui-daterange'));
   const triggerId = $derived(`${drpId}-trigger`);
 
   const showTime = $derived(granularity === 'hour' || granularity === 'minute' || granularity === 'second');

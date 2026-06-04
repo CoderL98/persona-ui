@@ -1,6 +1,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { RatingProps } from "./rating.types.js";
 
   let {
@@ -31,7 +32,7 @@
   const sizeMap = { sm: 16, md: 20, lg: 28 };
   const iconSize = $derived(sizeMap[size]);
 
-  const ratingId = $derived(id || `pui-rating-${Math.random().toString(36).slice(2, 6)}`);
+  const ratingId = $derived(id || uniqueId('pui-rating'));
 
   function setValue(v: number) {
     if (readonly || disabled) return;

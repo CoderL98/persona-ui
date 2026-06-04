@@ -1,5 +1,6 @@
 <script lang="ts">
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { CodeBlockProps } from "./code-block.types.js";
 
   let {
@@ -70,7 +71,7 @@
 
   const tokens = $derived(tokenize(code));
   const lineCount = $derived(code.split("\n").length);
-  const codeId = $derived(id || `pui-code-${Math.random().toString(36).slice(2, 6)}`);
+  const codeId = $derived(id || uniqueId('pui-code'));
 
   // 将 tokens 序列化为单一 HTML 字符串，避免 Svelte 在 pre 标签内插入空白
   const highlightedHtml = $derived(

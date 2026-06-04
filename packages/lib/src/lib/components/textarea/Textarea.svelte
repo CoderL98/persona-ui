@@ -1,12 +1,13 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { uniqueId } from '../../internal/id.js';
   import type { TextareaProps, TextareaResize } from './textarea.types.js';
   let { value: controlledValue = undefined, defaultValue = '', label, placeholder, helperText, error, disabled = false, readonly = false, required = false, minlength, maxlength, rows = 3, resize = 'vertical' as TextareaResize, name, leading, trailing, inputProps = {}, class: className, style, id, 'aria-label': ariaLabel, 'data-testid': dataTestId, oninput, onchange, onfocus, onblur, ...rest }: TextareaProps = $props();
   let internalValue = $state('');
   let currentValue = $derived(controlledValue ?? internalValue);
   $effect(() => { if (controlledValue === undefined && !internalValue && defaultValue) internalValue = defaultValue; });
-  const fieldId = $derived(id || `pui-textarea-${Math.random().toString(36).slice(2, 8)}`);
+  const fieldId = $derived(id || uniqueId('pui-textarea'));
   function handleInput(e: Event) { const target = e.target as HTMLTextAreaElement; if (controlledValue === undefined) internalValue = target.value; oninput?.(e); }
   const attrs = $derived(dataAttrs({ disabled, readonly, required, invalid: error ? true : undefined }));
 </script>

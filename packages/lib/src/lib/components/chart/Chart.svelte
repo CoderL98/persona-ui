@@ -1,5 +1,6 @@
 <script lang="ts">
   import { cn } from "../../internal/class.js";
+  import { uniqueId } from "../../internal/id.js";
   import type { ChartProps, ChartSeries, ChartDataPoint } from "./chart.types.js";
 
   let {
@@ -27,7 +28,7 @@
     "data-testid": dataTestId,
   }: ChartProps = $props();
 
-  const chartId = $derived(id || `pui-chart-${Math.random().toString(36).slice(2, 6)}`);
+  const chartId = $derived(id || uniqueId('pui-chart'));
 
   // Effective datasets
   const datasets = $derived.by((): ChartSeries[] => {
