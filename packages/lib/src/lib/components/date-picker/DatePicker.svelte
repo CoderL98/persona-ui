@@ -2,7 +2,6 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
-  import { uniqueId } from '../../internal/id.js';
   import Calendar from '../calendar/Calendar.svelte';
   import type { DatePickerProps } from './date-picker.types.js';
   type DatePickerTexts = { pickDate: string };
@@ -13,7 +12,8 @@
   let open = $state(false);
   let internalValue = $state(untrack(() => defaultValue));
   let currentValue = $derived(controlledValue ?? internalValue);
-  const dpId = $derived(id || uniqueId('pui-date-picker'));
+  let _autoId = $props.id();
+  const dpId = $derived(id ?? _autoId);
   const datePickerId = $derived(`${dpId}-button`);
   function selectDate(d: Date) { if (controlledValue === undefined) internalValue = d; onValueChange?.(d); open = false; }
 </script>

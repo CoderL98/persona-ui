@@ -1,7 +1,6 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { CheckboxProps } from './checkbox.types.js';
   let {
     checked: controlledChecked,
@@ -22,7 +21,8 @@
     ...rest
   }: CheckboxProps = $props();
 
-  const fieldId = $derived(id || uniqueId('pui-checkbox'));
+  let _autoId = $props.id();
+  const fieldId = $derived(id ?? _autoId);
   let internalChecked = $state(false);
   let currentChecked = $derived(controlledChecked ?? internalChecked);
   $effect(() => { if (controlledChecked === undefined && defaultChecked) internalChecked = true; });

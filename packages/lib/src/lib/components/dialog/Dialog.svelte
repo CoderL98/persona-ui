@@ -3,7 +3,6 @@
   import { fade, scale } from 'svelte/transition';
   import { cn } from '../../internal/class.js';
   import { lockScroll, unlockScroll } from '../../internal/scroll-lock.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { DialogProps } from './dialog.types.js';
   type DialogTexts = { close: string };
   let {
@@ -28,9 +27,8 @@
   const t = $derived({ ...defaults, ...localTexts });
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
-  const dialogId = $derived(
-    id || uniqueId('pui-dialog'),
-  );
+  let _autoId = $props.id();
+  const dialogId = $derived(id ?? _autoId);
   const titleId = $derived(`${dialogId}-title`);
   const descId = $derived(`${dialogId}-desc`);
 

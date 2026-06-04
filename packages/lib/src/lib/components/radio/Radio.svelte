@@ -1,12 +1,11 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
-  import { uniqueId } from '../../internal/id.js';
   import { getContext } from 'svelte';
   import type { RadioProps } from './radio.types.js';
   let { value, label, disabled = false, class: className, style, id, 'data-testid': dataTestId, ...rest }: RadioProps = $props();
   const groupCtx = getContext<{ name: string; value: string; disabled: boolean; onChange: (val: string, e: Event) => void } | undefined>('radio-group');
-  const groupName = $derived(groupCtx?.name ?? uniqueId('radio'));
+  const groupName = $derived(groupCtx?.name ?? '');
   const isGroupDisabled = $derived(groupCtx?.disabled ?? false);
   const isChecked = $derived(groupCtx ? groupCtx.value === value : undefined);
   const attrs = $derived(dataAttrs({ disabled: disabled || undefined }));

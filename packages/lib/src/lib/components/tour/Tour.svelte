@@ -3,7 +3,6 @@
   import { fade } from "svelte/transition";
   import { cn } from "../../internal/class.js";
   import { keydown } from "../../internal/click-outside.js";
-  import { uniqueId } from "../../internal/id.js";
   import type { TourProps, TourStep } from "./tour.types.js";
 
   let {
@@ -36,7 +35,8 @@
   let targetEl: HTMLElement | null = $state(null);
   let rect = $state<{ top: number; left: number; width: number; height: number } | null>(null);
 
-  const tourId = $derived(id || uniqueId('pui-tour'));
+  let _autoId = $props.id();
+  const tourId = $derived(id ?? _autoId);
 
   function close() {
     if (controlledOpen === undefined) internalOpen = false;

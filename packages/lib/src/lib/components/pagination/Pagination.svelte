@@ -1,7 +1,6 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
-  import { uniqueId } from "../../internal/id.js";
   import type { PaginationProps } from "./pagination.types.js";
 
   let {
@@ -22,7 +21,8 @@
 
   let internalValue = $state(untrack(() => defaultValue));
   let currentPage = $derived(controlledValue ?? internalValue);
-  const paginationId = $derived(id || uniqueId('pui-pagination'));
+  let _autoId = $props.id();
+  const paginationId = $derived(id ?? _autoId);
 
   // Build page items with ellipses
   const items = $derived.by((): (number | "ellipsis")[] => {

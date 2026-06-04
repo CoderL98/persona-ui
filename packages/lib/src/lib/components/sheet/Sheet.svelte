@@ -4,7 +4,6 @@
   import { cn } from '../../internal/class.js';
   import { lockScroll, unlockScroll } from '../../internal/scroll-lock.js';
   import { keydown } from '../../internal/click-outside.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { SheetProps, SheetSide } from './sheet.types.js';
   type SheetTexts = { close: string };
   let { open: controlledOpen, defaultOpen = false, side = 'bottom' as SheetSide, closeOnEscape = true, title, children, footer, texts: localTexts, class: className, style, id, 'data-testid': dataTestId, onOpenChange, ...rest }: SheetProps = $props();
@@ -12,7 +11,8 @@
   const t = $derived({ ...defaults, ...localTexts });
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
-  const sheetId = $derived(id || uniqueId('pui-sheet'));
+  let _autoId = $props.id();
+  const sheetId = $derived(id ?? _autoId);
   function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }
   // Focus trap
   let prevFocus: HTMLElement | null = null;

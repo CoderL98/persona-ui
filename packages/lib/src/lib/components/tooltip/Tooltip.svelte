@@ -1,6 +1,5 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
-  import { uniqueId } from '../../internal/id.js';
   import { fade } from 'svelte/transition';
   import type { TooltipProps, TooltipPlacement } from './tooltip.types.js';
   let { content, placement = 'bottom' as TooltipPlacement, delay = 400, disabled = false, children, class: className, style, id, 'data-testid': dataTestId }: TooltipProps = $props();
@@ -15,7 +14,8 @@
     right: { tooltip: 'left-full top-1/2 -translate-y-1/2 ml-2', arrow: 'right-full top-1/2 -translate-y-1/2 border-r-[var(--pui-surface-raised)]' },
   };
   const ps = $derived(placementStyles[placement]);
-  const tooltipId = $derived(id || uniqueId('pui-tooltip'));
+  let _autoId = $props.id();
+  const tooltipId = $derived(id ?? _autoId);
   function show() { if (!disabled) { clearTimeout(timer); timer = setTimeout(() => { visible = true; }, delay); } }
   function hide() { clearTimeout(timer); visible = false; }
   function toggleTouch(e: Event) { if (!disabled) { e.preventDefault(); visible = !visible; } }

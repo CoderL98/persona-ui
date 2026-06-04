@@ -1,15 +1,16 @@
 <script lang="ts">
   import { untrack, setContext } from 'svelte';
   import { cn } from '../../internal/class.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { RadioGroupProps, RadioGroupOrientation } from './radio.types.js';
-  let { value: controlledValue, defaultValue, name = uniqueId('radio'), orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onValueChange, children, ...rest }: RadioGroupProps = $props();
+  let { value: controlledValue, defaultValue, name, orientation = 'vertical' as RadioGroupOrientation, disabled = false, label, class: className, style, id, 'data-testid': dataTestId, onValueChange, children, ...rest }: RadioGroupProps = $props();
+  let _autoId = $props.id();
+  const radioName = $derived(name ?? _autoId);
   let internalValue = $state(untrack(() => defaultValue ?? ''));
   let currentValue = $derived(controlledValue ?? internalValue);
 
   // Provide context so Radio children can consume the group name and value
   setContext('radio-group', {
-    get name() { return name; },
+    get name() { return radioName; },
     get value() { return currentValue; },
     get disabled() { return disabled; },
     onChange: (val: string, e: Event) => {

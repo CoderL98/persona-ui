@@ -3,7 +3,6 @@
   import { scale } from "svelte/transition";
   import { cn } from "../../internal/class.js";
   import { clickOutside } from "../../internal/click-outside.js";
-  import { uniqueId } from "../../internal/id.js";
   import type { ColorPickerProps } from "./color-picker.types.js";
 
   const DEFAULT_PALETTE = [
@@ -33,7 +32,8 @@
   let current = $derived(controlledValue ?? internalValue);
   let open = $state(false);
   let inputEl: HTMLInputElement | undefined = $state();
-  const pickerId = $derived(id || uniqueId('pui-color'));
+  let _autoId = $props.id();
+  const pickerId = $derived(id ?? _autoId);
 
   function setColor(c: string) {
     if (controlledValue === undefined) internalValue = c;

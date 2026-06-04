@@ -1,7 +1,6 @@
 <script lang="ts">
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { ListboxProps } from './listbox.types.js';
   type ListboxTexts = { options: string };
   let {
@@ -29,7 +28,8 @@
   function isSelected(v: string) { return selectedSet.has(v); }
 
   let activeIndex = $state(-1);
-  const listId = $derived(id || uniqueId('pui-listbox'));
+  let _autoId = $props.id();
+  const listId = $derived(id ?? _autoId);
 
   function selectOption(value: string, e: Event) {
     if (multiple) {

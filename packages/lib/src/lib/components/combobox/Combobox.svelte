@@ -2,7 +2,6 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { ComboboxProps } from './combobox.types.js';
   type ComboboxTexts = { suggestions: string; removeTag: string };
   let {
@@ -46,7 +45,8 @@
   let currentInput = $derived(controlledInput ?? internalInput);
   let open = $state(false);
   let activeIndex = $state(-1);
-  const comboId = $derived(id || uniqueId('pui-combo'));
+  let _autoId = $props.id();
+  const comboId = $derived(id ?? _autoId);
   const filteredOptions = $derived(
     currentInput
       ? options.filter((o) => o.label.toLowerCase().includes(currentInput.toLowerCase()))

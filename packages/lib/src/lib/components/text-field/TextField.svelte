@@ -1,7 +1,6 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
-  import { uniqueId } from '../../internal/id.js';
   import type { TextFieldProps } from './text-field.types.js';
 
   let {
@@ -48,9 +47,8 @@
   });
 
   // Unique id for label/input association
-  const fieldId = $derived(
-    id || uniqueId('pui-field'),
-  );
+  let _autoId = $props.id();
+  const fieldId = $derived(id ?? _autoId);
 
   function handleInput(e: Event) {
     const target = e.target as HTMLInputElement;

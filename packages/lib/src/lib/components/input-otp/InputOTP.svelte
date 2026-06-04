@@ -1,7 +1,6 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { cn } from "../../internal/class.js";
-  import { uniqueId } from "../../internal/id.js";
   import type { InputOTPProps } from "./input-otp.types.js";
 
   let {
@@ -28,7 +27,8 @@
   let currentValue = $derived(controlledValue ?? internalValue);
   let inputs: HTMLInputElement[] = $state([]);
   const slots = $derived(Array.from({ length }, (_, i) => i));
-  const otpId = $derived(id || uniqueId('pui-otp'));
+  let _autoId = $props.id();
+  const otpId = $derived(id ?? _autoId);
 
   function setValue(next: string) {
     const sanitized = next.slice(0, length);

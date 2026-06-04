@@ -3,7 +3,6 @@
   import { scale } from "svelte/transition";
   import { cn } from "../../internal/class.js";
   import { clickOutside, keydown } from "../../internal/click-outside.js";
-  import { uniqueId } from "../../internal/id.js";
   import type { ContextMenuProps, ContextMenuItem } from "./context-menu.types.js";
 
   let {
@@ -22,7 +21,8 @@
   let isOpen = $derived(controlledOpen ?? internalOpen);
   let activeIndex = $state(-1);
 
-  const menuId = $derived(id || uniqueId('pui-ctx'));
+  let _autoId = $props.id();
+  const menuId = $derived(id ?? _autoId);
 
   function close() {
     if (controlledOpen === undefined) internalOpen = false;
