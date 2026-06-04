@@ -1,6 +1,7 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { triggerHaptic } from '../../internal/haptics.js';
   import type {
     ButtonProps,
     ButtonVariant,
@@ -84,6 +85,7 @@
   data-testid={dataTestId}
   onclick={(e) => {
     if (disabled || loading) return;
+    triggerHaptic('light');
     onClick?.(e);
   }}
 >

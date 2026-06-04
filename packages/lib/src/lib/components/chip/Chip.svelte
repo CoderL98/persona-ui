@@ -1,6 +1,7 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { triggerHaptic } from '../../internal/haptics.js';
   import type { ChipProps, ChipVariant, ChipTone } from './chip.types.js';
 
   let {
@@ -74,12 +75,14 @@
   data-testid={dataTestId}
   onclick={(e) => {
     if (disabled) return;
+    triggerHaptic('light');
     onClick?.(e);
   }}
   onkeydown={(e) => {
     if (disabled) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      triggerHaptic('light');
       onClick?.(e as unknown as MouseEvent);
     }
   }}

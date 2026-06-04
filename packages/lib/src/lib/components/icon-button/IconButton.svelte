@@ -1,11 +1,12 @@
 <script lang="ts">
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
-  import type { IconButtonProps, IconButtonVariant, IconButtonSize } from './icon-button.types.js';
+  import type { IconButtonProps, IconButtonVariant, IconButtonSize, IconButtonShape } from './icon-button.types.js';
 
   let {
-    variant = 'filled' as IconButtonVariant,
+    variant = 'standard' as IconButtonVariant,
     size = 'md' as IconButtonSize,
+    shape = 'round' as IconButtonShape,
     type = 'button' as 'button' | 'submit' | 'reset',
     disabled = false,
     loading = false,
@@ -19,7 +20,7 @@
     ...rest
   }: IconButtonProps = $props();
 
-  const attrs = $derived(dataAttrs({ variant, size, loading: loading || undefined }));
+  const attrs = $derived(dataAttrs({ variant, size, shape, loading: loading || undefined }));
 </script>
 
 <button
@@ -35,15 +36,17 @@
     'transition-all focus-visible:outline-2 focus-visible:outline-offset-2',
     // Size via component token
     'h-(--pui-icon-button-size,40px) w-(--pui-icon-button-size,40px)',
-    'rounded-(--pui-icon-button-radius,var(--pui-radius-control))',
-    'bg-(--pui-icon-button-bg,var(--pui-color-primary))',
-    'text-(--pui-icon-button-fg,var(--pui-color-on-primary))',
-    'shadow-(--pui-icon-button-shadow,var(--pui-elevation-1))',
+    shape === 'round' && 'rounded-(--pui-icon-button-radius,var(--pui-radius-full))',
+    shape === 'square' && 'rounded-(--pui-icon-button-radius,var(--pui-md-sys-shape-corner-small,8px))',
+    'bg-(--pui-icon-button-bg,transparent)',
+    'text-(--pui-icon-button-fg,var(--pui-color-on-surface))',
+    'shadow-(--pui-icon-button-shadow,var(--pui-elevation-0))',
     'border border-(--pui-icon-button-border-color,transparent)',
-    // Variants
-    variant === 'tonal' && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container) shadow-none',
-    variant === 'outlined' && 'bg-transparent text-(--pui-color-primary) border-(--pui-outline) shadow-none',
-    variant === 'text' && 'bg-transparent text-(--pui-color-primary) shadow-none border-transparent',
+    // MD3 4 variants
+    variant === 'standard' && 'bg-transparent text-(--pui-color-on-surface-variant) shadow-none',
+    variant === 'filled' && 'bg-(--pui-color-primary) text-(--pui-color-on-primary) shadow-(--pui-elevation-1)',
+    variant === 'filled-tonal' && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container) shadow-none',
+    variant === 'outlined' && 'bg-transparent text-(--pui-color-primary) border-(--pui-color-outline) shadow-none',
     // Size
     size === 'sm' && 'text-sm h-(--pui-icon-button-size,32px) w-(--pui-icon-button-size,32px)',
     size === 'lg' && 'text-lg h-(--pui-icon-button-size,48px) w-(--pui-icon-button-size,48px)',

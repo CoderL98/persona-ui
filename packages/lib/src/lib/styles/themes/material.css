@@ -376,6 +376,15 @@
   --pui-md-sys-state-dragged-state-layer-opacity: 0.16;
 
   /* ==========================================================
+     MD3 State Layer Size（2024 强调：state layer 不只是 opacity，还有 size）
+     触控目标应至少 48x48dp，state layer 比组件稍大（避免 hover 漏点）
+     https://m3.material.io/styles/interaction/states
+     ========================================================== */
+  --pui-md-sys-state-layer-size-small: 40px;
+  --pui-md-sys-state-layer-size-medium: 48px;
+  --pui-md-sys-state-layer-size-large: 56px;
+
+  /* ==========================================================
      MD3 Motion Easing（5 条标准 easing，m3.material.io 规范）
      https://m3.material.io/styles/motion/easing-and-duration
      ========================================================== */
@@ -397,9 +406,77 @@
   --pui-md-sys-motion-duration-long2: 500ms;
 
   /* ==========================================================
-     MD3 Success / Warning Color Roles（2024 新增的"extended palette"）
-     之前只有 error 一个 system color，MD3 2024 起把 success/warning 也标准化
+     MD3 Density Tokens（4 档：0/-1/-2/-3 = Standard/Medium/Compact/Extra Compact）
+     https://m3.material.io/foundations/layout/applying-density/window
+     应用方式：在根元素加 data-density="-1" 切换全站密度
      ========================================================== */
+  --pui-md-sys-density-0: 0;        /* Standard（默认）*/
+  --pui-md-sys-density--1: -1;      /* Medium（紧凑一点）*/
+  --pui-md-sys-density--2: -2;      /* Compact（数据密集列表/表格）*/
+  --pui-md-sys-density--3: -3;      /* Extra Compact（专业数据表）*/
+
+  /* 派生尺寸：每个组件按密度缩放 */
+  --pui-density: var(--pui-md-sys-density-0);
+  --pui-density-scale: calc(1 + var(--pui-density) * 0.1); /* 每 -1 缩 10% */
+
+  /* 组件尺寸的密度相关 token（Button 高度 / 列表 padding 等） */
+  --pui-density-button-height: calc(40px + var(--pui-density) * 4px);
+  --pui-density-list-item-height: calc(48px + var(--pui-density) * 4px);
+  --pui-density-table-row-height: calc(52px + var(--pui-density) * 4px);
+  --pui-density-form-field-height: calc(56px + var(--pui-density) * 4px);
+  --pui-density-padding-x: calc(16px + var(--pui-density) * 2px);
+  --pui-density-padding-y: calc(8px + var(--pui-density) * 1px);
+  --pui-density-gap: calc(8px + var(--pui-density) * 1px);
+
+  /* ==========================================================
+     MD3 Expressive Motion（2024 春季更新）
+     https://m3.material.io/styles/motion/transitions/transition-patterns
+     与传统 ease 区别：spring 物理（stiffness / damping）让动效有"弹性"
+     ========================================================== */
+  --pui-md-sys-motion-spring-fast: linear(
+    0,
+    0.15,
+    0.45,
+    0.9,
+    0.95,
+    1
+  ); /* 轻量交互，stiffness 高 */
+  --pui-md-sys-motion-spring-default: linear(
+    0,
+    0.1,
+    0.3,
+    0.7,
+    0.95,
+    1
+  ); /* 默认弹性 */
+  --pui-md-sys-motion-spring-slow: linear(
+    0,
+    0.05,
+    0.2,
+    0.5,
+    0.85,
+    0.95,
+    1
+  ); /* 慢弹性，进出场 */
+  --pui-md-sys-motion-spring-bouncy: linear(
+    0,
+    0.3,
+    0.7,
+    1.1,
+    0.95,
+    1
+  ); /* 强弹性，吸引注意力 */
+
+  /* ==========================================================
+     MD3 Fixed Colors（2024 强调的语义化定值，非主题派生）
+     https://m3.material.io/styles/color/the-color-system/key-colors-tones
+     应用：图表数据、状态标识（不随主题变色）
+     ========================================================== */
+  --pui-md-fixed-color-red: #b3261e;
+  --pui-md-fixed-color-green: #1b5e20;
+  --pui-md-fixed-color-blue: #0277bd;
+  --pui-md-fixed-color-yellow: #f9a825;
+  --pui-md-fixed-color-grey: #5f6368;
   /* 复用已有的 tonal palette（success/warning 用同一组 ref 调色）*/
   --pui-md-sys-color-success: var(--pui-md-ref-palette-tertiary-40);
   --pui-md-sys-color-on-success: var(--pui-md-ref-palette-tertiary-100);

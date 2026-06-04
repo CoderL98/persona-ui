@@ -237,6 +237,8 @@ export type { DateRangePickerProps, DateRangeValue } from "./components/date-ran
 // Internal utilities (public for advanced use)
 export { cn } from "./internal/class.js";
 export { dataAttrs } from "./internal/attrs.js";
+export { triggerHaptic, supportsHaptics } from "./internal/haptics.js";
+export type { HapticType } from "./internal/haptics.js";
 
 // ── Form (M3 batch 1) ──
 export { default as Form } from "./components/form/Form.svelte";
@@ -347,3 +349,19 @@ export type {
   CarouselProps,
   CarouselSlide,
 } from "./components/carousel/carousel.types.js";
+
+// ── MD3 Additions (P0/P1 audit) ──
+export { default as Fab } from "./components/fab/Fab.svelte";
+export type {
+  FabProps,
+  FabSize,
+  FabVariant,
+} from "./components/fab/fab.types.js";
+
+export { default as Snackbar } from "./components/snackbar/Snackbar.svelte";
+export type {
+  SnackbarProps,
+  SnackbarTone,
+  SnackbarKind,
+  SnackbarItem,
+} from "./components/snackbar/snackbar.types.js";

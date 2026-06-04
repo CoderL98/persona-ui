@@ -76,3 +76,4 @@ select:focus-visible {
 [data-theme="material"] .pui-state-layer:active::before {
   opacity: var(--pui-md-sys-state-pressed-state-layer-opacity, 0.12);
 }
+}

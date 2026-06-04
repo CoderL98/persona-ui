@@ -2,6 +2,7 @@
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
+  import { triggerHaptic } from '../../internal/haptics.js';
   import type { SwitchProps } from './switch.types.js';
 
   let {
@@ -39,6 +40,7 @@
   function handleChange(e: Event) {
     const next = (e.target as HTMLInputElement).checked;
     if (controlledChecked === undefined) internalChecked = next;
+    triggerHaptic('selection');
     onCheckedChange?.(next, e);
   }
 

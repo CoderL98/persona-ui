@@ -143,6 +143,25 @@
   --pui-radius-container: 22px;
   --pui-radius-full: 9999px;
 
+  /* ==========================================================
+     0A.2.7 Apple Continuous (Squircle) Corner Radius
+     HIG iOS 13+ 推荐：使用 superellipse（n=5）圆角，不是普通 border-radius。
+     现代浏览器支持 `corner-shape: squircle`（Safari 18+ / Chrome 137+）。
+     向下兼容：fallback 用稍大的 border-radius 视觉接近。
+     参考：https://developer.apple.com/design/human-interface-guidelines/layout
+     ========================================================== */
+  --pui-radius-control-continuous: 14px 14px 14px 14px / 14px 14px 14px 14px;
+  --pui-radius-container-continuous: 22px 22px 22px 22px / 22px 22px 22px 22px;
+  --pui-radius-control-squircle: 1.5; /* 倍率：squircle 半径 ≈ border-radius × 1.5 视觉接近 */
+
+  /* 6 档标准圆角（HIG 官方：0/continuous/6/10/14/20） */
+  --pui-radius-apple-0: 0;
+  --pui-radius-apple-continuous: 14px; /* 同 control 通用默认值 */
+  --pui-radius-apple-6: 6px;
+  --pui-radius-apple-10: 10px;
+  --pui-radius-apple-14: 14px;
+  --pui-radius-apple-20: 20px;
+
   /* --- Elevation (subtle ambient) --- */
   --pui-elevation-0: none;
   --pui-elevation-1: 0 1px 2px rgb(0 0 0 / 0.08), 0 8px 24px rgb(0 0 0 / 0.06);
@@ -230,6 +249,26 @@
   --pui-apple-motion-alert-presentation: 200ms;
   --pui-apple-motion-page-transition: 350ms;
   --pui-apple-motion-spring: cubic-bezier(0.32, 0.72, 0, 1); /* HIG 推荐的"fluid" spring */
+
+  /* ==========================================================
+     iOS 17 Multi-Spring（light/medium/heavy stiffness）
+     HIG "Motion > Springs"：复杂动画可区分 3 档 spring stiffness。
+     0A.2.7 P0.1 补充。
+     ========================================================== */
+  --pui-apple-motion-spring-light: cubic-bezier(0.5, 0, 0.2, 1);     /* 短距离 / 50ms */
+  --pui-apple-motion-spring-medium: cubic-bezier(0.32, 0.72, 0, 1);   /* 中距离 / 250ms */
+  --pui-apple-motion-spring-heavy: cubic-bezier(0.2, 0.9, 0.1, 1);     /* 长距离 / 400ms */
+
+  /* ==========================================================
+     iOS 17 Safe Area Insets（4 档）
+     设备物理边界：顶部 status bar / Dynamic Island，底部 home indicator，
+     横屏左右 notch。需用 env(safe-area-inset-*) 注入。
+     0A.2.7 P0.1 补充。
+     ========================================================== */
+  --pui-safe-area-top: env(safe-area-inset-top, 0px);
+  --pui-safe-area-right: env(safe-area-inset-right, 0px);
+  --pui-safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --pui-safe-area-left: env(safe-area-inset-left, 0px);
 
   /* ==========================================================
      A.Apple 装饰 token（hero/卡片精修）
@@ -355,6 +394,40 @@
   --pui-surface-fill-secondary: var(--pui-apple-secondary-system-fill);
   --pui-surface-fill-tertiary: var(--pui-apple-tertiary-system-fill);
   --pui-surface-fill-quaternary: var(--pui-apple-quaternary-system-fill);
+}
+
+/* ==========================================================
+   0A.2.7 Apple Continuous Corner Radius 应用
+   在 Apple 主题下，所有 .pui-card / .pui-button / .pui-sheet 等
+   圆角组件自动应用 squircle。
+   ========================================================== */
+[data-theme='apple'] {
+  --pui-apple-corner-shape: squircle; /* modern */
+  --pui-apple-corner-shape-fallback: round; /* legacy */
+}
+@supports (corner-shape: squircle) {
+  [data-theme='apple'] .pui-card,
+  [data-theme='apple'] .pui-button,
+  [data-theme='apple'] .pui-sheet,
+  [data-theme='apple'] .pui-dialog,
+  [data-theme='apple'] .pui-drawer,
+  [data-theme='apple'] .pui-popover,
+  [data-theme='apple'] .pui-chip,
+  [data-theme='apple'] .pui-tooltip,
+  [data-theme='apple'] .pui-checkbox,
+  [data-theme='apple'] .pui-radio,
+  [data-theme='apple'] .pui-icon-button,
+  [data-theme='apple'] .pui-avatar,
+  [data-theme='apple'] .pui-badge,
+  [data-theme='apple'] .pui-kbd,
+  [data-theme='apple'] .pui-list-item,
+  [data-theme='apple'] .pui-tree-item,
+  [data-theme='apple'] .pui-tab,
+  [data-theme='apple'] .pui-segment,
+  [data-theme='apple'] .pui-text-field,
+  [data-theme='apple'] .pui-textarea {
+    corner-shape: var(--pui-apple-corner-shape, squircle);
+  }
 }
 
 /* ==========================================================
@@ -505,4 +578,29 @@
   --pui-apple-secondary-system-fill: oklch(1 0 0 / 0.12);
   --pui-apple-tertiary-system-fill: oklch(1 0 0 / 0.08);
   --pui-apple-quaternary-system-fill: oklch(1 0 0 / 0.04);
+}
+
+/* ==========================================================
+   Apple HIG 触觉/触控 UX 规则
+   - 禁用 long-press 弹系统菜单（按钮、长按链接、卡片）
+   - 禁用 tap highlight 高亮
+   - 启用硬件加速滚动
+   https://developer.apple.com/documentation/webkit
+   ========================================================== */
+[data-theme='apple'] .pui-button,
+[data-theme='apple'] .pui-card,
+[data-theme='apple'] .pui-icon-button,
+[data-theme='apple'] .pui-chip,
+[data-theme='apple'] .pui-list-item,
+[data-theme='apple'] a,
+[data-theme='apple'] [role='button'] {
+  -webkit-touch-callout: none;        /* 禁用 iOS 长按弹菜单 */
+  -webkit-tap-highlight-color: transparent; /* 禁用 tap 高亮（用 state layer 替代） */
+  touch-action: manipulation;         /* 阻止 double-tap 缩放 */
+}
+[data-theme='apple'] .pui-scroll-view,
+[data-theme='apple'] [data-scroll] {
+  -webkit-overflow-scrolling: touch;  /* 硬件加速滚动 */
+  overscroll-behavior: contain;       /* 防止滚动传到父级 */
+}
 }

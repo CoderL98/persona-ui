@@ -51,6 +51,9 @@
       variant === 'filled' && 'shadow-none',
       variant === 'outlined' &&
         'shadow-none border border-(--pui-outline-subtle)',
+      variant === 'tonal' &&
+        'shadow-none bg-(--pui-color-secondary-container) text-(--pui-color-on-secondary-container)',
+      variant === 'flat' && 'shadow-none bg-transparent border border-(--pui-outline-subtle)',
       padding === 'sm' && 'p-(--pui-space-3)',
       padding === 'md' && 'p-(--pui-card-padding,var(--pui-space-4))',
       padding === 'lg' && 'p-(--pui-space-6)',
@@ -92,6 +95,9 @@
       variant === 'filled' && 'shadow-none',
       variant === 'outlined' &&
         'shadow-none border border-(--pui-outline-subtle)',
+      variant === 'tonal' &&
+        'shadow-none bg-(--pui-color-secondary-container) text-(--pui-color-on-secondary-container)',
+      variant === 'flat' && 'shadow-none bg-transparent border border-(--pui-outline-subtle)',
       padding === 'sm' && 'p-(--pui-space-3)',
       padding === 'md' && 'p-(--pui-card-padding,var(--pui-space-4))',
       padding === 'lg' && 'p-(--pui-space-6)',
