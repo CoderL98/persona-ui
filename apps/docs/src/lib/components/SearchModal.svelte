@@ -93,7 +93,6 @@
 					aria-label="Search"
 					autocomplete="off"
 					spellcheck="false"
-					onkeydown={handleKey}
 					class="flex-1 bg-transparent text-(--pui-text-primary) placeholder:text-(--pui-text-disabled) outline-none text-sm"
 				/>
 				<kbd class="text-[10px] font-mono text-(--pui-text-disabled) bg-(--pui-surface-variant) px-1.5 py-0.5 rounded">Esc</kbd>

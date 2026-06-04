@@ -36,7 +36,7 @@
   </span>
   {#if isOpen}
     <div role="menu" tabindex="-1" transition:scale={{ start: 0.95, duration: 150 }}
-      class={cn('absolute z-(--pui-z-overlay) mt-1 bg-(--pui-surface-base) rounded-(--pui-radius-container) shadow-(--pui-elevation-3) border border-(--pui-outline-subtle) py-1 min-w-45 right-0')} onclick={(e) => e.stopPropagation()} onkeydown={handleKeydown}>
+      class={cn('absolute z-(--pui-z-overlay) mt-1 bg-(--pui-surface-base) rounded-(--pui-radius-container) shadow-(--pui-elevation-3) border border-(--pui-outline-subtle) py-1 min-w-45 right-0')} onclick={(e) => e.stopPropagation()}>
       {#if items.length > 0}
         {#each activeItems as item, idx}
           <div role="menuitem" tabindex={idx === activeIndex ? 0 : -1} aria-disabled={item.disabled || undefined}

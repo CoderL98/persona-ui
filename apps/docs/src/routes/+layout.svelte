@@ -76,6 +76,19 @@
 	});
 </script>
 
+<!-- 键盘 a11y：tab 跳过 header 直接到主内容（WCAG 2.4.1 Bypass Blocks）
+     必须是页面上第一个 focusable 元素，否则失去意义 -->
+<a
+	href="#top"
+	class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
+           focus:rounded-(--pui-radius-control)
+           focus:bg-(--pui-color-primary-container) focus:px-3 focus:py-2
+           focus:text-(--pui-color-on-primary-container)
+           focus:shadow-(--pui-elevation-2) focus:outline-2 focus:outline-(--pui-color-primary)"
+>
+	{t('skipToContent')}
+</a>
+
 <!-- Sticky 顶部导航条：Apple 半透明 + Material 实色 hairline -->
 <header
 	class="sticky top-0 z-50 border-b border-(--pui-outline-subtle)
@@ -235,18 +248,7 @@
 	</div>
 </header>
 
-<main id="top" class="mx-auto max-w-6xl px-4 py-10 sm:py-16">
-	<!-- 键盘 a11y：tab 跳过 header 直接到主内容 -->
-	<a
-		href="#top"
-		class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
-               focus:rounded-(--pui-radius-control)
-               focus:bg-(--pui-color-primary-container) focus:px-3 focus:py-2
-               focus:text-(--pui-color-on-primary-container)
-               focus:shadow-(--pui-elevation-2) focus:outline-2 focus:outline-(--pui-color-primary)"
-	>
-		{t('skipToContent')}
-	</a>
+<main id="top" tabindex="-1" class="mx-auto max-w-6xl px-4 py-10 sm:py-16 focus:outline-none">
 	{@render children()}
 </main>
 

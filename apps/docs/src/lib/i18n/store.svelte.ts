@@ -25,9 +25,11 @@ export const currentLocale = $state<{ value: Locale }>({ value: readInitial() })
 
 export function setLocale(next: Locale) {
 	currentLocale.value = next;
-	if (browser) localStorage.setItem(STORAGE_KEY, next);
-	// 同步 <html lang> 便于 a11y / 浏览器翻译
-	document.documentElement.lang = next;
+	if (browser) {
+		localStorage.setItem(STORAGE_KEY, next);
+		// 同步 <html lang> 便于 a11y / 浏览器翻译
+		document.documentElement.lang = next;
+	}
 }
 
 export function isActiveLocale(l: Locale): boolean {

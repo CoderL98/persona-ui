@@ -9,7 +9,7 @@
   const wrapperClass = $derived(
     variant === 'grouped' || variant === 'inset'
       ? cn(
-          'rounded-(--pui-radius-container) bg-(--pui-surface-base) shadow-[var(--pui-elevation-1)] overflow-hidden',
+          'rounded-(--pui-radius-container) bg-(--pui-surface-base) shadow-(--pui-elevation-1) overflow-hidden',
           variant === 'inset' && 'mx-(--pui-space-4) my-(--pui-space-2)',
         )
       : '',
