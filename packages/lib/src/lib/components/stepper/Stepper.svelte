@@ -5,7 +5,7 @@
 
   let {
     steps,
-    value: controlledValue,
+    value = $bindable(),
     defaultValue = 0,
     orientation = "horizontal",
     clickable = true,
@@ -20,7 +20,7 @@
   }: StepperProps = $props();
 
   let internalValue = $state(untrack(() => defaultValue));
-  let current = $derived(controlledValue ?? internalValue);
+  let current = $derived(value ?? internalValue);
   let _autoId = $props.id();
   const stepperId = $derived(id ?? _autoId);
 
@@ -28,7 +28,8 @@
     if (i < 0 || i >= steps.length || i === current) return;
     if (steps[i].disabled && i > current) return;
     if (!clickable && i > current) return;
-    if (controlledValue === undefined) internalValue = i;
+    if (value === undefined) internalValue = i;
+    value = i;
     onValueChange?.(i);
   }
 
