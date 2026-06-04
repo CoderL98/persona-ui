@@ -9,16 +9,35 @@
   const t = $derived({ ...defaults, ...localTexts });
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
-  let timer: ReturnType<typeof setTimeout> | undefined;
+  // 修复：原实现 timer 是普通变量，close() 读到的可能是闭包旧值
+  // 用模块级容器保存 timer 引用，避免 $state 触发 effect 自身重跑（无限循环）
+  let timerHandle: ReturnType<typeof setTimeout> | null = null;
+
+  function clearTimer() {
+    if (timerHandle) {
+      clearTimeout(timerHandle);
+      timerHandle = null;
+    }
+  }
 
   $effect(() => {
+    // 追踪 isOpen/duration 变化，effect 重跑时先清掉旧 timer
+    untrack(() => clearTimer());
     if (isOpen && duration > 0) {
-      timer = setTimeout(() => { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); }, duration);
+      timerHandle = setTimeout(() => {
+        timerHandle = null;
+        if (controlledOpen === undefined) internalOpen = false;
+        onOpenChange?.(false);
+      }, duration);
     }
-    return () => { if (timer) clearTimeout(timer); };
+    return () => untrack(() => clearTimer());
   });
 
-  function close() { if (controlledOpen === undefined) internalOpen = false; onOpenChange?.(false); if (timer) clearTimeout(timer); }
+  function close() {
+    clearTimer();
+    if (controlledOpen === undefined) internalOpen = false;
+    onOpenChange?.(false);
+  }
 </script>
 {#if isOpen}
   <div {...rest} id={id} role="status" aria-live="polite" in:slide={{ duration: 300 }} out:fade={{ duration: 200 }}

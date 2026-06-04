@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, untrack } from 'svelte';
   import { fade, slide } from 'svelte/transition';
   import { cn } from '../../internal/class.js';
   import { toasts, dismiss, type ToastRecord, type ToastTone } from './toast.store.js';
@@ -11,8 +11,12 @@
   onMount(() => toasts.subscribe((v) => (list = v)));
 
   // 每个 toast 的自动消失计时器
-  let timers = new Map<string, ReturnType<typeof setTimeout>>();
+  // 修复：原实现的 cleanup 会在 list 变化时清空所有计时器，导致新增第二条 toast 时
+  // 第一条的计时器被错误清除。这里改为只清除已从 list 中移除的 toast 的计时器。
+  const timers = new Map<string, ReturnType<typeof setTimeout>>();
   $effect(() => {
+    // 追踪 list 变化，触发 effect 重跑
+    const currentIds = new Set(list.map((t) => t.id));
     for (const t of list) {
       if (timers.has(t.id)) continue;
       if (t.duration > 0) {
@@ -25,12 +29,15 @@
         );
       }
     }
-    return () => {
-      for (const [id, timer] of timers) {
-        clearTimeout(timer);
-        timers.delete(id);
+    // 只清除已从 list 移除的 toast 的计时器（不在 untrack 中以避免误关）
+    untrack(() => {
+      for (const id of [...timers.keys()]) {
+        if (!currentIds.has(id)) {
+          clearTimeout(timers.get(id));
+          timers.delete(id);
+        }
       }
-    };
+    });
   });
 
   const positionClass = $derived(

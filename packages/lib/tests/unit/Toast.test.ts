@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { tick } from "svelte";
 import { render } from "@testing-library/svelte";
 import Toast from "$lib/components/toast/Toast.svelte";
@@ -33,5 +33,17 @@ describe("Toast", () => {
   it("does not show dismiss button when not dismissible", () => {
     render(Toast, { props: { defaultOpen: true, dismissible: false } });
     expect(document.querySelector('button[aria-label="Dismiss"]')).toBeNull();
+  });
+  it("auto-dismisses after duration via setTimeout", async () => {
+    vi.useFakeTimers();
+    let val = true;
+    render(Toast, {
+      props: { defaultOpen: true, duration: 1000, onOpenChange: (v: boolean) => { val = v; } },
+    });
+    expect(document.querySelector(".pui-toast")).toBeTruthy();
+    vi.advanceTimersByTime(1100);
+    await tick();
+    expect(val).toBe(false);
+    vi.useRealTimers();
   });
 });
