@@ -376,6 +376,54 @@
   --pui-md-sys-state-dragged-state-layer-opacity: 0.16;
 
   /* ==========================================================
+     MD3 Motion Easing（5 条标准 easing，m3.material.io 规范）
+     https://m3.material.io/styles/motion/easing-and-duration
+     ========================================================== */
+  --pui-md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --pui-md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --pui-md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --pui-md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --pui-md-sys-motion-easing-linear: linear;
+
+  /* ==========================================================
+     MD3 Motion Duration（6 档：short1/2, medium1/2, long1/2）
+     https://m3.material.io/styles/motion/easing-and-duration
+     ========================================================== */
+  --pui-md-sys-motion-duration-short1: 50ms;
+  --pui-md-sys-motion-duration-short2: 100ms;
+  --pui-md-sys-motion-duration-medium1: 250ms;
+  --pui-md-sys-motion-duration-medium2: 300ms;
+  --pui-md-sys-motion-duration-long1: 450ms;
+  --pui-md-sys-motion-duration-long2: 500ms;
+
+  /* ==========================================================
+     MD3 Success / Warning Color Roles（2024 新增的"extended palette"）
+     之前只有 error 一个 system color，MD3 2024 起把 success/warning 也标准化
+     ========================================================== */
+  /* 复用已有的 tonal palette（success/warning 用同一组 ref 调色）*/
+  --pui-md-sys-color-success: var(--pui-md-ref-palette-tertiary-40);
+  --pui-md-sys-color-on-success: var(--pui-md-ref-palette-tertiary-100);
+  --pui-md-sys-color-success-container: var(--pui-md-ref-palette-tertiary-90);
+  --pui-md-sys-color-on-success-container: var(
+    --pui-md-ref-palette-tertiary-10
+  );
+
+  --pui-md-sys-color-warning: var(--pui-md-ref-palette-error-40);
+  --pui-md-sys-color-on-warning: var(--pui-md-ref-palette-error-100);
+  --pui-md-sys-color-warning-container: var(--pui-md-ref-palette-error-90);
+  --pui-md-sys-color-on-warning-container: var(
+    --pui-md-ref-palette-error-10
+  );
+
+  /* Info（MD3 2024 express update：primary 之外的"信息"色彩）*/
+  --pui-md-sys-color-info: var(--pui-md-sys-color-tertiary);
+  --pui-md-sys-color-on-info: var(--pui-md-sys-color-on-tertiary);
+  --pui-md-sys-color-info-container: var(--pui-md-sys-color-tertiary-container);
+  --pui-md-sys-color-on-info-container: var(
+    --pui-md-sys-color-on-tertiary-container
+  );
+
+  /* ==========================================================
      Persona Semantic Token Mapping (Material)
      ========================================================== */
 
@@ -397,6 +445,24 @@
   --pui-color-on-error: var(--pui-md-sys-color-on-error);
   --pui-color-error-container: var(--pui-md-sys-color-error-container);
   --pui-color-on-error-container: var(--pui-md-sys-color-on-error-container);
+
+  /* Success / Warning / Info（MD3 2024 扩展）*/
+  --pui-color-success: var(--pui-md-sys-color-success);
+  --pui-color-on-success: var(--pui-md-sys-color-on-success);
+  --pui-color-success-container: var(--pui-md-sys-color-success-container);
+  --pui-color-on-success-container: var(
+    --pui-md-sys-color-on-success-container
+  );
+  --pui-color-warning: var(--pui-md-sys-color-warning);
+  --pui-color-on-warning: var(--pui-md-sys-color-on-warning);
+  --pui-color-warning-container: var(--pui-md-sys-color-warning-container);
+  --pui-color-on-warning-container: var(
+    --pui-md-sys-color-on-warning-container
+  );
+  --pui-color-info: var(--pui-md-sys-color-info);
+  --pui-color-on-info: var(--pui-md-sys-color-on-info);
+  --pui-color-info-container: var(--pui-md-sys-color-info-container);
+  --pui-color-on-info-container: var(--pui-md-sys-color-on-info-container);
 
   /* Surfaces */
   --pui-surface-base: var(--pui-md-sys-color-surface);
@@ -639,6 +705,28 @@
   --pui-md-sys-color-on-error: var(--pui-md-ref-palette-error-20);
   --pui-md-sys-color-error-container: var(--pui-md-ref-palette-error-30);
   --pui-md-sys-color-on-error-container: var(--pui-md-ref-palette-error-90);
+
+  /* Success / Warning / Info dark variants (MD3 2024) */
+  --pui-md-sys-color-success: var(--pui-md-ref-palette-tertiary-80);
+  --pui-md-sys-color-on-success: var(--pui-md-ref-palette-tertiary-20);
+  --pui-md-sys-color-success-container: var(--pui-md-ref-palette-tertiary-30);
+  --pui-md-sys-color-on-success-container: var(
+    --pui-md-ref-palette-tertiary-90
+  );
+  --pui-md-sys-color-warning: var(--pui-md-ref-palette-error-80);
+  --pui-md-sys-color-on-warning: var(--pui-md-ref-palette-error-20);
+  --pui-md-sys-color-warning-container: var(--pui-md-ref-palette-error-30);
+  --pui-md-sys-color-on-warning-container: var(
+    --pui-md-ref-palette-error-90
+  );
+  --pui-md-sys-color-info: var(--pui-md-sys-color-tertiary);
+  --pui-md-sys-color-on-info: var(--pui-md-sys-color-on-tertiary);
+  --pui-md-sys-color-info-container: var(
+    --pui-md-sys-color-tertiary-container
+  );
+  --pui-md-sys-color-on-info-container: var(
+    --pui-md-sys-color-on-tertiary-container
+  );
 
   --pui-md-sys-color-background: var(--pui-md-ref-palette-neutral-10);
   --pui-md-sys-color-on-background: var(--pui-md-ref-palette-neutral-90);
