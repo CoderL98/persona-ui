@@ -28,10 +28,10 @@
     id,
     'aria-label': ariaLabel,
     'data-testid': dataTestId,
-    oninput,
-    onchange,
-    onfocus,
-    onblur,
+    onInput,
+    onChange,
+    onFocus,
+    onBlur,
     inputProps = {},
     ...rest
   }: TextFieldProps = $props();
@@ -55,7 +55,7 @@
     if (controlledValue === undefined) {
       internalValue = target.value;
     }
-    oninput?.(e as InputEvent);
+    onInput?.(e as InputEvent);
   }
 
   const attrs = $derived(
@@ -134,9 +134,9 @@
       aria-describedby={helperText || error ? `${fieldId}-helper` : undefined}
       aria-label={ariaLabel}
       oninput={handleInput}
-      onchange={onchange}
-      onfocus={onfocus}
-      onblur={onblur}
+      onchange={onChange}
+      onfocus={onFocus}
+      onblur={onBlur}
       {...inputProps}
     />
     {#if trailing}

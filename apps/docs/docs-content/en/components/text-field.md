@@ -42,7 +42,7 @@ All other attributes are forwarded to the `<input>` element.
 
 ```svelte
 <!-- Controlled -->
-<TextField value={name} oninput={(e) => name = e.target.value} label="Name" />
+<TextField value={name} onInput={(e) => name = e.target.value} label="Name" />
 
 <!-- Uncontrolled -->
 <TextField defaultValue="John" label="Name" />

@@ -15,7 +15,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onclick,
+    onClick,
     ...rest
   }: IconButtonProps = $props();
 
@@ -60,7 +60,7 @@
   data-testid={dataTestId}
   onclick={(e) => {
     if (disabled || loading) return;
-    onclick?.(e);
+    onClick?.(e);
   }}
 >
   {#if loading}

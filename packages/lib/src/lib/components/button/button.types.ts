@@ -38,7 +38,7 @@ export type ButtonProps = {
   /** Test id */
   'data-testid'?: string;
   /** Click handler */
-  onclick?: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void;
   /** All other native button attributes */
   [key: string]: unknown;
 };

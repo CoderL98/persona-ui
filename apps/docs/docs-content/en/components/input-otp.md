@@ -52,7 +52,7 @@ A one-time password input with separate slots, full keyboard navigation, and pas
 </script>
 
 <InputOTP bind:value={code} length={6} onComplete={handleComplete} />
-<Button disabled={code.length !== 6} onclick={() => submit(code)}>Verify</Button>
+<Button disabled={code.length !== 6} onClick={() => submit(code)}>Verify</Button>
 ```
 
 ## Accessibility

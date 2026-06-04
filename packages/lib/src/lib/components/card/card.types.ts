@@ -17,7 +17,7 @@ export type CardProps = {
   /** Bottom actions area */
   actions?: Snippet;
   /** Click handler (used when interactive) */
-  onclick?: (e: MouseEvent | KeyboardEvent) => void;
+  onClick?: (e: MouseEvent | KeyboardEvent) => void;
   /** Additional CSS classes */
   class?: string;
   /** Inline style — for CSS variable overrides */

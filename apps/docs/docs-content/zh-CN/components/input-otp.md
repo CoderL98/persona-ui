@@ -51,7 +51,7 @@ group: components
 </script>
 
 <InputOTP bind:value={code} length={6} onComplete={(v) => console.log('Code:', v)} />
-<Button disabled={code.length !== 6} onclick={() => submit(code)}>验证</Button>
+<Button disabled={code.length !== 6} onClick={() => submit(code)}>验证</Button>
 ```
 
 ## Accessibility

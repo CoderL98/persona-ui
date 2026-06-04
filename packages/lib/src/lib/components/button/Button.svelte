@@ -22,7 +22,7 @@
     id,
     'aria-label': ariaLabel,
     'data-testid': dataTestId,
-    onclick,
+    onClick,
     ...rest
   }: ButtonProps = $props();
 
@@ -84,7 +84,7 @@
   data-testid={dataTestId}
   onclick={(e) => {
     if (disabled || loading) return;
-    onclick?.(e);
+    onClick?.(e);
   }}
 >
   {#if loading}

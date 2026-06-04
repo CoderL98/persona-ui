@@ -14,7 +14,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onclick,
+    onClick,
     ...rest
   }: CardProps = $props();
 
@@ -30,7 +30,7 @@
     if (!interactive) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      onclick?.(e as unknown as MouseEvent);
+      onClick?.(e as unknown as MouseEvent);
     }
   }
 </script>
@@ -58,7 +58,7 @@
     )}
     {style}
     data-testid={dataTestId}
-    {onclick}
+    onclick={onClick}
     onkeydown={handleKeydown}
   >
     <!-- Apple inset highlight（顶部高光描边） -->

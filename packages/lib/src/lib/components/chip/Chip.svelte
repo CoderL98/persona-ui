@@ -17,7 +17,7 @@
     style,
     id,
     'data-testid': dataTestId,
-    onclick,
+    onClick,
     onRemove,
     ...rest
   }: ChipProps = $props();
@@ -74,13 +74,13 @@
   data-testid={dataTestId}
   onclick={(e) => {
     if (disabled) return;
-    onclick?.(e);
+    onClick?.(e);
   }}
   onkeydown={(e) => {
     if (disabled) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      onclick?.(e as unknown as MouseEvent);
+      onClick?.(e as unknown as MouseEvent);
     }
   }}
 >

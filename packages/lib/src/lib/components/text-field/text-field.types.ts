@@ -52,13 +52,10 @@ export type TextFieldProps = {
   /** Test id */
   "data-testid"?: string;
   /** Input event */
-  oninput?: (e: InputEvent) => void;
-  /** Change event */
-  onchange?: (e: Event) => void;
-  /** Focus event */
-  onfocus?: (e: FocusEvent) => void;
-  /** Blur event */
-  onblur?: (e: FocusEvent) => void;
+  onInput?: (e: InputEvent) => void;
+  onChange?: (e: Event) => void;
+  onFocus?: (e: FocusEvent) => void;
+  onBlur?: (e: FocusEvent) => void;
   /** All other native input attributes */
   [key: string]: unknown;
 };

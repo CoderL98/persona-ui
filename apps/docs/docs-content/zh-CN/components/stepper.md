@@ -67,8 +67,8 @@ type StepperStep = {
 <Stepper {steps} bind:value={current} />
 
 <div class="mt-4 flex justify-between">
-  <Button disabled={current === 0} onclick={() => current--}>上一步</Button>
-  <Button onclick={() => current++}>下一步</Button>
+  <Button disabled={current === 0} onClick={() => current--}>上一步</Button>
+  <Button onClick={() => current++}>下一步</Button>
 </div>
 ```
 

@@ -17,6 +17,6 @@ export type IconButtonProps = {
   style?: string;
   id?: string;
   'data-testid'?: string;
-  onclick?: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void;
   [key: string]: unknown;
 };

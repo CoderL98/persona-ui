@@ -26,9 +26,9 @@ export type TextareaProps = {
   id?: string;
   "aria-label"?: string;
   "data-testid"?: string;
-  oninput?: (e: Event) => void;
-  onchange?: (e: Event) => void;
-  onfocus?: (e: FocusEvent) => void;
-  onblur?: (e: FocusEvent) => void;
+  onInput?: (e: Event) => void;
+  onChange?: (e: Event) => void;
+  onFocus?: (e: FocusEvent) => void;
+  onBlur?: (e: FocusEvent) => void;
   [key: string]: unknown;
 };

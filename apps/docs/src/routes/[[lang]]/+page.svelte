@@ -852,15 +852,15 @@
       <p class="text-sm text-(--pui-text-secondary)">
         Click the button to open the dialog.
       </p>
-      <Button onclick={() => (dialogOpen = true)}>Open Dialog</Button>
+      <Button onClick={() => (dialogOpen = true)}>Open Dialog</Button>
       <Dialog open={dialogOpen} onOpenChange={(o: boolean) => (dialogOpen = o)}>
         {#snippet title()}Confirm Action{/snippet}
         <p>Are you sure you want to proceed?</p>
         {#snippet footer()}
-          <Button variant="outlined" onclick={() => (dialogOpen = false)}
+          <Button variant="outlined" onClick={() => (dialogOpen = false)}
             >Cancel</Button
           >
-          <Button onclick={() => (dialogOpen = false)}>Confirm</Button>
+          <Button onClick={() => (dialogOpen = false)}>Confirm</Button>
         {/snippet}
       </Dialog>
     </section>

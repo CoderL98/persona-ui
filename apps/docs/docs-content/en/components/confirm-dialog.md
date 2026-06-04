@@ -59,7 +59,7 @@ A pre-built confirmation dialog with default and danger tones, loading state, an
   }
 </script>
 
-<Button onclick={() => open = true}>Delete</Button>
+<Button onClick={() => open = true}>Delete</Button>
 
 <ConfirmDialog
   bind:open

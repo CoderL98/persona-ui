@@ -59,7 +59,7 @@ group: components
   }
 </script>
 
-<Button onclick={() => open = true}>删除</Button>
+<Button onClick={() => open = true}>删除</Button>
 
 <ConfirmDialog
   bind:open

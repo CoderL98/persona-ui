@@ -65,7 +65,7 @@ type TourStep = {
   ];
 </script>
 
-<Button onclick={() => open = true}>開始導覽</Button>
+<Button onClick={() => open = true}>開始導覽</Button>
 
 <button id="step-1">開始</button>
 <button id="step-2">收件匣</button>
