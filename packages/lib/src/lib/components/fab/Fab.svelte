@@ -1,4 +1,8 @@
 <script lang="ts">
+  // Fab 组件 — MD3 Floating Action Button（浮动操作按钮）
+  // 3 档尺寸：small (40dp 紧凑工具栏) / regular (56dp 标准) / large (96dp Extended FAB)
+  // 4 档颜色：surface / primary / secondary / tertiary（对应 MD3 4 档强调度）
+  // 触觉：点击触发 medium 触感（比 Button 的 light 重一档，因为 FAB 通常代表"主要操作"）
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
   import { triggerHaptic } from '../../internal/haptics.js';
@@ -20,6 +24,7 @@
     ...rest
   }: FabProps = $props();
 
+  // Svelte 5.20+ $props.id() 生成编译时位置 hash，SSR/CSR 稳定
   let _autoId = $props.id();
   const fabId = $derived(id ?? _autoId);
 

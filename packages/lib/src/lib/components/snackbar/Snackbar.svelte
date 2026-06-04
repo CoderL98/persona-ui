@@ -1,4 +1,8 @@
 <script lang="ts">
+  // Snackbar 组件 — MD3 标准的轻量反馈条
+  // 4 档语义（info/success/warning/error）+ 2 档行为（default 4s 自动关 / action 需手动关）
+  // 与 Toast 的差异：定位在屏幕底部中央（不在右上角）、无进度条、tone 体系用 MD3 inverse-surface
+  // 触觉反馈：action 按钮按下时给一档 light 触感
   import { untrack } from 'svelte';
   import { cn } from '../../internal/class.js';
   import { dataAttrs } from '../../internal/attrs.js';
@@ -26,22 +30,27 @@
   let _autoId = $props.id();
   const snackbarId = $derived(id ?? _autoId);
 
+  // 受控/非受控双向：controlled 优先；fallback 到 internal（untrack 只读初值一次）
   let internalOpen = $state(untrack(() => defaultOpen));
   let isOpen = $derived(controlledOpen ?? internalOpen);
   let timer: ReturnType<typeof setTimeout> | null = null;
 
+  // 关闭逻辑：清状态 + 通知外部（非受控时改 internal，受控时只通知）
   function close() {
     if (controlledOpen === undefined) internalOpen = false;
     onOpenChange?.(false);
   }
 
+  // Action 按钮处理：触发触感 + 回调 + 按 kind 决定是否自动关
   function handleAction() {
     triggerHaptic('light');
     onAction?.();
     if (kind === 'default') close();
-    // kind='action' 不自动关，让用户主动关
+    // kind='action' 不自动关，让用户主动关（避免撤销/重做被覆盖）
   }
 
+  // 自动关闭定时器：仅 default kind + 持续时长 > 0 时启动
+  // 每次 isOpen/duration 变化都重设 timer；返回的 cleanup 在 effect 重新跑时清旧 timer
   $effect(() => {
     if (typeof document === 'undefined') return;
     if (isOpen && duration > 0 && kind === 'default') {

@@ -44,9 +44,9 @@
   class={cn(
     'pui-avatar',
     'relative inline-flex items-center justify-center overflow-hidden',
-    'rounded-[var(--pui-avatar-radius,999px)]',
-    'bg-[var(--pui-avatar-bg,var(--pui-surface-variant))]',
-    'text-[var(--pui-avatar-fg,var(--pui-text-secondary))]',
+    'rounded-(--pui-avatar-radius,999px)',
+    'bg-(--pui-avatar-bg,var(--pui-surface-variant))',
+    'text-(--pui-avatar-fg,var(--pui-text-secondary))',
     'font-medium',
     // Size
     size === 'xs' && 'h-6 w-6 text-[10px]',
@@ -75,11 +75,11 @@
   {/if}
   {#if status}
     <span
-      class="absolute bottom-0 right-0 block rounded-full border-2 border-[var(--pui-surface-base)]
+      class="absolute bottom-0 right-0 block rounded-full border-2 border-(--pui-surface-base)
              h-[calc(var(--pui-avatar-status-dot-size,10px))] w-[calc(var(--pui-avatar-status-dot-size,10px))]
-             bg-[var(--pui-avatar-status-color,var(--pui-color-tertiary))]
-             {status === 'busy' && 'bg-[var(--pui-color-error)]'}
-             {status === 'away' && 'bg-[var(--pui-apple-system-yellow,var(--pui-color-primary))]'}"
+             bg-(--pui-avatar-status-color,var(--pui-color-tertiary))
+             {status === 'busy' && 'bg-(--pui-color-error)'}
+             {status === 'away' && 'bg-(--pui-apple-system-yellow,var(--pui-color-primary))'}"
       role="img"
       aria-label={status === 'online' ? 'Online' : status === 'busy' ? 'Busy' : status === 'away' ? 'Away' : status === 'offline' ? 'Offline' : status}
     ></span>

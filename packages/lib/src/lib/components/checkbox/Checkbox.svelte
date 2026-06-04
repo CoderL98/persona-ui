@@ -68,11 +68,11 @@
     aria-hidden="true"
     class={cn(
       'pui-state-layer inline-flex items-center justify-center shrink-0 transition-all',
-      'h-[var(--pui-checkbox-size,22px)] w-[var(--pui-checkbox-size,22px)] rounded-[var(--pui-checkbox-radius,var(--pui-radius-control))]',
+      'h-(--pui-checkbox-size,22px) w-(--pui-checkbox-size,22px) rounded-(--pui-checkbox-radius,var(--pui-radius-control))',
       'border-2',
       currentChecked || indeterminate
-        ? 'bg-[var(--pui-checkbox-checked-bg,var(--pui-color-primary))] border-[var(--pui-checkbox-checked-bg,var(--pui-color-primary))]'
-        : 'bg-transparent border-[var(--pui-checkbox-border,var(--pui-outline))]',
+        ? 'bg-(--pui-checkbox-checked-bg,var(--pui-color-primary)) border-(--pui-checkbox-checked-bg,var(--pui-color-primary))'
+        : 'bg-transparent border-(--pui-checkbox-border,var(--pui-outline))',
       disabled && 'opacity-(--pui-opacity-disabled) cursor-not-allowed',
       !disabled && 'cursor-pointer peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2',
     )}

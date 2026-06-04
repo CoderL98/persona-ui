@@ -46,7 +46,7 @@
     tone === 'neutral' && 'bg-(--pui-badge-bg,var(--pui-surface-variant)) text-(--pui-badge-fg,var(--pui-text-secondary))',
     tone === 'primary' && 'bg-(--pui-color-primary) text-(--pui-color-on-primary)',
     tone === 'success' && 'bg-(--pui-color-tertiary) text-(--pui-color-on-primary)',
-    tone === 'warning' && !isDot && 'bg-[var(--pui-apple-system-yellow,oklch(0.7 0.18 90))] text-(--pui-ref-gray-90)',
+    tone === 'warning' && !isDot && 'bg-(--pui-apple-system-yellow,oklch(0.7 0.18 90)) text-(--pui-ref-gray-90)',
     tone === 'error' && 'bg-(--pui-color-error) text-(--pui-color-on-error)',
     // Size
     size === 'sm' && 'text-[10px]',

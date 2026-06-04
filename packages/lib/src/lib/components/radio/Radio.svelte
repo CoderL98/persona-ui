@@ -19,9 +19,9 @@
 <div {...rest} {...attrs} id={id} class={cn('pui-radio inline-flex items-center gap-2', className)} style={style} data-testid={dataTestId} data-value={value}>
   <input id={inputId} type="radio" class="sr-only peer" {value} name={groupName} checked={isChecked} disabled={disabled || isGroupDisabled} aria-label={label || value} onchange={handleClick} />
   <span class={cn('inline-flex items-center justify-center shrink-0 transition-all',
-    'h-[var(--pui-radio-size,22px)] w-[var(--pui-radio-size,22px)] rounded-full border-2',
-    'peer-checked:border-[var(--pui-radio-checked-border,var(--pui-color-primary))] peer-checked:bg-[var(--pui-radio-checked-bg,var(--pui-color-primary))]',
-    'border-[var(--pui-radio-border,var(--pui-outline))]',
+    'h-(--pui-radio-size,22px) w-(--pui-radio-size,22px) rounded-full border-2',
+    'peer-checked:border-(--pui-radio-checked-border,var(--pui-color-primary)) peer-checked:bg-(--pui-radio-checked-bg,var(--pui-color-primary))',
+    'border-(--pui-radio-border,var(--pui-outline))',
     (disabled || isGroupDisabled) && 'opacity-(--pui-opacity-disabled)')}>
     <span class="h-2 w-2 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform"></span>
   </span>

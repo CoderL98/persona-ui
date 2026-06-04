@@ -31,8 +31,12 @@ export type HapticType =
   | "warning"
   | "error";
 
-/** 不同触感对应的振动模式（毫秒）— Android 平台 */
-const VIBRATION_PATTERNS: Record<HapticType, number | number[]> = {
+  /** 不同触感对应的振动模式（毫秒）— Android 平台
+   *  - 单数字：持续振动时长
+   *  - 数组：vibrate-on-pause-on-vibrate... 节奏模式
+   *  - success/warning/error 用节奏模式区分语义
+   */
+  const VIBRATION_PATTERNS: Record<HapticType, number | number[]> = {
   selection: 10, // 极短
   light: 15,
   medium: 25,
@@ -44,6 +48,7 @@ const VIBRATION_PATTERNS: Record<HapticType, number | number[]> = {
 
 /**
  * 触发触感反馈。自动检测 navigator.vibrate 支持；不支持则 no-op。
+ * 同时尊重 prefers-reduced-motion 偏好（触感属于 motion 类别，无障碍设置应关闭）。
  *
  * @example
  * import { triggerHaptic } from '$lib/internal/haptics';
@@ -65,7 +70,9 @@ export function triggerHaptic(type: HapticType): void {
   }
 }
 
-/** 检查当前设备是否支持 web haptics（异步、不阻塞 UI） */
+/** 检查当前设备是否支持 web haptics（同步、不阻塞 UI）
+ *  用于上层根据平台差异选择不同 UI 行为（如桌面端用 tooltip 替代 haptic 提示）
+ */
 export function supportsHaptics(): boolean {
   if (typeof window === "undefined" || typeof navigator === "undefined") return false;
   return typeof navigator.vibrate === "function";
