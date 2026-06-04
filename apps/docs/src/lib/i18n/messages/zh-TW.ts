@@ -70,6 +70,11 @@ export const messages: Messages = {
 	docNotFound: '找不到文件',
 	docNotFoundBody: (slug) => `<code>${slug}</code> 沒有對應的文件。`,
 
+	// 404 / error page
+	notFoundTitle: '頁面不存在',
+	notFoundBody: '您存取的頁面不存在或已被移動。',
+	notFoundHome: '返回首頁',
+
 	// Language switcher
 	langSwitcherAria: '語言',
 	langEn: 'EN',

@@ -78,6 +78,11 @@ export const messages: Messages = {
 	docNotFound: 'Document not found',
 	docNotFoundBody: (slug) => `No documentation exists for <code>${slug}</code>.`,
 
+	// 404 / error page
+	notFoundTitle: 'Page not found',
+	notFoundBody: "The page you're looking for doesn't exist or has been moved.",
+	notFoundHome: 'Back to home',
+
 	// Language switcher
 	langSwitcherAria: 'Language',
 	langEn: 'EN',

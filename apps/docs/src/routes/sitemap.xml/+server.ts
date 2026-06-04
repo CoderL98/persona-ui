@@ -1,15 +1,25 @@
 // 动态生成 sitemap.xml（nginx 静态托管下，prerender 时构建一次）
 // 三语 × 每种语言的每个 doc slug + 首页
-import { LOCALES } from '../../lib/i18n/locales';
+import { LOCALES, localeToPath } from '../../lib/i18n/locales';
 import { docs } from '../../lib/docs';
 
 export const prerender = true;
 
 const SITE = 'https://persona-ui.dev';
 
-function urlEntry(loc: string, lastmod?: string, alternates?: string[]) {
+// 单条 <url>：loc 必填，lastmod 可选；alternates 用 [{locale, href}] 而非字符串
+// 因为 hreflang 必须用规范 BCP 47 形式（zh-CN / zh-TW），而 URL 段是小写（/zh-cn）
+// 若从 URL 反推会得到小写，Google 虽能接受但不利于与其他 sitemap 工具保持一致
+function urlEntry(
+	loc: string,
+	lastmod?: string,
+	alternates?: { locale: string; href: string }[],
+) {
 	const alt = alternates
-		?.map((href) => `    <xhtml:link rel="alternate" hreflang="${href.split('/')[3] || 'en'}" href="${href}" />`)
+		?.map(
+			(a) =>
+				`    <xhtml:link rel="alternate" hreflang="${a.locale}" href="${a.href}" />`,
+		)
 		.join('\n');
 	return `  <url>
     <loc>${loc}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}${alt ? `\n${alt}` : ''}
@@ -22,12 +32,12 @@ export function GET() {
 
 	// 首页：三语
 	for (const locale of LOCALES) {
-		const prefix = locale === 'en' ? '' : `/${locale.toLowerCase()}`;
+		const href = `${SITE}${localeToPath(locale)}/`;
 		urls.push(
 			urlEntry(
-				`${SITE}${prefix}/`,
+				href,
 				now,
-				LOCALES.map((l) => `${SITE}${l === 'en' ? '' : '/' + l.toLowerCase()}/`),
+				LOCALES.map((l) => ({ locale: l, href: `${SITE}${localeToPath(l)}/` })),
 			),
 		);
 	}
@@ -36,11 +46,17 @@ export function GET() {
 	for (const locale of LOCALES) {
 		const list = docs(locale);
 		for (const entry of list) {
-			const prefix = locale === 'en' ? '' : `/${locale.toLowerCase()}`;
-			const alts = LOCALES.map(
-				(l) => `${SITE}${l === 'en' ? '' : '/' + l.toLowerCase()}/docs/${entry.slug}`,
+			const href = `${SITE}${localeToPath(locale)}/docs/${entry.slug}`;
+			urls.push(
+				urlEntry(
+					href,
+					now,
+					LOCALES.map((l) => ({
+						locale: l,
+						href: `${SITE}${localeToPath(l)}/docs/${entry.slug}`,
+					})),
+				),
 			);
-			urls.push(urlEntry(`${SITE}${prefix}/docs/${entry.slug}`, now, alts));
 		}
 	}
 

@@ -69,6 +69,11 @@ export interface Messages {
 	docNotFound: string;
 	docNotFoundBody: (slug: string) => string;
 
+	// 404 / error page
+	notFoundTitle: string;
+	notFoundBody: string;
+	notFoundHome: string;
+
 	// Language switcher
 	langSwitcherAria: string;
 	langEn: string;

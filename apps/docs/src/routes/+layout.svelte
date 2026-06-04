@@ -235,7 +235,18 @@
 	</div>
 </header>
 
-<main class="mx-auto max-w-6xl px-4 py-10 sm:py-16">
+<main id="top" class="mx-auto max-w-6xl px-4 py-10 sm:py-16">
+	<!-- 键盘 a11y：tab 跳过 header 直接到主内容 -->
+	<a
+		href="#top"
+		class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
+               focus:rounded-(--pui-radius-control)
+               focus:bg-(--pui-color-primary-container) focus:px-3 focus:py-2
+               focus:text-(--pui-color-on-primary-container)
+               focus:shadow-(--pui-elevation-2) focus:outline-2 focus:outline-(--pui-color-primary)"
+	>
+		{t('skipToContent')}
+	</a>
 	{@render children()}
 </main>
 

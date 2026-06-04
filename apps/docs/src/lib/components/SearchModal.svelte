@@ -50,31 +50,18 @@
 			selectResult(results[activeIndex]);
 		}
 	}
-
-	// 全局 Cmd/Ctrl+K 打开
-	function handleGlobalKey(e: KeyboardEvent) {
-		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-			e.preventDefault();
-			open = !open;
-		}
-	}
-
-	$effect(() => {
-		if (typeof window === 'undefined') return;
-		window.addEventListener('keydown', handleGlobalKey);
-		return () => window.removeEventListener('keydown', handleGlobalKey);
-	});
 </script>
 
 <svelte:window
 	onkeydown={(e) => {
-		if (!open && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+		// 全局 Cmd/Ctrl+K：开 ↔ 关
+		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
 			e.preventDefault();
-			open = true;
-		} else if (open && e.key === 'Escape') {
-			e.preventDefault();
-			close();
+			open = !open;
+			return;
 		}
+		// 打开后由内层 handleKey 处理 Esc / ↑ / ↓ / Enter
+		if (open) handleKey(e);
 	}}
 />
 
