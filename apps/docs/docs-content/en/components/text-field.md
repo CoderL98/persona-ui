@@ -33,8 +33,8 @@ A text input component with label, helper text, and error state.
 | `trailing`     | `Snippet`                                              | —        | Trailing icon/element               |
 | `class`        | `string`                                               | —        | Additional CSS classes              |
 | `style`        | `string`                                               | —        | Inline style                        |
-| `oninput`      | `(e: Event) => void`                                   | —        | Input handler                       |
-| `onchange`     | `(e: Event) => void`                                   | —        | Change handler                      |
+| `onInput`            | `(e: Event) => void`                                   | —        | Input handler                       |
+| `onChange`           | `(e: Event) => void`                                   | —        | Change handler                      |
 
 All other attributes are forwarded to the `<input>` element.
 

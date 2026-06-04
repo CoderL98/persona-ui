@@ -35,7 +35,7 @@ group: components
 | `children` | `Snippet`                                     | —            | 图标内容                          |
 | `class`    | `string`                                      | —            | 附加的 CSS 类                     |
 | `style`    | `string`                                      | —            | 内联样式（用于覆盖 token）        |
-| `onclick`  | `(e: MouseEvent) => void`                     | —            | 点击处理函数                      |
+| `onClick`            | `(e: MouseEvent) => void`                     | —            | 点击处理函数                      |
 
 ## 组件 Token
 

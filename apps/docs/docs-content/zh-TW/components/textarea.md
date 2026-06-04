@@ -45,8 +45,8 @@ group: components
 | `trailing`     | `Snippet`                                           | —           | 後置元素                                          |
 | `class`        | `string`                                            | —           | 額外的 CSS 類別                                   |
 | `style`        | `string`                                            | —           | 行內樣式（用於覆寫設計 token）                    |
-| `oninput`      | `(e: Event) => void`                                | —           | 輸入處理函式                                      |
-| `onchange`     | `(e: Event) => void`                                | —           | 變更處理函式                                      |
+| `onInput`            | `(e: Event) => void`                                | —           | 輸入處理函式                                      |
+| `onChange`           | `(e: Event) => void`                                | —           | 變更處理函式                                      |
 
 所有其他屬性會轉發到底層的 `<textarea>`。
 

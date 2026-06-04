@@ -45,8 +45,8 @@ group: components
 | `trailing`     | `Snippet`                                           | —           | 后置元素                                          |
 | `class`        | `string`                                            | —           | 附加的 CSS 类                                     |
 | `style`        | `string`                                            | —           | 内联样式（用于覆盖 token）                        |
-| `oninput`      | `(e: Event) => void`                                | —           | 输入处理函数                                      |
-| `onchange`     | `(e: Event) => void`                                | —           | 变更处理函数                                      |
+| `onInput`            | `(e: Event) => void`                                | —           | 输入处理函数                                      |
+| `onChange`           | `(e: Event) => void`                                | —           | 变更处理函数                                      |
 
 其余属性会透传到底层的 `<textarea>` 元素。
 

@@ -37,8 +37,8 @@ A multi-line text input with label, helper text, error state, and configurable r
 | `trailing`     | `Snippet`                                           | —           | Trailing element                                  |
 | `class`        | `string`                                            | —           | Additional CSS classes                            |
 | `style`        | `string`                                            | —           | Inline style (for token overrides)                |
-| `oninput`      | `(e: Event) => void`                                | —           | Input handler                                     |
-| `onchange`     | `(e: Event) => void`                                | —           | Change handler                                    |
+| `onInput`            | `(e: Event) => void`                                | —           | Input handler                                     |
+| `onChange`           | `(e: Event) => void`                                | —           | Change handler                                    |
 
 All other attributes are forwarded to the underlying `<textarea>`.
 

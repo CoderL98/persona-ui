@@ -41,8 +41,8 @@ group: components
 | `trailing`     | `Snippet`                                              | —        | 后置图标/元素                  |
 | `class`        | `string`                                               | —        | 额外的 CSS 类名                |
 | `style`        | `string`                                               | —        | 内联样式                       |
-| `oninput`      | `(e: Event) => void`                                   | —        | 输入处理器                     |
-| `onchange`     | `(e: Event) => void`                                   | —        | 变更处理器                     |
+| `onInput`            | `(e: Event) => void`                                   | —        | 输入处理器                     |
+| `onChange`           | `(e: Event) => void`                                   | —        | 变更处理器                     |
 
 其余属性会透传到 `<input>` 元素。
 

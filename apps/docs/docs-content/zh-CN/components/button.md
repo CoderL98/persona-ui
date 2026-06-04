@@ -36,7 +36,7 @@ group: components
 | `trailing` | `Snippet`                                      | —          | 后置图标                                 |
 | `class`    | `string`                                       | —          | 附加的 CSS 类                            |
 | `style`    | `string`                                       | —          | 内联样式（用于覆盖 token）               |
-| `onclick`  | `(e: MouseEvent) => void`                      | —          | 点击处理函数                             |
+| `onClick`            | `(e: MouseEvent) => void`                      | —          | 点击处理函数                             |
 
 其余属性会透传到底层的 `<button>` 元素。
 

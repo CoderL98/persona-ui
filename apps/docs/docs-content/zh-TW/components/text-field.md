@@ -41,8 +41,8 @@ group: components
 | `trailing`     | `Snippet`                                              | —        | 後置圖示／元素                 |
 | `class`        | `string`                                               | —        | 額外的 CSS 類別                |
 | `style`        | `string`                                               | —        | 行內樣式                       |
-| `oninput`      | `(e: Event) => void`                                   | —        | 輸入處理器                     |
-| `onchange`     | `(e: Event) => void`                                   | —        | 變更處理器                     |
+| `onInput`            | `(e: Event) => void`                                   | —        | 輸入處理器                     |
+| `onChange`           | `(e: Event) => void`                                   | —        | 變更處理器                     |
 
 其餘屬性會轉發至 `<input>` 元素。
 

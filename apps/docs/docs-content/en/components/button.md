@@ -28,7 +28,7 @@ A versatile button component with 4 variants and 3 sizes.
 | `trailing` | `Snippet`                                      | —          | Trailing icon                      |
 | `class`    | `string`                                       | —          | Additional CSS classes             |
 | `style`    | `string`                                       | —          | Inline style (for token overrides) |
-| `onclick`  | `(e: MouseEvent) => void`                      | —          | Click handler                      |
+| `onClick`            | `(e: MouseEvent) => void`                      | —          | Click handler                      |
 
 All other attributes are forwarded to the `<button>` element.
 

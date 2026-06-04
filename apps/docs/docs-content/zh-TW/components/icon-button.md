@@ -35,7 +35,7 @@ group: components
 | `children` | `Snippet`                                     | —            | 圖示內容                          |
 | `class`    | `string`                                      | —            | 附加的 CSS 類別                   |
 | `style`    | `string`                                      | —            | 行內樣式（用於覆寫 token）        |
-| `onclick`  | `(e: MouseEvent) => void`                     | —            | 點擊處理函式                      |
+| `onClick`            | `(e: MouseEvent) => void`                     | —            | 點擊處理函式                      |
 
 ## 元件 Token
 

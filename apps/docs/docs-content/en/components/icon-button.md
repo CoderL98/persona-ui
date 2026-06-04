@@ -27,7 +27,7 @@ A circular icon-only button with accessible label.
 | `children` | `Snippet`                                     | —            | Icon content                       |
 | `class`    | `string`                                      | —            | Additional CSS classes             |
 | `style`    | `string`                                      | —            | Inline style (for token overrides) |
-| `onclick`  | `(e: MouseEvent) => void`                     | —            | Click handler                      |
+| `onClick`            | `(e: MouseEvent) => void`                     | —            | Click handler                      |
 
 ## Component Tokens
 
