@@ -1,5 +1,6 @@
 <script lang="ts">
   import { untrack } from 'svelte';
+  import { onMount } from 'svelte';
   import { cn } from '../../internal/class.js';
   import type { CalendarProps } from './calendar.types.js';
   type CalendarTexts = { months: string[]; weekdays: string[]; prevMonth: string; nextMonth: string };
@@ -31,7 +32,14 @@
   }
   const localized = $derived(localize(locale));
   const t = $derived({ ...localized, ...localTexts });
-  let viewDate = $state(new Date());
+  // SSR 稳定：默认月初（1 号）避开客户端/服务端"今天"日期不同导致的 hydration mismatch
+  // onMount 后用真实 new Date() 覆盖（用户视角下的"今天"）
+  let viewDate = $state(new Date(2000, 0, 1));
+  onMount(() => {
+    if (!viewDate || viewDate.getFullYear() === 2000) {
+      viewDate = new Date();
+    }
+  });
   let internalValue = $state(untrack(() => defaultValue ?? undefined));
   let currentValue = $derived(controlledValue ?? internalValue);
   function prevMonth() { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1); }

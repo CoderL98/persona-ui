@@ -1,5 +1,12 @@
 # @persona-ui/docs
 
+## Unreleased
+
+### Minor Changes
+
+- **lib 新增组件（待 docs 补全）**：`Fab`（3 尺寸 + 4 变体）、`Snackbar`（4 tones + 2 kinds）、`triggerHaptic` / `supportsHaptics` 工具
+- **haptics.test.ts 已覆盖** 4 档（vibrate / reduced-motion / missing / SSR）
+
 ## 1.0.0
 
 ### Minor Changes

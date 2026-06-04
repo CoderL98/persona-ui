@@ -23,10 +23,14 @@ export type ToastRecord = Required<Omit<ToastInput, 'title'>> & {
 /** 内部 store —— 由 ToastProvider 订阅，外部可通过 toast() 命令式 push。 */
 export const toasts: Writable<ToastRecord[]> = writable([]);
 
-let counter = 0;
 function genId() {
-  counter += 1;
-  return `pui-toast-${Date.now().toString(36)}-${counter}`;
+  // 客户端命令式 API：用 crypto.randomUUID 避免 Date.now() 同秒冲突
+  // SSR 不调到此函数（store 在浏览器内才用）
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return `pui-toast-${crypto.randomUUID()}`;
+  }
+  // 老浏览器兜底
+  return `pui-toast-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
 /**

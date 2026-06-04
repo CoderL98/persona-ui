@@ -1,5 +1,6 @@
 <script lang="ts">
   import { untrack } from 'svelte';
+  import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
   import { cn } from '../../internal/class.js';
   import { clickOutside } from '../../internal/click-outside.js';
@@ -65,8 +66,17 @@
   let endSecond = $state(0);
 
   // ── View navigation ──
-  let viewYear = $state(new Date().getFullYear());
-  let viewMonth = $state(new Date().getMonth());
+  // SSR 稳定：默认 2000-01（避开 SSR/CSR "今天" 不同导致的 hydration mismatch）
+  // onMount 后用真实 new Date() 覆盖
+  let viewYear = $state(2000);
+  let viewMonth = $state(0);
+  let mounted = $state(false);
+  onMount(() => {
+    const now = new Date();
+    viewYear = now.getFullYear();
+    viewMonth = now.getMonth();
+    mounted = true;
+  });
 
   let _autoId = $props.id();
   const drpId = $derived(id ?? _autoId);

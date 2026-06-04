@@ -14,6 +14,11 @@
 
 - **feat(apple): 1:1 复刻 iOS 17 HIG 缺失的 4 类 token** — System Fill（4 档 light+dark）、Semantic Icon（4 档）、Content Margins（3 档）、Dynamic Type Scale（11 档 size+line-height）、Motion Timings（sheet 400ms / alert 200ms / page 350ms / `cubic-bezier(0.32, 0.72, 0, 1)`）
 - **feat(material): 1:1 复刻 MD3 2024 缺失的 motion + 扩展色板** — 5 条标准 motion easing、6 档 motion duration、Success / Warning / Info 色板（light + dark 各 12 token）
+- **feat(design-system): P0/P1/P2 共 11 项设计规范 1:1 补全**：
+  - **P0** Apple Squircle（`corner-shape: squircle` + 6 档 fallback radius）；MD3 Density 4 档（`[data-density]` 切换 0/-1/-2/-3）；MD3 IconButton 4 variants（standard/filled/filled-tonal/outlined）+ `shape: round | square` prop
+  - **P1** Apple Haptics（`triggerHaptic()` 7 档 + `navigator.vibrate` + reduced-motion 守卫，已 wire 到 Button/IconButton/Switch/Chip/Snackbar/Fab）；Apple Safe Area（4 档 `env(safe-area-inset-*)`）+ Multi-Spring 3 档；MD3 FAB 组件（3 尺寸 40/56/96dp + 4 变体 surface/primary/secondary/tertiary）；MD3 Snackbar 组件（4 tones + 2 kinds）
+  - **P2** MD3 Expressive Motion（4 档 spring easing）；State Layer Size（40/48/56dp）；MD3 Fixed Colors（5 语义值）；Apple touch-callout 禁用；Card 第 5/4 变体（tonal/flat）
+- **feat(card):** 新增 `variant="tonal"`（`secondary-container`）和 `variant="flat"`（透明 + outline），共 5 档变体
 
 ### Patch Changes
 
@@ -32,6 +37,11 @@
 - docs: 12 个组件 API 表 prop 名同步驼峰（button/icon-button/text-field/textarea × 3 语）
 - docs: 补 SectionHeading 三语言文档
 - docs: 修正 checkbox / switch / alert 文档中 `onValueChange` / `ondismiss` 为与实现一致的 `onCheckedChange` / `onDismiss`（驼峰）
+- fix(toast): toast.store.ts ID 生成改用 `crypto.randomUUID()`（M7.3 commit 漏改 store），`Date.now()` fallback 仍保留为老浏览器降级
+- fix(calendar): `viewDate` 默认值改 `new Date(2000, 0, 1)`，onMount 后再覆盖为 `new Date()`，避免 SSR 渲染时 `new Date()` 客户端/服务端时间不同导致的 hydration mismatch
+- fix(date-range-picker): `viewYear` / `viewMonth` 同样改 SSR 稳定默认值 + onMount 覆盖
+- fix(tailwind): 15 处自检遗漏的 `py-[var()]` / `px-[var()]` / `bg-[var()]` / `rounded-[var()]` 等简单 var() 引用改 `py-(--var)` 简写（Textarea/Radio/Badge/Checkbox/Avatar 共 15 行）
+- test: +16（Fab 6 + Snackbar 6 + haptics 4）— 446 → 472 passing
 
 ## 0.1.0 (2026-06-04)
 
