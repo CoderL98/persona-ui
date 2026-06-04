@@ -78,7 +78,12 @@
         item.disabled && "opacity-(--pui-opacity-disabled) cursor-not-allowed",
       )}
     >
-      <span class="relative inline-flex">
+      <span
+        class={cn(
+          "pui-bnav-pill relative inline-flex items-center justify-center transition-all",
+          isActive && "pui-bnav-pill-active"
+        )}
+      >
         <span class={cn("w-6 h-6 flex items-center justify-center transition-transform", isActive && "scale-110")}>
           {@render item.icon()}
         </span>

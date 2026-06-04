@@ -99,7 +99,8 @@
   let confirmOpen = $state(false);
   let tourOpen = $state(false);
   let commandOpen = $state(false);
-  let bottomNavValue = $state('home');
+  let bottomNavValue = $state('feed');
+  let messageOpen = $state(false);
   let themeDemo = $state<'apple' | 'material'>('apple');
   let stepperValue = $state(1);
   let stepperSteps = [
@@ -934,9 +935,22 @@
         <a href={`${localeToPath(locale)}/docs/components/message`} class="specimen-link" aria-label="Message docs">↗</a>
       </header>
       <p class="specimen-caption">{t('specMessage')}</p>
-      <div class="specimen-demo">
-        <Message tone="info" title="System">
-          This is a system message bubble.
+      <div class="specimen-demo" style="min-height: 80px;">
+        <button
+          type="button"
+          class="rounded-(--pui-radius-control) bg-(--pui-color-primary) px-3 py-1.5 text-xs font-medium text-(--pui-text-on-primary)"
+          onclick={() => (messageOpen = !messageOpen)}
+        >
+          {messageOpen ? 'Hide message' : 'Show message'}
+        </button>
+        <Message
+          tone="info"
+          title="System"
+          placement="bottom-right"
+          open={messageOpen}
+          onOpenChange={(v: boolean) => (messageOpen = v)}
+        >
+          Toast-style floating notification.
         </Message>
       </div>
     </article>
@@ -1414,17 +1428,73 @@
         <a href={`${localeToPath(locale)}/docs/components/bottom-navigation`} class="specimen-link" aria-label="BottomNavigation docs">↗</a>
       </header>
       <p class="specimen-caption">{t('specBottomNavigation')}</p>
-      <div class="specimen-demo p-0">
-        <div class="overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle) bg-(--pui-surface-base)">
-          <BottomNavigation
-            value={bottomNavValue}
-            onValueChange={(v: string) => (bottomNavValue = v)}
-            items={[
-              { id: 'home', label: 'Home', icon: navIconHome },
-              { id: 'search', label: 'Search', icon: navIconSearch },
-              { id: 'profile', label: 'Profile', icon: navIconUser },
-            ]}
-          />
+      <div class="specimen-demo p-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <!-- Apple HIG 演示：iOS-style tab bar with continuous (squircle) background -->
+          <div data-theme="apple" class="phone-frame">
+            <span class="phone-label">Apple HIG</span>
+            <div class="phone-screen">
+              <div class="phone-content">
+                <div class="phone-status-bar">
+                  <span>9:41</span>
+                  <span class="phone-notch"></span>
+                  <span class="phone-status-icons">
+                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M1 6h2v5H1zM5 4h2v7H5zM9 2h2v9H9zM13 0h2v11h-2z" fill="currentColor"/></svg>
+                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M8 2.4C5.6 2.4 3.6 3.2 2 4.4l1.4 1.4C4.6 5 6.2 4.4 8 4.4s3.4.6 4.6 1.4L14 4.4C12.4 3.2 10.4 2.4 8 2.4zM4 6.4l1.4 1.4c.7-.7 1.6-1 2.6-1s1.9.3 2.6 1L12 6.4c-1-.9-2.4-1.6-4-1.6s-3 .7-4 1.6zm2 2l2 2 2-2c-.6-.5-1.2-.8-2-.8s-1.4.3-2 .8z" fill="currentColor"/></svg>
+                    <svg viewBox="0 0 20 12" width="16" height="10" aria-hidden="true"><rect x="1" y="2" width="16" height="8" rx="2" stroke="currentColor" fill="none" stroke-width="1"/><rect x="18" y="4" width="1.5" height="4" fill="currentColor"/><rect x="2.5" y="3.5" width="10" height="5" rx="1" fill="currentColor"/></svg>
+                  </span>
+                </div>
+                <div class="phone-body">
+                  <p class="phone-app-name">Sample</p>
+                  <p class="phone-app-section">Tab content</p>
+                </div>
+                <div class="phone-bottom-nav-wrap">
+                  <BottomNavigation
+                    value={bottomNavValue}
+                    onValueChange={(v: string) => (bottomNavValue = v)}
+                    items={[
+                      { id: 'feed', label: 'Feed', icon: navIconHome },
+                      { id: 'explore', label: 'Explore', icon: navIconSearch },
+                      { id: 'inbox', label: 'Inbox', icon: navIconUser, badge: 3 },
+                    ]}
+                  />
+                  <div class="phone-home-indicator"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MD3 演示：Material 3 Navigation bar with pill state layer -->
+          <div data-theme="material" class="phone-frame">
+            <span class="phone-label">Material 3</span>
+            <div class="phone-screen">
+              <div class="phone-content">
+                <div class="phone-status-bar">
+                  <span>9:41</span>
+                  <span class="phone-status-icons">
+                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M1 6h2v5H1zM5 4h2v7H5zM9 2h2v9H9zM13 0h2v11h-2z" fill="currentColor"/></svg>
+                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M8 2.4C5.6 2.4 3.6 3.2 2 4.4l1.4 1.4C4.6 5 6.2 4.4 8 4.4s3.4.6 4.6 1.4L14 4.4C12.4 3.2 10.4 2.4 8 2.4zM4 6.4l1.4 1.4c.7-.7 1.6-1 2.6-1s1.9.3 2.6 1L12 6.4c-1-.9-2.4-1.6-4-1.6s-3 .7-4 1.6zm2 2l2 2 2-2c-.6-.5-1.2-.8-2-.8s-1.4.3-2 .8z" fill="currentColor"/></svg>
+                    <svg viewBox="0 0 20 12" width="16" height="10" aria-hidden="true"><rect x="1" y="2" width="16" height="8" rx="2" stroke="currentColor" fill="none" stroke-width="1"/><rect x="18" y="4" width="1.5" height="4" fill="currentColor"/><rect x="2.5" y="3.5" width="10" height="5" rx="1" fill="currentColor"/></svg>
+                  </span>
+                </div>
+                <div class="phone-body">
+                  <p class="phone-app-name">Sample</p>
+                  <p class="phone-app-section">Tab content</p>
+                </div>
+                <div class="phone-bottom-nav-wrap">
+                  <BottomNavigation
+                    value={bottomNavValue}
+                    onValueChange={(v: string) => (bottomNavValue = v)}
+                    items={[
+                      { id: 'feed', label: 'Feed', icon: navIconHome },
+                      { id: 'explore', label: 'Explore', icon: navIconSearch },
+                      { id: 'inbox', label: 'Inbox', icon: navIconUser, badge: 3 },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </article>

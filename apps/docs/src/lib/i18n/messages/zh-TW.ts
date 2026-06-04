@@ -135,7 +135,7 @@ export const messages: Messages = {
 	specToolbar: '操作組容器',
 	specSidebar: '常駐側邊導覽',
 	specNavigationRail: 'MD3 導覽軌',
-	specBottomNavigation: 'MD3 底部導覽列',
+	specBottomNavigation: '行動端 Tab Bar — 在手機外殼中並排對比 Apple 與 MD3',
 	specList: '堆疊的內容行',
 	specAccordion: '可摺疊內容面板',
 	specTimeline: '縱向事件序列',

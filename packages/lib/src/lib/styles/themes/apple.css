@@ -587,6 +587,18 @@
    - 启用硬件加速滚动
    https://developer.apple.com/documentation/webkit
    ========================================================== */
+[data-theme='apple'] .pui-bnav-pill-active {
+  /* iOS 风格：活跃态用 color tint + scale，不加 pill 背景 */
+  background: color-mix(in oklch, var(--pui-color-primary) 16%, transparent);
+  padding-inline: 0.5rem;
+  border-radius: 999px;
+}
+[data-theme='apple'] .pui-bottom-navigation {
+  background: color-mix(in oklch, var(--pui-apple-system-background) 70%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top-color: color-mix(in oklch, var(--pui-apple-separator) 50%, transparent);
+}
 [data-theme='apple'] .pui-button,
 [data-theme='apple'] .pui-card,
 [data-theme='apple'] .pui-icon-button,

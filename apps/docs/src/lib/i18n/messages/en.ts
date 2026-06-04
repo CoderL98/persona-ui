@@ -143,7 +143,7 @@ export const messages: Messages = {
 	specToolbar: 'Container for grouped actions',
 	specSidebar: 'Persistent side navigation',
 	specNavigationRail: 'MD3 navigation rail',
-	specBottomNavigation: 'MD3 bottom navigation bar',
+	specBottomNavigation: 'Mobile tab bar — compare Apple and MD3 side by side in phone frames',
 	specList: 'Stacked content rows',
 	specAccordion: 'Collapsible content panels',
 	specTimeline: 'Vertical event sequence',

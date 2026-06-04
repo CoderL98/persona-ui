@@ -3,3 +3,181 @@
 
 /* Tailwind v4 默认只扫描当前项目；手动指向 lib 源码生成 utility classes */
 @source "../../../packages/lib/src/lib";
+
+/* ==========================================================
+   Specimen Card 样式（主页 +page.svelte 演示用）
+   ========================================================== */
+.specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: var(--pui-radius-container, 16px);
+  background: color-mix(in oklch, var(--pui-surface-base, white) 60%, transparent);
+  border: 1px solid var(--pui-outline-subtle, #00000010);
+  transition: border-color var(--pui-duration-swap, 200ms) var(--pui-motion-ease-out, ease);
+}
+.specimen:hover {
+  border-color: var(--pui-outline, #00000030);
+}
+.specimen-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.specimen-title {
+  font-family: var(--pui-font-display, system-ui);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--pui-text-primary);
+  letter-spacing: -0.01em;
+}
+.specimen-link {
+  color: var(--pui-text-disabled);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color var(--pui-duration-swap, 200ms);
+}
+.specimen-link:hover {
+  color: var(--pui-color-primary, var(--pui-apple-link, #007aff));
+}
+.specimen-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--pui-text-secondary);
+  min-height: 2.1em;
+}
+.specimen-demo {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--pui-radius-control, 12px);
+  background: color-mix(in oklch, var(--pui-surface-variant, #f5f5f7) 50%, transparent);
+  border: 1px solid var(--pui-outline-subtle, #00000010);
+}
+
+/* ==========================================================
+   Phone Frame — BottomNavigation 演示专用
+   用于在 specimen 中渲染手机外壳，呈现 mobile 组件的真实上下文
+   ========================================================== */
+.phone-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 28px;
+  border: 1px solid var(--pui-outline, #00000020);
+  background: var(--pui-surface-base, white);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+  aspect-ratio: 9 / 19;
+  max-width: 180px;
+  margin: 0 auto;
+}
+.phone-label {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-family: var(--pui-font-mono, monospace);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pui-text-disabled);
+  background: color-mix(in oklch, var(--pui-surface-base, white) 80%, transparent);
+  padding: 1px 6px;
+  border-radius: 999px;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.phone-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.phone-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.phone-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px 2px;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--pui-text-primary);
+  min-height: 18px;
+}
+.phone-notch {
+  width: 36px;
+  height: 4px;
+  background: var(--pui-text-primary);
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.phone-status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--pui-text-primary);
+}
+.phone-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+}
+.phone-app-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--pui-text-primary);
+  margin: 0;
+}
+.phone-app-section {
+  font-size: 0.625rem;
+  color: var(--pui-text-disabled);
+  margin: 0;
+  font-family: var(--pui-font-mono, monospace);
+}
+.phone-bottom-nav-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+/* 在 phone-frame 内部，把 BottomNavigation 的 fixed 定位改回 static */
+.phone-frame .pui-bottom-navigation {
+  position: static !important;
+  inset: auto !important;
+}
+
+/* 在 specimen-demo 内部，把 Message 的 fixed 定位改成 absolute（相对 specimen） */
+.specimen-demo:has(.pui-message) {
+  position: relative;
+  overflow: hidden;
+}
+.specimen-demo .pui-message {
+  position: absolute !important;
+  inset: auto !important;
+  transform: none !important;
+  top: auto;
+  right: 8px;
+  bottom: 8px;
+  left: auto;
+}
+.phone-home-indicator {
+  width: 36%;
+  height: 3px;
+  margin: 4px auto 4px;
+  border-radius: 999px;
+  background: var(--pui-text-primary);
+  opacity: 0.5;
+}

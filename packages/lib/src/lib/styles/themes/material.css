@@ -206,8 +206,19 @@
   );
 
   /* ==========================================================
-     0A.3.3 Material Shape Scale
+     0A.3.6 Material State Layer
+     Applied via pui-state-layer class on interactive elements
      ========================================================== */
+  [data-theme="material"] .pui-bnav-pill-active {
+    background: var(--pui-md-sys-color-secondary-container, oklch(0.92 0.06 260));
+    padding-inline: 1.25rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--pui-md-sys-color-primary, var(--pui-color-primary)) 8%, transparent);
+  }
+  [data-theme="material"] .pui-bottom-navigation {
+    background: var(--pui-md-sys-color-surface-container, var(--pui-surface-base));
+    border-top-color: var(--pui-md-sys-color-outline-variant, var(--pui-outline-subtle));
+  }
   --pui-md-sys-shape-corner-none: 0px;
   --pui-md-sys-shape-corner-extra-small: 4px;
   --pui-md-sys-shape-corner-small: 8px;
