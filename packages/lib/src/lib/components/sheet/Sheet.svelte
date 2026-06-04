@@ -82,10 +82,10 @@
     return s;
   }
   const sideClasses: Record<string, string> = {
-    top: 'top-0 left-0 right-0 max-h-[60vh] rounded-b-[var(--pui-radius-container)]',
-    right: 'top-0 right-0 bottom-0 w-full max-w-sm rounded-l-[var(--pui-radius-container)]',
-    bottom: 'bottom-0 left-0 right-0 max-h-[60vh] rounded-t-[var(--pui-radius-container)]',
-    left: 'top-0 left-0 bottom-0 w-full max-w-sm rounded-r-[var(--pui-radius-container)]',
+    top: 'top-0 left-0 right-0 max-h-[60vh] rounded-b-(--pui-radius-container)',
+    right: 'top-0 right-0 bottom-0 w-full max-w-sm rounded-l-(--pui-radius-container)',
+    bottom: 'bottom-0 left-0 right-0 max-h-[60vh] rounded-t-(--pui-radius-container)',
+    left: 'top-0 left-0 bottom-0 w-full max-w-sm rounded-r-(--pui-radius-container)',
   };
   const currentSide = $derived(resolveSide(side));
   const currentSideClass = $derived(sideClasses[currentSide] || sideClasses[side]);

@@ -79,7 +79,7 @@
     aria-hidden="true"
     class={cn(
       'pointer-events-none inline-flex shrink-0 items-center rounded-full',
-      'transition-[background-color,box-shadow] duration-(--pui-duration-swap) ease-[var(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))]',
+      'transition-[background-color,box-shadow] duration-(--pui-duration-swap) ease-(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))',
       'w-(--pui-switch-track-width,44px)',
       'h-(--pui-switch-track-height,26px)',
       currentChecked
@@ -94,7 +94,7 @@
         'inline-block rounded-full',
         'bg-(--pui-switch-thumb-bg,var(--pui-ref-gray-0))',
         'shadow-(--pui-switch-thumb-shadow,var(--pui-elevation-1))',
-        'transition-transform duration-(--pui-duration-swap) ease-[var(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))]',
+        'transition-transform duration-(--pui-duration-swap) ease-(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))',
         'h-[calc(var(--pui-switch-track-height,26px)-6px)]',
         'w-[calc(var(--pui-switch-track-height,26px)-6px)]',
         currentChecked

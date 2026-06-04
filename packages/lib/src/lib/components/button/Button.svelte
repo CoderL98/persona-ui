@@ -48,7 +48,7 @@
     'inline-flex items-center justify-center font-medium select-none',
     // Apple: spring transition (transform + background)；Material: focus on color
     'transition-[background-color,box-shadow,transform] focus-visible:outline-2 focus-visible:outline-offset-2',
-    'duration-(--pui-duration-swap,180ms) ease-[var(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))]',
+    'duration-(--pui-duration-swap,180ms) ease-(--pui-motion-spring,cubic-bezier(0.2,0.8,0.2,1))',
     'gap-(--pui-button-gap,var(--pui-space-2))',
     // Apply component tokens via var()
     'bg-(--pui-button-bg,var(--pui-color-primary))',
