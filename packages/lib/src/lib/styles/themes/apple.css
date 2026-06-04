@@ -164,6 +164,74 @@
   --pui-hit-target-min: 44px;
 
   /* ==========================================================
+     iOS 17 System Fill Colors（4 档：fill / secondaryFill /
+     tertiaryFill / quaternaryFill — 用于 grouped list 背景、
+     search field 填充等次要表面）
+     ========================================================== */
+  --pui-apple-system-fill: oklch(0.55 0.01 260 / 0.18);
+  --pui-apple-secondary-system-fill: oklch(0.55 0.01 260 / 0.12);
+  --pui-apple-tertiary-system-fill: oklch(0.55 0.01 260 / 0.08);
+  --pui-apple-quaternary-system-fill: oklch(0.55 0.01 260 / 0.04);
+
+  /* ==========================================================
+     iOS 17 Semantic Icon Colors（与 label 同梯度，但独立 token）
+     ========================================================== */
+  --pui-apple-icon-primary: oklch(0.15 0.004 260);
+  --pui-apple-icon-secondary: oklch(0.5 0.008 260);
+  --pui-apple-icon-tertiary: oklch(0.68 0.005 260);
+  --pui-apple-icon-quaternary: oklch(0.8 0.004 260);
+
+  /* ==========================================================
+     iOS 17 Content Margins（3 档：compact / regular / generous，
+     用于 iPad 主从布局、list 缩进等）
+     ========================================================== */
+  --pui-apple-content-margin-compact: var(--pui-space-3);
+  --pui-apple-content-margin-regular: var(--pui-space-5);
+  --pui-apple-content-margin-generous: var(--pui-space-6);
+
+  /* ==========================================================
+     iOS 17 Dynamic Type Scale（11 个标准 size + weight）
+     参考：https://developer.apple.com/design/human-interface-guidelines/typography
+     LargeTitle: 34/41, Title1: 28/34, Title2: 22/28, Title3: 20/25,
+     Headline: 17/22 Semibold, Body: 17/22, Callout: 16/21,
+     Subheadline: 15/20, Footnote: 13/18, Caption1: 12/16, Caption2: 11/13
+     ========================================================== */
+  --pui-apple-text-size-large-title: 34px;
+  --pui-apple-line-height-large-title: 41px;
+  --pui-apple-text-size-title-1: 28px;
+  --pui-apple-line-height-title-1: 34px;
+  --pui-apple-text-size-title-2: 22px;
+  --pui-apple-line-height-title-2: 28px;
+  --pui-apple-text-size-title-3: 20px;
+  --pui-apple-line-height-title-3: 25px;
+  --pui-apple-text-size-headline: 17px;
+  --pui-apple-line-height-headline: 22px;
+  --pui-apple-text-size-body: 17px;
+  --pui-apple-line-height-body: 22px;
+  --pui-apple-text-size-callout: 16px;
+  --pui-apple-line-height-callout: 21px;
+  --pui-apple-text-size-subheadline: 15px;
+  --pui-apple-line-height-subheadline: 20px;
+  --pui-apple-text-size-footnote: 13px;
+  --pui-apple-line-height-footnote: 18px;
+  --pui-apple-text-size-caption-1: 12px;
+  --pui-apple-line-height-caption-1: 16px;
+  --pui-apple-text-size-caption-2: 11px;
+  --pui-apple-line-height-caption-2: 13px;
+
+  /* ==========================================================
+     iOS 17 Motion Timings（HIG "Motion" 章节）
+     - sheet 半屏弹出：400ms spring
+     - alert 出现：200ms ease-out
+     - navigation push/pop：350ms spring
+     - control 状态切换：100ms ease-in-out（已用 --pui-duration-enter）
+     ========================================================== */
+  --pui-apple-motion-sheet-presentation: 400ms;
+  --pui-apple-motion-alert-presentation: 200ms;
+  --pui-apple-motion-page-transition: 350ms;
+  --pui-apple-motion-spring: cubic-bezier(0.32, 0.72, 0, 1); /* HIG 推荐的"fluid" spring */
+
+  /* ==========================================================
      A.Apple 装饰 token（hero/卡片精修）
      ========================================================== */
   /* Apple 玻璃高光：内嵌顶部 1px 亮线 */
@@ -280,6 +348,13 @@
   --pui-switch-thumb-bg: var(--pui-apple-system-background);
   --pui-switch-track-width: 44px;
   --pui-switch-track-height: 24px;
+
+  /* --- Persona token mapping for new HIG additions --- */
+  /* 系统填充 → 通用 surface fill 命名空间 */
+  --pui-surface-fill: var(--pui-apple-system-fill);
+  --pui-surface-fill-secondary: var(--pui-apple-secondary-system-fill);
+  --pui-surface-fill-tertiary: var(--pui-apple-tertiary-system-fill);
+  --pui-surface-fill-quaternary: var(--pui-apple-quaternary-system-fill);
 }
 
 /* ==========================================================
@@ -419,4 +494,15 @@
   --pui-field-bg: var(--pui-apple-material-thin);
 
   --pui-switch-track-bg: var(--pui-apple-separator);
+
+  /* Dark mode for new HIG additions */
+  --pui-apple-icon-primary: oklch(0.92 0.005 260);
+  --pui-apple-icon-secondary: oklch(0.62 0.008 260);
+  --pui-apple-icon-tertiary: oklch(0.52 0.005 260);
+  --pui-apple-icon-quaternary: oklch(0.42 0.004 260);
+
+  --pui-apple-system-fill: oklch(1 0 0 / 0.18);
+  --pui-apple-secondary-system-fill: oklch(1 0 0 / 0.12);
+  --pui-apple-tertiary-system-fill: oklch(1 0 0 / 0.08);
+  --pui-apple-quaternary-system-fill: oklch(1 0 0 / 0.04);
 }
