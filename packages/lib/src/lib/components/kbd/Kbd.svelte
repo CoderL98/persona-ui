@@ -18,12 +18,12 @@
   class={cn(
     'pui-kbd',
     'inline-flex items-center justify-center font-mono text-xs leading-none',
-    'rounded-[var(--pui-kbd-radius,var(--pui-radius-control))]',
-    'bg-[var(--pui-kbd-bg,var(--pui-surface-variant))]',
-    'text-[var(--pui-kbd-fg,var(--pui-text-secondary))]',
-    'px-[var(--pui-kbd-padding-x,var(--pui-space-1))]',
-    'py-[var(--pui-kbd-padding-y,2px)]',
-    'shadow-[var(--pui-kbd-shadow,none)]',
+    'rounded-(--pui-kbd-radius,var(--pui-radius-control))',
+    'bg-(--pui-kbd-bg,var(--pui-surface-variant))',
+    'text-(--pui-kbd-fg,var(--pui-text-secondary))',
+    'px-(--pui-kbd-padding-x,var(--pui-space-1))',
+    'py-(--pui-kbd-padding-y,2px)',
+    'shadow-(--pui-kbd-shadow,none)',
     className
   )}
   style={style}

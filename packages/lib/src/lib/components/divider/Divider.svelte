@@ -20,7 +20,7 @@
     id={id}
     class={cn(
       'pui-divider',
-      'flex items-center gap-[var(--pui-divider-gap,var(--pui-space-2))]',
+      'flex items-center gap-(--pui-divider-gap,var(--pui-space-2))',
       orientation === 'vertical' && 'flex-col',
       className
     )}
@@ -29,12 +29,12 @@
     data-orientation={orientation}
     role="none"
   >
-    <span class="flex-1 border-t border-[var(--pui-divider-color,var(--pui-outline))]"
+    <span class="flex-1 border-t border-(--pui-divider-color,var(--pui-outline))"
           class:hidden={orientation === 'vertical'}
           class:border-t={orientation === 'horizontal'}
           class:border-l={orientation === 'vertical'}></span>
     <span class="shrink-0 text-sm text-(--pui-text-secondary)">{@render children()}</span>
-    <span class="flex-1 border-t border-[var(--pui-divider-color,var(--pui-outline))]"
+    <span class="flex-1 border-t border-(--pui-divider-color,var(--pui-outline))"
           class:hidden={orientation === 'vertical'}
           class:border-t={orientation === 'horizontal'}
           class:border-l={orientation === 'vertical'}></span>
@@ -47,11 +47,11 @@
     aria-orientation={orientation}
     class={cn(
       'pui-divider',
-      'border-[var(--pui-divider-color,var(--pui-outline))]',
+      'border-(--pui-divider-color,var(--pui-outline))',
       orientation === 'vertical'
-        ? 'inline-block h-full w-[var(--pui-divider-thickness,1px)] align-middle'
-        : 'block h-[var(--pui-divider-thickness,1px)] w-full',
-      inset && 'mx-[var(--pui-divider-inset,var(--pui-space-4))]',
+        ? 'inline-block h-full w-(--pui-divider-thickness,1px) align-middle'
+        : 'block h-(--pui-divider-thickness,1px) w-full',
+      inset && 'mx-(--pui-divider-inset,var(--pui-space-4))',
       className
     )}
     style={style}
