@@ -5,8 +5,8 @@ export const messages: Messages = {
 	brandAria: 'Persona UI — back to top',
 	footer: 'persona ui · dual-personality component library',
 	version: 'v0.1.0 · svelte 5 · tailwind 4',
-	toggleThemeApple: 'Toggle theme: Apple',
-	toggleThemeMaterial: 'Toggle theme: Material',
+	toggleTheme_apple: 'Toggle theme: Apple HIG',
+	toggleTheme_material: 'Toggle theme: Material 3',
 	toggleModeLight: 'Toggle light mode',
 	toggleModeDark: 'Toggle dark mode',
 

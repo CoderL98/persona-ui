@@ -80,6 +80,7 @@
   import { t, brand } from '../../lib/i18n/t';
   import { currentLocale } from '../../lib/i18n/store.svelte';
   import { localeToPath } from '../../lib/i18n/locales';
+  import { THEMES, DEFAULT_THEME, type ThemeId } from '../../lib/themes';
 
   // 章节索引（id 固定为英文用于 HTML anchor，label/description 随 locale 切换）
   const sections = $derived([
@@ -101,7 +102,7 @@
   let commandOpen = $state(false);
   let bottomNavValue = $state('feed');
   let messageOpen = $state(false);
-  let themeDemo = $state<'apple' | 'material'>('apple');
+  let themeDemo = $state<ThemeId>(DEFAULT_THEME);
   let stepperValue = $state(1);
   let stepperSteps = [
     { label: 'Cart' },
@@ -331,26 +332,18 @@
       </p>
     </div>
     <div class="inline-flex rounded-(--pui-radius-control) border border-(--pui-outline-subtle) p-0.5">
-      <button
-        type="button"
-        onclick={() => (themeDemo = 'apple')}
-        class="rounded-(--pui-radius-control) px-4 py-1.5 text-xs font-medium transition-colors
-               {themeDemo === 'apple'
-          ? 'bg-(--pui-text-primary) text-(--pui-surface-base)'
-          : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
-      >
-        Apple HIG
-      </button>
-      <button
-        type="button"
-        onclick={() => (themeDemo = 'material')}
-        class="rounded-(--pui-radius-control) px-4 py-1.5 text-xs font-medium transition-colors
-               {themeDemo === 'material'
-          ? 'bg-(--pui-text-primary) text-(--pui-surface-base)'
-          : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
-      >
-        Material 3
-      </button>
+      {#each THEMES as themeDef (themeDef.id)}
+        <button
+          type="button"
+          onclick={() => (themeDemo = themeDef.id as ThemeId)}
+          class="rounded-(--pui-radius-control) px-4 py-1.5 text-xs font-medium transition-colors
+                 {themeDemo === themeDef.id
+            ? 'bg-(--pui-text-primary) text-(--pui-surface-base)'
+            : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
+        >
+          {themeDef.label}
+        </button>
+      {/each}
     </div>
   </div>
 

@@ -1,6 +1,7 @@
 // 翻译函数：从当前 locale 的 messages 表中查 key
 // - 简单键（string）：t('ctaGetStarted')
 // - 函数键：t('heroDescription', brand('apple'), brand('material'))
+// - 主题动态键：tAny(themeDef.labelKey) — 用 string 索引并安全回退到 key 本身
 import { messages as en } from './messages/en';
 import { messages as zhCN } from './messages/zh-CN';
 import { messages as zhTW } from './messages/zh-TW';
@@ -14,6 +15,7 @@ const ALL: Record<Locale, typeof en> = {
 };
 
 // 品牌名：所有 locale 都用相同的英文（HIG / Material 3 不可译）
+// 兼容旧调用方 brand('apple')，新代码请改用 themeDef.label
 const BRAND = {
 	apple: 'Apple HIG',
 	material: 'Material 3',
@@ -42,4 +44,17 @@ export function t(key: keyof typeof en, ...args: unknown[]): string {
 		return (value as (...a: unknown[]) => string)(...args);
 	}
 	return value as string;
+}
+
+/**
+ * 用任意字符串键查翻译，找不到时回退到 key 本身
+ *
+ * 用途：主题系统等动态键（themeDef.labelKey 不可枚举），未来新主题
+ * 加了 i18n 键后只需 i18n 文件加键，UI 代码 0 改动。
+ */
+export function tAny(key: string): string {
+	const msgs = ALL[currentLocale.value];
+	const value = (msgs as unknown as Record<string, unknown>)[key];
+	if (typeof value === 'string') return value;
+	return key;
 }

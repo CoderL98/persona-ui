@@ -5,8 +5,9 @@ export interface Messages {
 	brandAria: string;
 	footer: string;
 	version: string;
-	toggleThemeApple: string;
-	toggleThemeMaterial: string;
+	// 主题切换按钮的 aria-label。键名遵循 ThemeDef.labelKey 约定（toggleTheme_{id}）
+	toggleTheme_apple: string;
+	toggleTheme_material: string;
 	toggleModeLight: string;
 	toggleModeDark: string;
 

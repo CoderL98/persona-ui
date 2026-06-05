@@ -1,19 +1,18 @@
 <script lang="ts">
 	import '../app.css';
 	import LanguageSwitcher from '../lib/components/LanguageSwitcher.svelte';
-	import { t } from '../lib/i18n/t';
+	import { t, tAny } from '../lib/i18n/t';
 	import { currentLocale, setLocale } from '../lib/i18n/store.svelte';
 	import { pathToLocale } from '../lib/i18n/locales';
 	import { page } from '$app/state';
+	import { THEMES, THEME_IDS, DEFAULT_THEME, type ThemeId } from '../lib/themes';
 
 	let { children } = $props();
 
 	// 主题/模式：localStorage 持久化，跨页面保留
 	const STORAGE_THEME = 'pui:theme';
 	const STORAGE_MODE = 'pui:mode';
-	const VALID_THEMES = ['apple', 'material'] as const;
 	const VALID_MODES = ['light', 'dark'] as const;
-	type Theme = (typeof VALID_THEMES)[number];
 	type Mode = (typeof VALID_MODES)[number];
 
 	function readPersisted<T extends string>(
@@ -26,7 +25,8 @@
 		return (valid as readonly string[]).includes(v ?? '') ? (v as T) : fallback;
 	}
 
-	let theme = $state<Theme>(readPersisted(STORAGE_THEME, VALID_THEMES, 'apple'));
+	// 默认主题取注册表第一项（DEFAULT_THEME = THEME_IDS[0]）
+	let theme = $state<ThemeId>(readPersisted(STORAGE_THEME, THEME_IDS, DEFAULT_THEME));
 	let mode = $state<Mode>(readPersisted(STORAGE_MODE, VALID_MODES, 'light'));
 
 	// 初始化时把当前主题/模式同步到 <html>（SSR/CSR 一致性）
@@ -38,7 +38,7 @@
 
 	// 切换函数：同时改 state + DOM + localStorage
 	//（直接同步写 DOM，避免 $effect 跨异步边界的追踪陷阱）
-	function setTheme(next: Theme) {
+	function setTheme(next: ThemeId) {
 		theme = next;
 		if (typeof document !== 'undefined') {
 			document.documentElement.setAttribute('data-theme', next);
@@ -143,54 +143,40 @@
                 p-1 shadow-(--pui-elevation-1)
                 [backdrop-filter:blur(var(--pui-backdrop-blur,18px))]"
 		>
-			<!-- 主题切换（分段控件：Apple | Material） -->
+			<!-- 主题切换（分段控件：遍历 THEMES 数组自动生成） -->
 			<div
 				role="group"
 				aria-label="Theme"
 				class="flex items-center divide-x divide-(--pui-outline-subtle)"
 			>
-				<button
-					type="button"
-					onclick={() => setTheme('apple')}
-					aria-pressed={theme === 'apple'}
-					aria-label={t('toggleThemeApple')}
-					class="inline-flex h-7 items-center gap-1.5 rounded-(--pui-radius-control)
-                     px-2.5 text-xs font-medium
-                     text-(--pui-text-secondary)
-                     transition-colors duration-(--pui-duration-enter)
-                     hover:text-(--pui-text-primary)
-                     focus-visible:outline-2 focus-visible:outline-offset-2
-                     {theme === 'apple'
-						? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
-						: ''}"
-				>
-					<svg width="12" height="12" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-						<path
-							d="M9.5 2.5c-.5.5-1.2.8-1.8.7-.1-.7.2-1.4.6-1.9.5-.5 1.1-.8 1.7-.8.1.7-.2 1.4-.5 2zm.8.8c-.9 0-1.6.5-2 .5s-1-.5-1.7-.5c-.9 0-1.7.5-2.1 1.3-.9 1.5-.2 3.7.7 4.9.4.6.9 1.2 1.5 1.2.6 0 .8-.4 1.5-.4s.9.4 1.5.4c.6 0 1-.6 1.4-1.2.4-.6.6-1.2.6-1.2s-1.2-.5-1.2-1.8c0-1.1.9-1.6.9-1.7-.5-.7-1.2-.8-1.5-.8z"
-						/>
-					</svg>
-					<span class="hidden sm:inline">Apple</span>
-				</button>
-				<button
-					type="button"
-					onclick={() => setTheme('material')}
-					aria-pressed={theme === 'material'}
-					aria-label={t('toggleThemeMaterial')}
-					class="inline-flex h-7 items-center gap-1.5 rounded-(--pui-radius-control)
-                     px-2.5 text-xs font-medium
-                     text-(--pui-text-secondary)
-                     transition-colors duration-(--pui-duration-enter)
-                     hover:text-(--pui-text-primary)
-                     focus-visible:outline-2 focus-visible:outline-offset-2
-                     {theme === 'material'
-						? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
-						: ''}"
-				>
-					<svg width="12" height="12" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-						<path d="M7 1l5.5 9.5h-11z" />
-					</svg>
-					<span class="hidden sm:inline">Material</span>
-				</button>
+				{#each THEMES as themeDef (themeDef.id)}
+					<button
+						type="button"
+						onclick={() => setTheme(themeDef.id as ThemeId)}
+						aria-pressed={theme === themeDef.id}
+						aria-label={tAny(themeDef.labelKey)}
+						class="inline-flex h-7 items-center gap-1.5 rounded-(--pui-radius-control)
+                         px-2.5 text-xs font-medium
+                         text-(--pui-text-secondary)
+                         transition-colors duration-(--pui-duration-enter)
+                         hover:text-(--pui-text-primary)
+                         focus-visible:outline-2 focus-visible:outline-offset-2
+                         {theme === themeDef.id
+							? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
+							: ''}"
+					>
+						<svg
+							width="12"
+							height="12"
+							viewBox="0 0 14 14"
+							fill="currentColor"
+							aria-hidden="true"
+						>
+							<path d={themeDef.iconSvg} />
+						</svg>
+						<span class="hidden sm:inline">{themeDef.label}</span>
+					</button>
+				{/each}
 			</div>
 
 			<!-- 模式切换（分段控件：Sun | Moon，纯图标） -->

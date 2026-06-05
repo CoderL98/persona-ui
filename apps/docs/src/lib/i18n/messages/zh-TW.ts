@@ -5,8 +5,8 @@ export const messages: Messages = {
 	brandAria: 'Persona UI — 回到頂部',
 	footer: 'persona ui · 雙主題元件庫',
 	version: 'v0.1.0 · svelte 5 · tailwind 4',
-	toggleThemeApple: '切換主題：Apple',
-	toggleThemeMaterial: '切換主題：Material',
+	toggleTheme_apple: '切換主題：Apple HIG',
+	toggleTheme_material: '切換主題：Material 3',
 	toggleModeLight: '切換淺色模式',
 	toggleModeDark: '切換深色模式',
 
