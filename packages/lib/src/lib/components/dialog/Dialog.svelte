@@ -122,7 +122,7 @@
     role="presentation"
     data-dialog-backdrop
     class={cn(
-      'pui-dialog-backdrop fixed inset-0 z-(--pui-z-modal) flex items-center justify-center bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.4)) p-4',
+      'pui-dialog-backdrop fixed inset-0 z-(--pui-z-modal) flex items-center justify-center bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.4)) p-4',
       className,
     )}
     {style}

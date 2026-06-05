@@ -37,7 +37,7 @@
     // Size via component token
     'h-(--pui-icon-button-size,40px) w-(--pui-icon-button-size,40px)',
     shape === 'round' && 'rounded-(--pui-icon-button-radius,var(--pui-radius-full))',
-    shape === 'square' && 'rounded-(--pui-icon-button-radius,var(--pui-md-sys-shape-corner-small,8px))',
+    shape === 'square' && 'rounded-(--pui-icon-button-radius,8px)',
     'bg-(--pui-icon-button-bg,transparent)',
     'text-(--pui-icon-button-fg,var(--pui-color-on-surface))',
     'shadow-(--pui-icon-button-shadow,var(--pui-elevation-0))',

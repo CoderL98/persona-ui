@@ -47,14 +47,14 @@
     size === 'small' && 'h-(--pui-fab-size-small,40px) min-w-(--pui-fab-size-small,40px) px-3 text-sm',
     size === 'regular' && 'h-(--pui-fab-size-regular,56px) min-w-(--pui-fab-size-regular,56px) px-5 text-base',
     size === 'large' && 'h-(--pui-fab-size-large,96px) min-w-(--pui-fab-size-large,96px) px-6 text-lg',
-    // MD3 FAB 永远 16px 圆角（large 除外，large 用 28px）
-    size !== 'large' && 'rounded-(--pui-md-sys-shape-corner-large,16px)',
-    size === 'large' && 'rounded-(--pui-md-sys-shape-corner-extra-large,28px)',
-    // Variants
-    variant === 'surface' && 'bg-(--pui-md-sys-color-surface-container-high) text-(--pui-md-sys-color-primary)',
-    variant === 'primary' && 'bg-(--pui-md-sys-color-primary-container) text-(--pui-md-sys-color-on-primary-container)',
-    variant === 'secondary' && 'bg-(--pui-md-sys-color-secondary-container) text-(--pui-md-sys-color-on-secondary-container)',
-    variant === 'tertiary' && 'bg-(--pui-md-sys-color-tertiary-container) text-(--pui-md-sys-color-on-tertiary-container)',
+    // MD3 FAB 永远 16px 圆角（large 除外，large 用 28px）— M12 PR2 改用通用 token
+    size !== 'large' && 'rounded-(--pui-fab-radius-sm,16px)',
+    size === 'large' && 'rounded-(--pui-fab-radius-lg,28px)',
+    // Variants — M12 PR2 改用通用 token（各主题在自己的 CSS 中映射到 sys-* 源 token）
+    variant === 'surface' && 'bg-(--pui-fab-bg-surface) text-(--pui-fab-fg-surface)',
+    variant === 'primary' && 'bg-(--pui-fab-bg-primary) text-(--pui-fab-fg-primary)',
+    variant === 'secondary' && 'bg-(--pui-fab-bg-secondary) text-(--pui-fab-fg-secondary)',
+    variant === 'tertiary' && 'bg-(--pui-fab-bg-tertiary) text-(--pui-fab-fg-tertiary)',
     // States
     disabled && 'opacity-(--pui-opacity-disabled) pointer-events-none',
     loading && 'cursor-wait',

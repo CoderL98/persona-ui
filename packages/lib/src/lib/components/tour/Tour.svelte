@@ -186,25 +186,25 @@
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div class="pui-tour__backdrop fixed inset-0 z-(--pui-z-modal)" data-testid={dataTestId}>
       <div
-        class="absolute bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.5))"
+        class="absolute bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.5))"
         style="top:{cutouts.top.top}px;left:{cutouts.top.left}px;width:{cutouts.top.width};height:{cutouts.top.height};"
         aria-hidden="true"
         onclick={close}
       ></div>
       <div
-        class="absolute bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.5))"
+        class="absolute bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.5))"
         style="top:{cutouts.bottom.top};left:{cutouts.bottom.left};width:{cutouts.bottom.width};height:{cutouts.bottom.height};"
         aria-hidden="true"
         onclick={close}
       ></div>
       <div
-        class="absolute bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.5))"
+        class="absolute bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.5))"
         style="top:{cutouts.left.top};left:{cutouts.left.left};width:{cutouts.left.width};height:{cutouts.left.height};"
         aria-hidden="true"
         onclick={close}
       ></div>
       <div
-        class="absolute bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.5))"
+        class="absolute bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.5))"
         style="top:{cutouts.right.top};left:{cutouts.right.left};width:{cutouts.right.width};height:{cutouts.right.height};"
         aria-hidden="true"
         onclick={close}

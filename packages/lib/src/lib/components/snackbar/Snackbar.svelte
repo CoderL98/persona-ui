@@ -81,14 +81,14 @@
       'fixed left-1/2 -translate-x-1/2 z-(--pui-z-toast)',
       'bottom-(--pui-snackbar-bottom,calc(16px + env(safe-area-inset-bottom,0px)))',
       'min-w-(--pui-snackbar-min-w,288px) max-w-(--pui-snackbar-max-w,568px)',
-      'px-4 py-3 rounded-(--pui-md-sys-shape-corner-extra-small,4px)',
+      'px-4 py-3 rounded-(--pui-snackbar-radius,4px)',
       'shadow-(--pui-elevation-3)',
       'flex items-center gap-3',
-      // Tone — MD3 inverse-surface 是默认色板
-      tone === 'info' && 'bg-(--pui-md-sys-color-inverse-surface) text-(--pui-md-sys-color-inverse-on-surface)',
+      // Tone — M12 PR2 改用通用 token（各主题在自己的 CSS 中映射到对应源 token）
+      tone === 'info' && 'bg-(--pui-snackbar-bg-info) text-(--pui-snackbar-fg-info)',
       tone === 'success' && 'bg-(--pui-color-success-container) text-(--pui-color-on-success-container)',
       tone === 'warning' && 'bg-(--pui-color-warning-container) text-(--pui-color-on-warning-container)',
-      tone === 'error' && 'bg-(--pui-md-sys-color-error-container) text-(--pui-md-sys-color-on-error-container)',
+      tone === 'error' && 'bg-(--pui-snackbar-bg-error) text-(--pui-snackbar-fg-error)',
       className
     )}
     style={style}

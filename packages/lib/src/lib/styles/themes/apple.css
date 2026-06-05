@@ -314,6 +314,25 @@
   --pui-icon-button-border-color: transparent;
   --pui-icon-button-shadow: var(--pui-elevation-1);
 
+  /* Cross-theme universal tokens (M12 PR2) — Apple 风格映射 */
+  --pui-overlay-scrim: oklch(0 0 0 / 0.32);
+  --pui-fab-bg-surface: var(--pui-apple-material-regular);
+  --pui-fab-bg-primary: var(--pui-apple-control-accent);
+  --pui-fab-bg-secondary: var(--pui-apple-system-green);
+  --pui-fab-bg-tertiary: var(--pui-apple-material-thin);
+  --pui-fab-fg-surface: var(--pui-color-primary);
+  --pui-fab-fg-primary: var(--pui-color-on-primary);
+  --pui-fab-fg-secondary: var(--pui-color-on-primary);
+  --pui-fab-fg-tertiary: var(--pui-color-primary);
+  --pui-fab-radius-sm: 18px;
+  --pui-fab-radius-lg: 24px;
+  --pui-snackbar-radius: 14px;
+  --pui-snackbar-bg-info: var(--pui-apple-material-regular);
+  --pui-snackbar-fg-info: var(--pui-text-primary);
+  --pui-snackbar-bg-error: oklch(0.55 0.18 25);
+  --pui-snackbar-fg-error: oklch(0.98 0.005 25);
+  --pui-card-inset-highlight: var(--pui-apple-inner-highlight);
+
   --pui-divider-color: var(--pui-apple-separator);
   --pui-divider-thickness: 1px;
   --pui-divider-inset: var(--pui-space-4);

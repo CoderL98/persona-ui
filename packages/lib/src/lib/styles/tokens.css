@@ -150,6 +150,39 @@
   --pui-z-modal: 100;
   --pui-z-toast: 200;
 
+  /* ==========================================================
+     0A.X Cross-theme Universal Tokens (M12 PR2)
+     目的：消除组件层硬编码 pui-md-* / pui-apple-* 字面量。
+     各主题 CSS 在自己的 [data-theme=...] 块内映射这些通用 token
+     到自家源 token（如 pui-md-sys-color-scrim / pui-apple-system-*）。
+     新主题无需改 lib 组件，只补映射即可。
+     ========================================================== */
+
+  /* Overlay scrim（modal/dialog/tour 遮罩半透明黑色层） */
+  --pui-overlay-scrim: rgb(0 0 0 / 0.4);
+
+  /* FAB — 4 档强调度（surface/primary/secondary/tertiary）+ 2 档圆角（size 决定） */
+  --pui-fab-bg-surface: var(--pui-surface-container);
+  --pui-fab-bg-primary: var(--pui-color-primary-container);
+  --pui-fab-bg-secondary: var(--pui-color-secondary-container);
+  --pui-fab-bg-tertiary: var(--pui-color-tertiary-container);
+  --pui-fab-fg-surface: var(--pui-color-primary);
+  --pui-fab-fg-primary: var(--pui-color-on-primary-container);
+  --pui-fab-fg-secondary: var(--pui-color-on-secondary-container);
+  --pui-fab-fg-tertiary: var(--pui-color-on-tertiary-container);
+  --pui-fab-radius-sm: 16px;
+  --pui-fab-radius-lg: 28px;
+
+  /* Snackbar — 圆角 + info/error 两档背景（success/warning 用通用 success/warning token） */
+  --pui-snackbar-radius: 4px;
+  --pui-snackbar-bg-info: var(--pui-text-primary);
+  --pui-snackbar-fg-info: var(--pui-surface-base);
+  --pui-snackbar-bg-error: var(--pui-color-error-container);
+  --pui-snackbar-fg-error: var(--pui-color-on-error-container);
+
+  /* Card inset highlight（Apple squircle 等专用装饰，无装饰则 transparent） */
+  --pui-card-inset-highlight: transparent;
+
   /* Spacing (semantic) */
   --pui-space-1: var(--pui-ref-space-1);
   --pui-space-2: var(--pui-ref-space-2);

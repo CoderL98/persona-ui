@@ -67,7 +67,7 @@
     <!-- Apple inset highlight（顶部高光描边） -->
     <span
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_var(--pui-apple-inner-highlight,transparent)]"
+      class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_var(--pui-card-inset-highlight,transparent)]"
     ></span>
     {#if title}
       <div class="relative mb-2">{@render title()}</div>
@@ -108,7 +108,7 @@
   >
     <span
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_var(--pui-apple-inner-highlight,transparent)]"
+      class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_var(--pui-card-inset-highlight,transparent)]"
     ></span>
     {#if title}
       <div class="relative mb-2">{@render title()}</div>

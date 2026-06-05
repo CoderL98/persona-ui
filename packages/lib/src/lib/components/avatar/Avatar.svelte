@@ -79,7 +79,7 @@
              h-[calc(var(--pui-avatar-status-dot-size,10px))] w-[calc(var(--pui-avatar-status-dot-size,10px))]
              bg-(--pui-avatar-status-color,var(--pui-color-tertiary))
              {status === 'busy' && 'bg-(--pui-color-error)'}
-             {status === 'away' && 'bg-(--pui-apple-system-yellow,var(--pui-color-primary))'}"
+             {status === 'away' && 'bg-(--pui-color-warning)'}"
       role="img"
       aria-label={status === 'online' ? 'Online' : status === 'busy' ? 'Busy' : status === 'away' ? 'Away' : status === 'offline' ? 'Offline' : status}
     ></span>

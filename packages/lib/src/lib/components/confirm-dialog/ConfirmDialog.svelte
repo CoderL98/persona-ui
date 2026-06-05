@@ -87,7 +87,7 @@
     <div
       data-confirm-backdrop
       role="presentation"
-      class="absolute inset-0 bg-(--pui-md-sys-color-scrim,rgb(0 0 0 / 0.4))"
+      class="absolute inset-0 bg-(--pui-overlay-scrim,rgb(0 0 0 / 0.4))"
       onclick={handleBackdropClick}
       transition:fade={{ duration: 150 }}
     ></div>

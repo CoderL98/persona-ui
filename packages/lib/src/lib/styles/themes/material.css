@@ -648,6 +648,25 @@
   --pui-icon-button-border-color: transparent;
   --pui-icon-button-shadow: var(--pui-elevation-0);
 
+  /* Cross-theme universal tokens (M12 PR2) — MD3 风格映射（直接复用 sys-* 源 token） */
+  --pui-overlay-scrim: var(--pui-md-sys-color-scrim);
+  --pui-fab-bg-surface: var(--pui-md-sys-color-surface-container);
+  --pui-fab-bg-primary: var(--pui-md-sys-color-primary-container);
+  --pui-fab-bg-secondary: var(--pui-md-sys-color-secondary-container);
+  --pui-fab-bg-tertiary: var(--pui-md-sys-color-tertiary-container);
+  --pui-fab-fg-surface: var(--pui-md-sys-color-primary);
+  --pui-fab-fg-primary: var(--pui-md-sys-color-on-primary-container);
+  --pui-fab-fg-secondary: var(--pui-md-sys-color-on-secondary-container);
+  --pui-fab-fg-tertiary: var(--pui-md-sys-color-on-tertiary-container);
+  --pui-fab-radius-sm: var(--pui-md-sys-shape-corner-medium);
+  --pui-fab-radius-lg: var(--pui-md-sys-shape-corner-large);
+  --pui-snackbar-radius: var(--pui-md-sys-shape-corner-extra-small);
+  --pui-snackbar-bg-info: var(--pui-md-sys-color-inverse-surface);
+  --pui-snackbar-fg-info: var(--pui-md-sys-color-inverse-on-surface);
+  --pui-snackbar-bg-error: var(--pui-md-sys-color-error-container);
+  --pui-snackbar-fg-error: var(--pui-md-sys-color-on-error-container);
+  --pui-card-inset-highlight: transparent;
+
   /* Divider */
   --pui-divider-color: var(--pui-md-sys-color-outline-variant);
   --pui-divider-thickness: 1px;
