@@ -1,0 +1,14 @@
+/* Persona UI — 核心样式入口（不含主题 CSS）
+ *
+ * 顺序：primitive → font → shared → 装饰层 → 动效 → 工具
+ *
+ * 主题 CSS 需消费方显式 @import 对应主题包：
+ *   @import '@persona-ui/theme-apple/apple.css';
+ *   @import '@persona-ui/theme-material/material.css';
+ */
+@import "./tokens.css";
+@import "./fonts.css";
+@import "./themes/shared.css";
+@import "./themes/backgrounds.css";
+@import "./motion.css";
+@import "./utilities.css";

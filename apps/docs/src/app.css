@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import "@persona-ui/lib/styles.css";
+@import "@persona-ui/lib/core.css";
+@import "@persona-ui/theme-apple/apple.css";
+@import "@persona-ui/theme-material/material.css";
 
 /* Tailwind v4 默认只扫描当前项目；手动指向 lib 源码生成 utility classes */
 @source "../../../packages/lib/src/lib";

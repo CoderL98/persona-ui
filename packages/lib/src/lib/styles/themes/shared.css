@@ -48,31 +48,3 @@ select:focus-visible {
   scrollbar-width: thin;
   scrollbar-color: var(--pui-outline-subtle) transparent;
 }
-
-/* ==========================================================
-   0A.3.6 Material State Layer
-   Applied via pui-state-layer class on interactive elements
-   ========================================================== */
-[data-theme="material"] .pui-state-layer {
-  position: relative;
-  overflow: hidden;
-}
-[data-theme="material"] .pui-state-layer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: currentColor;
-  opacity: 0;
-  transition: opacity var(--pui-duration-swap, 200ms)
-    var(--pui-motion-ease-out, ease);
-}
-[data-theme="material"] .pui-state-layer:hover::before {
-  opacity: var(--pui-md-sys-state-hover-state-layer-opacity, 0.08);
-}
-[data-theme="material"] .pui-state-layer:focus-visible::before {
-  opacity: var(--pui-md-sys-state-focus-state-layer-opacity, 0.12);
-}
-[data-theme="material"] .pui-state-layer:active::before {
-  opacity: var(--pui-md-sys-state-pressed-state-layer-opacity, 0.12);
-}

@@ -1,10 +1,7 @@
-/* Persona UI — Style entry point */
-/* 顺序：primitive → font → 主题 → 装饰层 → 动效 → 工具 */
-@import './tokens.css';
-@import './fonts.css';
-@import './themes/shared.css';
-@import './themes/apple.css';
-@import './themes/material.css';
-@import './themes/backgrounds.css';
-@import './motion.css';
-@import './utilities.css';
+/* Persona UI — 完整样式入口（向后兼容别名）
+ *
+ * @deprecated v0.2.0 起主题 CSS 拆分到独立 npm 包。本文件仅作 backward
+ *             compat 别名指向 core.css，不再包含 apple.css / material.css。
+ *             新代码请直接用 core.css 并显式 @import 对应主题包。
+ */
+@import "./core.css";

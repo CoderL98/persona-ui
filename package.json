@@ -6,10 +6,13 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter @persona-ui/docs dev",
-    "build": "pnpm --filter @persona-ui/lib build && pnpm --filter @persona-ui/docs build",
+    "build": "pnpm run build:lib && pnpm run build:themes && pnpm run build:docs",
     "build:lib": "pnpm --filter @persona-ui/lib build",
+    "build:themes": "pnpm --filter @persona-ui/theme-apple build && pnpm --filter @persona-ui/theme-material build",
+    "build:theme-apple": "pnpm --filter @persona-ui/theme-apple build",
+    "build:theme-material": "pnpm --filter @persona-ui/theme-material build",
     "build:docs": "pnpm --filter @persona-ui/docs build",
-    "check": "pnpm --filter @persona-ui/lib check && pnpm --filter @persona-ui/docs check",
+    "check": "pnpm --filter @persona-ui/lib check && pnpm --filter @persona-ui/theme-apple check && pnpm --filter @persona-ui/theme-material check && pnpm --filter @persona-ui/docs check",
     "test:unit": "pnpm --filter @persona-ui/lib test:unit",
     "test:a11y": "pnpm --filter @persona-ui/docs test:a11y",
     "test:visual": "pnpm --filter @persona-ui/docs test:visual",
@@ -20,7 +23,7 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "pnpm -r publish --access public",
-    "release": "pnpm run changeset:version && pnpm run build:lib && pnpm run changeset:publish"
+    "release": "pnpm run changeset:version && pnpm run build:lib && pnpm run build:themes && pnpm run changeset:publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

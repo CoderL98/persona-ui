@@ -16,7 +16,8 @@
       "svelte": "./dist/components/*/index.js",
       "default": "./dist/components/*/index.js"
     },
-    "./styles.css": "./dist/styles/index.css"
+    "./styles.css": "./dist/styles/index.css",
+    "./core.css": "./dist/styles/core.css"
   },
   "files": [
     "dist",
