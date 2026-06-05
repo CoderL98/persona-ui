@@ -1777,16 +1777,35 @@
 </section>
 
 <style>
-  /* ── Specimen card 样式（统一视觉节奏） ── */
+  /* ── Specimen card 样式（统一视觉节奏） ──
+     设计原则：
+     - 卡片整体是一个连贯单元，不在内部分割"舞台"
+     - 演示区不增加新的视觉容器，组件直接活在卡片表面
+     - 用极轻的 outline 边框 + 顶部分隔线营造层次
+  */
   .specimen {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
-    padding: 1rem;
-    border-radius: var(--pui-radius-container);
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: 20px;
     border: 1px solid var(--pui-outline-subtle);
-    background: var(--pui-surface-base);
+    background: var(--pui-surface-container-low, var(--pui-surface-base));
     transition: border-color 200ms, box-shadow 200ms;
+  }
+  /* Apple 主题：squircle 22px + 极轻 glass material */
+  :global([data-theme='apple']) .specimen {
+    border-radius: 22px;
+    background: color-mix(in oklch, var(--pui-apple-system-background) 88%, transparent);
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    border-color: color-mix(in oklch, var(--pui-apple-separator) 40%, transparent);
+  }
+  /* MD3 主题：surface-container-low 静态层，16px 圆角 */
+  :global([data-theme='material']) .specimen {
+    border-radius: 16px;
+    background: var(--pui-md-sys-color-surface-container-low, var(--pui-surface-base));
+    border-color: var(--pui-md-sys-color-outline-variant, var(--pui-outline-subtle));
   }
   .specimen:hover {
     border-color: var(--pui-outline);
@@ -1799,8 +1818,8 @@
   }
   .specimen-title {
     font-family: var(--pui-font-display);
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--pui-text-primary);
   }
@@ -1810,27 +1829,32 @@
     color: var(--pui-text-secondary);
     text-decoration: none;
     opacity: 0.4;
-    transition: opacity 200ms;
+    transition: opacity 200ms, color 200ms;
   }
   .specimen:hover .specimen-link {
     opacity: 1;
+    color: var(--pui-color-primary);
   }
   .specimen-caption {
     font-size: 0.75rem;
-    line-height: 1.4;
+    line-height: 1.45;
     color: var(--pui-text-secondary);
     margin: 0;
+    min-height: 2.2em;
   }
+  /* 演示区：透明背景，继承卡片 surface；只保留顶部分隔线和呼吸 padding */
   .specimen-demo {
-    min-height: 5rem;
-    padding: 0.75rem;
-    border-radius: var(--pui-radius-control);
-    background: color-mix(in oklch, var(--pui-surface-variant) 40%, var(--pui-surface-base));
+    min-height: 110px;
+    padding: 1.5rem 0.5rem 0.25rem;
+    border-radius: 0;
+    background: transparent;
+    border-top: 1px solid var(--pui-outline-subtle);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    margin-top: auto;
+    margin-top: 0.25rem;
   }
   .specimen-demo.flex-col {
     align-items: stretch;
@@ -1838,6 +1862,7 @@
   }
   .specimen-demo.p-0 {
     padding: 0;
+    border-top: none;
     overflow: hidden;
   }
 </style>
