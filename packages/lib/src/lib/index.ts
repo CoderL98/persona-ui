@@ -365,3 +365,7 @@ export type {
   SnackbarKind,
   SnackbarItem,
 } from "./components/snackbar/snackbar.types.js";
+
+// ── 主题注册中心（仅类型契约，默认注册表为空） ──
+export type { ThemeDef, ThemeMode, ThemeRegistry } from "./themes/index.js";
+export { THEMES } from "./themes/index.js";
