@@ -21,3 +21,4 @@ packages/lib/.npmrc
 !README.md
 !README_CN.md
 .env
+*.png

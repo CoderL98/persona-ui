@@ -473,6 +473,96 @@
 }
 
 /* ==========================================================
+   Apple InputGroup — Unified Field Appearance
+   HIG 偏好：单一连续字段，prefix/suffix 作为内嵌标签，
+   不出现 Material 风格的"独立 addon 方块"。
+   - .pui-input-group  容器承担 field bg/border/radius/padding
+   - leading/trailing 退化为内联文字（无 bg/border/独立圆角）
+   - 嵌套的 TextField 退化为透明 input（去掉自有 field chrome）
+   ========================================================== */
+[data-theme='apple'] .pui-input-group {
+  background: var(--pui-field-bg, var(--pui-apple-material-thin));
+  border: 1px solid
+    var(--pui-field-border, color-mix(in oklch, var(--pui-apple-separator) 60%, transparent));
+  border-radius: var(--pui-field-radius, var(--pui-radius-control));
+  padding: var(--pui-field-padding-y, var(--pui-space-3))
+    var(--pui-field-padding-x, var(--pui-space-3));
+  gap: var(--pui-space-2);
+  align-items: center;
+  transition:
+    border-color var(--pui-duration-swap, 200ms) var(--pui-motion-ease-out, ease),
+    box-shadow var(--pui-duration-swap, 200ms) var(--pui-motion-ease-out, ease);
+}
+[data-theme='apple'] .pui-input-group:focus-within {
+  border-color: var(--pui-color-primary);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--pui-color-primary) 18%, transparent);
+}
+[data-theme='apple'] .pui-input-group[aria-disabled='true'] {
+  opacity: var(--pui-opacity-disabled, 0.38);
+  cursor: not-allowed;
+}
+/* 错误态（透出自嵌套 TextField） */
+[data-theme='apple'] .pui-input-group:has(.pui-text-field-frame[class*='border-(--pui-color-error)']) {
+  border-color: var(--pui-color-error);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--pui-color-error) 18%, transparent);
+}
+
+/* leading / trailing 退化为内联标签：去除独立方块视觉 */
+[data-theme='apple'] .pui-input-group > .shrink-0 {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  color: var(--pui-text-secondary);
+  font-size: 0.9375rem; /* 15px ≈ subheadline，与 input 文字一致 */
+  line-height: 1.25;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* 中间槽位：保持横向 flex、垂直居中 */
+[data-theme='apple'] .pui-input-group > .flex-1 {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* 嵌套 TextField 退化为透明 input：
+   容器移除 flex-col 改为 row（避免与 addon 垂直错位），
+   抹掉 wrapper 加给 first-child 的 md:border-x（那两条割裂的竖线），
+   field-frame 移除所有 field chrome。 */
+[data-theme='apple'] .pui-input-group .pui-text-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  min-width: 0;
+  border-inline-width: 0 !important;
+}
+[data-theme='apple'] .pui-input-group .pui-text-field-frame {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  flex: 1;
+  min-width: 0;
+  transition: none;
+}
+[data-theme='apple'] .pui-input-group .pui-text-field input {
+  padding: 0;
+  background: transparent;
+}
+/* 嵌套 TextField 内的 label/helper/error 不应出现在 InputGroup 内 */
+[data-theme='apple'] .pui-input-group .pui-text-field > label,
+[data-theme='apple'] .pui-input-group .pui-text-field > p {
+  display: none;
+}
+
+/* ==========================================================
    0A.2.2 Apple Material Utility (applied via .pui-apple-material)
    ========================================================== */
 .pui-apple-material {

@@ -240,9 +240,14 @@ log_ok "lib 类型检查：0/0"
 # 2.4 单元测试
 log_info "执行单元测试 ..."
 TEST_OUT="$(pnpm --filter @persona-ui/lib test:unit 2>&1)"
+TEST_EXIT=$?
 echo "$TEST_OUT" | tail -6
-if ! echo "$TEST_OUT" | grep -qE "Tests +[0-9]+ passed"; then
-  die $LINENO "单元测试未通过"
+# 优先用退出码判断（最可靠），其次校验输出格式（防御 vitest 未来改版）
+if [ "$TEST_EXIT" -ne 0 ]; then
+  die $LINENO "单元测试未通过（vitest 退出码 $TEST_EXIT）"
+fi
+if ! echo "$TEST_OUT" | grep -qE "Tests[[:space:]]+[0-9]+[[:space:]]+passed"; then
+  die $LINENO "单元测试未通过（输出格式异常：未匹配到 'Tests N passed'）"
 fi
 log_ok "lib 单元测试通过"
 

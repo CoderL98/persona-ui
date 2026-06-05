@@ -19,6 +19,7 @@
   {id}
   role="group"
   data-testid={dataTestId}
+  data-orientation={orientation}
   class={cn(
     "pui-input-group flex",
     orientation === "horizontal" ? "flex-row items-stretch" : "flex-col",
@@ -33,7 +34,7 @@
       {@render leading()}
     </div>
   {/if}
-  <div class="flex-1 min-w-0 [&>*:first-child]:rounded-none [&>*:first-child]:border-x-0 [&>*:first-child]:md:border-x [&>*:first-child]:md:rounded-none">
+  <div class="flex-1 min-w-0">
     {@render children?.()}
   </div>
   {#if trailing && orientation === "horizontal"}
@@ -48,3 +49,12 @@
     <div class="text-xs text-(--pui-text-disabled) mt-1">{@render trailing()}</div>
   {/if}
 </div>
+
+<style>
+  /* 水平模式下，TextField 等带边框的子组件需要失去左右圆角，
+     让 leading/trailing addons 的圆角自然衔接、接缝处呈方角。
+     垂直模式（vertical）下没有 addon 与之接缝，保持子组件自身圆角。 */
+  :global([data-orientation="horizontal"].pui-input-group .pui-text-field > .pui-text-field-frame) {
+    border-radius: 0;
+  }
+</style>
