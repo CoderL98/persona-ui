@@ -98,4 +98,4 @@ The library is `sideEffects: ["**/*.css"]` — only the stylesheet you import co
 
 MIT
 
-[中文文档](./README_CN.md)
+[中文文档](https://github.com/CoderL98/persona-ui/blob/main/README_CN.md)

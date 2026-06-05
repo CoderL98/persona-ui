@@ -5,7 +5,9 @@
   "fixed": [
     [
       "@persona-ui/lib",
-      "@persona-ui/docs"
+      "@persona-ui/docs",
+      "@persona-ui/theme-apple",
+      "@persona-ui/theme-material"
     ]
   ],
   "access": "public",
