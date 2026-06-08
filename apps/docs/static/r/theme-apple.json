@@ -1,0 +1,13 @@
+{
+  "$schema": "https://persona-ui.dev/schema/registry-item.json",
+  "name": "theme-apple",
+  "type": "registry:theme",
+  "title": "Apple HIG Theme",
+  "description": "Apple Human Interface Guidelines — control accent, material transparency, squircle highlights.",
+  "registryDependencies": ["@persona-ui/lib"],
+  "files": [
+    { "path": "packages/theme-apple/dist/apple.css", "type": "registry:style" },
+    { "path": "packages/theme-apple/src/index.ts", "type": "registry:item" },
+    { "path": "packages/theme-apple/README.md", "type": "registry:doc" }
+  ]
+}

@@ -17,7 +17,8 @@
       "default": "./dist/components/*/index.js"
     },
     "./styles.css": "./dist/styles/index.css",
-    "./core.css": "./dist/styles/core.css"
+    "./core.css": "./dist/styles/core.css",
+    "./tokens-manifest": "./dist/tokens-manifest.json"
   },
   "files": [
     "dist",
@@ -25,7 +26,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "svelte-package",
+    "build": "svelte-package && node ./scripts/build-tokens-manifest.mjs",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest"

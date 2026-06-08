@@ -18,7 +18,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node ../../scripts/copy-theme-css.mjs theme-material",
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-theme-css.mjs theme-material && node ../../scripts/inject-tokens-shim.mjs material",
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {

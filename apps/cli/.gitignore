@@ -1,0 +1,3 @@
+# apps/cli/.gitignore
+# publish-cli.sh 运行时生成的临时 npm 认证文件（含 NPM_PUBLISH_TOKEN）
+.npmrc

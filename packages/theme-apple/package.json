@@ -18,7 +18,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node ../../scripts/copy-theme-css.mjs theme-apple",
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-theme-css.mjs theme-apple && node ../../scripts/inject-tokens-shim.mjs apple",
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {

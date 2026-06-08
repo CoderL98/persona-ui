@@ -1,0 +1,22 @@
+{
+  "$schema": "https://persona-ui.dev/schema/registry.json",
+  "name": "persona-ui-themes",
+  "version": "0.1.0",
+  "homepage": "https://persona-ui.dev/r",
+  "items": [
+    {
+      "name": "theme-apple",
+      "type": "registry:theme",
+      "title": "Apple HIG Theme",
+      "description": "Apple Human Interface Guidelines — control accent, material transparency, squircle highlights.",
+      "url": "/r/theme-apple.json"
+    },
+    {
+      "name": "theme-material",
+      "type": "registry:theme",
+      "title": "Material Design 3 Theme",
+      "description": "Material You tokens, elevation, state layer, dynamic color (Material 3 spec).",
+      "url": "/r/theme-material.json"
+    }
+  ]
+}

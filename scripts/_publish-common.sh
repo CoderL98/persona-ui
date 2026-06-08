@@ -98,8 +98,13 @@ pub_check_git_state() {
     log_warn "git 工作树有未提交改动（发布前请确认是否需要提交）："
     git -C "$ROOT_DIR" status --short | sed 's/^/    /'
     if [ "$release" = "true" ]; then
-      read -r -p "是否继续？(y/N) " ans
-      [[ "$ans" =~ ^[Yy]$ ]] || { log_err "已中止"; exit 4; }
+      # 仅在交互式 TTY 下 read 二次确认；非交互场景（CI / pipe）下 --release 已隐含确认
+      if [ -t 0 ]; then
+        read -r -p "是否继续？(y/N) " ans
+        [[ "$ans" =~ ^[Yy]$ ]] || { log_err "已中止"; exit 4; }
+      else
+        log_warn "非交互模式（pipe/CI），--release 已隐含确认，跳过 read"
+      fi
     fi
   fi
   log_ok "git 状态已确认"

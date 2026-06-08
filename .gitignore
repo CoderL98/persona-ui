@@ -24,3 +24,4 @@ packages/theme-material/.npmrc
 !README_CN.md
 .env
 *.png
+apps/cli/.npmrc

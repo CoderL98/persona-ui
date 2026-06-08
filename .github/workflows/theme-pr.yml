@@ -1,0 +1,106 @@
+name: theme-pr
+
+on:
+  pull_request:
+    paths:
+      - 'packages/theme-*/**'
+      - 'apps/docs/static/r/*.json'
+      - 'apps/cli/**'
+      - 'packages/lib/scripts/build-tokens-manifest.mjs'
+      - 'packages/lib/dist/styles/tokens.css'
+      - 'scripts/ci/scope-guard.sh'
+
+# 取消同一 PR 旧运行（节省 CI 配额）
+concurrency:
+  group: theme-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate theme / registry PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # scope-guard 需要 git diff
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # -------------------------------------------------------------
+      # 1) scope 校验（最便宜，先跑：能早 fail）
+      # 防止外部 PR 抢占 @persona-ui scope 创建新包
+      # -------------------------------------------------------------
+      - name: Scope guard
+        env:
+          REPO_OWNER: ${{ github.repository_owner }}
+          PR_AUTHOR: ${{ github.actor }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: bash scripts/ci/scope-guard.sh
+
+      # -------------------------------------------------------------
+      # 2) 重建 lib（含 B.1 manifest）—— token 测试的基础
+      # -------------------------------------------------------------
+      - name: Build lib
+        run: pnpm --filter @persona-ui/lib build
+
+      # -------------------------------------------------------------
+      # 3) 找出本次 PR 修改的主题包
+      # -------------------------------------------------------------
+      - name: Detect changed themes
+        id: detect
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep -oE '^packages/theme-[^/]+' | sort -u | tr '\n' ' ')
+          echo "themes=$CHANGED" >> "$GITHUB_OUTPUT"
+
+      # -------------------------------------------------------------
+      # 4) token 覆盖（B.1 落地的核心校验）
+      # 主题包必须自带 test:tokens 脚本（基于 @persona-ui/lib/tokens-manifest）
+      # -------------------------------------------------------------
+      - name: Token coverage
+        if: steps.detect.outputs.themes != ''
+        run: |
+          for t in ${{ steps.detect.outputs.themes }}; do
+            echo "→ checking $t"
+            pnpm --filter "@persona-ui/$(basename $t)" test:tokens
+          done
+
+      # -------------------------------------------------------------
+      # 5) CSS 语法（stylelint，规则简单 + config 复用 standard）
+      # -------------------------------------------------------------
+      - name: Stylelint
+        if: steps.detect.outputs.themes != ''
+        run: |
+          for t in ${{ steps.detect.outputs.themes }}; do
+            echo "→ stylelint $t"
+            pnpm exec stylelint "$t/**/*.css"
+          done
+
+      # -------------------------------------------------------------
+      # 6) 视觉回归（playwright，docs 已搭好 webServer）
+      # 跑全量 visual tests（不传 --theme，因 playwright 不支持）
+      # -------------------------------------------------------------
+      - name: Visual regression
+        if: steps.detect.outputs.themes != ''
+        run: pnpm --filter @persona-ui/docs test:visual
+
+      # -------------------------------------------------------------
+      # 7) CLI 单测（B.3 vitest）
+      # -------------------------------------------------------------
+      - name: CLI unit tests
+        if: hashFiles('apps/cli/**') != ''
+        run: pnpm --filter @persona-ui/cli test
