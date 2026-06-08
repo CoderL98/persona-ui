@@ -256,7 +256,7 @@ git commit -m "chore: release @persona-ui/cli@$VERSION"
 git tag @persona-ui/cli@$VERSION
 git push --tags
 # 访问 https://www.npmjs.com/package/@persona-ui/cli 查看包页面
-# 试用：pnpm dlx @persona-ui/cli add https://persona-ui.dev/r/theme-apple.json
+# 试用：pnpm dlx @persona-ui/cli add https://persona-ui.ricecakecat.com/r/theme-apple.json
 EOF
 
 cleanup_and_exit 0

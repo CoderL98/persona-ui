@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { RegistryItemSchema } from "../schemas/registry-item.js";
+import { URLS } from "../config.js";
 
 const validItem = {
-  $schema: "https://persona-ui.dev/schema/registry-item.json",
+  $schema: URLS.SCHEMA_ITEM,
   name: "theme-apple",
   type: "registry:theme" as const,
   title: "Apple HIG Theme",

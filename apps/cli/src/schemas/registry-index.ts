@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { URLS } from "../config.js";
 
 /**
  * Registry index entry (registry.json 数组元素)
@@ -29,9 +30,9 @@ export type RegistryIndexEntry = z.infer<typeof RegistryIndexEntrySchema>;
  * 公共 registry 索引 URL
  *
  * 部署状态：
- *   - persona-ui.dev 域名尚未部署（B.5 跳过）
- *   - 短期方案：用户跑 `pnpm dlx @persona-ui/cli list <path>` 显式传本地路径
- *   - 长期方案：等 persona-ui.dev 部署后，CLI 默认 URL 即可直连
+ *   - 默认指向 URLS.REGISTRY_INDEX（从 PERSONA_UI_BASE_URL 派生）
+ *   - 短期覆盖：用户跑 `pnpm dlx @persona-ui/cli list <path>` 显式传本地路径
+ *   - 环境变量覆盖：PUI_REGISTRY_INDEX_URL
  */
 export const DEFAULT_REGISTRY_INDEX_URL =
-  process.env.PUI_REGISTRY_INDEX_URL ?? "https://persona-ui.dev/r/registry.json";
+  process.env.PUI_REGISTRY_INDEX_URL ?? URLS.REGISTRY_INDEX;

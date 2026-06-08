@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { RegistryIndexSchema, RegistryIndexEntrySchema } from "../schemas/registry-index.js";
+import { URLS } from "../config.js";
 
 const validIndex = {
-  $schema: "https://persona-ui.dev/schema/registry.json",
+  $schema: URLS.SCHEMA_REGISTRY,
   name: "persona-ui-themes",
   version: "0.1.0",
-  homepage: "https://persona-ui.dev/r",
+  homepage: URLS.REGISTRY_THEMES,
   items: [
     {
       name: "theme-apple",

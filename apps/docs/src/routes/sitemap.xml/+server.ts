@@ -5,7 +5,7 @@ import { docs } from '../../lib/docs';
 
 export const prerender = true;
 
-const SITE = 'https://persona-ui.dev';
+const SITE = 'https://persona-ui.ricecakecat.com';
 
 // 单条 <url>：loc 必填，lastmod 可选；alternates 用 [{locale, href}] 而非字符串
 // 因为 hreflang 必须用规范 BCP 47 形式（zh-CN / zh-TW），而 URL 段是小写（/zh-cn）

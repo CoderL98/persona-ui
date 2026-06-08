@@ -118,7 +118,7 @@
   const browseComponentsHref = $derived(`${localeToPath(locale)}/docs/components/button`);
 
   // 站点 baseUrl（用于 OG/Twitter/canonical 绝对地址）
-  const origin = $derived(typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.dev');
+  const origin = $derived(typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.ricecakecat.com');
   const baseUrl = $derived(`${origin}${localeToPath(locale)}`);
 
   // IntersectionObserver：标记当前 section

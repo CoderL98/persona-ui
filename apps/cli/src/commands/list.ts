@@ -9,7 +9,7 @@ import { fetchText, parseSource } from "../utils/fetch-source.js";
  * 行为：从 registry.json 拉所有主题，打印表格
  *
  * 用法：
- *   pui-cli list                              # 默认从 persona-ui.dev/r/registry.json
+ *   pui-cli list                              # 默认从 persona-ui.ricecakecat.com/r/registry.json
  *   pui-cli list <path-or-url>               # 自定义 registry
  */
 export const listCommand = new Command("list")
@@ -24,7 +24,7 @@ export const listCommand = new Command("list")
     } catch (err) {
       throw new Error(
         `无法读取 registry 索引 ${source}：${(err as Error).message}\n` +
-          `  提示：persona-ui.dev 域名尚未部署，请显式传本地路径：\n` +
+          `  提示：persona-ui.ricecakecat.com 域名尚未部署，请显式传本地路径：\n` +
           `    pui-cli list apps/docs/static/r/registry.json`,
       );
     }

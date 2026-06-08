@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { parseSource } from "../utils/fetch-source.js";
+import { URLS } from "../config.js";
 
 describe("parseSource", () => {
   it("treats https:// URL as remote and strips filename", () => {
-    const src = parseSource("https://persona-ui.dev/r/theme-apple.json");
+    const src = parseSource(`${URLS.REGISTRY_THEMES}/theme-apple.json`);
     expect(src).toEqual({
       kind: "remote",
-      baseUrl: "https://persona-ui.dev/r",
+      baseUrl: URLS.REGISTRY_THEMES,
     });
   });
 

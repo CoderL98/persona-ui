@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { URLS } from "../config.js";
 
 /**
  * Registry item file descriptor
@@ -13,7 +14,7 @@ export const RegistryFileSchema = z.object({
  * 单个 registry item manifest（一个主题 = 一个 item）
  */
 export const RegistryItemSchema = z.object({
-  $schema: z.literal("https://persona-ui.dev/schema/registry-item.json"),
+  $schema: z.literal(URLS.SCHEMA_ITEM),
   name: z
     .string()
     .regex(/^theme-[a-z0-9-]+$/, "name must match /^theme-[a-z0-9-]+$/"),

@@ -42,7 +42,7 @@ export const infoCommand = new Command("info")
     }
 
     // 3. 拉 item manifest
-    // entry.url 形如 "/r/theme-apple.json" — 在 web 部署后是 persona-ui.dev/r/theme-apple.json
+    // entry.url 形如 "/r/theme-apple.json" — 在 web 部署后是 persona-ui.ricecakecat.com/r/theme-apple.json
     // 相对 baseDir (registry.json 所在目录 apps/docs/static/r/)，"r/theme-apple.json" 实际在父级 apps/docs/static/
     // 统一处理：local 模式 entry.url 去前导 / 后用 ../ 跳出 baseDir
     //          remote 模式用 URL 拼接

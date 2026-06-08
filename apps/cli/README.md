@@ -6,7 +6,7 @@ Persona UI CLI — install themes from the central registry (federated shadcn-sv
 
 ```bash
 # Install a theme to your project
-pnpm dlx @persona-ui/cli add https://persona-ui.dev/r/theme-apple.json
+pnpm dlx @persona-ui/cli add https://persona-ui.ricecakecat.com/r/theme-apple.json
 
 # Or from local path (dev/debug)
 pnpm dlx @persona-ui/cli add ./path/to/theme-apple.json

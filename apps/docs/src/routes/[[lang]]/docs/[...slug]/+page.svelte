@@ -18,7 +18,7 @@
 
 	// SEO 用的绝对 URL（SSR 时 fallback 到 production 域名）
 	const origin =
-		typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.dev';
+		typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.ricecakecat.com';
 	const pageUrl = $derived(`${origin}${localeToPath(locale)}/docs/${slug}`);
 
 	// hreflang：三语互链相同 slug

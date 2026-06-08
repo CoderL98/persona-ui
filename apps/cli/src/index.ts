@@ -21,7 +21,7 @@ const program = new Command();
 program
   .name("pui-cli")
   .description("Persona UI CLI — install themes from the central registry")
-  .version("0.1.2");
+  .version("0.1.3");
 
 program.addCommand(addCommand);
 program.addCommand(listCommand);

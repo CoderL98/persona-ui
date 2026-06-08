@@ -20,7 +20,7 @@ export type FetchSource =
  */
 export function parseSource(input: string): FetchSource {
   if (input.startsWith("http://") || input.startsWith("https://")) {
-    // https://persona-ui.dev/r/theme-apple.json → baseUrl = https://persona-ui.dev/r
+    // https://persona-ui.ricecakecat.com/r/theme-apple.json → baseUrl = https://persona-ui.ricecakecat.com/r
     const baseUrl = input.replace(/\/[^/]+\.json$/, "");
     return { kind: "remote", baseUrl };
   }
@@ -72,7 +72,7 @@ async function resolveLocalPath(
  * local  → readFile(baseDir + "/" + relPath)，找不到则回退到 monorepo 根
  * remote → fetch(baseUrl + "/" + relPath)
  *          （注意：raw.githubusercontent.com 的"魔法拼接"在 https URL 模式下不适用，
- *           因为 baseUrl 已经是真实可访问的 URL — 比如 https://persona-ui.dev/r/）
+ *           因为 baseUrl 已经是真实可访问的 URL — 比如 https://persona-ui.ricecakecat.com/r/）
  */
 export async function fetchText(
   src: FetchSource,
@@ -84,8 +84,8 @@ export async function fetchText(
   }
 
   // remote: 直接拼接 baseUrl + relPath
-  // 例：baseUrl="https://persona-ui.dev/r" + relPath="registry.json"
-  //   → "https://persona-ui.dev/r/registry.json"
+  // 例：baseUrl="https://persona-ui.ricecakecat.com/r" + relPath="registry.json"
+  //   → "https://persona-ui.ricecakecat.com/r/registry.json"
   const normalizedBase = src.baseUrl.replace(/\/$/, "");  // 去掉末尾 /
   const normalizedRel = relPath.replace(/^\//, "");      // 去掉前导 /
   const url = `${normalizedBase}/${normalizedRel}`;

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://persona-ui.dev/schema/registry-item.json",
+  "$schema": "https://persona-ui.ricecakecat.com/schema/registry-item.json",
   "name": "theme-apple",
   "type": "registry:theme",
   "title": "Apple HIG Theme",
