@@ -70,7 +70,9 @@ async function resolveLocalPath(
  * 拉取 source 下某个子路径的文本
  *
  * local  → readFile(baseDir + "/" + relPath)，找不到则回退到 monorepo 根
- * remote → 拼 raw.githubusercontent.com（owner/repo/ref 由环境变量或默认值）
+ * remote → fetch(baseUrl + "/" + relPath)
+ *          （注意：raw.githubusercontent.com 的"魔法拼接"在 https URL 模式下不适用，
+ *           因为 baseUrl 已经是真实可访问的 URL — 比如 https://persona-ui.dev/r/）
  */
 export async function fetchText(
   src: FetchSource,
@@ -81,11 +83,12 @@ export async function fetchText(
     return readFile(full, "utf-8");
   }
 
-  // remote：用环境变量配置 owner/repo/ref，默认 rcc/persona-ui/main
-  const owner = process.env.PUI_REPO_OWNER ?? "rcc";
-  const repo = process.env.PUI_REPO_NAME ?? "persona-ui";
-  const ref = process.env.PUI_REPO_REF ?? "main";
-  const url = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${relPath}`;
+  // remote: 直接拼接 baseUrl + relPath
+  // 例：baseUrl="https://persona-ui.dev/r" + relPath="registry.json"
+  //   → "https://persona-ui.dev/r/registry.json"
+  const normalizedBase = src.baseUrl.replace(/\/$/, "");  // 去掉末尾 /
+  const normalizedRel = relPath.replace(/^\//, "");      // 去掉前导 /
+  const url = `${normalizedBase}/${normalizedRel}`;
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`fetch ${url} → HTTP ${res.status}`);
