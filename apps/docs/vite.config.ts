@@ -38,16 +38,18 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           // docs markdown 按 locale × 字母段 9 桶拆
+          // Vite 给的 id 形如 ".../docs-content/en/components/accordion.md?raw"
+          // 注意：取"文件名第一字符"而非"after 路径第一字符"（after 是 "components/xxx.md"，
+          // 第一个字符是 'c' 把所有 components/* 都归到 ag 桶）
           for (const locale of ["en", "zh-CN", "zh-TW"] as const) {
             const tag = `/docs-content/${locale}/`;
             if (id.includes(tag)) {
-              // 提取 locale 后的第一个字符（slug 首字母）
               const after = id.split(tag)[1] ?? "";
-              // guide/* 走单独段（数量少但内容长）
-              if (after.startsWith("guide/")) {
-                return `docs-${locale}-guides`;
-              }
-              const first = after[0]?.toLowerCase() ?? "z";
+              const afterClean = after.split("?")[0];
+              // 提取文件名（最后一段，去 .md）
+              const filename = afterClean.split("/").pop()?.replace(/\.md$/, "") ?? "";
+              const first = filename[0]?.toLowerCase() ?? "z";
+              // 字母段：A-G / H-N / O-Z
               if (first < "h") return `docs-${locale}-ag`;
               if (first < "o") return `docs-${locale}-hn`;
               return `docs-${locale}-oz`;
