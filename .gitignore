@@ -19,9 +19,10 @@ batch-*.webp
 packages/lib/.npmrc
 packages/theme-apple/.npmrc
 packages/theme-material/.npmrc
-*.md
+./*.md
 !README.md
 !README_CN.md
 .env
 *.png
 apps/cli/.npmrc
+**/dist/

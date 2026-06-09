@@ -6,7 +6,6 @@
     "declaration": true,
     "declarationDir": "dist",
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"]

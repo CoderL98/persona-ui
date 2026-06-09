@@ -6,7 +6,11 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter({
+			pages: 'build', 
+			assets: 'build',
 			fallback: undefined,
+			precompress: false,
+			strict: true
 		}),
 		prerender: {
 			// 主页内的 demo 链接（/products、/blog 等占位 URL）会触发 SvelteKit 爬取并生成 404 页面

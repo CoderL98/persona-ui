@@ -1,6 +1,14 @@
 // 自动收集 apps/docs/docs-content/{en,zh-CN,zh-TW}/**/*.md
 // 通过 Vite build-time glob + ?raw 加载所有文本
 // 在客户端解析 frontmatter（不引第三方 md 解析器）
+//
+// Chunk 策略：
+//   1. eager frontmatter + title 索引 → 用于 nav / search（体积极小，~10 KB）
+//   2. eager 全文 body → 保持 getRaw 同步 API 兼容（Vite 会按 locale 自动拆 chunk）
+//
+// 注：纯静态部署（adapter-static）要求 build 时所有 getRaw 已解析，
+// 客户端路由切换时不重新调用 getRaw（HTML 已 prerender），
+// 所以全文 eager 不会真正"下载到客户端"——会按 chunk 拆分。
 import { marked } from 'marked';
 import type { Locale } from './i18n/locales';
 
@@ -15,7 +23,8 @@ export interface DocFrontmatter {
 }
 
 // raw 文件对象：<locale>/<slug> → md 文本
-// 例如 rawFiles['en/components/button']
+// Vite 会按 import.meta.glob 的模式自动拆 chunk（按 locale 拆 3 块）
+// 例如 rawFiles['en/components/button'] → docs-en chunk 中的某个 entry
 const rawFiles = import.meta.glob<string>('../../docs-content/*/**/*.md', {
 	query: '?raw',
 	import: 'default',
@@ -47,6 +56,8 @@ function parseFrontmatter(md: string): { fm: DocFrontmatter; body: string } {
 }
 
 // 索引：<locale>/<slug> → { fm, body }
+// 同步访问：getRaw(slug, locale) 直接返回 body
+// build 时 Vite 按 locale 拆 chunk（依赖 import.meta.glob 模式 + manualChunks）
 const INDEX: Record<string, { fm: DocFrontmatter; body: string }> = {};
 // 每个 locale 的 entries 列表
 const ENTRIES: Record<Locale, DocEntry[]> = {
@@ -73,7 +84,12 @@ for (const [path, raw] of Object.entries(rawFiles)) {
 	TITLES[slug][locale] = fm.title;
 }
 
-// 暴露
+/** 同步取 frontmatter（已在 eager 阶段） */
+export function getDocMeta(slug: string, locale: Locale): DocFrontmatter | undefined {
+	return INDEX[`${locale}/${slug}`]?.fm;
+}
+
+// 旧 API 兼容（同步返回 body —— 已被 +page.svelte 同步使用）
 export function getRaw(slug: string, locale: Locale): string | undefined {
 	return INDEX[`${locale}/${slug}`]?.body;
 }

@@ -524,6 +524,7 @@
   color: var(--pui-text-secondary);
   font-size: 0.9375rem; /* 15px ≈ subheadline，与 input 文字一致 */
   line-height: 1.25;
+  -webkit-user-select: none;
   user-select: none;
   white-space: nowrap;
 }
@@ -574,8 +575,8 @@
 .pui-apple-material {
   background: var(--pui-apple-material-regular);
   border-color: var(--pui-apple-material-border);
-  backdrop-filter: blur(var(--pui-apple-material-blur));
   -webkit-backdrop-filter: blur(var(--pui-apple-material-blur));
+  backdrop-filter: blur(var(--pui-apple-material-blur));
 }
 
 /* ==========================================================
@@ -687,8 +688,8 @@
 }
 [data-theme='apple'] .pui-bottom-navigation {
   background: color-mix(in oklch, var(--pui-apple-system-background) 70%, transparent);
-  backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   border-top-color: color-mix(in oklch, var(--pui-apple-separator) 50%, transparent);
 }
 [data-theme='apple'] .pui-button,
@@ -704,6 +705,5 @@
 }
 [data-theme='apple'] .pui-scroll-view,
 [data-theme='apple'] [data-scroll] {
-  -webkit-overflow-scrolling: touch;  /* 硬件加速滚动 */
   overscroll-behavior: contain;       /* 防止滚动传到父级 */
 }
