@@ -221,11 +221,12 @@ pub_verify_tarball() {
   local pkg_dir="$1" version="$2" require_files="$3"
   local tarball="/tmp/pui-publish-verify-$$.tgz"
   local verify_dir="/tmp/pui-publish-verify-$$"
-  # 从 package.json#name 拿 tgz 文件名（保留 scope 去掉前导 @）
+  # 从 package.json#name 推导 npm pack 生成的 tgz 文件名
+  # npm pack 规则：@scope/name → scope-name（@ 去掉，/ 换成 -）
   # 例：@persona-ui/cli → persona-ui-cli
   #      @persona-ui/lib → persona-ui-lib
   #      persona-ui-lib → persona-ui-lib（无 scope）
-  local pkg_name; pkg_name="$(node -e "console.log(require('$pkg_dir/package.json').name.replace(/^@/, ''))")"
+  local pkg_name; pkg_name="$(node -e "console.log(require('$pkg_dir/package.json').name.replace(/^@/, '').replace(/\//g, '-'))")"
 
   # caller 应已设 trap 清理，但保险起见此处也清理一次
   rm -rf "$tarball" "$verify_dir" 2>/dev/null || true

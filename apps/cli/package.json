@@ -1,6 +1,6 @@
 {
   "name": "@persona-ui/cli",
-  "version": "0.1.3",
+  "version": "0.1.3-beta",
   "description": "Persona UI CLI — install themes from the central registry (federated shadcn-svelte model)",
   "license": "MIT",
   "private": false,

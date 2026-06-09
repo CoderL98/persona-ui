@@ -134,8 +134,8 @@ echo "$CHECK_OUT" | tail -3
 if [ "$CHECK_EXIT" -ne 0 ]; then
   die $LINENO "类型检查未通过（svelte-check 退出码 $CHECK_EXIT）"
 fi
-if ! echo "$CHECK_OUT" | grep -qE "0 ERRORS? (AND )?0 WARNINGS?"; then
-  die $LINENO "类型检查输出格式异常：未匹配到 '0 ERRORS 0 WARNINGS'"
+if ! echo "$CHECK_OUT" | grep -qE "0 errors? (and )?0 warnings?"; then
+  die $LINENO "类型检查输出格式异常：未匹配到 '0 errors 0 warnings'"
 fi
 log_ok "lib 类型检查：0/0"
 
@@ -158,8 +158,8 @@ echo "$DOCS_OUT" | tail -3
 if [ "$DOCS_EXIT" -ne 0 ]; then
   die $LINENO "docs 类型检查失败（svelte-check 退出码 $DOCS_EXIT）"
 fi
-if ! echo "$DOCS_OUT" | grep -qE "0 ERRORS? (AND )?0 WARNINGS?"; then
-  die $LINENO "docs 类型检查输出格式异常：未匹配到 '0 ERRORS 0 WARNINGS'"
+if ! echo "$DOCS_OUT" | grep -qE "0 errors? (and )?0 warnings?"; then
+  die $LINENO "docs 类型检查输出格式异常：未匹配到 '0 errors 0 warnings'"
 fi
 log_ok "docs 类型检查：0/0（导出兼容性已确认）"
 

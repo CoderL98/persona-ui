@@ -1,6 +1,6 @@
 {
   "name": "@persona-ui/theme-apple",
-  "version": "0.1.0",
+  "version": "0.1.3-beta",
   "description": "Apple HIG theme for Persona UI — human interface guidelines, control accent, material transparency",
   "type": "module",
   "main": "./dist/index.js",
