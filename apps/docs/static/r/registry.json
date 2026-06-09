@@ -2,7 +2,7 @@
   "$schema": "https://persona-ui.ricecakecat.com/schema/registry.json",
   "name": "persona-ui-themes",
   "version": "0.1.0",
-  "homepage": "https://persona-ui.ricecakecat.com/r",
+  "homepage": "https://persona-ui.ricecakecat.com",
   "items": [
     {
       "name": "theme-apple",
