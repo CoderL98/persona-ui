@@ -68,11 +68,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rcc/persona-ui.git",
+    "url": "git+https://github.com/CoderL98/persona-ui.git",
     "directory": "apps/cli"
   },
   "bugs": {
-    "url": "https://github.com/rcc/persona-ui/issues"
+    "url": "https://github.com/CoderL98/persona-ui/issues"
   },
-  "homepage": "https://github.com/rcc/persona-ui/tree/main/packages/lib#readme"
+  "homepage": "https://github.com/CoderL98/persona-ui/tree/main/packages/lib#readme"
 }

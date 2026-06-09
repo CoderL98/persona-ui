@@ -317,3 +317,45 @@ pub_check_lib_published() {
   fi
   log_ok "@persona-ui/lib@$lib_version 已在 registry"
 }
+
+# -----------------------------------------------------------------------------
+# 主动等待 dist-tag 同步（最多 40 秒，5 秒间隔 = 8 次重试）
+# -----------------------------------------------------------------------------
+# 背景：npm publish 命令本身**同步写入**包到 registry 存储，但 dist-tag 更新
+#       在某些区域会延迟 1-30s 才在裸 registry API 可见。本函数用于消除
+#       "刚 publish 完立即验证"的同步真空期。
+#
+# 用法：pub_wait_for_dist_tag "$PKG_NAME" "$TAG" "$EXPECTED_VERSION"
+#   - PKG_NAME         例：@persona-ui/theme-material
+#   - TAG              例：next / latest
+#   - EXPECTED_VERSION 例：0.1.3-beta
+# 返回：
+#   0  = 在重试窗口内命中 dist-tag 指向 EXPECTED_VERSION
+#   非0 = 重试耗尽仍未命中（caller 决定 warn 还是 die）
+pub_wait_for_dist_tag() {
+  local pkg_name="$1" tag="$2" expected_ver="$3"
+  local max_attempts=8
+  local interval=5
+  local url="$NPM_REGISTRY$pkg_name"
+  local attempt=0
+  local meta pointed
+
+  while [ "$attempt" -lt "$max_attempts" ]; do
+    attempt=$((attempt + 1))
+    # 读包文档根，校验 "tag":"expected_ver" 片段
+    meta="$(curl -sS "$url" 2>/dev/null || true)"
+    if [ -n "$meta" ] && \
+       echo "$meta" | grep -qE "\"$tag\"[[:space:]]*:[[:space:]]*\"$expected_ver\""; then
+      log_ok "dist-tag [$tag] → $expected_ver 已同步（第 $attempt/$max_attempts 次）"
+      return 0
+    fi
+    if [ "$attempt" -lt "$max_attempts" ]; then
+      log_info "dist-tag [$tag] 未同步，第 $attempt/$max_attempts 次重试（再等 ${interval}s）..."
+      sleep "$interval"
+    fi
+  done
+  # 走到这里 = 8 次重试都失败
+  # 实际耗时上限：7 次 sleep × 5s + 8 次 curl 网络延迟 ≈ 35-50s（视网络）
+  log_warn "dist-tag [$tag] 在 $(( (max_attempts - 1) * interval ))s 内未同步到 $expected_ver（上限 ~50s 含网络延迟）"
+  return 1
+}
