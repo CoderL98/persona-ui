@@ -5,11 +5,17 @@
 #  作用：将 packages/theme-* 串行发布到 npmjs.com 官方源
 #  作者：Persona UI contributors
 #
-#  用法：./scripts/publish-theme.sh [标签] [--release]
+#  用法：./scripts/publish-theme.sh [标签] [--release] [--only=<过滤>]
 #        默认行为 = 干跑（不实际发布），需显式 --release 才执行真正发布。
 #        标签默认根据版本号自动推断：
 #          - 含 -  （预发布）→ tag = next
 #          - 不含 -（稳定版）→ tag = latest
+#
+#        --only= 过滤要发布的主题（缺省 = 发全部）：
+#          --only=apple                          # 按 theme_id 过滤
+#          --only=@persona-ui/theme-material     # 按完整包名过滤
+#          --only=material                       # 同上简写（大小写不敏感）
+#          位置参数（标签）与 --only 的顺序无关
 #
 #  重要前置：
 #    1. 同一版本的 @persona-ui/lib 必须**先**发布到 npm（theme peer 依赖 lib）
@@ -17,9 +23,13 @@
 #    3. 仓库处于可发布状态
 #
 #  示例：
-#    ./scripts/publish-theme.sh                   # 干跑所有主题包
-#    ./scripts/publish-theme.sh --release         # 实跑
-#    ./scripts/publish-theme.sh next --release    # 显式打 next tag 实跑
+#    ./scripts/publish-theme.sh                          # 干跑所有主题包
+#    ./scripts/publish-theme.sh --release                # 实跑全部
+#    ./scripts/publish-theme.sh next --release           # 显式打 next tag 实跑
+#    ./scripts/publish-theme.sh --only=material          # 干跑 material
+#    ./scripts/publish-theme.sh --release --only=apple   # 实跑 apple
+#    ./scripts/publish-theme.sh --only=material --release # 顺序无关
+#    ./scripts/publish-theme.sh next --only=material --release # tag + only + release
 #
 #  与 publish-lib.sh 的差异：
 #    - 构建是 tsc + copy-theme-css（无 svelte-package）
@@ -77,22 +87,65 @@ trap 'die $LINENO "$BASH_COMMAND"' ERR
 # -----------------------------------------------------------------------------
 TAG_OVERRIDE=""
 RELEASE=false
+ONLY_FILTER=""
+
+# entry 形如 "@persona-ui/theme-apple    packages/theme-apple    apple    apple.css"
+# 输出 0 = 命中（要发），1 = 跳过
+match_only() {
+  local entry="$1" name theme_id
+  read -r name _ theme_id _ <<<"$entry"
+  if [ -z "$ONLY_FILTER" ]; then
+    return 0
+  fi
+  local needle_lc="${ONLY_FILTER,,}"
+  local name_lc="${name,,}"
+  local id_lc="${theme_id,,}"
+  # 完整包名匹配 / 短名 theme_id 匹配（大小写不敏感）
+  if [ "$needle_lc" = "$name_lc" ] || [ "$needle_lc" = "$id_lc" ]; then
+    return 0
+  fi
+  return 1
+}
 
 for arg in "$@"; do
   case "$arg" in
     --release|-r)  RELEASE=true ;;
     --dry-run|-n)  RELEASE=false ;;
+    --only=*)
+      ONLY_FILTER="${arg#--only=}"
+      if [ -z "$ONLY_FILTER" ]; then
+        log_err "--only= 后不能为空（可用：apple / material / @persona-ui/theme-*）"
+        exit 2
+      fi
+      ;;
+    --only)
+      log_err "--only 需带值：--only=apple（不接受独立位置参数）"
+      exit 2
+      ;;
     --help|-h)
-      sed -n '2,40p' "$0"
+      sed -n '2,46p' "$0"
       exit 0 ;;
     -*)
-      log_err "未知选项：$arg（可用：--release / --dry-run / --help）"
+      log_err "未知选项：$arg（可用：--release / --dry-run / --only=<id|name> / --help）"
       exit 2 ;;
     *)
       [ -z "$TAG_OVERRIDE" ] && TAG_OVERRIDE="$arg" || { log_err "多余的位置参数：$arg"; exit 2; }
       ;;
   esac
 done
+
+# 校验 ONLY_FILTER 至少命中一个包（避免拼写错误静默"啥都没发"）
+if [ -n "$ONLY_FILTER" ]; then
+  HIT=false
+  for entry in "${THEME_PACKAGES[@]}"; do
+    if match_only "$entry"; then HIT=true; break; fi
+  done
+  if [ "$HIT" != "true" ]; then
+    log_err "--only=$ONLY_FILTER 未匹配到任何主题包（可用：apple / material）"
+    exit 2
+  fi
+  log_ok "已启用 --only=$ONLY_FILTER，本次仅发该主题"
+fi
 
 # -----------------------------------------------------------------------------
 # 0. 一次性环境检查（所有主题包共享）
@@ -104,8 +157,9 @@ pub_load_token
 pub_unset_proxies
 pub_check_git_state "$RELEASE"
 
-# 一次性加入 .gitignore（所有主题包）
+# 一次性加入 .gitignore（只给将要发布的包加白名单——避免给未发布的 .npmrc 加白名单导致状态污染）
 for entry in "${THEME_PACKAGES[@]}"; do
+  if ! match_only "$entry"; then continue; fi
   read -r _ dir _ _ <<<"$entry"
   pub_gitignore_npmrc "$ROOT_DIR/$dir"
 done
@@ -114,9 +168,20 @@ done
 # 主循环：按 THEME_PACKAGES 数组顺序串行发布
 # -----------------------------------------------------------------------------
 PACK_INDEX=0
-TOTAL_PACKS=${#THEME_PACKAGES[@]}
+# TOTAL_PACKS = 实际会处理的包数（受 --only 影响），用于 [i/N] 展示
+TOTAL_PACKS=0
+for entry in "${THEME_PACKAGES[@]}"; do
+  match_only "$entry" && TOTAL_PACKS=$((TOTAL_PACKS + 1))
+done
+if [ "$TOTAL_PACKS" -eq 0 ]; then
+  log_err "没有可发布的主题包（--only=$ONLY_FILTER 未命中）"
+  exit 2
+fi
 
 for entry in "${THEME_PACKAGES[@]}"; do
+  # 过滤：--only 不匹配的本轮跳过（清理和构建都不会跑）
+  if ! match_only "$entry"; then continue; fi
+
   PACK_INDEX=$((PACK_INDEX + 1))
   read -r PKG_NAME PKG_REL_DIR THEME_ID CSS_BASENAME <<<"$entry"
   PKG_DIR="$ROOT_DIR/$PKG_REL_DIR"
@@ -256,13 +321,29 @@ for entry in "${THEME_PACKAGES[@]}"; do
   log_step "验证发布结果"
 
   # 9.1 registry 元数据
-  log_info "查询 $NPM_REGISTRY$PKG_NAME ..."
-  META="$(curl -sS "$NPM_REGISTRY$PKG_NAME")"
-  DIST_TAG="$(echo "$META" | grep -oE "\"$TAG\":\"[0-9][^\"]*\"" | head -1)"
+  # 注意：必须查**具体版本** ($NPM_REGISTRY$PKG_NAME/$VERSION) 而不是包文档根。
+  # 包文档根在 publish 完成后需要 CDN 同步才稳定（可能 1-30s 延迟），
+  # 而具体版本端点由 publish 命令**同步写入**——只要 npm publish 返 0，这里一定有 JSON。
+  # 同样的策略见 _publish-common.sh#pub_check_lib_published。
+  log_info "查询 $NPM_REGISTRY$PKG_NAME/$VERSION ..."
+  META="$(curl -sS "$NPM_REGISTRY$PKG_NAME/$VERSION")"
+  HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' "$NPM_REGISTRY$PKG_NAME/$VERSION")"
+  if [ "$HTTP_CODE" != "200" ]; then
+    die $LINENO "registry 未返回 200（HTTP $HTTP_CODE），请稍后重试 https://www.npmjs.com/package/$PKG_NAME"
+  fi
+  # 具体版本端点里 dist-tags 嵌套在对象里，校验模式不同
+  # 期望片段形如："next":"0.1.3-beta"
+  DIST_TAG="$(echo "$META" | grep -oE "\"$TAG\"[[:space:]]*:[[:space:]]*\"[0-9][^\"]*\"" | head -1)"
   if [ -n "$DIST_TAG" ]; then
     log_ok "dist-tag [$TAG] = $DIST_TAG"
   else
-    die $LINENO "registry 中未找到 tag=$TAG 的条目"
+    # 兜底：至少确认 version 字段匹配（dist-tag 可能延迟但 version 一定在）
+    if echo "$META" | grep -qE "\"version\"[[:space:]]*:[[:space:]]*\"$VERSION\""; then
+      log_warn "dist-tag [$TAG] 在元数据中未出现（CDN 延迟），但 version=$VERSION 已确认"
+      log_warn "可手动验证：curl -s $NPM_REGISTRY$PKG_NAME/$VERSION | jq .dist-tags"
+    else
+      die $LINENO "registry 中未找到 tag=$TAG / version=$VERSION 的条目"
+    fi
   fi
 
   # 9.2 解包验证
@@ -280,11 +361,30 @@ done
 # -----------------------------------------------------------------------------
 log_step "全部主题包发布完成 🎉"
 log_info "下一步建议（脚本不会自动执行）："
-cat <<EOF | sed 's/^/    /'
-git add packages/theme-*/package.json packages/theme-*/dist packages/theme-*/LICENSE
-git commit -m "chore: release theme packages (v$VERSION)"
-git push
-# 访问 https://www.npmjs.com/package/@persona-ui/theme-apple 等页面查看
-EOF
+
+# 按 --only 收敛 git add 路径
+GIT_ADD_DIRS=()
+if [ -n "$ONLY_FILTER" ]; then
+  for entry in "${THEME_PACKAGES[@]}"; do
+    match_only "$entry" || continue
+    read -r _ dir _ _ <<<"$entry"
+    GIT_ADD_DIRS+=("$dir/package.json" "$dir/dist" "$dir/LICENSE")
+  done
+  COMMIT_MSG="chore: release $ONLY_FILTER (v$VERSION)"
+else
+  GIT_ADD_DIRS=("packages/theme-*/package.json" "packages/theme-*/dist" "packages/theme-*/LICENSE")
+  COMMIT_MSG="chore: release theme packages (v$VERSION)"
+fi
+
+{
+  echo "git add ${GIT_ADD_DIRS[*]}"
+  echo "git commit -m \"$COMMIT_MSG\""
+  echo "git push"
+  if [ -n "$ONLY_FILTER" ]; then
+    echo "# 访问 https://www.npmjs.com/package/$ONLY_FILTER 查看包页面"
+  else
+    echo "# 访问 https://www.npmjs.com/package/@persona-ui/theme-apple 等页面查看"
+  fi
+} | sed 's/^/    /'
 
 cleanup_and_exit 0

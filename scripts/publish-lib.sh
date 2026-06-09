@@ -232,13 +232,29 @@ log_ok "发布命令完成"
 log_step "步骤 6/7 — 验证发布"
 
 # 6.1 查询 registry 元数据
-log_info "查询 $NPM_REGISTRY$PKG_NAME ..."
-META="$(curl -sS "$NPM_REGISTRY$PKG_NAME")"
-DIST_TAG="$(echo "$META" | grep -oE "\"$TAG\":\"[0-9][^\"]*\"" | head -1)"
+# 注意：必须查**具体版本**而不是包文档根。
+# 包文档根 ($NPM_REGISTRY$PKG_NAME) 在 publish 后需要 CDN 同步才稳定（可能 1-30s 延迟），
+# 具体版本端点由 publish 命令**同步写入**——只要 npm publish 返 0，这里一定有 JSON。
+# 同样的策略见 _publish-common.sh#pub_check_lib_published。
+log_info "查询 $NPM_REGISTRY$PKG_NAME/$VERSION ..."
+HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' "$NPM_REGISTRY$PKG_NAME/$VERSION")"
+if [ "$HTTP_CODE" != "200" ]; then
+  die $LINENO "registry 未返回 200（HTTP $HTTP_CODE），请稍后重试 https://www.npmjs.com/package/$PKG_NAME"
+fi
+META="$(curl -sS "$NPM_REGISTRY$PKG_NAME/$VERSION")"
+# 具体版本端点里 dist-tags 嵌套在对象里，容许任意空白
+# 期望片段形如："next":"0.1.3-beta"
+DIST_TAG="$(echo "$META" | grep -oE "\"$TAG\"[[:space:]]*:[[:space:]]*\"[0-9][^\"]*\"" | head -1)"
 if [ -n "$DIST_TAG" ]; then
   log_ok "dist-tag [$TAG] = $DIST_TAG"
 else
-  die $LINENO "registry 中未找到 tag=$TAG 的条目"
+  # 兜底：dist-tag 可能延迟，但 version 字段一定在
+  if echo "$META" | grep -qE "\"version\"[[:space:]]*:[[:space:]]*\"$VERSION\""; then
+    log_warn "dist-tag [$TAG] 在元数据中未出现（CDN 延迟），但 version=$VERSION 已确认"
+    log_warn "可手动验证：curl -s $NPM_REGISTRY$PKG_NAME/$VERSION | jq .dist-tags"
+  else
+    die $LINENO "registry 中未找到 tag=$TAG / version=$VERSION 的条目"
+  fi
 fi
 
 # 6.2 解包验证
