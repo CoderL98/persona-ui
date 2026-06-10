@@ -12,7 +12,7 @@
   - 子命令骨架（首个版本）：`add`
   - 依赖：`commander` / `zod` / `picocolors` / `node-fetch-native`
   - 工具：`tsx`（开发运行）+ `vitest`（单测）
-  - 配合 [apps/docs/static/r/](https://github.com/rcc/persona-ui) 下的 registry item JSON 使用
+  - 配合 [apps/docs/static/r/](https://github.com/CoderL98/persona-ui) 下的 registry item JSON 使用
 
 - **feat(cli): 新增 `list` / `info` 命令 + 修复 fetch 拼接**（commit `a352d99`）
   - `list`：列出 registry 索引里所有主题

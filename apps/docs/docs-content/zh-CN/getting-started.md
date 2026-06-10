@@ -9,26 +9,25 @@ Persona UI 是一个 Svelte 5 组件库，采用「双重人格」的设计系�
 
 ## 安装
 
+主题 CSS 已拆分到独立 npm 包,需至少再装一个主题包:
+
 ```bash
 pnpm add @persona-ui/lib
+pnpm add @persona-ui/theme-apple    # 或 @persona-ui/theme-material
 ```
 
 ## 引入样式
 
-在应用入口文件中引入 Persona UI 样式表：
-
-```svelte
-<!-- src/routes/+layout.svelte -->
-<script>
-  import '@persona-ui/lib/styles.css';
-</script>
-```
-
-或者在根 CSS 文件中引入：
+在根 CSS 文件(或全局样式入口)中:
 
 ```css
-@import "@persona-ui/lib/styles.css";
+@import "@persona-ui/lib/core.css";
+@import "@persona-ui/theme-apple/apple.css";
+/* 或:@import "@persona-ui/theme-material/material.css"; */
 ```
+
+> `@persona-ui/lib/styles.css` 仍可作为向后兼容别名(v0.2.0 起标记 deprecated),
+> 新代码请直接用 `core.css` + 主题包入口。
 
 ## 设置当前主题
 

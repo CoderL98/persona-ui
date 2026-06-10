@@ -20,7 +20,7 @@ Persona UI 的主题注册中心——第三方作者可以基于 `@persona-ui/l
 ### 1. Fork the repo
 
 ```bash
-gh repo fork rcc/persona-ui --clone
+gh repo fork CoderL98/persona-ui --clone
 cd persona-ui
 pnpm install
 ```
@@ -159,7 +159,7 @@ your manifest to `apps/docs/static/r/{id}.json`. Mention `@rcc` in your PR descr
 Set `darkSupport: false` in your `themeDef`. Document the fallback in your README.
 
 **Q4: Can my `cssVarPrefix` be the same as another's?**
-No. Conflicts cause CSS selector pollution. Check the [discussions](https://github.com/rcc/persona-ui/discussions) first.
+No. Conflicts cause CSS selector pollution. Check the [discussions](https://github.com/CoderL98/persona-ui/discussions) first.
 
 **Q5: Does CI run on forks?**
 Yes. All checks are public and don't require secrets.

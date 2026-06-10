@@ -9,26 +9,26 @@ Persona UI is a Svelte 5 component library with a dual-personality design system
 
 ## Installation
 
+Theme CSS lives in separate packages, so you also need to install at least one theme:
+
 ```bash
 pnpm add @persona-ui/lib
+pnpm add @persona-ui/theme-apple    # or @persona-ui/theme-material
 ```
 
 ## Import Styles
 
-Add the Persona UI stylesheet to your app's entry point:
-
-```svelte
-<!-- src/routes/+layout.svelte -->
-<script>
-  import '@persona-ui/lib/styles.css';
-</script>
-```
-
-Or import it in your root CSS file:
+In your root CSS file (or any global stylesheet entry):
 
 ```css
-@import "@persona-ui/lib/styles.css";
+@import "@persona-ui/lib/core.css";
+@import "@persona-ui/theme-apple/apple.css";
+/* or: @import "@persona-ui/theme-material/material.css"; */
 ```
+
+> `@persona-ui/lib/styles.css` still works as a backward-compatible alias
+> (deprecated since v0.2.0). New code should use `core.css` plus a theme
+> package entry directly.
 
 ## Set the Active Theme
 

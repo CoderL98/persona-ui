@@ -49,7 +49,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CoderL98/persona-ui.git",
-    "directory": "apps/cli"
+    "directory": "packages/theme-material"
   },
   "bugs": {
     "url": "https://github.com/CoderL98/persona-ui/issues"
