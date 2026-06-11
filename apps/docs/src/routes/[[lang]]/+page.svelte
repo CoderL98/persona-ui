@@ -175,25 +175,10 @@
   );
   const baseUrl = $derived(`${origin}${localeToPath(locale)}`);
 
-  // IntersectionObserver：标记当前 section
-  $effect(() => {
-    if (typeof window === 'undefined') return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            activeSection = entry.target.id;
-          }
-        }
-      },
-      { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
-    );
-    sections.forEach((s) => {
-      const el = document.getElementById(s.id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  });
+  // 切换 section:只更新 state;客户端用 {#if} 互斥渲染
+  function setActiveSection(id: string) {
+    activeSection = id;
+  }
 
   // Tour steps for demo
   const tourSteps = [
@@ -419,22 +404,11 @@
         {t('themeSwitcherDesc')}
       </p>
     </div>
-    <div
-      class="inline-flex rounded-(--pui-radius-control) border border-(--pui-outline-subtle) p-0.5"
-    >
-      {#each THEMES as themeDef (themeDef.id)}
-        <button
-          type="button"
-          onclick={() => (themeDemo = themeDef.id as ThemeId)}
-          class="rounded-(--pui-radius-control) px-4 py-1.5 text-xs font-medium transition-colors
-                 {themeDemo === themeDef.id
-            ? 'bg-(--pui-text-primary) text-(--pui-surface-base)'
-            : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
-        >
-          {themeDef.label}
-        </button>
-      {/each}
-    </div>
+    <SegmentedControl
+      value={themeDemo}
+      onValueChange={(v) => (themeDemo = v as ThemeId)}
+      items={THEMES.map((t) => ({ value: t.id, label: t.label }))}
+    />
   </div>
 
   <div
@@ -479,45 +453,24 @@
 
 <!-- =================== SECTION INDEX (DESKTOP) =================== -->
 <aside class="mb-8 hidden lg:block" aria-label={t('sectionNavAria')}>
-  <nav
-    class="sticky top-20 flex flex-wrap gap-x-6 gap-y-2 border-b
-           border-(--pui-outline-subtle) pb-3 text-sm"
-  >
-    {#each sections as s}
-      <a
-        href="#{s.id}"
-        class="group flex items-baseline gap-2 transition-colors
-               {activeSection === s.id
-          ? 'text-(--pui-text-primary)'
-          : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)'}"
-      >
-        <span
-          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.15em] opacity-60
-                 group-hover:opacity-100 transition-opacity"
-        >
-          {s.eyebrow}
-        </span>
-        <span
-          class="border-b-2 transition-all
-                 {activeSection === s.id
-            ? 'border-(--pui-color-primary) pb-0.5'
-            : 'border-transparent'}"
-        >
-          {s.label}
-        </span>
-        <span class="font-(family-name:--pui-font-mono) text-[10px] opacity-50">
-          {s.count}
-        </span>
-      </a>
-    {/each}
-  </nav>
+  <Tabs
+    defaultValue="foundation"
+    value={activeSection}
+    onValueChange={setActiveSection}
+    items={sections.map((s) => ({
+      value: s.id,
+      label: `${s.eyebrow}　${s.label}　${s.count}`,
+    }))}
+    class="sticky top-20"
+  />
 </aside>
 
 <!-- =================== 01 FOUNDATION =================== -->
+{#if activeSection === 'foundation'}
 <section
   id="foundation"
   aria-labelledby="heading-foundation"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="01"
@@ -843,12 +796,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 02 FORM CONTROLS =================== -->
+{#if activeSection === 'form'}
 <section
   id="form"
   aria-labelledby="heading-form"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="02"
@@ -1165,12 +1120,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 03 FEEDBACK =================== -->
+{#if activeSection === 'feedback'}
 <section
   id="feedback"
   aria-labelledby="heading-feedback"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="03"
@@ -1378,12 +1335,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 04 OVERLAYS =================== -->
+{#if activeSection === 'overlays'}
 <section
   id="overlays"
   aria-labelledby="heading-overlays"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="04"
@@ -1665,12 +1624,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 05 NAVIGATION =================== -->
+{#if activeSection === 'navigation'}
 <section
   id="navigation"
   aria-labelledby="heading-navigation"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="05"
@@ -1985,12 +1946,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 06 DATA =================== -->
+{#if activeSection === 'data'}
 <section
   id="data"
   aria-labelledby="heading-data"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="06"
@@ -2247,12 +2210,14 @@
     </article>
   </div>
 </section>
+{/if}
 
 <!-- =================== 07 ADVANCED =================== -->
+{#if activeSection === 'advanced'}
 <section
   id="advanced"
   aria-labelledby="heading-advanced"
-  class="scroll-mt-24 space-y-10 border-t border-(--pui-outline-subtle) pt-12"
+  class="scroll-mt-24 space-y-10 pt-10"
 >
   <SectionHeading
     eyebrow="07"
@@ -2326,6 +2291,7 @@
     </article>
   </div>
 </section>
+{/if}
 
 <style>
   /* ── Specimen card 样式（统一视觉节奏） ──

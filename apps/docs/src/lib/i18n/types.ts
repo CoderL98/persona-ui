@@ -11,6 +11,8 @@ export interface Messages {
   toggleTheme_minimalist: string;
   toggleModeLight: string;
   toggleModeDark: string;
+	modeLight: string;
+	modeDark: string;
 
   // Hero
   pageTitle: string;

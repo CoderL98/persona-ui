@@ -10,6 +10,8 @@ export const messages: Messages = {
   toggleTheme_minimalist: '切換主題：Minimalist',
   toggleModeLight: '切換淺色模式',
   toggleModeDark: '切換深色模式',
+	modeLight: '淺',
+	modeDark: '深',
 
   // Hero
   pageTitle: 'Persona UI — 兩套設計語言，一套元件庫',

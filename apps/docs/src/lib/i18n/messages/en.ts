@@ -10,6 +10,8 @@ export const messages: Messages = {
   toggleTheme_minimalist: 'Toggle theme: Minimalist',
   toggleModeLight: 'Toggle light mode',
   toggleModeDark: 'Toggle dark mode',
+	modeLight: 'Light',
+	modeDark: 'Dark',
 
   // Hero
   pageTitle: 'Persona UI — Two design personalities, one component library',

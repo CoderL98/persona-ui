@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { SegmentedControl } from '@persona-ui/lib/components/segmented-control';
 	import LanguageSwitcher from '../lib/components/LanguageSwitcher.svelte';
 	import { t, tAny } from '../lib/i18n/t';
 	import { currentLocale, setLocale } from '../lib/i18n/store.svelte';
@@ -143,91 +144,25 @@
                 p-1 shadow-(--pui-elevation-1)
                 [backdrop-filter:blur(var(--pui-backdrop-blur,18px))]"
 		>
-			<!-- 主题切换（分段控件：遍历 THEMES 数组自动生成） -->
-			<div
-				role="group"
-				aria-label="Theme"
-				class="flex items-center divide-x divide-(--pui-outline-subtle)"
-			>
-				{#each THEMES as themeDef (themeDef.id)}
-					<button
-						type="button"
-						onclick={() => setTheme(themeDef.id as ThemeId)}
-						aria-pressed={theme === themeDef.id}
-						aria-label={tAny(themeDef.labelKey)}
-						class="inline-flex h-7 items-center gap-1.5 rounded-(--pui-radius-control)
-                         px-2.5 text-xs font-medium
-                         text-(--pui-text-secondary)
-                         transition-colors duration-(--pui-duration-enter)
-                         hover:text-(--pui-text-primary)
-                         focus-visible:outline-2 focus-visible:outline-offset-2
-                         {theme === themeDef.id
-							? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
-							: ''}"
-					>
-						<svg
-							width="12"
-							height="12"
-							viewBox="0 0 14 14"
-							fill="currentColor"
-							aria-hidden="true"
-						>
-							<path d={themeDef.iconSvg} />
-						</svg>
-						<span class="hidden sm:inline">{themeDef.label}</span>
-					</button>
-				{/each}
-			</div>
+			<!-- 主题切换（SegmentedControl 组件） -->
+			<SegmentedControl
+				value={theme}
+				onValueChange={(v) => setTheme(v as ThemeId)}
+				items={THEMES.map((t) => ({
+					value: t.id,
+					label: t.label,
+				}))}
+			/>
 
-			<!-- 模式切换（分段控件：Sun | Moon，纯图标） -->
-			<div
-				role="group"
-				aria-label="Mode"
-				class="flex items-center divide-x divide-(--pui-outline-subtle)"
-			>
-				<button
-					type="button"
-					onclick={() => setMode('light')}
-					aria-pressed={mode === 'light'}
-					aria-label={t('toggleModeLight')}
-					class="inline-flex h-7 w-8 items-center justify-center rounded-(--pui-radius-control)
-                     text-(--pui-text-secondary)
-                     transition-colors duration-(--pui-duration-enter)
-                     hover:text-(--pui-text-primary)
-                     focus-visible:outline-2 focus-visible:outline-offset-2
-                     {mode === 'light'
-						? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
-						: ''}"
-				>
-					<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-						<circle cx="7" cy="7" r="2.5" />
-						<path
-							d="M7 1v1.5M7 11.5V13M1 7h1.5M11.5 7H13M2.8 2.8l1.1 1.1M10.1 10.1l1.1 1.1M2.8 11.2l1.1-1.1M10.1 3.9l1.1-1.1"
-							stroke-linecap="round"
-						/>
-					</svg>
-				</button>
-				<button
-					type="button"
-					onclick={() => setMode('dark')}
-					aria-pressed={mode === 'dark'}
-					aria-label={t('toggleModeDark')}
-					class="inline-flex h-7 w-8 items-center justify-center rounded-(--pui-radius-control)
-                     text-(--pui-text-secondary)
-                     transition-colors duration-(--pui-duration-enter)
-                     hover:text-(--pui-text-primary)
-                     focus-visible:outline-2 focus-visible:outline-offset-2
-                     {mode === 'dark'
-						? 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)'
-						: ''}"
-				>
-					<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-						<path
-							d="M9 7c0-1.7-1.3-3-3-3v6c1.7 0 3-1.3 3-3zm-3 5c-2.8 0-5-2.2-5-5s2.2-5 5-5c.4 0 .7 0 1 .1-.6.7-1 1.7-1 2.9 0 2.2 1.8 4 4 4 1.2 0 2.2-.4 2.9-1 .1.3.1.6.1 1 0 2.7-2.2 5-5 5-.3 0-.7 0-1-.1.6-.7 1-1.7 1-2.9z"
-						/>
-					</svg>
-				</button>
-			</div>
+			<!-- 模式切换（SegmentedControl 组件） -->
+			<SegmentedControl
+				value={mode}
+				onValueChange={(v) => setMode(v as Mode)}
+				items={[
+					{ value: 'light', label: t('modeLight') },
+					{ value: 'dark', label: t('modeDark') },
+				]}
+			/>
 
 			<LanguageSwitcher />
 		</div>
