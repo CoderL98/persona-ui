@@ -30,7 +30,11 @@
   import { Alert } from '@persona-ui/lib/components/alert';
   import { Banner } from '@persona-ui/lib/components/banner';
   import { Message } from '@persona-ui/lib/components/message';
-  import { Toast, ToastViewport, toast } from '@persona-ui/lib/components/toast';
+  import {
+    Toast,
+    ToastViewport,
+    toast,
+  } from '@persona-ui/lib/components/toast';
   import { Snackbar } from '@persona-ui/lib/components/snackbar';
   import { Progress } from '@persona-ui/lib/components/progress';
   import { Spinner } from '@persona-ui/lib/components/spinner';
@@ -84,13 +88,55 @@
 
   // 章节索引（id 固定为英文用于 HTML anchor，label/description 随 locale 切换）
   const sections = $derived([
-    { id: 'foundation', eyebrow: '01', label: t('sectionFoundation'), desc: t('sectionFoundationDesc'), count: 10 },
-    { id: 'form', eyebrow: '02', label: t('sectionForm'), desc: t('sectionFormDesc'), count: 16 },
-    { id: 'feedback', eyebrow: '03', label: t('sectionFeedback'), desc: t('sectionFeedbackDesc'), count: 9 },
-    { id: 'overlays', eyebrow: '04', label: t('sectionOverlays'), desc: t('sectionOverlaysDesc'), count: 11 },
-    { id: 'navigation', eyebrow: '05', label: t('sectionNavigation'), desc: t('sectionNavigationDesc'), count: 9 },
-    { id: 'data', eyebrow: '06', label: t('sectionData'), desc: t('sectionDataDesc'), count: 11 },
-    { id: 'advanced', eyebrow: '07', label: t('sectionAdvanced'), desc: t('sectionAdvancedDesc'), count: 3 },
+    {
+      id: 'foundation',
+      eyebrow: '01',
+      label: t('sectionFoundation'),
+      desc: t('sectionFoundationDesc'),
+      count: 10,
+    },
+    {
+      id: 'form',
+      eyebrow: '02',
+      label: t('sectionForm'),
+      desc: t('sectionFormDesc'),
+      count: 16,
+    },
+    {
+      id: 'feedback',
+      eyebrow: '03',
+      label: t('sectionFeedback'),
+      desc: t('sectionFeedbackDesc'),
+      count: 9,
+    },
+    {
+      id: 'overlays',
+      eyebrow: '04',
+      label: t('sectionOverlays'),
+      desc: t('sectionOverlaysDesc'),
+      count: 11,
+    },
+    {
+      id: 'navigation',
+      eyebrow: '05',
+      label: t('sectionNavigation'),
+      desc: t('sectionNavigationDesc'),
+      count: 9,
+    },
+    {
+      id: 'data',
+      eyebrow: '06',
+      label: t('sectionData'),
+      desc: t('sectionDataDesc'),
+      count: 11,
+    },
+    {
+      id: 'advanced',
+      eyebrow: '07',
+      label: t('sectionAdvanced'),
+      desc: t('sectionAdvancedDesc'),
+      count: 3,
+    },
   ]);
 
   let activeSection = $state('foundation');
@@ -114,11 +160,19 @@
 
   // locale-aware 跳转链接
   const locale = $derived(currentLocale.value);
-  const gettingStartedHref = $derived(`${localeToPath(locale)}/docs/getting-started`);
-  const browseComponentsHref = $derived(`${localeToPath(locale)}/docs/components/button`);
+  const gettingStartedHref = $derived(
+    `${localeToPath(locale)}/docs/getting-started`,
+  );
+  const browseComponentsHref = $derived(
+    `${localeToPath(locale)}/docs/components/button`,
+  );
 
   // 站点 baseUrl（用于 OG/Twitter/canonical 绝对地址）
-  const origin = $derived(typeof window !== 'undefined' ? window.location.origin : 'https://persona-ui.ricecakecat.com');
+  const origin = $derived(
+    typeof window !== 'undefined'
+      ? window.location.origin
+      : 'https://persona-ui.ricecakecat.com',
+  );
   const baseUrl = $derived(`${origin}${localeToPath(locale)}`);
 
   // IntersectionObserver：标记当前 section
@@ -143,51 +197,93 @@
 
   // Tour steps for demo
   const tourSteps = [
-    { target: '#spec-button', title: 'Button', content: 'Five variants across both themes.' },
-    { target: '#spec-icon-button', title: 'IconButton', content: 'MD3 2024 — four variants, two shapes.' },
-    { target: '#spec-card', title: 'Card', content: 'Five variants from elevated to flat.' },
+    {
+      target: '#spec-button',
+      title: 'Button',
+      content: 'Five variants across both themes.',
+    },
+    {
+      target: '#spec-icon-button',
+      title: 'IconButton',
+      content: 'MD3 2024 — four variants, two shapes.',
+    },
+    {
+      target: '#spec-card',
+      title: 'Card',
+      content: 'Five variants from elevated to flat.',
+    },
   ];
 </script>
 
 <!-- BottomNavigation icons — defined as snippets for item.icon prop -->
 {#snippet navIconHome()}
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
     <path d="M3 11l9-8 9 8" />
     <path d="M5 10v10h14V10" />
   </svg>
 {/snippet}
 {#snippet navIconSearch()}
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
     <circle cx="11" cy="11" r="7" />
     <path d="M16.5 16.5L21 21" />
   </svg>
 {/snippet}
 {#snippet navIconUser()}
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
     <circle cx="12" cy="8" r="4" />
     <path d="M4 21c0-4 4-7 8-7" />
   </svg>
 {/snippet}
 
 <svelte:head>
-	<title>{t('pageTitle')}</title>
-	<meta name="description" content={t('pageDescription')} />
-	<!-- Open Graph / Twitter Card -->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={t('pageTitle')} />
-	<meta property="og:description" content={t('pageDescription')} />
-	<meta property="og:image" content="{baseUrl}/og-image.png" />
-	<meta property="og:url" content={baseUrl} />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={t('pageTitle')} />
-	<meta name="twitter:description" content={t('pageDescription')} />
-	<meta name="twitter:image" content="{baseUrl}/og-image.png" />
-	<!-- hreflang：三语互链 -->
-	<link rel="canonical" href={baseUrl} />
-	<link rel="alternate" hreflang="en" href="{origin}/" />
-	<link rel="alternate" hreflang="zh-CN" href="{origin}/zh-cn/" />
-	<link rel="alternate" hreflang="zh-TW" href="{origin}/zh-tw/" />
-	<link rel="alternate" hreflang="x-default" href="{origin}/" />
+  <title>{t('pageTitle')}</title>
+  <meta name="description" content={t('pageDescription')} />
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={t('pageTitle')} />
+  <meta property="og:description" content={t('pageDescription')} />
+  <meta property="og:image" content="{baseUrl}/og-image.png" />
+  <meta property="og:url" content={baseUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={t('pageTitle')} />
+  <meta name="twitter:description" content={t('pageDescription')} />
+  <meta name="twitter:image" content="{baseUrl}/og-image.png" />
+  <!-- hreflang：三语互链 -->
+  <link rel="canonical" href={baseUrl} />
+  <link rel="alternate" hreflang="en" href="{origin}/" />
+  <link rel="alternate" hreflang="zh-CN" href="{origin}/zh-cn/" />
+  <link rel="alternate" hreflang="zh-TW" href="{origin}/zh-tw/" />
+  <link rel="alternate" hreflang="x-default" href="{origin}/" />
 </svelte:head>
 
 <div id="top"></div>
@@ -211,7 +307,8 @@
              tracking-[-0.035em] text-(--pui-text-primary)
              sm:text-6xl md:text-7xl lg:text-[88px]"
     >
-      {t('heroTitleA')} <em
+      {t('heroTitleA')}
+      <em
         class="not-italic"
         style="font-style: italic; color: oklch(from var(--pui-color-primary) calc(l + 0.05) c h)"
         >{t('heroTitleEm')}</em
@@ -234,77 +331,68 @@
       <span
         class="ml-2 inline-flex items-center gap-1.5 text-xs text-(--pui-text-secondary)"
       >
-        {t('hintSearch').split('⌘K')[0]}<Kbd>⌘K</Kbd>{t('hintSearch').split('⌘K')[1] ?? ''}
+        {t('hintSearch').split('⌘K')[0]}<Kbd>⌘K</Kbd>{t('hintSearch').split(
+          '⌘K',
+        )[1] ?? ''}
       </span>
     </div>
   </div>
 
-  <!-- 右侧：Live Preview（同一组件 × 两主题） -->
+  <!-- 右侧：Live Preview（同一组件 × N 主题，由 THEMES 自动遍历） -->
   <div
     class="pui-reveal-stagger relative grid w-full max-w-md gap-4 self-stretch md:w-auto"
   >
-    <!-- Apple 预览 -->
-    <div
-      data-theme="apple"
-      class="flex flex-col gap-3 rounded-(--pui-radius-card-hero)
-             border border-(--pui-outline-subtle) bg-(--pui-surface-base)
-             p-5 shadow-(--pui-elevation-1)
-             [box-shadow:var(--pui-apple-inner-highlight),var(--pui-elevation-1)]"
-    >
-      <div class="flex items-center justify-between">
-        <span
-          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
-                 text-(--pui-text-secondary)"
-        >
-          {t('previewLabelApple')}
-        </span>
-        <span
-          class="font-(family-name:--pui-font-display) italic text-xs text-(--pui-text-secondary)"
-        >
-          {t('previewEditorial')}
-        </span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <Button variant="filled" size="sm">{t('previewContinue')}</Button>
-        <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
-      </div>
-      <div class="flex items-center gap-2 text-xs text-(--pui-text-secondary)">
-        <Switch defaultChecked size="sm" aria-label="Preview option" />
-        <span>{t('previewLive')}</span>
-      </div>
-    </div>
-
-    <!-- Material 预览 -->
-    <div
-      data-theme="material"
-      class="flex flex-col gap-3 rounded-(--pui-md-sys-shape-corner-large)
-             bg-(--pui-md-sys-color-surface-container-low)
-             p-5 shadow-(--pui-md-sys-elevation-level1)"
-    >
-      <div class="flex items-center justify-between">
-        <span
-          class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
-                 text-(--pui-md-sys-color-on-surface-variant)"
-        >
-          {t('previewLabelMaterial')}
-        </span>
-        <span
-          class="font-(family-name:--pui-font-display) text-xs text-(--pui-md-sys-color-primary)"
-        >
-          {t('previewSystematic')}
-        </span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <Button variant="filled" size="sm">{t('previewContinue')}</Button>
-        <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
-      </div>
+    {#each THEMES as themeDef (themeDef.id)}
+      {@const labelKey =
+        themeDef.id === 'apple'
+          ? 'previewLabelApple'
+          : themeDef.id === 'material'
+            ? 'previewLabelMaterial'
+            : 'previewLabelMinimalist'}
+      {@const moodKey =
+        themeDef.id === 'apple'
+          ? 'previewEditorial'
+          : themeDef.id === 'material'
+            ? 'previewSystematic'
+            : 'previewEssential'}
       <div
-        class="flex items-center gap-2 text-xs text-(--pui-md-sys-color-on-surface-variant)"
+        data-theme={themeDef.id}
+        class="flex flex-col gap-3 rounded-(--pui-radius-container,14px)
+               border border-(--pui-outline-subtle) bg-(--pui-surface-base)
+               p-5 shadow-(--pui-elevation-1)
+               {themeDef.id === 'apple'
+          ? '[box-shadow:var(--pui-apple-inner-highlight),var(--pui-elevation-1)]'
+          : ''}
+               {themeDef.id === 'material'
+          ? 'rounded-(--pui-md-sys-shape-corner-large) bg-(--pui-md-sys-color-surface-container-low) shadow-(--pui-md-sys-elevation-level1)'
+          : ''}"
       >
-        <Switch defaultChecked size="sm" aria-label="Preview option" />
-        <span>{t('previewLive')}</span>
+        <div class="flex items-center justify-between">
+          <span
+            class="font-(family-name:--pui-font-mono) text-[10px] uppercase tracking-[0.2em]
+                   text-(--pui-text-secondary)"
+          >
+            {t(labelKey)}
+          </span>
+          <span
+            class="font-(family-name:--pui-font-display) text-xs text-(--pui-text-secondary)
+                   {themeDef.id === 'apple' ? 'italic' : ''}"
+          >
+            {t(moodKey)}
+          </span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <Button variant="filled" size="sm">{t('previewContinue')}</Button>
+          <Button variant="outlined" size="sm">{t('previewCancel')}</Button>
+        </div>
+        <div
+          class="flex items-center gap-2 text-xs text-(--pui-text-secondary)"
+        >
+          <Switch defaultChecked size="sm" aria-label="Preview option" />
+          <span>{t('previewLive')}</span>
+        </div>
       </div>
-    </div>
+    {/each}
   </div>
 </section>
 
@@ -331,7 +419,9 @@
         {t('themeSwitcherDesc')}
       </p>
     </div>
-    <div class="inline-flex rounded-(--pui-radius-control) border border-(--pui-outline-subtle) p-0.5">
+    <div
+      class="inline-flex rounded-(--pui-radius-control) border border-(--pui-outline-subtle) p-0.5"
+    >
       {#each THEMES as themeDef (themeDef.id)}
         <button
           type="button"
@@ -355,20 +445,29 @@
   >
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <div class="flex flex-col gap-2">
-        <span class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60">Button</span>
+        <span
+          class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60"
+          >Button</span
+        >
         <div class="flex flex-wrap gap-2">
           <Button variant="filled">Filled</Button>
           <Button variant="outlined">Outlined</Button>
         </div>
       </div>
       <div class="flex flex-col gap-2">
-        <span class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60">Switch</span>
+        <span
+          class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60"
+          >Switch</span
+        >
         <div class="flex items-center gap-3">
           <Switch defaultChecked label="Active" />
         </div>
       </div>
       <div class="flex flex-col gap-2">
-        <span class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60">Chip & Badge</span>
+        <span
+          class="text-[10px] font-(family-name:--pui-font-mono) uppercase tracking-[0.15em] opacity-60"
+          >Chip & Badge</span
+        >
         <div class="flex flex-wrap gap-2">
           <Chip selected>Selected</Chip>
           <Badge count={12} />
@@ -406,9 +505,7 @@
         >
           {s.label}
         </span>
-        <span
-          class="font-(family-name:--pui-font-mono) text-[10px] opacity-50"
-        >
+        <span class="font-(family-name:--pui-font-mono) text-[10px] opacity-50">
           {s.count}
         </span>
       </a>
@@ -434,7 +531,11 @@
     <article id="spec-button" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Button</h3>
-        <a href={`${localeToPath(locale)}/docs/components/button`} class="specimen-link" aria-label="Button docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/button`}
+          class="specimen-link"
+          aria-label="Button docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specButton')}</p>
       <div class="specimen-demo">
@@ -452,22 +553,66 @@
     <article id="spec-icon-button" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">IconButton</h3>
-        <a href={`${localeToPath(locale)}/docs/components/icon-button`} class="specimen-link" aria-label="IconButton docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/icon-button`}
+          class="specimen-link"
+          aria-label="IconButton docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specIconButton')}</p>
       <div class="specimen-demo">
         <div class="flex flex-wrap items-center gap-2">
           <IconButton label="Search" variant="standard">
-            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+              ><circle
+                cx="9"
+                cy="9"
+                r="5.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              /><path
+                d="M13 13l4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </IconButton>
           <IconButton label="Add" variant="filled">
-            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+              ><path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </IconButton>
           <IconButton label="Filter" variant="filled-tonal">
-            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"><path d="M3 5h14M6 10h8M9 15h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+              ><path
+                d="M3 5h14M6 10h8M9 15h2"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </IconButton>
           <IconButton label="Settings" variant="outlined">
-            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="20" aria-hidden="true"
+              ><circle
+                cx="10"
+                cy="10"
+                r="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              /><path
+                d="M10 1v3M10 16v3M1 10h3M16 10h3"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </IconButton>
         </div>
       </div>
@@ -477,16 +622,34 @@
     <article id="spec-fab" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Fab</h3>
-        <a href={`${localeToPath(locale)}/docs/components/fab`} class="specimen-link" aria-label="Fab docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/fab`}
+          class="specimen-link"
+          aria-label="Fab docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specFab')}</p>
       <div class="specimen-demo">
         <div class="flex flex-wrap items-center gap-3">
           <Fab label="Add" size="small">
-            <svg viewBox="0 0 20 20" width="18" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="18" aria-hidden="true"
+              ><path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </Fab>
           <Fab label="Add" size="regular">
-            <svg viewBox="0 0 20 20" width="22" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 20 20" width="22" aria-hidden="true"
+              ><path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              /></svg
+            >
           </Fab>
         </div>
       </div>
@@ -496,7 +659,11 @@
     <article id="spec-chip" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Chip</h3>
-        <a href={`${localeToPath(locale)}/docs/components/chip`} class="specimen-link" aria-label="Chip docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/chip`}
+          class="specimen-link"
+          aria-label="Chip docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specChip')}</p>
       <div class="specimen-demo">
@@ -514,7 +681,11 @@
     <article id="spec-badge" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Badge</h3>
-        <a href={`${localeToPath(locale)}/docs/components/badge`} class="specimen-link" aria-label="Badge docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/badge`}
+          class="specimen-link"
+          aria-label="Badge docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specBadge')}</p>
       <div class="specimen-demo">
@@ -533,7 +704,11 @@
     <article id="spec-avatar" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Avatar</h3>
-        <a href={`${localeToPath(locale)}/docs/components/avatar`} class="specimen-link" aria-label="Avatar docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/avatar`}
+          class="specimen-link"
+          aria-label="Avatar docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specAvatar')}</p>
       <div class="specimen-demo">
@@ -551,7 +726,11 @@
     <article id="spec-kbd" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Kbd</h3>
-        <a href={`${localeToPath(locale)}/docs/components/kbd`} class="specimen-link" aria-label="Kbd docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/kbd`}
+          class="specimen-link"
+          aria-label="Kbd docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specKbd')}</p>
       <div class="specimen-demo">
@@ -569,7 +748,11 @@
     <article id="spec-divider" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Divider</h3>
-        <a href={`${localeToPath(locale)}/docs/components/divider`} class="specimen-link" aria-label="Divider docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/divider`}
+          class="specimen-link"
+          aria-label="Divider docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDivider')}</p>
       <div class="specimen-demo">
@@ -580,7 +763,9 @@
           <Divider orientation="vertical" />
           <span class="text-sm">Right</span>
         </div>
-        <Divider><span class="text-xs uppercase tracking-wider">or</span></Divider>
+        <Divider
+          ><span class="text-xs uppercase tracking-wider">or</span></Divider
+        >
       </div>
     </article>
 
@@ -588,22 +773,32 @@
     <article id="spec-card" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Card</h3>
-        <a href={`${localeToPath(locale)}/docs/components/card`} class="specimen-link" aria-label="Card docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/card`}
+          class="specimen-link"
+          aria-label="Card docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCard')}</p>
       <div class="specimen-demo">
         <div class="grid gap-2 sm:grid-cols-2">
           <Card variant="elevated" padding="sm">
             <p class="text-sm font-medium">{t('demoCardElevated')}</p>
-            <p class="text-xs text-(--pui-text-secondary)">{t('demoShadowRaised')}</p>
+            <p class="text-xs text-(--pui-text-secondary)">
+              {t('demoShadowRaised')}
+            </p>
           </Card>
           <Card variant="filled" padding="sm">
             <p class="text-sm font-medium">{t('demoCardFilled')}</p>
-            <p class="text-xs text-(--pui-text-secondary)">{t('demoTintedBg')}</p>
+            <p class="text-xs text-(--pui-text-secondary)">
+              {t('demoTintedBg')}
+            </p>
           </Card>
           <Card variant="outlined" padding="sm">
             <p class="text-sm font-medium">{t('demoCardOutlined')}</p>
-            <p class="text-xs text-(--pui-text-secondary)">{t('demoBorderOnly')}</p>
+            <p class="text-xs text-(--pui-text-secondary)">
+              {t('demoBorderOnly')}
+            </p>
           </Card>
           <Card variant="tonal" padding="sm">
             <p class="text-sm font-medium">Tonal</p>
@@ -617,14 +812,32 @@
     <article id="spec-stack" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Stack</h3>
-        <a href={`${localeToPath(locale)}/docs/components/stack`} class="specimen-link" aria-label="Stack docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/stack`}
+          class="specimen-link"
+          aria-label="Stack docs">↗</a
+        >
       </header>
-      <p class="specimen-caption">Layout primitive — direction, gap, align, justify, wrap.</p>
+      <p class="specimen-caption">
+        Layout primitive — direction, gap, align, justify, wrap.
+      </p>
       <div class="specimen-demo">
         <Stack direction="column" gap={2}>
-          <div class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs">Item 1</div>
-          <div class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs">Item 2</div>
-          <div class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs">Item 3</div>
+          <div
+            class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs"
+          >
+            Item 1
+          </div>
+          <div
+            class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs"
+          >
+            Item 2
+          </div>
+          <div
+            class="rounded bg-(--pui-surface-variant) p-2 text-center text-xs"
+          >
+            Item 3
+          </div>
         </Stack>
       </div>
     </article>
@@ -649,7 +862,11 @@
     <article id="spec-text-field" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">TextField</h3>
-        <a href={`${localeToPath(locale)}/docs/components/text-field`} class="specimen-link" aria-label="TextField docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/text-field`}
+          class="specimen-link"
+          aria-label="TextField docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTextField')}</p>
       <div class="specimen-demo flex-col">
@@ -662,7 +879,11 @@
     <article id="spec-textarea" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Textarea</h3>
-        <a href={`${localeToPath(locale)}/docs/components/textarea`} class="specimen-link" aria-label="Textarea docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/textarea`}
+          class="specimen-link"
+          aria-label="Textarea docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTextarea')}</p>
       <div class="specimen-demo">
@@ -674,7 +895,11 @@
     <article id="spec-select" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Select</h3>
-        <a href={`${localeToPath(locale)}/docs/components/select`} class="specimen-link" aria-label="Select docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/select`}
+          class="specimen-link"
+          aria-label="Select docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSelect')}</p>
       <div class="specimen-demo">
@@ -693,7 +918,11 @@
     <article id="spec-combobox" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Combobox</h3>
-        <a href={`${localeToPath(locale)}/docs/components/combobox`} class="specimen-link" aria-label="Combobox docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/combobox`}
+          class="specimen-link"
+          aria-label="Combobox docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCombobox')}</p>
       <div class="specimen-demo">
@@ -713,7 +942,11 @@
     <article id="spec-listbox" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Listbox</h3>
-        <a href={`${localeToPath(locale)}/docs/components/listbox`} class="specimen-link" aria-label="Listbox docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/listbox`}
+          class="specimen-link"
+          aria-label="Listbox docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specListbox')}</p>
       <div class="specimen-demo">
@@ -732,7 +965,11 @@
     <article id="spec-search-field" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">SearchField</h3>
-        <a href={`${localeToPath(locale)}/docs/components/search-field`} class="specimen-link" aria-label="SearchField docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/search-field`}
+          class="specimen-link"
+          aria-label="SearchField docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSearchField')}</p>
       <div class="specimen-demo">
@@ -744,7 +981,11 @@
     <article id="spec-checkbox" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Checkbox</h3>
-        <a href={`${localeToPath(locale)}/docs/components/checkbox`} class="specimen-link" aria-label="Checkbox docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/checkbox`}
+          class="specimen-link"
+          aria-label="Checkbox docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCheckbox')}</p>
       <div class="specimen-demo">
@@ -760,7 +1001,11 @@
     <article id="spec-radio" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Radio</h3>
-        <a href={`${localeToPath(locale)}/docs/components/radio`} class="specimen-link" aria-label="Radio docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/radio`}
+          class="specimen-link"
+          aria-label="Radio docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specRadio')}</p>
       <div class="specimen-demo">
@@ -776,7 +1021,11 @@
     <article id="spec-switch" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Switch</h3>
-        <a href={`${localeToPath(locale)}/docs/components/switch`} class="specimen-link" aria-label="Switch docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/switch`}
+          class="specimen-link"
+          aria-label="Switch docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSwitch')}</p>
       <div class="specimen-demo flex-col">
@@ -790,12 +1039,23 @@
     <article id="spec-slider" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Slider</h3>
-        <a href={`${localeToPath(locale)}/docs/components/slider`} class="specimen-link" aria-label="Slider docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/slider`}
+          class="specimen-link"
+          aria-label="Slider docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSlider')}</p>
       <div class="specimen-demo flex-col">
         <Slider label="Volume" showValue defaultValue={60} />
-        <Slider label="Range" min={0} max={200} step={10} defaultValue={100} showValue />
+        <Slider
+          label="Range"
+          min={0}
+          max={200}
+          step={10}
+          defaultValue={100}
+          showValue
+        />
       </div>
     </article>
 
@@ -803,7 +1063,11 @@
     <article id="spec-input-otp" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">InputOTP</h3>
-        <a href={`${localeToPath(locale)}/docs/components/input-otp`} class="specimen-link" aria-label="InputOTP docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/input-otp`}
+          class="specimen-link"
+          aria-label="InputOTP docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specInputOTP')}</p>
       <div class="specimen-demo">
@@ -815,7 +1079,11 @@
     <article id="spec-input-group" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">InputGroup</h3>
-        <a href={`${localeToPath(locale)}/docs/components/input-group`} class="specimen-link" aria-label="InputGroup docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/input-group`}
+          class="specimen-link"
+          aria-label="InputGroup docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specInputGroup')}</p>
       <div class="specimen-demo">
@@ -832,7 +1100,11 @@
     <article id="spec-color-picker" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">ColorPicker</h3>
-        <a href={`${localeToPath(locale)}/docs/components/color-picker`} class="specimen-link" aria-label="ColorPicker docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/color-picker`}
+          class="specimen-link"
+          aria-label="ColorPicker docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specColorPicker')}</p>
       <div class="specimen-demo">
@@ -844,7 +1116,11 @@
     <article id="spec-rating" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Rating</h3>
-        <a href={`${localeToPath(locale)}/docs/components/rating`} class="specimen-link" aria-label="Rating docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/rating`}
+          class="specimen-link"
+          aria-label="Rating docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specRating')}</p>
       <div class="specimen-demo">
@@ -856,7 +1132,11 @@
     <article id="spec-file-upload" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">FileUpload</h3>
-        <a href={`${localeToPath(locale)}/docs/components/file-upload`} class="specimen-link" aria-label="FileUpload docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/file-upload`}
+          class="specimen-link"
+          aria-label="FileUpload docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specFileUpload')}</p>
       <div class="specimen-demo">
@@ -868,7 +1148,11 @@
     <article id="spec-form" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Form</h3>
-        <a href={`${localeToPath(locale)}/docs/components/form`} class="specimen-link" aria-label="Form docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/form`}
+          class="specimen-link"
+          aria-label="Form docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specForm')}</p>
       <div class="specimen-demo">
@@ -900,7 +1184,11 @@
     <article id="spec-alert" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Alert</h3>
-        <a href={`${localeToPath(locale)}/docs/components/alert`} class="specimen-link" aria-label="Alert docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/alert`}
+          class="specimen-link"
+          aria-label="Alert docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specAlert')}</p>
       <div class="specimen-demo flex-col">
@@ -913,7 +1201,11 @@
     <article id="spec-banner" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Banner</h3>
-        <a href={`${localeToPath(locale)}/docs/components/banner`} class="specimen-link" aria-label="Banner docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/banner`}
+          class="specimen-link"
+          aria-label="Banner docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specBanner')}</p>
       <div class="specimen-demo">
@@ -925,7 +1217,11 @@
     <article id="spec-message" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Message</h3>
-        <a href={`${localeToPath(locale)}/docs/components/message`} class="specimen-link" aria-label="Message docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/message`}
+          class="specimen-link"
+          aria-label="Message docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specMessage')}</p>
       <div class="specimen-demo" style="min-height: 80px;">
@@ -952,15 +1248,31 @@
     <article id="spec-toast" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Toast</h3>
-        <a href={`${localeToPath(locale)}/docs/components/toast`} class="specimen-link" aria-label="Toast docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/toast`}
+          class="specimen-link"
+          aria-label="Toast docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specToast')}</p>
       <div class="specimen-demo">
         <ToastViewport />
         <div class="flex flex-wrap gap-2">
-          <Button size="sm" variant="outlined" onClick={() => toast.info('Info toast')}>Info</Button>
-          <Button size="sm" variant="outlined" onClick={() => toast.success('Saved!')}>Success</Button>
-          <Button size="sm" variant="outlined" onClick={() => toast.error('Failed')}>Error</Button>
+          <Button
+            size="sm"
+            variant="outlined"
+            onClick={() => toast.info('Info toast')}>Info</Button
+          >
+          <Button
+            size="sm"
+            variant="outlined"
+            onClick={() => toast.success('Saved!')}>Success</Button
+          >
+          <Button
+            size="sm"
+            variant="outlined"
+            onClick={() => toast.error('Failed')}>Error</Button
+          >
         </div>
       </div>
     </article>
@@ -969,11 +1281,20 @@
     <article id="spec-snackbar" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Snackbar</h3>
-        <a href={`${localeToPath(locale)}/docs/components/snackbar`} class="specimen-link" aria-label="Snackbar docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/snackbar`}
+          class="specimen-link"
+          aria-label="Snackbar docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSnackbar')}</p>
       <div class="specimen-demo">
-        <Snackbar message="File deleted" actionLabel="Undo" defaultOpen kind="action" />
+        <Snackbar
+          message="File deleted"
+          actionLabel="Undo"
+          defaultOpen
+          kind="action"
+        />
       </div>
     </article>
 
@@ -981,7 +1302,11 @@
     <article id="spec-progress" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Progress</h3>
-        <a href={`${localeToPath(locale)}/docs/components/progress`} class="specimen-link" aria-label="Progress docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/progress`}
+          class="specimen-link"
+          aria-label="Progress docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specProgress')}</p>
       <div class="specimen-demo flex-col">
@@ -994,7 +1319,11 @@
     <article id="spec-spinner" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Spinner</h3>
-        <a href={`${localeToPath(locale)}/docs/components/spinner`} class="specimen-link" aria-label="Spinner docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/spinner`}
+          class="specimen-link"
+          aria-label="Spinner docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSpinner')}</p>
       <div class="specimen-demo">
@@ -1010,7 +1339,11 @@
     <article id="spec-skeleton" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Skeleton</h3>
-        <a href={`${localeToPath(locale)}/docs/components/skeleton`} class="specimen-link" aria-label="Skeleton docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/skeleton`}
+          class="specimen-link"
+          aria-label="Skeleton docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSkeleton')}</p>
       <div class="specimen-demo">
@@ -1029,7 +1362,11 @@
     <article id="spec-empty-state" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">EmptyState</h3>
-        <a href={`${localeToPath(locale)}/docs/components/empty-state`} class="specimen-link" aria-label="EmptyState docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/empty-state`}
+          class="specimen-link"
+          aria-label="EmptyState docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specEmptyState')}</p>
       <div class="specimen-demo">
@@ -1060,7 +1397,11 @@
     <article id="spec-tooltip" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Tooltip</h3>
-        <a href={`${localeToPath(locale)}/docs/components/tooltip`} class="specimen-link" aria-label="Tooltip docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/tooltip`}
+          class="specimen-link"
+          aria-label="Tooltip docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTooltip')}</p>
       <div class="specimen-demo">
@@ -1079,12 +1420,17 @@
     <article id="spec-popover" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Popover</h3>
-        <a href={`${localeToPath(locale)}/docs/components/popover`} class="specimen-link" aria-label="Popover docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/popover`}
+          class="specimen-link"
+          aria-label="Popover docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specPopover')}</p>
       <div class="specimen-demo">
         <Popover>
-          {#snippet trigger()}<Button variant="outlined">Open Popover</Button>{/snippet}
+          {#snippet trigger()}<Button variant="outlined">Open Popover</Button
+            >{/snippet}
           <div class="p-3 text-sm">Popover content</div>
         </Popover>
       </div>
@@ -1094,13 +1440,20 @@
     <article id="spec-hover-card" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">HoverCard</h3>
-        <a href={`${localeToPath(locale)}/docs/components/hover-card`} class="specimen-link" aria-label="HoverCard docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/hover-card`}
+          class="specimen-link"
+          aria-label="HoverCard docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specHoverCard')}</p>
       <div class="specimen-demo">
         <HoverCard>
           {#snippet content()}
-            <p class="text-sm">Hover cards surface rich content on demand — without leaving the page.</p>
+            <p class="text-sm">
+              Hover cards surface rich content on demand — without leaving the
+              page.
+            </p>
           {/snippet}
           <Button variant="text">Hover me</Button>
         </HoverCard>
@@ -1111,7 +1464,11 @@
     <article id="spec-menu" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Menu</h3>
-        <a href={`${localeToPath(locale)}/docs/components/menu`} class="specimen-link" aria-label="Menu docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/menu`}
+          class="specimen-link"
+          aria-label="Menu docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specMenu')}</p>
       <div class="specimen-demo">
@@ -1122,7 +1479,8 @@
             { id: 'delete', label: 'Delete', destructive: true },
           ]}
         >
-          {#snippet trigger()}<Button variant="outlined">Open Menu</Button>{/snippet}
+          {#snippet trigger()}<Button variant="outlined">Open Menu</Button
+            >{/snippet}
         </Menu>
       </div>
     </article>
@@ -1131,11 +1489,17 @@
     <article id="spec-context-menu" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">ContextMenu</h3>
-        <a href={`${localeToPath(locale)}/docs/components/context-menu`} class="specimen-link" aria-label="ContextMenu docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/context-menu`}
+          class="specimen-link"
+          aria-label="ContextMenu docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specContextMenu')}</p>
       <div class="specimen-demo">
-        <div class="rounded-(--pui-radius-control) border border-dashed border-(--pui-outline-subtle) p-6 text-center text-xs text-(--pui-text-secondary)">
+        <div
+          class="rounded-(--pui-radius-control) border border-dashed border-(--pui-outline-subtle) p-6 text-center text-xs text-(--pui-text-secondary)"
+        >
           <ContextMenu
             items={[
               { id: 'cut', label: 'Cut', shortcut: '⌘X' },
@@ -1152,16 +1516,25 @@
     <article id="spec-dialog" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Dialog</h3>
-        <a href={`${localeToPath(locale)}/docs/components/dialog`} class="specimen-link" aria-label="Dialog docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/dialog`}
+          class="specimen-link"
+          aria-label="Dialog docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDialog')}</p>
       <div class="specimen-demo">
         <Button onClick={() => (dialogOpen = true)}>Open Dialog</Button>
-        <Dialog open={dialogOpen} onOpenChange={(o: boolean) => (dialogOpen = o)}>
+        <Dialog
+          open={dialogOpen}
+          onOpenChange={(o: boolean) => (dialogOpen = o)}
+        >
           {#snippet title()}Confirm Action{/snippet}
           <p class="text-sm">Are you sure you want to proceed?</p>
           {#snippet footer()}
-            <Button variant="outlined" onClick={() => (dialogOpen = false)}>Cancel</Button>
+            <Button variant="outlined" onClick={() => (dialogOpen = false)}
+              >Cancel</Button
+            >
             <Button onClick={() => (dialogOpen = false)}>Confirm</Button>
           {/snippet}
         </Dialog>
@@ -1172,11 +1545,17 @@
     <article id="spec-sheet" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Sheet</h3>
-        <a href={`${localeToPath(locale)}/docs/components/sheet`} class="specimen-link" aria-label="Sheet docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/sheet`}
+          class="specimen-link"
+          aria-label="Sheet docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSheet')}</p>
       <div class="specimen-demo">
-        <Button variant="outlined" onClick={() => (sheetOpen = true)}>Open Sheet</Button>
+        <Button variant="outlined" onClick={() => (sheetOpen = true)}
+          >Open Sheet</Button
+        >
         <Sheet open={sheetOpen} onOpenChange={(o: boolean) => (sheetOpen = o)}>
           {#snippet title()}<span>Sheet Title</span>{/snippet}
           <p class="text-sm">Slides in from the bottom.</p>
@@ -1188,12 +1567,21 @@
     <article id="spec-drawer" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Drawer</h3>
-        <a href={`${localeToPath(locale)}/docs/components/drawer`} class="specimen-link" aria-label="Drawer docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/drawer`}
+          class="specimen-link"
+          aria-label="Drawer docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDrawer')}</p>
       <div class="specimen-demo">
-        <Button variant="outlined" onClick={() => (drawerOpen = true)}>Open Drawer</Button>
-        <Drawer open={drawerOpen} onOpenChange={(o: boolean) => (drawerOpen = o)}>
+        <Button variant="outlined" onClick={() => (drawerOpen = true)}
+          >Open Drawer</Button
+        >
+        <Drawer
+          open={drawerOpen}
+          onOpenChange={(o: boolean) => (drawerOpen = o)}
+        >
           {#snippet title()}<span>Drawer Title</span>{/snippet}
           <p class="text-sm">Slides in from the left.</p>
         </Drawer>
@@ -1204,11 +1592,17 @@
     <article id="spec-confirm-dialog" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">ConfirmDialog</h3>
-        <a href={`${localeToPath(locale)}/docs/components/confirm-dialog`} class="specimen-link" aria-label="ConfirmDialog docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/confirm-dialog`}
+          class="specimen-link"
+          aria-label="ConfirmDialog docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specConfirmDialog')}</p>
       <div class="specimen-demo">
-        <Button variant="tonal" onClick={() => (confirmOpen = true)}>Confirm</Button>
+        <Button variant="tonal" onClick={() => (confirmOpen = true)}
+          >Confirm</Button
+        >
         <ConfirmDialog
           open={confirmOpen}
           onOpenChange={(o: boolean) => (confirmOpen = o)}
@@ -1224,12 +1618,22 @@
     <article id="spec-tour" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Tour</h3>
-        <a href={`${localeToPath(locale)}/docs/components/tour`} class="specimen-link" aria-label="Tour docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/tour`}
+          class="specimen-link"
+          aria-label="Tour docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTour')}</p>
       <div class="specimen-demo">
-        <Button variant="outlined" onClick={() => (tourOpen = true)}>Start Tour</Button>
-        <Tour open={tourOpen} onOpenChange={(o: boolean) => (tourOpen = o)} steps={tourSteps} />
+        <Button variant="outlined" onClick={() => (tourOpen = true)}
+          >Start Tour</Button
+        >
+        <Tour
+          open={tourOpen}
+          onOpenChange={(o: boolean) => (tourOpen = o)}
+          steps={tourSteps}
+        />
       </div>
     </article>
 
@@ -1237,7 +1641,11 @@
     <article id="spec-command-palette" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">CommandPalette</h3>
-        <a href={`${localeToPath(locale)}/docs/components/command-palette`} class="specimen-link" aria-label="CommandPalette docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/command-palette`}
+          class="specimen-link"
+          aria-label="CommandPalette docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCommandPalette')}</p>
       <div class="specimen-demo">
@@ -1276,7 +1684,11 @@
     <article id="spec-tabs" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Tabs</h3>
-        <a href={`${localeToPath(locale)}/docs/components/tabs`} class="specimen-link" aria-label="Tabs docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/tabs`}
+          class="specimen-link"
+          aria-label="Tabs docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTabs')}</p>
       <div class="specimen-demo">
@@ -1294,7 +1706,11 @@
     <article id="spec-segmented-control" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">SegmentedControl</h3>
-        <a href={`${localeToPath(locale)}/docs/components/segmented-control`} class="specimen-link" aria-label="SegmentedControl docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/segmented-control`}
+          class="specimen-link"
+          aria-label="SegmentedControl docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSegmentedControl')}</p>
       <div class="specimen-demo">
@@ -1312,7 +1728,11 @@
     <article id="spec-breadcrumb" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Breadcrumb</h3>
-        <a href={`${localeToPath(locale)}/docs/components/breadcrumb`} class="specimen-link" aria-label="Breadcrumb docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/breadcrumb`}
+          class="specimen-link"
+          aria-label="Breadcrumb docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specBreadcrumb')}</p>
       <div class="specimen-demo">
@@ -1330,7 +1750,11 @@
     <article id="spec-pagination" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Pagination</h3>
-        <a href={`${localeToPath(locale)}/docs/components/pagination`} class="specimen-link" aria-label="Pagination docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/pagination`}
+          class="specimen-link"
+          aria-label="Pagination docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specPagination')}</p>
       <div class="specimen-demo">
@@ -1342,7 +1766,11 @@
     <article id="spec-stepper" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Stepper</h3>
-        <a href={`${localeToPath(locale)}/docs/components/stepper`} class="specimen-link" aria-label="Stepper docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/stepper`}
+          class="specimen-link"
+          aria-label="Stepper docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specStepper')}</p>
       <div class="specimen-demo">
@@ -1354,14 +1782,25 @@
     <article id="spec-toolbar" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Toolbar</h3>
-        <a href={`${localeToPath(locale)}/docs/components/toolbar`} class="specimen-link" aria-label="Toolbar docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/toolbar`}
+          class="specimen-link"
+          aria-label="Toolbar docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specToolbar')}</p>
       <div class="specimen-demo">
         <Toolbar title="Document">
           {#snippet leading()}
             <IconButton label="Back">
-              <svg width="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M12 4l-5 5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg width="18" viewBox="0 0 18 18" aria-hidden="true"
+                ><path
+                  d="M12 4l-5 5 5 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                /></svg
+              >
             </IconButton>
           {/snippet}
         </Toolbar>
@@ -1372,19 +1811,33 @@
     <article id="spec-sidebar" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Sidebar</h3>
-        <a href={`${localeToPath(locale)}/docs/components/sidebar`} class="specimen-link" aria-label="Sidebar docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/sidebar`}
+          class="specimen-link"
+          aria-label="Sidebar docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specSidebar')}</p>
       <div class="specimen-demo p-0">
-        <div class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)">
+        <div
+          class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)"
+        >
           <Sidebar>
             {#snippet header()}
               <span class="font-semibold text-sm">Files</span>
             {/snippet}
             {#snippet children()}
               <div class="flex flex-col gap-1 p-2 text-sm">
-                <button type="button" class="rounded-(--pui-radius-control) bg-(--pui-surface-variant) px-3 py-1.5 text-left">📁 Documents</button>
-                <button type="button" class="rounded-(--pui-radius-control) px-3 py-1.5 text-left">📁 Downloads</button>
+                <button
+                  type="button"
+                  class="rounded-(--pui-radius-control) bg-(--pui-surface-variant) px-3 py-1.5 text-left"
+                  >📁 Documents</button
+                >
+                <button
+                  type="button"
+                  class="rounded-(--pui-radius-control) px-3 py-1.5 text-left"
+                  >📁 Downloads</button
+                >
               </div>
             {/snippet}
           </Sidebar>
@@ -1396,11 +1849,17 @@
     <article id="spec-navigation-rail" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">NavigationRail</h3>
-        <a href={`${localeToPath(locale)}/docs/components/navigation-rail`} class="specimen-link" aria-label="NavigationRail docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/navigation-rail`}
+          class="specimen-link"
+          aria-label="NavigationRail docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specNavigationRail')}</p>
       <div class="specimen-demo p-0">
-        <div class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)">
+        <div
+          class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)"
+        >
           <NavigationRail
             value={bottomNavValue}
             onValueChange={(v: string) => (bottomNavValue = v)}
@@ -1418,76 +1877,109 @@
     <article id="spec-bottom-navigation" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">BottomNavigation</h3>
-        <a href={`${localeToPath(locale)}/docs/components/bottom-navigation`} class="specimen-link" aria-label="BottomNavigation docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/bottom-navigation`}
+          class="specimen-link"
+          aria-label="BottomNavigation docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specBottomNavigation')}</p>
       <div class="specimen-demo p-4">
-        <div class="grid gap-4 sm:grid-cols-2">
-          <!-- Apple HIG 演示：iOS-style tab bar with continuous (squircle) background -->
-          <div data-theme="apple" class="phone-frame">
-            <span class="phone-label">Apple HIG</span>
-            <div class="phone-screen">
-              <div class="phone-content">
-                <div class="phone-status-bar">
-                  <span>9:41</span>
-                  <span class="phone-notch"></span>
-                  <span class="phone-status-icons">
-                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M1 6h2v5H1zM5 4h2v7H5zM9 2h2v9H9zM13 0h2v11h-2z" fill="currentColor"/></svg>
-                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M8 2.4C5.6 2.4 3.6 3.2 2 4.4l1.4 1.4C4.6 5 6.2 4.4 8 4.4s3.4.6 4.6 1.4L14 4.4C12.4 3.2 10.4 2.4 8 2.4zM4 6.4l1.4 1.4c.7-.7 1.6-1 2.6-1s1.9.3 2.6 1L12 6.4c-1-.9-2.4-1.6-4-1.6s-3 .7-4 1.6zm2 2l2 2 2-2c-.6-.5-1.2-.8-2-.8s-1.4.3-2 .8z" fill="currentColor"/></svg>
-                    <svg viewBox="0 0 20 12" width="16" height="10" aria-hidden="true"><rect x="1" y="2" width="16" height="8" rx="2" stroke="currentColor" fill="none" stroke-width="1"/><rect x="18" y="4" width="1.5" height="4" fill="currentColor"/><rect x="2.5" y="3.5" width="10" height="5" rx="1" fill="currentColor"/></svg>
-                  </span>
-                </div>
-                <div class="phone-body">
-                  <p class="phone-app-name">Sample</p>
-                  <p class="phone-app-section">Tab content</p>
-                </div>
-                <div class="phone-bottom-nav-wrap">
-                  <BottomNavigation
-                    value={bottomNavValue}
-                    onValueChange={(v: string) => (bottomNavValue = v)}
-                    items={[
-                      { id: 'feed', label: 'Feed', icon: navIconHome },
-                      { id: 'explore', label: 'Explore', icon: navIconSearch },
-                      { id: 'inbox', label: 'Inbox', icon: navIconUser, badge: 3 },
-                    ]}
-                  />
-                  <div class="phone-home-indicator"></div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {#each THEMES as themeDef (themeDef.id)}
+            <!-- {themeDef.id} 主题下的 BottomNavigation 演示 -->
+            <div data-theme={themeDef.id} class="phone-frame">
+              <span class="phone-label">{themeDef.label}</span>
+              <div class="phone-screen">
+                <div class="phone-content">
+                  <div class="phone-status-bar">
+                    <span>9:41</span>
+                    {#if themeDef.id === 'apple'}
+                      <span class="phone-notch"></span>
+                    {/if}
+                    <span class="phone-status-icons">
+                      <svg
+                        viewBox="0 0 16 12"
+                        width="14"
+                        height="10"
+                        aria-hidden="true"
+                        ><path
+                          d="M1 6h2v5H1zM5 4h2v7H5zM9 2h2v9H9zM13 0h2v11h-2z"
+                          fill="currentColor"
+                        /></svg
+                      >
+                      <svg
+                        viewBox="0 0 16 12"
+                        width="14"
+                        height="10"
+                        aria-hidden="true"
+                        ><path
+                          d="M8 2.4C5.6 2.4 3.6 3.2 2 4.4l1.4 1.4C4.6 5 6.2 4.4 8 4.4s3.4.6 4.6 1.4L14 4.4C12.4 3.2 10.4 2.4 8 2.4zM4 6.4l1.4 1.4c.7-.7 1.6-1 2.6-1s1.9.3 2.6 1L12 6.4c-1-.9-2.4-1.6-4-1.6s-3 .7-4 1.6zm2 2l2 2 2-2c-.6-.5-1.2-.8-2-.8s-1.4.3-2 .8z"
+                          fill="currentColor"
+                        /></svg
+                      >
+                      <svg
+                        viewBox="0 0 20 12"
+                        width="16"
+                        height="10"
+                        aria-hidden="true"
+                        ><rect
+                          x="1"
+                          y="2"
+                          width="16"
+                          height="8"
+                          rx="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="1"
+                        /><rect
+                          x="18"
+                          y="4"
+                          width="1.5"
+                          height="4"
+                          fill="currentColor"
+                        /><rect
+                          x="2.5"
+                          y="3.5"
+                          width="10"
+                          height="5"
+                          rx="1"
+                          fill="currentColor"
+                        /></svg
+                      >
+                    </span>
+                  </div>
+                  <div class="phone-body">
+                    <p class="phone-app-name">Sample</p>
+                    <p class="phone-app-section">Tab content</p>
+                  </div>
+                  <div class="phone-bottom-nav-wrap">
+                    <BottomNavigation
+                      value={bottomNavValue}
+                      onValueChange={(v: string) => (bottomNavValue = v)}
+                      items={[
+                        { id: 'feed', label: 'Feed', icon: navIconHome },
+                        {
+                          id: 'explore',
+                          label: 'Explore',
+                          icon: navIconSearch,
+                        },
+                        {
+                          id: 'inbox',
+                          label: 'Inbox',
+                          icon: navIconUser,
+                          badge: 3,
+                        },
+                      ]}
+                    />
+                    {#if themeDef.id === 'apple'}
+                      <div class="phone-home-indicator"></div>
+                    {/if}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- MD3 演示：Material 3 Navigation bar with pill state layer -->
-          <div data-theme="material" class="phone-frame">
-            <span class="phone-label">Material 3</span>
-            <div class="phone-screen">
-              <div class="phone-content">
-                <div class="phone-status-bar">
-                  <span>9:41</span>
-                  <span class="phone-status-icons">
-                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M1 6h2v5H1zM5 4h2v7H5zM9 2h2v9H9zM13 0h2v11h-2z" fill="currentColor"/></svg>
-                    <svg viewBox="0 0 16 12" width="14" height="10" aria-hidden="true"><path d="M8 2.4C5.6 2.4 3.6 3.2 2 4.4l1.4 1.4C4.6 5 6.2 4.4 8 4.4s3.4.6 4.6 1.4L14 4.4C12.4 3.2 10.4 2.4 8 2.4zM4 6.4l1.4 1.4c.7-.7 1.6-1 2.6-1s1.9.3 2.6 1L12 6.4c-1-.9-2.4-1.6-4-1.6s-3 .7-4 1.6zm2 2l2 2 2-2c-.6-.5-1.2-.8-2-.8s-1.4.3-2 .8z" fill="currentColor"/></svg>
-                    <svg viewBox="0 0 20 12" width="16" height="10" aria-hidden="true"><rect x="1" y="2" width="16" height="8" rx="2" stroke="currentColor" fill="none" stroke-width="1"/><rect x="18" y="4" width="1.5" height="4" fill="currentColor"/><rect x="2.5" y="3.5" width="10" height="5" rx="1" fill="currentColor"/></svg>
-                  </span>
-                </div>
-                <div class="phone-body">
-                  <p class="phone-app-name">Sample</p>
-                  <p class="phone-app-section">Tab content</p>
-                </div>
-                <div class="phone-bottom-nav-wrap">
-                  <BottomNavigation
-                    value={bottomNavValue}
-                    onValueChange={(v: string) => (bottomNavValue = v)}
-                    items={[
-                      { id: 'feed', label: 'Feed', icon: navIconHome },
-                      { id: 'explore', label: 'Explore', icon: navIconSearch },
-                      { id: 'inbox', label: 'Inbox', icon: navIconUser, badge: 3 },
-                    ]}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          {/each}
         </div>
       </div>
     </article>
@@ -1512,7 +2004,11 @@
     <article id="spec-list" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">List</h3>
-        <a href={`${localeToPath(locale)}/docs/components/list`} class="specimen-link" aria-label="List docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/list`}
+          class="specimen-link"
+          aria-label="List docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specList')}</p>
       <div class="specimen-demo p-0">
@@ -1530,7 +2026,11 @@
     <article id="spec-accordion" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Accordion</h3>
-        <a href={`${localeToPath(locale)}/docs/components/accordion`} class="specimen-link" aria-label="Accordion docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/accordion`}
+          class="specimen-link"
+          aria-label="Accordion docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specAccordion')}</p>
       <div class="specimen-demo p-0">
@@ -1548,7 +2048,11 @@
     <article id="spec-timeline" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Timeline</h3>
-        <a href={`${localeToPath(locale)}/docs/components/timeline`} class="specimen-link" aria-label="Timeline docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/timeline`}
+          class="specimen-link"
+          aria-label="Timeline docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTimeline')}</p>
       <div class="specimen-demo p-0">
@@ -1566,7 +2070,11 @@
     <article id="spec-table" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Table</h3>
-        <a href={`${localeToPath(locale)}/docs/components/table`} class="specimen-link" aria-label="Table docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/table`}
+          class="specimen-link"
+          aria-label="Table docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTable')}</p>
       <div class="specimen-demo p-0">
@@ -1579,8 +2087,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td class="px-3 py-2 text-sm">Alice</td><td class="px-3 py-2"><Badge tone="primary">Active</Badge></td></tr>
-              <tr><td class="px-3 py-2 text-sm">Bob</td><td class="px-3 py-2"><Badge tone="warning">Pending</Badge></td></tr>
+              <tr
+                ><td class="px-3 py-2 text-sm">Alice</td><td class="px-3 py-2"
+                  ><Badge tone="primary">Active</Badge></td
+                ></tr
+              >
+              <tr
+                ><td class="px-3 py-2 text-sm">Bob</td><td class="px-3 py-2"
+                  ><Badge tone="warning">Pending</Badge></td
+                ></tr
+              >
             </tbody>
           {/snippet}
         </Table>
@@ -1591,7 +2107,11 @@
     <article id="spec-data-table" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">DataTable</h3>
-        <a href={`${localeToPath(locale)}/docs/components/data-table`} class="specimen-link" aria-label="DataTable docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/data-table`}
+          class="specimen-link"
+          aria-label="DataTable docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDataTable')}</p>
       <div class="specimen-demo p-0">
@@ -1612,7 +2132,11 @@
     <article id="spec-tree-view" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">TreeView</h3>
-        <a href={`${localeToPath(locale)}/docs/components/tree-view`} class="specimen-link" aria-label="TreeView docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/tree-view`}
+          class="specimen-link"
+          aria-label="TreeView docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTreeView')}</p>
       <div class="specimen-demo p-0">
@@ -1636,14 +2160,22 @@
     <article id="spec-virtual-list" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">VirtualList</h3>
-        <a href={`${localeToPath(locale)}/docs/components/virtual-list`} class="specimen-link" aria-label="VirtualList docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/virtual-list`}
+          class="specimen-link"
+          aria-label="VirtualList docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specVirtualList')}</p>
       <div class="specimen-demo p-0">
-        <div class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)">
+        <div
+          class="h-40 overflow-hidden rounded-(--pui-radius-container) border border-(--pui-outline-subtle)"
+        >
           <VirtualList itemCount={1000} itemHeight={28} height={160}>
             {#snippet item(p)}
-              <div class="flex items-center px-3 text-xs">Item {p.index + 1}</div>
+              <div class="flex items-center px-3 text-xs">
+                Item {p.index + 1}
+              </div>
             {/snippet}
           </VirtualList>
         </div>
@@ -1654,7 +2186,11 @@
     <article id="spec-calendar" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Calendar</h3>
-        <a href={`${localeToPath(locale)}/docs/components/calendar`} class="specimen-link" aria-label="Calendar docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/calendar`}
+          class="specimen-link"
+          aria-label="Calendar docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCalendar')}</p>
       <div class="specimen-demo p-0">
@@ -1666,7 +2202,11 @@
     <article id="spec-date-picker" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">DatePicker</h3>
-        <a href={`${localeToPath(locale)}/docs/components/date-picker`} class="specimen-link" aria-label="DatePicker docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/date-picker`}
+          class="specimen-link"
+          aria-label="DatePicker docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDatePicker')}</p>
       <div class="specimen-demo">
@@ -1678,7 +2218,11 @@
     <article id="spec-time-picker" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">TimePicker</h3>
-        <a href={`${localeToPath(locale)}/docs/components/time-picker`} class="specimen-link" aria-label="TimePicker docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/time-picker`}
+          class="specimen-link"
+          aria-label="TimePicker docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specTimePicker')}</p>
       <div class="specimen-demo">
@@ -1690,7 +2234,11 @@
     <article id="spec-date-range-picker" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">DateRangePicker</h3>
-        <a href={`${localeToPath(locale)}/docs/components/date-range-picker`} class="specimen-link" aria-label="DateRangePicker docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/date-range-picker`}
+          class="specimen-link"
+          aria-label="DateRangePicker docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specDateRangePicker')}</p>
       <div class="specimen-demo">
@@ -1718,7 +2266,11 @@
     <article id="spec-carousel" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Carousel</h3>
-        <a href={`${localeToPath(locale)}/docs/components/carousel`} class="specimen-link" aria-label="Carousel docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/carousel`}
+          class="specimen-link"
+          aria-label="Carousel docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCarousel')}</p>
       <div class="specimen-demo p-0">
@@ -1736,16 +2288,18 @@
     <article id="spec-chart" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">Chart</h3>
-        <a href={`${localeToPath(locale)}/docs/components/chart`} class="specimen-link" aria-label="Chart docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/chart`}
+          class="specimen-link"
+          aria-label="Chart docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specChart')}</p>
       <div class="specimen-demo">
         <Chart
           kind="line"
           labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
-          series={[
-            { name: 'Revenue', data: [120, 200, 180, 240, 220, 300] },
-          ]}
+          series={[{ name: 'Revenue', data: [120, 200, 180, 240, 220, 300] }]}
         />
       </div>
     </article>
@@ -1754,7 +2308,11 @@
     <article id="spec-code-block" class="specimen">
       <header class="specimen-head">
         <h3 class="specimen-title">CodeBlock</h3>
-        <a href={`${localeToPath(locale)}/docs/components/code-block`} class="specimen-link" aria-label="CodeBlock docs">↗</a>
+        <a
+          href={`${localeToPath(locale)}/docs/components/code-block`}
+          class="specimen-link"
+          aria-label="CodeBlock docs">↗</a
+        >
       </header>
       <p class="specimen-caption">{t('specCodeBlock')}</p>
       <div class="specimen-demo p-0">
@@ -1784,21 +2342,43 @@
     border-radius: 20px;
     border: 1px solid var(--pui-outline-subtle);
     background: var(--pui-surface-container-low, var(--pui-surface-base));
-    transition: border-color 200ms, box-shadow 200ms;
+    transition:
+      border-color 200ms,
+      box-shadow 200ms;
   }
   /* Apple 主题：squircle 22px + 极轻 glass material */
   :global([data-theme='apple']) .specimen {
     border-radius: 22px;
-    background: color-mix(in oklch, var(--pui-apple-system-background) 88%, transparent);
+    background: color-mix(
+      in oklch,
+      var(--pui-apple-system-background) 88%,
+      transparent
+    );
     backdrop-filter: blur(8px) saturate(180%);
     -webkit-backdrop-filter: blur(8px) saturate(180%);
-    border-color: color-mix(in oklch, var(--pui-apple-separator) 40%, transparent);
+    border-color: color-mix(
+      in oklch,
+      var(--pui-apple-separator) 40%,
+      transparent
+    );
   }
   /* MD3 主题：surface-container-low 静态层，16px 圆角 */
   :global([data-theme='material']) .specimen {
     border-radius: 16px;
-    background: var(--pui-md-sys-color-surface-container-low, var(--pui-surface-base));
-    border-color: var(--pui-md-sys-color-outline-variant, var(--pui-outline-subtle));
+    background: var(
+      --pui-md-sys-color-surface-container-low,
+      var(--pui-surface-base)
+    );
+    border-color: var(
+      --pui-md-sys-color-outline-variant,
+      var(--pui-outline-subtle)
+    );
+  }
+  /* Minimalist 主题：near-zero radius + hairline border，无装饰 */
+  :global([data-theme='minimalist']) .specimen {
+    border-radius: 6px;
+    background: var(--pui-surface-base);
+    border-color: var(--pui-outline-subtle);
   }
   .specimen:hover {
     border-color: var(--pui-outline);
@@ -1822,7 +2402,9 @@
     color: var(--pui-text-secondary);
     text-decoration: none;
     opacity: 0.4;
-    transition: opacity 200ms, color 200ms;
+    transition:
+      opacity 200ms,
+      color 200ms;
   }
   .specimen:hover .specimen-link {
     opacity: 1;

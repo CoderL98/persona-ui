@@ -55,6 +55,7 @@ source "$SCRIPT_DIR/_publish-common.sh"
 THEME_PACKAGES=(
   "@persona-ui/theme-apple    packages/theme-apple    apple    apple.css"
   "@persona-ui/theme-material packages/theme-material material material.css"
+  "@persona-ui/theme-minimalist packages/theme-minimalist minimalist minimalist.css"
 )
 
 # -----------------------------------------------------------------------------

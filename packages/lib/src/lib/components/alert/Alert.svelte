@@ -17,14 +17,14 @@
       variant === 'outlined' && 'border border-(--pui-outline) bg-transparent',
       variant === 'filled' && 'border-0',
       // Tone (variant-aware)
-      variant !== 'outlined' && tone === 'info' && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)',
-      variant !== 'outlined' && tone === 'success' && 'bg-[oklch(0.92_0.04_150)] text-[oklch(0.15_0.04_150)]',
-      variant !== 'outlined' && tone === 'warning' && 'bg-[oklch(0.95_0.05_85)] text-[oklch(0.25_0.04_85)]',
+      variant !== 'outlined' && tone === 'info' && 'bg-(--pui-color-info-container) text-(--pui-color-on-info-container)',
+      variant !== 'outlined' && tone === 'success' && 'bg-(--pui-color-success-container) text-(--pui-color-on-success-container)',
+      variant !== 'outlined' && tone === 'warning' && 'bg-(--pui-color-warning-container) text-(--pui-color-on-warning-container)',
       variant !== 'outlined' && tone === 'error' && 'bg-(--pui-color-error-container) text-(--pui-color-on-error-container)',
       // Outlined tone colors
-      variant === 'outlined' && tone === 'info' && 'text-(--pui-color-primary)',
-      variant === 'outlined' && tone === 'success' && 'text-[oklch(0.35_0.06_150)]',
-      variant === 'outlined' && tone === 'warning' && 'text-[oklch(0.45_0.06_85)]',
+      variant === 'outlined' && tone === 'info' && 'text-(--pui-color-info)',
+      variant === 'outlined' && tone === 'success' && 'text-(--pui-color-success)',
+      variant === 'outlined' && tone === 'warning' && 'text-(--pui-color-warning)',
       variant === 'outlined' && tone === 'error' && 'text-(--pui-color-error)',
       className)}
     style={style}

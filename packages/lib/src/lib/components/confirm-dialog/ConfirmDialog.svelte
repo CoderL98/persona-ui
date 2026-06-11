@@ -136,7 +136,7 @@
             class={cn(
               "px-3 py-1.5 text-sm font-medium rounded-(--pui-radius-control) transition-opacity",
               tone === "danger"
-                ? "bg-(--pui-color-error) text-white hover:opacity-90"
+                ? "bg-(--pui-color-error) text-(--pui-color-on-error) hover:opacity-90"
                 : "bg-(--pui-color-primary) text-(--pui-color-on-primary) hover:opacity-90",
               loading && "opacity-(--pui-opacity-disabled) cursor-wait",
             )}

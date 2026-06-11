@@ -1,0 +1,399 @@
+/* ==========================================================
+   Persona UI — Minimalist-aligned Track
+   Target: [data-theme="minimalist"]
+   Design personality: ink-on-paper, near-monochrome, near-zero radius,
+                       fastest motion. For interfaces that should disappear.
+   ========================================================== */
+
+[data-theme='minimalist'] {
+  /* ==========================================================
+     Font stack — Minimalist track (system geometric sans)
+     display: Geist / Inter — clean modern grotesque
+     body:    system-ui (native OS sans)
+     mono:    Geist Mono / SF Mono
+     ========================================================== */
+  --pui-font-display:
+    'Geist', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --pui-font-body:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
+    sans-serif;
+  --pui-font-mono:
+    'Geist Mono', 'SF Mono', ui-monospace, 'Cascadia Code', 'Consolas',
+    monospace;
+
+  /* ==========================================================
+     Minimalist Ink Palette (light) — PURE GRAYSCALE
+     ink      = foreground / strong text
+     paper    = surface / page background
+     line     = hairline borders
+     All semantic colors (error/success/warning/accent) = grayscale variants
+     ========================================================== */
+  --pui-minimal-ink: oklch(15% 0 0);
+  --pui-minimal-ink-soft: oklch(35% 0 0);
+  --pui-minimal-ink-mute: oklch(55% 0 0);
+  --pui-minimal-ink-faint: oklch(75% 0 0);
+  --pui-minimal-paper: oklch(100% 0 0);
+  --pui-minimal-surface: oklch(98% 0 0);
+  --pui-minimal-surface-raised: oklch(100% 0 0);
+  --pui-minimal-line: oklch(90% 0 0);
+  --pui-minimal-line-soft: oklch(95% 0 0);
+  --pui-minimal-accent: oklch(25% 0 0);
+  --pui-minimal-danger: oklch(25% 0 0);
+  --pui-minimal-success: oklch(25% 0 0);
+  --pui-minimal-warning: oklch(25% 0 0);
+
+  /* ==========================================================
+     Persona Semantic Token Mapping (Minimalist)
+     ========================================================== */
+
+  /* Colors — primary interaction is ink-on-paper */
+  --pui-color-primary: var(--pui-minimal-ink);
+  --pui-color-on-primary: var(--pui-minimal-paper);
+  --pui-color-primary-container: var(--pui-minimal-line-soft);
+  --pui-color-on-primary-container: var(--pui-minimal-ink);
+  --pui-color-secondary: var(--pui-minimal-ink-soft);
+  --pui-color-on-secondary: var(--pui-minimal-paper);
+  --pui-color-secondary-container: var(--pui-minimal-line-soft);
+  --pui-color-on-secondary-container: var(--pui-minimal-ink-soft);
+  --pui-color-tertiary: oklch(25% 0 0);
+  --pui-color-on-tertiary: var(--pui-minimal-paper);
+  --pui-color-tertiary-container: oklch(95% 0 0);
+  --pui-color-on-tertiary-container: oklch(25% 0 0);
+
+  /* Semantic tones — text/foreground uses restrained chromatic,
+     containers stay near-white/gray (subtle, never saturated backgrounds) */
+  --pui-color-error: oklch(45% 0.2 25);            /* 红字 */
+  --pui-color-on-error: var(--pui-minimal-paper);
+  --pui-color-error-container: oklch(96% 0.015 25); /* 极浅红底 */
+  --pui-color-on-error-container: oklch(30% 0.15 25);
+  --pui-color-success: oklch(45% 0.15 150);        /* 绿字 */
+  --pui-color-on-success: var(--pui-minimal-paper);
+  --pui-color-success-container: oklch(96% 0.015 150);
+  --pui-color-on-success-container: oklch(30% 0.12 150);
+  --pui-color-warning: oklch(50% 0.15 75);         /* 黄字(深一些,白底可读) */
+  --pui-color-on-warning: var(--pui-minimal-paper);
+  --pui-color-warning-container: oklch(96% 0.025 85);
+  --pui-color-on-warning-container: oklch(35% 0.13 75);
+  --pui-color-info: oklch(45% 0.15 255);           /* 蓝字 */
+  --pui-color-on-info: var(--pui-minimal-paper);
+  --pui-color-info-container: oklch(96% 0.012 255);
+  --pui-color-on-info-container: oklch(30% 0.12 255);
+
+  /* Surfaces */
+  --pui-surface-base: var(--pui-minimal-surface);
+  --pui-surface-raised: var(--pui-minimal-surface-raised);
+  --pui-surface-variant: var(--pui-minimal-line-soft);
+  --pui-surface-container: var(--pui-minimal-surface);
+  --pui-surface-container-low: var(--pui-minimal-paper);
+  --pui-surface-container-high: var(--pui-minimal-surface);
+
+  /* Text */
+  --pui-text-primary: var(--pui-minimal-ink);
+  --pui-text-secondary: var(--pui-minimal-ink-mute);
+  --pui-text-disabled: var(--pui-minimal-ink-faint);
+  --pui-text-on-primary: var(--pui-minimal-paper);
+  --pui-text-on-error: var(--pui-minimal-paper);
+
+  /* Outline */
+  --pui-outline: var(--pui-minimal-line);
+  --pui-outline-subtle: var(--pui-minimal-line-soft);
+  --pui-outline-strong: var(--pui-minimal-ink);
+
+  /* ==========================================================
+     Near-zero radius — pure geometric rectangles
+     ========================================================== */
+  --pui-radius-control: 0;
+  --pui-radius-container: 0;
+  --pui-radius-full: 9999px;
+
+  /* ==========================================================
+     Hairline elevation — single 1px top line + soft material
+     ========================================================== */
+  --pui-elevation-0: none;
+  --pui-elevation-1: 0 1px 0 oklch(0% 0 0 / 4%);
+  --pui-elevation-2: 0 1px 0 oklch(0% 0 0 / 4%), 0 2px 8px oklch(0% 0 0 / 6%);
+  --pui-elevation-3: 0 1px 0 oklch(0% 0 0 / 4%), 0 8px 24px oklch(0% 0 0 / 8%);
+
+  /* ==========================================================
+     Fastest motion — no spring, standard easing
+     ========================================================== */
+  --pui-duration-enter: 80ms;
+  --pui-duration-leave: 100ms;
+  --pui-duration-swap: 120ms;
+  --pui-motion-ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --pui-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --pui-motion-linear: linear;
+  /* --pui-motion-spring 留 lib 默认;minimalist 不使用 spring 曲线 */
+
+  /* ==========================================================
+     Component-specific tokens — Button
+     ========================================================== */
+  --pui-button-bg: var(--pui-minimal-ink);
+  --pui-button-fg: var(--pui-minimal-paper);
+  --pui-button-radius: var(--pui-radius-control);
+  --pui-button-shadow: none;
+  --pui-button-border-color: var(--pui-minimal-ink);
+  --pui-button-padding-x: var(--pui-space-4);
+  --pui-button-padding-y: var(--pui-space-2);
+  --pui-button-gap: var(--pui-space-2);
+
+  /* Card */
+  --pui-card-bg: var(--pui-minimal-paper);
+  --pui-card-radius: var(--pui-radius-container);
+  --pui-card-elevation: var(--pui-elevation-1);
+  --pui-card-padding: var(--pui-space-6);
+  --pui-card-inset-highlight: none;
+
+  /* TextField */
+  --pui-field-bg: var(--pui-minimal-paper);
+  --pui-field-border: var(--pui-minimal-line);
+  --pui-field-radius: var(--pui-radius-control);
+  --pui-field-padding-x: var(--pui-space-3);
+  --pui-field-padding-y: var(--pui-space-2);
+
+  /* Chip */
+  --pui-chip-bg: var(--pui-minimal-paper);
+  --pui-chip-fg: var(--pui-minimal-ink);
+  --pui-chip-radius: var(--pui-radius-control);
+  --pui-chip-padding-x: var(--pui-space-3);
+  --pui-chip-gap: var(--pui-space-1);
+
+  /* Badge */
+  --pui-badge-bg: var(--pui-minimal-line-soft);
+  --pui-badge-fg: var(--pui-minimal-ink);
+  --pui-badge-radius: var(--pui-radius-full);
+  --pui-badge-padding-x: var(--pui-space-2);
+  --pui-badge-height: 18px;
+  --pui-badge-dot-size: 6px;
+
+  /* Switch */
+  --pui-switch-track-width: 36px;
+  --pui-switch-track-height: 20px;
+  --pui-switch-track-bg: var(--pui-minimal-line);
+  --pui-switch-track-checked-bg: var(--pui-minimal-ink);
+  --pui-switch-thumb-bg: var(--pui-minimal-paper);
+  --pui-switch-thumb-shadow: var(--pui-elevation-1);
+
+  /* Overlay & FAB */
+  --pui-overlay-scrim: oklch(0% 0 0 / 32%);
+  --pui-fab-bg-primary: var(--pui-minimal-ink);
+  --pui-fab-fg-primary: var(--pui-minimal-paper);
+  --pui-fab-bg-secondary: var(--pui-minimal-paper);
+  --pui-fab-fg-secondary: var(--pui-minimal-ink);
+  --pui-fab-bg-tertiary: var(--pui-minimal-line-soft);
+  --pui-fab-fg-tertiary: var(--pui-minimal-ink);
+  --pui-fab-bg-surface: var(--pui-minimal-paper);
+  --pui-fab-fg-surface: var(--pui-minimal-ink);
+  --pui-fab-radius-sm: var(--pui-radius-control);
+  --pui-fab-radius-lg: var(--pui-radius-container);
+
+  /* Snackbar */
+  --pui-snackbar-radius: var(--pui-radius-control);
+  --pui-snackbar-bg-info: var(--pui-minimal-ink);
+  --pui-snackbar-fg-info: var(--pui-minimal-paper);
+  --pui-snackbar-bg-error: var(--pui-minimal-danger);
+  --pui-snackbar-fg-error: var(--pui-minimal-paper);
+
+  /* Dialog / Sheet / Drawer */
+  --pui-dialog-bg: var(--pui-minimal-surface-raised);
+  --pui-dialog-radius: var(--pui-radius-container);
+  --pui-dialog-elevation: var(--pui-elevation-3);
+  --pui-sheet-bg: var(--pui-minimal-surface-raised);
+  --pui-sheet-radius: var(--pui-radius-container);
+  --pui-drawer-bg: var(--pui-minimal-surface-raised);
+  --pui-drawer-radius: 0; /* Drawer 从屏幕边缘滑出,无圆角 */
+
+  /* Tooltip / Popover / Kbd */
+  --pui-tooltip-bg: var(--pui-minimal-ink);
+  --pui-tooltip-fg: var(--pui-minimal-paper);
+  --pui-tooltip-radius: var(--pui-radius-control);
+  --pui-tooltip-padding-x: var(--pui-space-2);
+  --pui-tooltip-padding-y: var(--pui-space-1);
+  --pui-popover-bg: var(--pui-minimal-surface-raised);
+  --pui-popover-border: var(--pui-minimal-line);
+  --pui-popover-radius: var(--pui-radius-container);
+  --pui-popover-elevation: var(--pui-elevation-2);
+  --pui-kbd-bg: var(--pui-minimal-surface);
+  --pui-kbd-fg: var(--pui-minimal-ink);
+  --pui-kbd-radius: var(--pui-radius-control);
+  --pui-kbd-padding-x: var(--pui-space-2);
+  --pui-kbd-padding-y: var(--pui-space-1);
+  --pui-kbd-border: var(--pui-minimal-line);
+
+  /* Form controls */
+  --pui-checkbox-size: 18px;
+  --pui-checkbox-radius: var(--pui-radius-control);
+  --pui-checkbox-border: var(--pui-minimal-line);
+  --pui-checkbox-checked-bg: var(--pui-minimal-ink);
+  --pui-checkbox-icon-color: var(--pui-minimal-paper);
+  --pui-radio-size: 18px;
+  --pui-radio-border: var(--pui-minimal-line);
+  --pui-radio-checked-border: var(--pui-minimal-ink);
+  --pui-radio-checked-bg: var(--pui-minimal-ink);
+  --pui-slider-track-bg: var(--pui-minimal-line);
+  --pui-slider-track-height: 4px;
+  --pui-slider-thumb-bg: var(--pui-minimal-ink);
+  --pui-slider-thumb-size: 16px;
+  --pui-slider-thumb-shadow: var(--pui-elevation-1);
+
+  /* Tabs / Segment / Tree / List / Table / Calendar */
+  --pui-tab-indicator: var(--pui-minimal-ink);
+  --pui-tab-indicator-height: 2px;
+  --pui-segment-bg: var(--pui-minimal-surface);
+  --pui-segment-selected-bg: var(--pui-minimal-paper);
+  --pui-segment-radius: var(--pui-radius-control);
+  --pui-tree-hover: var(--pui-minimal-line-soft);
+  --pui-tree-selected: var(--pui-minimal-line);
+  --pui-list-bg: transparent;
+  --pui-list-hover: var(--pui-minimal-line-soft);
+  --pui-list-selected: var(--pui-minimal-line);
+  --pui-table-header-bg: var(--pui-minimal-surface);
+  --pui-table-border: var(--pui-minimal-line);
+  --pui-table-row-hover: var(--pui-minimal-line-soft);
+  --pui-calendar-bg: var(--pui-minimal-paper);
+  --pui-calendar-selected-bg: var(--pui-minimal-ink);
+  --pui-calendar-selected-fg: var(--pui-minimal-paper);
+
+  /* Navigation chrome */
+  --pui-breadcrumb-sep: var(--pui-minimal-ink-mute);
+  --pui-toolbar-bg: var(--pui-minimal-surface);
+  --pui-toolbar-border: var(--pui-minimal-line);
+  --pui-nav-rail-bg: var(--pui-minimal-surface);
+  --pui-nav-rail-border: var(--pui-minimal-line);
+  --pui-sidebar-bg: var(--pui-minimal-surface);
+  --pui-sidebar-border: var(--pui-minimal-line);
+
+  /* Avatar / Divider / Progress / Skeleton / EmptyState */
+  --pui-avatar-bg: var(--pui-minimal-line);
+  --pui-avatar-fg: var(--pui-minimal-ink);
+  --pui-avatar-radius: var(--pui-radius-full);
+  --pui-avatar-status-dot-size: 8px;
+  --pui-divider-color: var(--pui-minimal-line);
+  --pui-divider-thickness: 1px;
+  --pui-divider-inset: 0;
+  --pui-divider-gap: var(--pui-space-3);
+  --pui-progress-track-bg: var(--pui-minimal-line);
+  --pui-progress-bar-bg: var(--pui-minimal-ink);
+  --pui-progress-height: 4px;
+  --pui-skeleton-bg: var(--pui-minimal-line-soft);
+  --pui-empty-state-icon-color: var(--pui-minimal-ink-faint);
+
+  /* ==========================================================
+     Accessibility & layout invariants
+     ========================================================== */
+  --pui-hit-target-min: 44px;
+  --pui-opacity-disabled: 0.38;
+  --pui-opacity-state-hover: 0.04;
+  --pui-opacity-state-pressed: 0.08;
+
+  /* Z-index (与 lib 默认值一致,显式声明避免歧义) */
+  --pui-z-surface: 1;
+  --pui-z-raised: 10;
+  --pui-z-overlay: 100;
+  --pui-z-modal: 1000;
+  --pui-z-toast: 2000;
+
+  /* Backdrop blur (与 lib 共享默认值 18px;minimalist 不依赖 material 透明) */
+  --pui-backdrop-blur: 0px;
+}
+
+/* ==========================================================
+   Dark mode — invert ink/paper relationship
+   ========================================================== */
+[data-theme='minimalist'][data-mode='dark'] {
+  --pui-minimal-ink: oklch(95% 0 0);
+  --pui-minimal-ink-soft: oklch(75% 0 0);
+  --pui-minimal-ink-mute: oklch(60% 0 0);
+  --pui-minimal-ink-faint: oklch(40% 0 0);
+  --pui-minimal-paper: oklch(10% 0 0);
+  --pui-minimal-surface: oklch(8% 0 0);
+  --pui-minimal-surface-raised: oklch(12% 0 0);
+  --pui-minimal-line: oklch(22% 0 0);
+  --pui-minimal-line-soft: oklch(16% 0 0);
+  --pui-minimal-accent: oklch(75% 0 0);
+  --pui-minimal-danger: oklch(75% 0 0);
+  --pui-minimal-success: oklch(75% 0 0);
+  --pui-minimal-warning: oklch(75% 0 0);
+
+  --pui-elevation-1: 0 1px 0 oklch(100% 0 0 / 4%);
+  --pui-elevation-2:
+    0 1px 0 oklch(100% 0 0 / 4%), 0 2px 8px oklch(0% 0 0 / 40%);
+  --pui-elevation-3:
+    0 1px 0 oklch(100% 0 0 / 4%), 0 8px 24px oklch(0% 0 0 / 50%);
+
+  --pui-overlay-scrim: oklch(0% 0 0 / 64%);
+}
+
+/* ==========================================================
+   CRITICAL OVERRIDE: must be AFTER auto-injected token shim
+   The inject-tokens-shim.mjs script appends 83 semantic tokens
+   with fallback values at EOF. Those fallbacks would override
+   our grayscale + zero-radius intent. This block re-asserts
+   the minimalist design contract using !important to win
+   against the later-injected shim block.
+
+   Exception: error/info/success/warning keep restrained
+   chromatic fg so users can distinguish tone semantics.
+   ========================================================== */
+[data-theme='minimalist'] {
+  /* Zero radius (pure rectangles) */
+  --pui-radius-control: 0 !important;
+  --pui-radius-container: 0 !important;
+
+  /* Grayscale semantic colors (no chromatic tone) */
+  --pui-color-primary: var(--pui-minimal-ink) !important;
+  --pui-color-on-primary: var(--pui-minimal-paper) !important;
+  --pui-color-primary-container: var(--pui-minimal-line-soft) !important;
+  --pui-color-on-primary-container: var(--pui-minimal-ink) !important;
+  --pui-color-secondary: var(--pui-minimal-ink-soft) !important;
+  --pui-color-on-secondary: var(--pui-minimal-paper) !important;
+  --pui-color-secondary-container: var(--pui-minimal-line-soft) !important;
+  --pui-color-on-secondary-container: var(--pui-minimal-ink-soft) !important;
+  --pui-color-tertiary: oklch(25% 0 0) !important;
+  --pui-color-on-tertiary: var(--pui-minimal-paper) !important;
+  --pui-color-tertiary-container: oklch(95% 0 0) !important;
+  --pui-color-on-tertiary-container: oklch(25% 0 0) !important;
+
+  /* Restrained chromatic tones — readable, never saturated */
+  --pui-color-error: oklch(45% 0.2 25) !important;
+  --pui-color-on-error: var(--pui-minimal-paper) !important;
+  --pui-color-error-container: oklch(96% 0.015 25) !important;
+  --pui-color-on-error-container: oklch(30% 0.15 25) !important;
+
+  --pui-color-success: oklch(45% 0.15 150) !important;
+  --pui-color-on-success: var(--pui-minimal-paper) !important;
+  --pui-color-success-container: oklch(96% 0.015 150) !important;
+  --pui-color-on-success-container: oklch(30% 0.12 150) !important;
+
+  --pui-color-warning: oklch(50% 0.15 75) !important;
+  --pui-color-on-warning: var(--pui-minimal-paper) !important;
+  --pui-color-warning-container: oklch(96% 0.025 85) !important;
+  --pui-color-on-warning-container: oklch(35% 0.13 75) !important;
+
+  --pui-color-info: oklch(45% 0.15 255) !important;
+  --pui-color-on-info: var(--pui-minimal-paper) !important;
+  --pui-color-info-container: oklch(96% 0.012 255) !important;
+  --pui-color-on-info-container: oklch(30% 0.12 255) !important;
+
+  /* Component-private tokens that the shim would otherwise
+     remap to --pui-color-*-container (which can be blue-tinted
+     in the lib default manifest). Override them to pure grayscale. */
+  --pui-chip-bg: var(--pui-minimal-paper) !important;
+  --pui-chip-fg: var(--pui-minimal-ink) !important;
+  --pui-card-bg: var(--pui-minimal-paper) !important;
+  --pui-fab-bg-primary: var(--pui-minimal-ink) !important;
+  --pui-fab-fg-primary: var(--pui-minimal-paper) !important;
+  --pui-fab-bg-secondary: var(--pui-minimal-paper) !important;
+  --pui-fab-fg-secondary: var(--pui-minimal-ink) !important;
+  --pui-fab-bg-tertiary: var(--pui-minimal-line-soft) !important;
+  --pui-fab-fg-tertiary: var(--pui-minimal-ink) !important;
+  --pui-fab-bg-surface: var(--pui-minimal-paper) !important;
+  --pui-fab-fg-surface: var(--pui-minimal-ink) !important;
+  --pui-fab-radius-sm: 0 !important;
+  --pui-fab-radius-lg: 0 !important;
+  --pui-snackbar-bg-info: var(--pui-minimal-ink) !important;
+  --pui-snackbar-fg-info: var(--pui-minimal-paper) !important;
+  --pui-snackbar-bg-error: var(--pui-minimal-ink) !important;
+  --pui-snackbar-fg-error: var(--pui-minimal-paper) !important;
+  --pui-snackbar-radius: 0 !important;
+}

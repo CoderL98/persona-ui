@@ -15,9 +15,9 @@
 <div {...rest} {...attrs} id={id} role="alert" aria-live="polite"
   class={cn('pui-banner flex items-center gap-3 px-4 py-2 text-sm',
     sticky && 'sticky top-0 z-(--pui-z-raised)',
-    tone === 'info' && 'bg-(--pui-color-primary-container) text-(--pui-color-on-primary-container)',
-    tone === 'success' && 'bg-[oklch(0.92_0.04_150)] text-[oklch(0.15_0.04_150)]',
-    tone === 'warning' && 'bg-[oklch(0.95_0.05_85)] text-[oklch(0.25_0.04_85)]',
+    tone === 'info' && 'bg-(--pui-color-info-container) text-(--pui-color-on-info-container)',
+    tone === 'success' && 'bg-(--pui-color-success-container) text-(--pui-color-on-success-container)',
+    tone === 'warning' && 'bg-(--pui-color-warning-container) text-(--pui-color-on-warning-container)',
     tone === 'error' && 'bg-(--pui-color-error-container) text-(--pui-color-on-error-container)',
     className)}
   style={style}

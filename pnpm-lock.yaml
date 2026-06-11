@@ -63,6 +63,9 @@ importers:
       '@persona-ui/theme-material':
         specifier: workspace:*
         version: link:../../packages/theme-material
+      '@persona-ui/theme-minimalist':
+        specifier: workspace:*
+        version: link:../../packages/theme-minimalist
       '@types/marked':
         specifier: ^6.0.0
         version: 6.0.0
@@ -148,6 +151,16 @@ importers:
         version: 5.9.3
 
   packages/theme-material:
+    dependencies:
+      '@persona-ui/lib':
+        specifier: workspace:*
+        version: link:../lib
+    devDependencies:
+      typescript:
+        specifier: ^5.8.3
+        version: 5.9.3
+
+  packages/theme-minimalist:
     dependencies:
       '@persona-ui/lib':
         specifier: workspace:*

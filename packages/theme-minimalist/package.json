@@ -1,0 +1,59 @@
+{
+  "name": "@persona-ui/theme-minimalist",
+  "version": "0.1.3-beta",
+  "description": "Ultra-minimal ink-on-paper theme for Persona UI — near-monochrome, near-zero radius, fastest motion. For interfaces that should disappear.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./minimalist.css": "./dist/minimalist.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-theme-css.mjs theme-minimalist && node ../../scripts/inject-tokens-shim.mjs minimalist",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "@persona-ui/lib": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "keywords": [
+    "persona-ui",
+    "theme",
+    "minimalist",
+    "ink-on-paper",
+    "monochrome",
+    "design-system"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderL98/persona-ui.git",
+    "directory": "packages/theme-minimalist"
+  },
+  "bugs": {
+    "url": "https://github.com/CoderL98/persona-ui/issues"
+  },
+  "homepage": "https://github.com/CoderL98/persona-ui/tree/main/packages/theme-minimalist#readme"
+}

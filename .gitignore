@@ -25,4 +25,5 @@ packages/theme-material/.npmrc
 .env
 *.png
 apps/cli/.npmrc
-**/dist/
+**/dist/packages/theme-minimalist/.npmrc
+packages/theme-minimalist/.npmrc

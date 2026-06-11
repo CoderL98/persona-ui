@@ -17,6 +17,7 @@
     "@persona-ui/lib": "workspace:*",
     "@persona-ui/theme-apple": "workspace:*",
     "@persona-ui/theme-material": "workspace:*",
+    "@persona-ui/theme-minimalist": "workspace:*",
     "@types/marked": "^6.0.0",
     "marked": "^18.0.4"
   },

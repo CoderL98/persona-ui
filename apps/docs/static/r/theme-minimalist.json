@@ -1,0 +1,19 @@
+{
+  "$schema": "https://persona-ui.ricecakecat.com/schema/registry-item.json",
+  "name": "theme-minimalist",
+  "type": "registry:theme",
+  "title": "Minimalist Theme",
+  "description": "Ultra-minimal ink-on-paper — near-monochrome, near-zero radius, fastest motion. For interfaces that should disappear.",
+  "registryDependencies": ["@persona-ui/lib"],
+  "files": [
+    {
+      "path": "packages/theme-minimalist/dist/minimalist.css",
+      "type": "registry:style"
+    },
+    {
+      "path": "packages/theme-minimalist/src/index.ts",
+      "type": "registry:item"
+    },
+    { "path": "packages/theme-minimalist/README.md", "type": "registry:doc" }
+  ]
+}
