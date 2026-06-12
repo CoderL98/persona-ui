@@ -13,6 +13,7 @@ CLAUDE.md
 audit-report.md
 .playwright-mcp
 .claude
+!.claude/skills/
 batch-*.png
 batch-*.jpg
 batch-*.webp
