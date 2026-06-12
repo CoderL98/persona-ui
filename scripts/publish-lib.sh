@@ -247,7 +247,7 @@ META_DOC="$(curl -sS "$NPM_REGISTRY$PKG_NAME")"
 if [ "$HTTP_CODE_DOC" != "200" ]; then
   die $LINENO "registry 包文档根未返回 200（HTTP $HTTP_CODE_DOC），请稍后重试 https://www.npmjs.com/package/$PKG_NAME"
 fi
-# 期望片段形如："next":"0.1.3-beta"
+# 期望片段形如："next":"0.1.4-beta"
 if pub_wait_for_dist_tag "$PKG_NAME" "$TAG" "$VERSION"; then
   META_DOC="$(curl -sS "$NPM_REGISTRY$PKG_NAME")"
   DIST_TAG="$(echo "$META_DOC" | grep -oE "\"$TAG\"[[:space:]]*:[[:space:]]*\"[0-9][^\"]*\"" | head -1)"

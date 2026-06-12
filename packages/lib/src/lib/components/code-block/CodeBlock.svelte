@@ -75,7 +75,10 @@
 
   // 将 tokens 序列化为单一 HTML 字符串，避免 Svelte 在 pre 标签内插入空白
   const highlightedHtml = $derived(
-    tokens.map((t) => `<span class="${colorMap[t.type] ?? ''}">${escapeHtml(t.value)}</span>`).join(""),
+    tokens.map((t) => {
+      const style = styleMap[t.type] ?? '';
+      return `<span style="${style}">${escapeHtml(t.value)}</span>`;
+    }).join(""),
   );
 
   function escapeHtml(s: string): string {
@@ -114,15 +117,15 @@
     }
   }
 
-  const colorMap: Record<string, string> = {
-    comment: "text-(--pui-text-disabled) italic",
-    string: "text-(--pui-color-success)",
-    keyword: "text-(--pui-color-primary)",
-    number: "text-(--pui-color-warning)",
-    tag: "text-(--pui-color-error)",
-    attr: "text-(--pui-color-info)",
-    punct: "text-(--pui-text-secondary)",
-    text: "text-(--pui-text-primary)",
+  const styleMap: Record<string, string> = {
+    comment: "color:var(--pui-code-token-comment);font-style:italic",
+    string: "color:var(--pui-code-token-string)",
+    keyword: "color:var(--pui-code-token-keyword);font-weight:600",
+    number: "color:var(--pui-code-token-number)",
+    tag: "color:var(--pui-code-token-tag);font-weight:600",
+    attr: "color:var(--pui-code-token-attr)",
+    punct: "color:var(--pui-code-token-punct)",
+    text: "color:var(--pui-code-token-text)",
   };
 </script>
 

@@ -661,6 +661,9 @@
   --pui-surface-container: var(--pui-apple-material-thin);
   --pui-field-bg: var(--pui-apple-material-thin);
   --pui-switch-track-bg: var(--pui-apple-separator);
+  --pui-text-primary: var(--pui-apple-label);
+  --pui-text-secondary: var(--pui-apple-secondary-label);
+  --pui-text-disabled: var(--pui-apple-tertiary-label);
 
   /* Dark mode for new HIG additions */
   --pui-apple-icon-primary: oklch(92% 0.005 260deg);

@@ -1,6 +1,6 @@
 # @persona-ui/theme-material
 
-## 0.1.3-beta
+## 0.1.4-beta
 
 ### Minor Changes
 
@@ -32,7 +32,7 @@
 
 ### Dependency Updates
 
-- `@persona-ui/lib@0.1.3-beta`（由 changeset fixed 联动）
+- `@persona-ui/lib@0.1.4-beta`（由 changeset fixed 联动）
 
 ## 0.1.0 (2026-06-04)
 
@@ -43,5 +43,5 @@
 
 ## Unreleased
 
-> 当前 `package.json#version` 已为 `0.1.3-beta`。
-> 在 `0.1.3-beta` 之后的下一次发布之前，所有新变更都将汇总在此节。
+> 当前 `package.json#version` 已为 `0.1.4-beta`。
+> 在 `0.1.4-beta` 之后的下一次发布之前，所有新变更都将汇总在此节。

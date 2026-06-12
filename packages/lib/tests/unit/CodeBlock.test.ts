@@ -82,10 +82,10 @@ describe("CodeBlock", () => {
   it("highlights keywords and strings", () => {
     render(CodeBlock, { props: { code: 'const x = "hello";', language: "ts" } });
     const spans = document.querySelectorAll("code span");
-    const types = new Set(Array.from(spans).map((s) => s.className));
-    // Should have at least one keyword class and one string class
-    const hasKeyword = Array.from(types).some((c) => c.includes("primary"));
-    const hasString = Array.from(types).some((c) => c.includes("success"));
+    const styles = Array.from(spans).map((s) => s.getAttribute("style") || "");
+    // Should have at least one keyword style and one string style
+    const hasKeyword = styles.some((s) => s.includes("--pui-code-token-keyword"));
+    const hasString = styles.some((s) => s.includes("--pui-code-token-string"));
     expect(hasKeyword).toBe(true);
     expect(hasString).toBe(true);
   });
@@ -93,7 +93,10 @@ describe("CodeBlock", () => {
   it("highlights comments", () => {
     render(CodeBlock, { props: { code: "// comment\nconst x = 1;", language: "ts" } });
     const spans = document.querySelectorAll("code span");
-    const hasComment = Array.from(spans).some((s) => s.className.includes("disabled") && s.className.includes("italic"));
+    const hasComment = Array.from(spans).some((s) => {
+      const style = s.getAttribute("style") || "";
+      return style.includes("--pui-code-token-comment") && style.includes("italic");
+    });
     expect(hasComment).toBe(true);
   });
 });

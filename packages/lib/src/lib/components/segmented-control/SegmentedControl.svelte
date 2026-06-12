@@ -115,7 +115,7 @@
         'focus-visible:outline-2 focus-visible:outline-offset-2',
         item.value === currentValue
           ? 'text-(--pui-text-primary)'
-          : 'text-(--pui-text-secondary) hover:text-(--pui-text-primary)',
+          : 'text-(--pui-text-secondary) hover:opacity-70',
         (item.disabled || disabled) && 'pointer-events-none'
       )}
       onclick={() => {

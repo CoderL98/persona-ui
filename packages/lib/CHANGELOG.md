@@ -1,6 +1,11 @@
 # @persona-ui/lib
 
-## 0.1.3-beta
+## 0.1.4-beta
+
+### Patch Changes
+
+- **fix(CodeBlock): 修复语法高亮失效** — 将动态 Tailwind class 改为内联 CSS 样式,避免被 tree-shaking
+- **fix(SegmentedControl): 优化暗色模式 hover 效果** — 改用 opacity 而非颜色变化,提升暗色主题下的对比度
 
 ### Major Changes
 
@@ -66,5 +71,5 @@
 
 ## Unreleased
 
-> 当前 `package.json#version` 已为 `0.1.3-beta`。
-> 在 `0.1.3-beta` 之后的下一次发布（`0.1.4-beta` / `0.2.0` / ...）之前，所有新变更都将汇总在此节。
+> 当前 `package.json#version` 已为 `0.1.4-beta`。
+> 在 `0.1.4-beta` 之后的下一次发布（`0.1.4-beta` / `0.2.0` / ...）之前，所有新变更都将汇总在此节。

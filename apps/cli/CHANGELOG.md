@@ -1,6 +1,6 @@
 # @persona-ui/cli
 
-## 0.1.3-beta
+## 0.1.4-beta
 
 > ⚠️ 注意：CLI **不在** changeset `fixed` 组内（[`.changeset/config.json`](../../.changeset/config.json) 只固定 lib / docs / theme-apple / theme-material）。CLI 有**独立版本节奏**，与上述 4 个包不强同步。但本次手动将其 version 字段与 lib 一致，原因是 CLI 仍处于早期预发布阶段，发布脚本按 `package.json#version` 推断 npm dist-tag（`next`），与 lib 同步有利于一次性发版。后续若 lib 进入稳定期，CLI 节奏可独立。
 
@@ -39,8 +39,8 @@ CLI 初始发布（与 monorepo 首个版本一同发布）。
 
 ## Unreleased
 
-> 当前 `package.json#version` 已为 `0.1.3-beta`。
-> 在 `0.1.3-beta` 之后的下一次发布之前，所有新变更都将汇总在此节。
+> 当前 `package.json#version` 已为 `0.1.4-beta`。
+> 在 `0.1.4-beta` 之后的下一次发布之前，所有新变更都将汇总在此节。
 
 ### Planned
 

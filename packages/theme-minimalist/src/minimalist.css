@@ -322,6 +322,18 @@
     0 1px 0 oklch(100% 0 0 / 4%), 0 8px 24px oklch(0% 0 0 / 50%);
 
   --pui-overlay-scrim: oklch(0% 0 0 / 64%);
+
+  /* Dark mode overrides with !important to win against injected shim */
+  --pui-color-primary: var(--pui-minimal-ink) !important;
+  --pui-color-on-primary: var(--pui-minimal-paper) !important;
+  --pui-surface-base: var(--pui-minimal-paper) !important;
+  --pui-surface-raised: var(--pui-minimal-surface-raised) !important;
+  --pui-surface-variant: var(--pui-minimal-surface) !important;
+  --pui-text-primary: var(--pui-minimal-ink) !important;
+  --pui-text-secondary: var(--pui-minimal-ink-soft) !important;
+  --pui-text-disabled: var(--pui-minimal-ink-mute) !important;
+  --pui-outline: var(--pui-minimal-line) !important;
+  --pui-outline-subtle: var(--pui-minimal-line-soft) !important;
 }
 
 /* ==========================================================
@@ -396,4 +408,14 @@
   --pui-snackbar-bg-error: var(--pui-minimal-ink) !important;
   --pui-snackbar-fg-error: var(--pui-minimal-paper) !important;
   --pui-snackbar-radius: 0 !important;
+
+  /* CodeBlock syntax highlight tokens (克制灰阶但保留可区分) */
+  --pui-code-token-text: var(--pui-minimal-ink) !important;
+  --pui-code-token-comment: oklch(55% 0 0) !important;
+  --pui-code-token-string: oklch(35% 0 0) !important;        /* 深一些,模拟"斜体+粗" */
+  --pui-code-token-keyword: var(--pui-minimal-ink) !important; /* 关键字同主色,加粗(由 code-block 自身样式) */
+  --pui-code-token-number: oklch(40% 0 0) !important;
+  --pui-code-token-tag: var(--pui-minimal-ink) !important;
+  --pui-code-token-attr: oklch(50% 0 0) !important;
+  --pui-code-token-punct: oklch(60% 0 0) !important;
 }

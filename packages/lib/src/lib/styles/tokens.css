@@ -229,4 +229,31 @@
   --pui-color-on-info: oklch(0.18 0.06 255);
   --pui-color-info-container: oklch(0.3 0.08 255);
   --pui-color-on-info-container: oklch(0.92 0.04 255);
+
+  /* CodeBlock syntax-highlight token colors (主题独立,不与 --pui-color-* 业务色冲突)。
+     CodeBlock 用正则把 token 分成 7 类,这里给每类一个独立 token。
+     主题可自由覆盖 —— minimalist 主题用极浅灰阶(对比度足够区分但保持素色基调),
+     Apple/Material 主题用各自色板的强彩色。 */
+  --pui-code-token-text: var(--pui-text-primary);
+  --pui-code-token-comment: var(--pui-text-disabled);
+  --pui-code-token-string: var(--pui-color-success);
+  --pui-code-token-keyword: var(--pui-color-primary);
+  --pui-code-token-number: var(--pui-color-warning);
+  --pui-code-token-tag: var(--pui-color-error);
+  --pui-code-token-attr: var(--pui-color-info);
+  --pui-code-token-punct: var(--pui-text-secondary);
+  --pui-code-token-comment-italic: 1;
+}
+
+/* CodeBlock tokens in dark mode (与浅色默认一致,因为 --pui-color-* 在 dark 块已重定义) */
+[data-mode='dark'] {
+  --pui-code-token-text: var(--pui-text-primary);
+  --pui-code-token-comment: var(--pui-text-disabled);
+  --pui-code-token-string: var(--pui-color-success);
+  --pui-code-token-keyword: var(--pui-color-primary);
+  --pui-code-token-number: var(--pui-color-warning);
+  --pui-code-token-tag: var(--pui-color-error);
+  --pui-code-token-attr: var(--pui-color-info);
+  --pui-code-token-punct: var(--pui-text-secondary);
+  --pui-code-token-comment-italic: 1;
 }

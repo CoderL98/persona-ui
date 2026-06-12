@@ -1,6 +1,10 @@
 # @persona-ui/theme-minimalist
 
-## 0.1.3-beta
+## 0.1.4-beta
+
+### Patch Changes
+
+- **fix(dark-mode): 修复暗色模式背景和文本颜色** — 在 `[data-mode='dark']` 选择器中添加通用 token 的 `!important` 覆盖
 
 ### Minor Changes
 

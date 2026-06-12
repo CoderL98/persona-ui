@@ -328,7 +328,7 @@ pub_check_lib_published() {
 # 用法：pub_wait_for_dist_tag "$PKG_NAME" "$TAG" "$EXPECTED_VERSION"
 #   - PKG_NAME         例：@persona-ui/theme-material
 #   - TAG              例：next / latest
-#   - EXPECTED_VERSION 例：0.1.3-beta
+#   - EXPECTED_VERSION 例：0.1.4-beta
 # 返回：
 #   0  = 在重试窗口内命中 dist-tag 指向 EXPECTED_VERSION
 #   非0 = 重试耗尽仍未命中（caller 决定 warn 还是 die）

@@ -337,7 +337,7 @@ for entry in "${THEME_PACKAGES[@]}"; do
   if [ "$HTTP_CODE_DOC" != "200" ]; then
     die $LINENO "registry 包文档根未返回 200（HTTP $HTTP_CODE_DOC），请稍后重试 https://www.npmjs.com/package/$PKG_NAME"
   fi
-  # 期望片段形如："next":"0.1.3-beta"
+  # 期望片段形如："next":"0.1.4-beta"
   if pub_wait_for_dist_tag "$PKG_NAME" "$TAG" "$VERSION"; then
     # 同步成功：刷新 META_DOC 用于后续 9.1.3 综合判断
     META_DOC="$(curl -sS "$NPM_REGISTRY$PKG_NAME")"

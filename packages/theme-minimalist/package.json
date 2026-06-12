@@ -1,6 +1,6 @@
 {
   "name": "@persona-ui/theme-minimalist",
-  "version": "0.1.3-beta",
+  "version": "0.1.4-beta",
   "description": "Ultra-minimal ink-on-paper theme for Persona UI — near-monochrome, near-zero radius, fastest motion. For interfaces that should disappear.",
   "type": "module",
   "main": "./dist/index.js",

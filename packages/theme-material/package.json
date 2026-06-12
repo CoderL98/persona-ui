@@ -1,6 +1,6 @@
 {
   "name": "@persona-ui/theme-material",
-  "version": "0.1.3-beta",
+  "version": "0.1.4-beta",
   "description": "Material 3 theme for Persona UI — Material You tokens, elevation, state layer, dynamic color",
   "type": "module",
   "main": "./dist/index.js",
