@@ -1,60 +1,74 @@
 # persona-ui Skill
 
-persona-ui 组件库开发专用 skill，为 Svelte 5 双人格组件库提供全流程开发支持。
+第三方项目使用 persona-ui 的 Claude Code skill，用于安装、配置主题、接入组件和排查常见使用问题。
 
-## 功能
+## 适用场景
 
-- ✅ 新增组件 (完整流程: 源码 + 测试 + 三语文档)
-- ✅ 修复组件 (自动检测规范问题)
-- ✅ 文档管理 (同步维护 en/zh-CN/zh-TW)
-- ✅ 主题开发 (创建新主题包)
+- 在 Svelte/SvelteKit 项目中安装 `@persona-ui/lib`
+- 配置 Apple、Material、Minimalist 主题
+- 导入 `@persona-ui/lib/core.css` 和主题 CSS
+- 设置 `data-theme` / `data-mode`
+- 使用 persona-ui 组件构建业务页面
+- 排查样式不生效、主题不切换、dark mode 异常
 
-## 使用
+如果你是在维护 persona-ui 组件库源码，请使用 `/persona-ui-dev`。
 
-在 `/home/rcc/GitHub/persona-ui` 仓库内:
+## 安装
+
+### 项目级安装
+
+把整个 `persona-ui` 目录复制到目标项目的 `.claude/skills/` 目录下:
 
 ```bash
+mkdir -p .claude/skills
+cp -R /path/to/persona-ui/.claude/skills/persona-ui .claude/skills/persona-ui
+```
+
+目标结构应为:
+
+```text
+.claude/skills/persona-ui/SKILL.md
+.claude/skills/persona-ui/README.md
+```
+
+然后在目标项目中打开或重启 Claude Code，运行:
+
+```text
 /persona-ui
 ```
 
-然后告诉我你要做什么，例如:
-- "新增一个 Breadcrumb 组件"
-- "修复 Button 的事件命名问题"
-- "为 Toast 组件添加文档"
-- "创建 theme-minimalist 主题"
+### 用户级全局安装
 
-## 核心规范
+如果希望在所有项目里都能使用，复制到用户级 skills 目录:
 
-### Svelte 5 语法
-- 使用 `$props()` 替代 `export let`
-- 使用 `$derived` 替代 `$:`
-- 使用 `{@render children?.()}` 替代 `<slot>`
-- 事件属性驼峰命名: `onclick` / `onClick`
-
-### CSS 约定
-- Tailwind 简写: `bg-(--token)` 而非 `bg-[var(--token)]`
-- 禁止硬编码，全部用 design tokens
-- Token 前缀: `--pui-color-*` / `--pui-space-*` / `--pui-text-*`
-
-### 命名约定
-- Props/事件: 驼峰 `onClick` `onOpenChange`
-- 文件/目录: kebab-case `input-otp/`
-- 类型: PascalCase `ButtonProps`
-
-## 目录结构
-
-```
-persona-ui/
-├── packages/lib/            # 组件库主体
-│   ├── src/lib/components/  # 组件源码
-│   ├── tests/unit/          # 单元测试
-│   └── src/lib/styles/      # Design tokens
-├── packages/theme-*/        # 主题包
-├── apps/docs/               # 文档站
-│   └── docs-content/        # 三语 markdown
+```bash
+mkdir -p ~/.claude/skills
+cp -R /path/to/persona-ui/.claude/skills/persona-ui ~/.claude/skills/persona-ui
 ```
 
-## 参考
+之后可在任意 Claude Code 会话中运行 `/persona-ui`。
 
-- 仓库: `/home/rcc/GitHub/persona-ui`
-- 主 skill: `skill.md`
+> 如果 `skills` 目录是在 Claude Code 会话启动后新建的，请重启 Claude Code 一次，让它重新发现 skill。
+
+## 使用示例
+
+```text
+/persona-ui
+```
+
+然后告诉 Claude Code 你的目标，例如:
+
+- "帮我在这个 SvelteKit 项目里接入 persona-ui"
+- "配置 Apple 和 Material 主题切换"
+- "为什么 Button 没有样式"
+- "用 persona-ui 做一个登录表单"
+
+## 维护者 Skill
+
+本仓库还提供维护者版 skill:
+
+```text
+/persona-ui-dev
+```
+
+用于开发 persona-ui 组件库本身，包括新增组件、修复组件、开发主题包、同步三语文档等。

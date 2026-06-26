@@ -12,8 +12,9 @@ build
 CLAUDE.md
 audit-report.md
 .playwright-mcp
-.claude
+.claude/*
 !.claude/skills/
+!.claude/skills/**
 batch-*.png
 batch-*.jpg
 batch-*.webp

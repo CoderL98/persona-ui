@@ -8,13 +8,13 @@ Switch the entire visual grammar with a single `data-theme` attribute. Same comp
 
 ## Packages
 
-| Package | Source | Description |
-| --- | --- | --- |
-| [`@persona-ui/lib`](https://github.com/CoderL98/persona-ui/blob/main/packages/lib/README.md) | [`packages/lib`](https://github.com/CoderL98/persona-ui/tree/main/packages/lib) | Component library (publishable) |
-| [`@persona-ui/theme-apple`](https://github.com/CoderL98/persona-ui/blob/main/packages/theme-apple/README.md) | [`packages/theme-apple`](https://github.com/CoderL98/persona-ui/tree/main/packages/theme-apple) | Apple HIG theme |
-| [`@persona-ui/theme-material`](https://github.com/CoderL98/persona-ui/blob/main/packages/theme-material/README.md) | [`packages/theme-material`](https://github.com/CoderL98/persona-ui/tree/main/packages/theme-material) | Material 3 theme |
-| [`@persona-ui/cli`](https://github.com/CoderL98/persona-ui/blob/main/apps/cli/README.md) | [`apps/cli`](https://github.com/CoderL98/persona-ui/tree/main/apps/cli) | Install themes from the central registry |
-| [`@persona-ui/docs`](https://github.com/CoderL98/persona-ui/tree/main/apps/docs) | [`apps/docs`](https://github.com/CoderL98/persona-ui/tree/main/apps/docs) | Documentation site (this monorepo's demo) |
+| Package                                                                                                            | Source                                                                                                | Description                               |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`@persona-ui/lib`](https://github.com/CoderL98/persona-ui/blob/main/packages/lib/README.md)                       | [`packages/lib`](https://github.com/CoderL98/persona-ui/tree/main/packages/lib)                       | Component library (publishable)           |
+| [`@persona-ui/theme-apple`](https://github.com/CoderL98/persona-ui/blob/main/packages/theme-apple/README.md)       | [`packages/theme-apple`](https://github.com/CoderL98/persona-ui/tree/main/packages/theme-apple)       | Apple HIG theme                           |
+| [`@persona-ui/theme-material`](https://github.com/CoderL98/persona-ui/blob/main/packages/theme-material/README.md) | [`packages/theme-material`](https://github.com/CoderL98/persona-ui/tree/main/packages/theme-material) | Material 3 theme                          |
+| [`@persona-ui/cli`](https://github.com/CoderL98/persona-ui/blob/main/apps/cli/README.md)                           | [`apps/cli`](https://github.com/CoderL98/persona-ui/tree/main/apps/cli)                               | Install themes from the central registry  |
+| [`@persona-ui/docs`](https://github.com/CoderL98/persona-ui/tree/main/apps/docs)                                   | [`apps/docs`](https://github.com/CoderL98/persona-ui/tree/main/apps/docs)                             | Documentation site (this monorepo's demo) |
 
 ## Quick start (using the library)
 
@@ -25,14 +25,14 @@ pnpm add @persona-ui/theme-apple   # or @persona-ui/theme-material
 
 ```css
 /* src/app.css */
-@import "@persona-ui/lib/core.css";
-@import "@persona-ui/theme-apple/apple.css";
+@import '@persona-ui/lib/core.css';
+@import '@persona-ui/theme-apple/apple.css';
 ```
 
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-  import "../app.css";
+  import '../app.css';
   let { children } = $props();
 </script>
 
@@ -44,7 +44,7 @@ pnpm add @persona-ui/theme-apple   # or @persona-ui/theme-material
 ```svelte
 <!-- any component -->
 <script>
-  import { Button } from "@persona-ui/lib";
+  import { Button } from '@persona-ui/lib';
 </script>
 
 <Button variant="filled">Hello</Button>
@@ -67,6 +67,66 @@ pnpm test:visual        # visual regression specs
 pnpm test:css           # css contract specs
 pnpm test               # check + unit
 ```
+
+## Claude Code skills
+
+This repository ships two Claude Code skills:
+
+| Skill             | Audience                        | Purpose                                                                                |
+| ----------------- | ------------------------------- | -------------------------------------------------------------------------------------- |
+| `/persona-ui`     | App developers using persona-ui | Install, configure, use components, set up themes, and troubleshoot integration issues |
+| `/persona-ui-dev` | persona-ui maintainers          | Develop components, theme packages, docs, tests, and design-token contracts            |
+
+### Use them from this repository
+
+Clone the repository, open it with Claude Code, then run either:
+
+```text
+/persona-ui
+/persona-ui-dev
+```
+
+If `.claude/skills/` did not exist when your Claude Code session started, restart Claude Code so it can discover the project skills.
+
+### Install the consumer skill in another project
+
+Copy the third-party usage skill folder into the target repository:
+
+```bash
+mkdir -p .claude/skills
+cp -R /path/to/persona-ui/.claude/skills/persona-ui .claude/skills/persona-ui
+```
+
+The expected structure is:
+
+```text
+.claude/skills/persona-ui/SKILL.md
+```
+
+Then open or restart Claude Code in the target repository and run `/persona-ui`.
+
+### Install the maintainer skill
+
+For component-library development work, copy the maintainer skill instead:
+
+```bash
+mkdir -p .claude/skills
+cp -R /path/to/persona-ui/.claude/skills/persona-ui-dev .claude/skills/persona-ui-dev
+```
+
+Then run `/persona-ui-dev`.
+
+### Install globally for your user
+
+Copy either skill to your user-level Claude Code skills directory:
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R /path/to/persona-ui/.claude/skills/persona-ui ~/.claude/skills/persona-ui
+cp -R /path/to/persona-ui/.claude/skills/persona-ui-dev ~/.claude/skills/persona-ui-dev
+```
+
+Then use `/persona-ui` or `/persona-ui-dev` from any Claude Code session. If the `skills` directory was created after the session started, restart Claude Code once.
 
 ## Release flow
 
